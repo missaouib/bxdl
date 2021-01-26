@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyInsuredExamineMapper">
+
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.insPolicyInsuredExamineEntity" >
+    <result column="id" property="id" />
+    <result column="policy_id" property="policyId" />
+    <result column="auditresults" property="auditresults" />
+    <result column="auditopinions" property="auditopinions" />
+    <result column="examine_person" property="examinePerson" />
+    <result column="examine_time" property="examineTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+                `id`,
+                `policy_id`,
+                `auditresults`,
+                `auditopinions`,
+                `examine_person`,
+                `examine_time`
+    </sql>
+
+  <insert id="addInsPolicyInsuredExamine" parameterType="java.util.Map">
+    INSERT INTO ins_policy_insured_examine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test ='null != id'>
+        `id`,
+      </if>
+      <if test ='null != policyId'>
+        `policy_id`,
+      </if>
+      <if test ='null != auditresults'>
+        `auditresults`,
+      </if>
+      <if test ='null != auditopinions'>
+        `auditopinions`,
+      </if>
+      <if test ='null != examinePerson'>
+        `examine_person`,
+      </if>
+      <if test ='null != examineTime'>
+        `examine_time`,
+      </if>
+      <if test ='null != batchName'>
+        `batch_name`,
+      </if>
+      <if test ='null != batchOrgId'>
+        `batch_org_id`,
+      </if>
+      <if test ='null != batchDate'>
+        `batch_date`,
+      </if>
+      <if test ='null != batchType'>
+        `batch_type`,
+      </if>
+      <if test ='null != noteType'>
+        `note_type`,
+      </if>
+      <if test ='null != noteIsOrNot'>
+        `note_is_or_not`,
+      </if>
+      <if test ='null != noteExplain'>
+        `note_explain`,
+      </if>
+      <if test ='null != grantOrg'>
+        `grant_org`,
+      </if>
+      <if test ='null != grantTeam'>
+        `grant_team`,
+      </if>
+      <if test ='null != grantEmpNo'>
+        `grant_emp_no`,
+      </if>
+      <if test ='null != grantEmpName'>
+        `grant_emp_name`,
+      </if>
+      <if test ='null != reasonsForReply'>
+        `reasons_for_reply`,
+      </if>
+      <if test ='null != abnormalCauaes'>
+        `abnormal_cauaes`,
+      </if>
+      <if test ='null != auditOpinions'>
+        `audit_opinions`,
+      </if>
+      <if test ='null != returnType'>
+        `RETURN_TYPE`,
+      </if>
+      <if test ='null != returnOrgDate'>
+        `RETURN_ORG_DATE`,
+      </if>
+      <if test ='null != returnExplain'>
+        `RETURN_EXPLAIN`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test ='null != id'>
+        #{id},
+      </if>
+      <if test ='null != policyId'>
+        #{policyId},
+      </if>
+      <if test ='null != auditresults'>
+        #{auditresults},
+      </if>
+      <if test ='null != auditopinions'>
+        #{auditopinions},
+      </if>
+      <if test ='null != examinePerson'>
+        #{examinePerson},
+      </if>
+      <if test ='null != examineTime'>
+        #{examineTime},
+      </if>
+      <if test ='null != batchName'>
+        #{batchName},
+      </if>
+      <if test ='null != batchOrgId'>
+        #{batchOrgId},
+      </if>
+      <if test ='null != batchDate'>
+        #{batchDate},
+      </if>
+      <if test ='null != batchType'>
+        #{batchType},
+      </if>
+      <if test ='null != noteType'>
+        #{noteType},
+      </if>
+      <if test ='null != noteIsOrNot'>
+        #{noteIsOrNot},
+      </if>
+      <if test ='null != noteExplain'>
+        #{noteExplain},
+      </if>
+      <if test ='null != grantOrg'>
+        #{grantOrg},
+      </if>
+      <if test ='null != grantTeam'>
+        #{grantTeam},
+      </if>
+      <if test ='null != grantEmpNo'>
+        #{grantEmpNo},
+      </if>
+      <if test ='null != grantEmpName'>
+        #{grantEmpName},
+      </if>
+      <if test ='null != reasonsForReply'>
+        #{reasonsForReply},
+      </if>
+      <if test ='null != abnormalCauaes'>
+        #{abnormalCauaes},
+      </if>
+      <if test ='null != auditOpinions'>
+        #{auditOpinions},
+      </if>
+      <if test ='null != returnType'>
+        #{returnType},
+      </if>
+      <if test ='null != returnOrgDate'>
+        #{returnOrgDate},
+      </if>
+      <if test ='null != returnExplain'>
+        #{returnExplain},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="delete" >
+        DELETE FROM ins_policy_insured_examine
+        WHERE `id_` = #{id}
+    </delete>
+
+  <update id="updateInsExamine" parameterType="java.util.Map">
+    UPDATE ins_policy_insured_examine
+    <set>
+      <if test ='null != id'>id = #{id},</if>
+      <if test ='null != auditresults'>auditresults = #{auditresults},</if>
+      <if test ='null != auditopinions'>auditopinions = #{auditopinions},</if>
+      <if test ='null != examinePerson'>examine_person = #{examinePerson},</if>
+      <if test ='null != examineTime'>examine_time = #{examineTime},</if>
+
+      <if test ='null != batchName'>batch_name = #{batchName},</if>
+      <if test ='null != batchOrgId'>batch_org_id = #{batchOrgId},</if>
+      <if test ='null != batchDate'>batch_date = #{batchDate},</if>
+      <if test ='null != batchType'>batch_type = #{batchType},</if>
+
+      <if test ='null != batchNameReceipt'>batch_name_receipt = #{batchNameReceipt},</if>
+      <if test ='null != batchOrgIdReceipt'>batch_org_id_receipt = #{batchOrgIdReceipt},</if>
+      <if test ='null != batchDateReceipt'>batch_date_receipt = #{batchDateReceipt},</if>
+      <if test ='null != batchTypeReceipt'>batch_type_receipt = #{batchTypeReceipt},</if>
+
+      <if test ='null != noteType'>note_type = #{noteType},</if>
+      <if test ='null != noteIsOrNot'>note_is_or_not = #{noteIsOrNot},</if>
+      <if test ='null != noteExplain'>note_explain = #{noteExplain},</if>
+
+      <if test ='null != grantOrg'>grant_org = #{grantOrg},</if>
+      <if test ='null != grantTeam'>grant_team = #{grantTeam},</if>
+      <if test ='null != grantEmpNo'>grant_emp_no = #{grantEmpNo},</if>
+      <if test ='null != grantEmpName'>grant_emp_name = #{grantEmpName},</if>
+
+      <if test ='null != reasonsForReply'>reasons_for_reply = #{reasonsForReply},</if>
+
+        <if test ='null != abnormalCauaes'>abnormal_cauaes = #{abnormalCauaes},</if>
+
+      <if test ='null != auditOpinions'>AUDIT_OPINIONS = #{auditOpinions},</if>
+
+      <if test ='null != receExpAuditresults'>rece_exp_auditresults = #{receExpAuditresults},</if>
+      <if test ='null != receExpAuditopinions'>rece_exp_auditopinions = #{receExpAuditopinions},</if>
+
+      <if test ='null != receCustomerSignature'>rece_customer_signature = #{receCustomerSignature},</if>
+      <if test ='null != receOrgDate'>rece_org_date = #{receOrgDate},</if>
+      <if test ='null != receExplain'>rece_explain = #{receExplain},</if>
+
+      <if test ='null != returnType'>return_type = #{returnType},</if>
+      <if test ='null != returnOrgDate'>return_org_date = #{returnOrgDate},</if>
+      <if test ='null != returnExplain'>return_explain = #{returnExplain}</if>
+    </set>
+    WHERE `policy_id` = #{policyId}
+  </update>
+
+
+  <select id="selectSizeByPolicy" resultType="java.util.Map">
+SELECT
+	e.id,
+	e.policy_id,
+	e.auditresults,
+	e.auditopinions,
+	e.examine_person,
+	e.examine_time,
+	i.INSURANCE_SALER as name
+FROM
+	ins_policy_insured_examine e
+LEFT JOIN insurance_sales_info i ON e.EXAMINE_PERSON = i.INSURANCE_SALES_ID
+    WHERE e.policy_id = #{policyId}
+  </select>
+
+  <select id="pageList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM ins_policy_insured_examine
+    LIMIT #{offset}, #{pageSize}
+  </select>
+
+  <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_policy_insured_examine
+    </select>
+
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsInformationMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsInformationEntity" >
+        <result column="product_id" property="productId" />
+        <result column="insured_amount" property="insuredAmount" />
+        <result column="payment_period_sign" property="paymentPeriodSign" />
+        <result column="PERIOD_OF_INSURANCE_SIGN" property="periodOf" />
+        <result column="principal_deputy_sign" property="principalDeputySign" />
+        <result column="premium" property="premium" />
+        <result column="payment_method" property="paymentMethod" />
+        <result column="payment" property="payment" />
+        <result column="period_of_insurance" property="periodOfInsurance" />
+        <result column="composite_code" property="compositeCode" />
+        <result column="policy_id" property="policyId" />
+        <result column="size" property="size" />
+        <result column="INSURANCE_TYPE" property="insuranceType" />
+        <result column="PROTOCOL_ID" property="protocolId" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `product_id`,
+                `insured_amount`,
+                `payment_period_sign`,
+                `PERIOD_OF_INSURANCE_SIGN`,
+                `principal_deputy_sign`,
+                `premium`,
+                `payment_method`,
+                `payment`,
+                `period_of_insurance`,
+                `composite_code`,
+                `policy_id`,
+                `size`,
+                `PROTOCOL_ID`
+    </sql>
+
+    <insert id="addInsInformation" parameterType="java.util.Map">
+        INSERT INTO ins_information
+               ( `product_id`,
+                `insured_amount`,
+                `payment_period_sign`,
+                `PERIOD_OF_INSURANCE_SIGN`,
+                `principal_deputy_sign`,
+                `premium`,
+                `payment_method`,
+                `payment`,
+                `period_of_insurance`,
+                `composite_code`,
+                `policy_id`,
+                `size`,
+                INSURANCE_TYPE,
+                PROTOCOL_ID)
+
+      values<foreach collection="list" item="item" index="index" separator=",">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.productId},
+                #{item.insuredAmount},
+                #{item.paymentPeriodSign},
+                #{item.periodOf},
+                #{item.principalDeputySign},
+                #{item.premium},
+                #{item.paymentMethod},
+                #{item.payment},
+                #{item.periodOfInsurance},
+                #{item.compositeCode},
+                #{item.policyId},
+                #{item.size},
+                #{item.insuranceType},
+                #{item.protocolId}
+        </trim>
+    </foreach>
+    </insert>
+
+    <delete id="deleteInformation" >
+        DELETE FROM ins_information
+        WHERE `POLICY_ID` = #{policyId}
+    </delete>
+
+    <update id="updateInsInformation" parameterType="java.util.Map">
+        UPDATE ins_information
+        set
+           product_id = #{productId},
+          insured_amount = #{insuredAmount},
+            payment_period_sign = #{paymentPeriodSign},
+            PERIOD_OF_INSURANCE_SIGN = #{periodOf},
+            principal_deputy_sign = #{principalDeputySign},
+            premium = #{premium},
+            payment_method = #{paymentMethod},
+            payment = #{payment},
+            period_of_insurance = #{periodOfInsurance},
+           composite_code = #{compositeCode},
+            policy_id = #{policyId},
+            `size` = #{size},
+            `PROTOCOL_ID` = #{protocolId},
+
+        WHERE `POLICY_ID` = #{policyId}
+    </update>
+
+
+    <select id="selectInsInformationEntityByKey" resultType="java.util.Map">
+         SELECT
+                ii.`insured_amount`,
+                ii.`payment_period_sign`,
+                ii.`PERIOD_OF_INSURANCE_SIGN`,
+                ii.`principal_deputy_sign`,
+                ii.`premium`,
+                ii.`payment_method`,
+                ii.`payment`,
+                ii.`period_of_insurance`,
+                ii.`composite_code`,
+                ii.`policy_id`,
+                ii.size,
+                ii.insurance_type,
+				ipi.PRODUCTS_RATIO_ID,
+                ipi.PRODUCTS_NAME as PRODUCT_NAME,
+                ipi.PRODUCTS_CODE as PRODUCT_CODE
+        FROM ins_information ii
+        LEFT JOIN ins_products_commission_ratio ipi on ipi.PRODUCTS_RATIO_ID = ii.PRODUCT_ID
+        WHERE POLICY_ID = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_information
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_information
+    </select>
+
+</mapper>

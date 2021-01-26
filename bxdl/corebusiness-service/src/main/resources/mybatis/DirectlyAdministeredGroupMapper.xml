@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.DirectlyAdministeredGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.parameter.DirectlyAdministeredGroup" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SETTINGS" property="settings" jdbcType="VARCHAR" />
+    <result column="MAX_SIGN" property="maxSign" jdbcType="CHAR" />
+    <result column="MIN_SIGN" property="minSign" jdbcType="CHAR" />
+    <result column="ALLOWANCE" property="allowance" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="IS_NORMAL" property="isNormal" jdbcType="CHAR" />
+    <result column="MAXIMUM" property="maximum" jdbcType="VARCHAR" />
+    <result column="MINIMUM" property="minimum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SETTINGS, MAX_SIGN, MIN_SIGN, ALLOWANCE, CREATED_BY, CREATED_TIME, UPDATED_BY, 
+    UPDATED_TIME, IS_NORMAL, MAXIMUM, MINIMUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from directly_administered_group
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from directly_administered_group
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.parameter.DirectlyAdministeredGroup" >
+    insert into directly_administered_group (ID, SETTINGS, MAX_SIGN, 
+      MIN_SIGN, ALLOWANCE, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+      IS_NORMAL, MAXIMUM, MINIMUM
+      )
+    values (#{id,jdbcType=BIGINT}, #{settings,jdbcType=VARCHAR}, #{maxSign,jdbcType=CHAR}, 
+      #{minSign,jdbcType=CHAR}, #{allowance,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{isNormal,jdbcType=CHAR}, #{maximum,jdbcType=VARCHAR}, #{minimum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.parameter.DirectlyAdministeredGroup" >
+    insert into directly_administered_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="settings != null" >
+        SETTINGS,
+      </if>
+      <if test="maxSign != null" >
+        MAX_SIGN,
+      </if>
+      <if test="minSign != null" >
+        MIN_SIGN,
+      </if>
+      <if test="allowance != null" >
+        ALLOWANCE,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL,
+      </if>
+      <if test="maximum != null" >
+        MAXIMUM,
+      </if>
+      <if test="minimum != null" >
+        MINIMUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="settings != null" >
+        #{settings,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSign != null" >
+        #{maxSign,jdbcType=CHAR},
+      </if>
+      <if test="minSign != null" >
+        #{minSign,jdbcType=CHAR},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNormal != null" >
+        #{isNormal,jdbcType=CHAR},
+      </if>
+      <if test="maximum != null" >
+        #{maximum,jdbcType=VARCHAR},
+      </if>
+      <if test="minimum != null" >
+        #{minimum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.parameter.DirectlyAdministeredGroup" >
+    update directly_administered_group
+    <set >
+      <if test="settings != null" >
+        SETTINGS = #{settings,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSign != null" >
+        MAX_SIGN = #{maxSign,jdbcType=CHAR},
+      </if>
+      <if test="minSign != null" >
+        MIN_SIGN = #{minSign,jdbcType=CHAR},
+      </if>
+      <if test="allowance != null" >
+        ALLOWANCE = #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL = #{isNormal,jdbcType=CHAR},
+      </if>
+      <if test="maximum != null" >
+        MAXIMUM = #{maximum,jdbcType=VARCHAR},
+      </if>
+      <if test="minimum != null" >
+        MINIMUM = #{minimum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.parameter.DirectlyAdministeredGroup" >
+    update directly_administered_group
+    set SETTINGS = #{settings,jdbcType=VARCHAR},
+      MAX_SIGN = #{maxSign,jdbcType=CHAR},
+      MIN_SIGN = #{minSign,jdbcType=CHAR},
+      ALLOWANCE = #{allowance,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      IS_NORMAL = #{isNormal,jdbcType=CHAR},
+      MAXIMUM = #{maximum,jdbcType=VARCHAR},
+      MINIMUM = #{minimum,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 不分页列表 -->
+   <select id="getDirectlyAdministeredGroupList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from directly_administered_group
+    where 1=1
+     and IS_NORMAL=0
+  </select>
+  
+   <!-- 查询状态为0的总条数 -->
+   <select id="checkListSize"  parameterType="java.util.Map" resultType="java.lang.Integer">
+	  SELECT
+		count(1)
+	FROM
+		directly_administered_group
+	where 1=1
+	and IS_NORMAL=0
+  </select>
+  
+</mapper>

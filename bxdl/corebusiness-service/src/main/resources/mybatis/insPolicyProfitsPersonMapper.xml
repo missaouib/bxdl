@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyProfitsPersonMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsPolicyProfitsPersonEntity" >
+        <result column="profits_person_id" property="profitsPersonId" />
+        <result column="create_time" property="createTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="name" property="name" />
+        <result column="card_type" property="cardType" />
+        <result column="card_no" property="cardNo" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="level" property="level" />
+        <result column="benefit_ratio" property="benefitRatio" />
+        <result column="relationship" property="relationship" />
+        <result column="policy_id" property="policyId" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `profits_person_id`,
+                `create_time`,
+                `create_by`,
+                `update_time`,
+                `update_by`,
+                `name`,
+                `card_type`,
+                `card_no`,
+                `sex`,
+                 DATE_FORMAT(`birthday`,'%Y-%m-%d') as birthday,
+                `level`,
+                `benefit_ratio`,
+                `relationship`,
+                `policy_id`
+    </sql>
+
+    <insert id="addInsPolicyProfitsPerson"  parameterType="java.util.Map">
+        INSERT INTO ins_policy_profits_person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                `profits_person_id`,
+                `create_time`,
+                `create_by`,
+                `update_time`,
+                `update_by`,
+                `name`,
+                `card_type`,
+                `card_no`,
+                `sex`,
+                `birthday`,
+                `level`,
+                `benefit_ratio`,
+                `relationship`,
+                `policy_id`
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                #{profitsPersonId},
+                #{createTime},
+                #{createBy},
+                #{updateTime},
+                #{updateBy},
+                #{name},
+                #{cardType},
+                #{cardNo},
+                #{sex},
+                #{birthday},
+                #{level},
+                #{benefitRatio},
+                #{relationship},
+                #{policyId}
+        </trim>
+    </insert>
+    <insert id="beathAddInsPolicyProfitsPerson"  parameterType="java.util.List">
+        INSERT INTO ins_policy_profits_person
+            <trim prefix=" (" suffix=")" suffixOverrides=",">
+            `create_time`,
+            `create_by`,
+            `name`,
+            `card_type`,
+            `card_no`,
+            `sex`,
+            `level`,
+            `benefit_ratio`,
+            `relationship`,
+            `policy_id`,
+            `birthday`
+            </trim>
+        values
+        <foreach collection="list" separator="," item="item">
+        <trim prefix=" (" suffix=")" suffixOverrides=",">
+                #{item.createTime},
+                #{item.createBy},
+                #{item.name},
+                #{item.cardType},
+                #{item.cardNo},
+                #{item.sex},
+                #{item.level},
+                #{item.benefitRatio},
+                #{item.relationship},
+                #{item.policyId},
+               #{item.birthday}
+        </trim>
+        </foreach>
+    </insert>
+
+
+    <delete id="delete" >
+        DELETE FROM ins_policy_profits_person
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="updateInsPolicyProfitsPerson" parameterType="java.util.Map">
+        UPDATE ins_policy_profits_person
+        <set>
+            <if test ='null != createTime'>create_time = #{createTime},</if>
+            <if test ='null != createBy'>create_by = #{createBy},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != updateBy'>update_by = #{updateBy},</if>
+            <if test ='null != name'>name = #{name},</if>
+            <if test ='null != cardType'>card_type = #{cardType},</if>
+            <if test ='null != cardNo'>card_no = #{cardNo},</if>
+            <if test ='null != sex'>sex = #{sex},</if>
+            <if test ='null != birthday'>birthday = #{birthday},</if>
+            <if test ='null != level'>level = #{level},</if>
+            <if test ='null != benefitRatio'>benefit_ratio = #{benefitRatio},</if>
+            <if test ='null != relationship'>relationship = #{relationship},</if>
+            <if test ='null != policyId'>policy_id = #{policyId}</if>
+        </set>
+        WHERE `POLICY_ID` = #{policyId} and profits_person_id = #{profitsPersonId}
+    </update>
+
+
+    <select id="selectInsPolicyProfitsPersonEntityByKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_profits_person
+        WHERE `POLICY_ID` = #{id}
+    </select>
+
+    <select id="queryInsPolicyProfitsPersonByParams" resultMap="BaseResultMap" parameterType="map">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_profits_person
+        <where>
+            SOURCE = "2"
+        </where>
+        ORDER BY UPDATE_TIME DESC,INSURED_PERSON_ID DESC
+        LIMIT
+    </select>
+
+    <select id="queryInsPolicyProfitsPersonCountByParams" resultType="long" parameterType="map">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_profits_person
+        <where>
+            SOURCE = "2"
+        </where>
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_profits_person
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_policy_profits_person
+    </select>
+<select id="selectProtocolId" resultType="java.util.Map">
+    SELECT xyid(#{products_ratio_id},#{orgid}) as PROTOCOL_ID;
+</select>
+     <delete id="deleteInsPolicyProfitsPerson" >
+        DELETE FROM ins_policy_profits_person
+        WHERE `POLICY_ID` = #{policyId}
+    </delete>
+</mapper>

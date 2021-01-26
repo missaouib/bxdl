@@ -1,0 +1,3021 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsuranceSalesInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.sales.InsuranceSalesInfo" >
+  		<result column="insurance_sales_id" property="insuranceSalesId" />
+        <result column="insurance_saler" property="insuranceSaler" />
+        <result column="sex" property="sex" />
+        <result column="insurance_saler_no" property="insuranceSalerNo" />
+        <result column="cooperation_type" property="cooperationType" />
+        <result column="sales_org_id" property="salesOrgId" />
+        <result column="sales_team_id" property="salesTeamId" />
+        <result column="sales_org_name" property="salesOrgName" />
+        <result column="sales_team_name" property="salesTeamName" />        
+        <result column="rank_sequence_id" property="rankSequenceId" />
+        <result column="sales_grade_id" property="salesGradeId" />
+        <result column="card_type" property="cardType" />
+        <result column="card_no" property="cardNo" />
+        <result column="mobile" property="mobile" />
+        <result column="join_date" property="joinDate" />
+        <result column="pass_date" property="passDate" />
+        <result column="bank_channel" property="bankChannel" />
+        <result column="bank_card_no" property="bankCardNo" />
+        <result column="birthday" property="birthday" />
+        <result column="country" property="country" />
+        <result column="nation" property="nation" />
+        <result column="political_appearance" property="politicalAppearance" />
+        <result column="party" property="party" />
+        <result column="area_code" property="areaCode" />
+        <result column="address" property="address" />
+        <result column="native_place" property="nativePlace" />
+        <result column="household_reg_place" property="householdRegPlace" />
+        <result column="archives_preservation_place" property="archivesPreservationPlace" />
+        <result column="post_code" property="postCode" />
+        <result column="cell_phone" property="cellPhone" />
+        <result column="duty_type" property="dutyType" />
+        <result column="email" property="email" />
+        <result column="qq_number" property="qqNumber" />
+        <result column="wechat_number" property="wechatNumber" />
+        <result column="academic_degree" property="academicDegree" />
+        <result column="educational_bg" property="educationalBg" />
+        <result column="foreign_language_ability" property="foreignLanguageAbility" />
+        <result column="marital_status" property="maritalStatus" />
+        <result column="marriage_date" property="marriageDate" />
+        <result column="pre_company" property="preCompany" />
+        <result column="pre_occupation" property="preOccupation" />
+        <result column="leaving_certificate" property="leavingCertificate" />
+        <result column="certificate_number" property="certificateNumber" />
+        <result column="certificate_status" property="certificateStatus" />
+        <result column="certificate_start_date" property="certificateStartDate" />
+        <result column="certificate_end_date" property="certificateEndDate" />
+        <result column="having_work_group" property="havingWorkGroup" />
+        <result column="work_group_phone" property="workGroupPhone" />
+        <result column="internal_referral" property="internalReferral" />
+        <result column="interest" property="interest" />
+        <result column="remark" property="remark" />
+        <result column="db_sales_id" property="dbSalesId" />
+        <result column="tj_sales_id" property="tjSalesId" />
+        <result column="yc_sales_id" property="ycSalesId" />
+        <result column="sj_sales_id" property="sjSalesId" />
+        <result column="jc_sales_id" property="jcSalesId" />
+        <result column="fd_sales_id" property="fdSalesId" />
+        <result column="db_sales_date" property="dbSalesDate" />
+        <result column="tj_sales_date" property="tjSalesDate" />
+        <result column="yc_sales_date" property="ycSalesDate" />
+        <result column="sj_sales_date" property="sjSalesDate" />
+        <result column="jc_sales_date" property="jcSalesDate" />
+        <result column="fd_sales_date" property="fdSalesDate" />        
+        <result column="now_tree_code" property="nowTreeCode" />
+        <result column="next_tree_code" property="nextTreeCode" />
+        <result column="next_tree_code_idate" property="nextTreeCodeIdate" />
+        <result column="sales_status" property="salesStatus" />        
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+      <result column="yc_c_first_gener" property="ycCFirstGener" jdbcType="BIGINT" />
+      <result column="yc_c_second_gener" property="ycCSecondGener" jdbcType="BIGINT" />
+      <result column="yc_b_first_gener" property="ycBFirstGener" jdbcType="BIGINT" />
+      <result column="yc_b_second_gener" property="ycBSecondGener" jdbcType="BIGINT" />
+      <result column="direct_group_c" property="directGroupC" jdbcType="BIGINT" />
+      <result column="direct_dept_b" property="directDeptB" jdbcType="BIGINT" />
+      <result column="establish_time" property="establishTime" jdbcType="TIMESTAMP" />
+      <result column="establish_time1" property="establishTime1" jdbcType="TIMESTAMP" />
+      <result column="establish_time2" property="establishTime2" jdbcType="TIMESTAMP" />
+      <result column="establish_time3" property="establishTime3" jdbcType="TIMESTAMP" />
+      <result column="establish_time4" property="establishTime4" jdbcType="TIMESTAMP" />
+      <result column="establish_time5" property="establishTime5" jdbcType="TIMESTAMP" />
+      <result column="openBank" property="openBank"/>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+		`insurance_sales_id`,
+        `insurance_saler`,
+        `sex`,
+        `insurance_saler_no`,
+        `cooperation_type`,
+        `sales_org_id`,
+        `sales_team_id`,
+        `rank_sequence_id`,
+        `sales_grade_id`,
+        `card_type`,
+        `card_no`,
+        `mobile`,
+        `join_date`,
+        `pass_date`,
+        `bank_channel`,
+        `bank_card_no`,
+        `birthday`,
+        `country`,
+        `nation`,
+        `political_appearance`,
+        `party`,
+        `area_code`,
+        `address`,
+        `native_place`,
+        `household_reg_place`,
+        `archives_preservation_place`,
+        `post_code`,
+        `cell_phone`,
+        `duty_type`,
+        `email`,
+        `qq_number`,
+        `wechat_number`,
+        `academic_degree`,
+        `educational_bg`,
+        `foreign_language_ability`,
+        `marital_status`,
+        `marriage_date`,
+        `pre_company`,
+        `pre_occupation`,
+        `leaving_certificate`,
+        `certificate_number`,
+        `certificate_status`,
+        `certificate_start_date`,
+        `certificate_end_date`,
+        `having_work_group`,
+        `work_group_phone`,
+        `internal_referral`,
+        `interest`,
+        `remark`,
+        `db_sales_id`,
+        `tj_sales_id`,
+        `yc_sales_id`,
+        `sj_sales_id`,
+        `jc_sales_id`,
+        `fd_sales_id`,
+        `db_sales_date`,
+        `tj_sales_date`,
+        `yc_sales_date`,
+        `sj_sales_date`,
+        `jc_sales_date`,
+        `fd_sales_date`,        
+        `now_tree_code`,
+        `next_tree_code`,
+        `next_tree_code_idate`,
+        `sales_status`,        
+        `created_by`,
+        `created_time`,
+        `updated_by`,
+        `updated_time`, yc_c_first_gener, yc_c_second_gener, yc_b_first_gener,
+    yc_b_second_gener, direct_group_c, direct_dept_b, establish_time, establish_time1,
+    establish_time2, establish_time3, establish_time4, establish_time5,openBank
+  </sql>  
+  
+  <insert id="addInsuranceSales"  parameterType="com.hzcf.pojo.insurance.sales.InsuranceSalesInfo" useGeneratedKeys="true" keyProperty="insuranceSalesId" keyColumn="insurance_sales_id">
+    INSERT INTO insurance_sales_info
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+          	<if test ='null != insuranceSalesId'>
+            `insurance_sales_id`,
+            </if>
+            <if test ='null != insuranceSaler'>
+            `insurance_saler`,
+            </if>
+            <if test ='null != sex'>
+            `sex`,
+            </if>
+            <if test ='null != insuranceSalerNo'>
+            `insurance_saler_no`,
+            </if>
+            <if test ='null != cooperationType'>
+            `cooperation_type`,
+            </if>            
+            <if test ='null != salesOrgId'>
+            `sales_org_id`,
+            </if>
+            <if test ='null != salesTeamId'>
+            `sales_team_id`,
+            </if>
+            <if test ='null != rankSequenceId'>
+            `rank_sequence_id`,
+            </if>
+            <if test ='null != salesGradeId'>
+            `sales_grade_id`,
+            </if>
+            <if test ='null != cardType'>
+            `card_type`,
+            </if>
+            <if test ='null != cardNo'>
+            `card_no`,
+            </if>
+            <if test ='null != mobile'>
+            `mobile`,
+            </if>
+            <if test = "null != joinDate and '' != joinDate">
+            `join_date`,
+            </if>
+            <if test ="null != passDate and '' != passDate">
+            `pass_date`,
+            </if>
+            <if test ='null != bankChannel'>
+            `bank_channel`,
+            </if>
+            <if test ='null != bankCardNo'>
+            `bank_card_no`,
+            </if>
+            <if test = "null != birthday and '' != birthday">
+            `birthday`,
+            </if>
+            <if test ='null != country'>
+            `country`,
+            </if>
+            <if test ='null != nation'>
+            `nation`,
+            </if>
+            <if test ='null != politicalAppearance'>
+            `political_appearance`,
+            </if>
+            <if test ='null != party'>
+            `party`,
+            </if>
+            <if test ='null != areaCode'>
+            `area_code`,
+            </if>
+            <if test ='null != address'>
+            `address`,
+            </if>
+            <if test ='null != nativePlace'>
+            `native_place`,
+            </if>
+            <if test ='null != householdRegPlace'>
+            `household_reg_place`,
+            </if>
+            <if test ='null != archivesPreservationPlace'>
+            `archives_preservation_place`,
+            </if>
+            <if test ='null != postCode'>
+            `post_code`,
+            </if>
+            <if test ='null != cellPhone'>
+            `cell_phone`,
+            </if>
+            <if test ='null != dutyType'>
+            `duty_type`,
+            </if>
+            <if test ='null != email'>
+            `email`,
+            </if>
+            <if test ='null != qqNumber'>
+            `qq_number`,
+            </if>
+            <if test ='null != wechatNumber'>
+            `wechat_number`,
+            </if>
+            <if test ='null != academicDegree'>
+            `academic_degree`,
+            </if>
+            <if test ='null != educationalBg'>
+            `educational_bg`,
+            </if>
+            <if test ='null != foreignLanguageAbility'>
+            `foreign_language_ability`,
+            </if>
+            <if test ='null != maritalStatus'>
+            `marital_status`,
+            </if>
+            <if test ="null != marriageDate and '' != marriageDate">
+            `marriage_date`,
+            </if>
+            <if test ='null != preCompany'>
+            `pre_company`,
+            </if>
+            <if test ='null != preOccupation'>
+            `pre_occupation`,
+            </if>
+            <if test ='null != leavingCertificate'>
+            `leaving_certificate`,
+            </if>
+            <if test ='null != certificateNumber'>
+            `certificate_number`,
+            </if>
+            <if test ='null != certificateStatus'>
+            `certificate_status`,
+            </if>
+            <if test ="null != certificateStartDate and '' != certificateStartDate">
+            `certificate_start_date`,
+            </if>
+            <if test ="null != certificateEndDate and '' != certificateEndDate">
+            `certificate_end_date`,
+            </if>
+            <if test ='null != havingWorkGroup'>
+            `having_work_group`,
+            </if>
+            <if test ='null != workGroupPhone'>
+            `work_group_phone`,
+            </if>
+            <if test ='null != internalReferral'>
+            `internal_referral`,
+            </if>
+            <if test ='null != interest'>
+            `interest`,
+            </if>
+            <if test ='null != remark'>
+            `remark`,
+            </if>
+            <if test ='null != dbSalesId'>
+            `db_sales_id`,
+            </if>
+            <if test ='null != tjSalesId'>
+            `tj_sales_id`,
+            </if>
+            <if test ='null != ycSalesId'>
+            `yc_sales_id`,
+            </if>
+            <if test ='null != sjSalesId'>
+            `sj_sales_id`,
+            </if>
+            <if test ='null != jcSalesId'>
+            `jc_sales_id`,
+            </if>
+            <if test ='null != fdSalesId'>
+            `fd_sales_id`,
+            </if>
+			<if test ="null != dbSalesDate and '' != dbSalesDate">
+            `db_sales_date`,
+            </if>
+            <if test ="null != tjSalesDate and '' != tjSalesDate">
+            `tj_sales_date`,
+            </if>
+            <if test ="null != ycSalesDate and '' != ycSalesDate">
+            `yc_sales_date`,
+            </if>
+            <if test ="null != sjSalesDate and '' != sjSalesDate">
+            `sj_sales_date`,
+            </if>
+            <if test ="null != jcSalesDate and '' != jcSalesDate">
+            `jc_sales_date`,
+            </if>
+            <if test ="null != fdSalesDate and '' != fdSalesDate">
+            `fd_sales_date`,
+            </if>            
+            <if test ='null != nowTreeCode'>
+            `now_tree_code`,
+            </if>
+            <if test ='null != nextTreeCode'>
+            `next_tree_code`,
+            </if>
+            <if test ="null != nextTreeCodeIdate and '' != nextTreeCodeIdate">
+            `next_tree_code_idate`,
+            </if>
+            <if test ='null != salesStatus'>
+            `sales_status`,
+            </if>            
+            <if test ='null != createdBy'>
+            `created_by`,
+            </if>
+            <if test ='null != createdTime'>
+            `created_time`,
+            </if>
+            <if test ='null != updatedBy'>
+            `updated_by`,
+            </if>
+            <if test ='null != updatedTime'>
+            `updated_time`,
+            </if>
+            <if test="ycCFirstGener != null" >
+                yc_c_first_gener,
+            </if>
+            <if test="ycCSecondGener != null" >
+                yc_c_second_gener,
+            </if>
+            <if test="ycBFirstGener != null" >
+                yc_b_first_gener,
+            </if>
+            <if test="ycBSecondGener != null" >
+                yc_b_second_gener,
+            </if>
+            <if test="directGroupC != null" >
+                direct_group_c,
+            </if>
+            <if test="directDeptB != null" >
+                direct_dept_b,
+            </if>
+            <if test="null != establishTime and '' != establishTime" >
+                establish_time,
+            </if>
+            <if test="null != establishTime1 and '' != establishTime1" >
+                establish_time1,
+            </if>
+            <if test="null != establishTime2 and '' != establishTime2" >
+                establish_time2,
+            </if>
+            <if test="null != establishTime3 and '' != establishTime3" >
+                establish_time3,
+            </if>
+            <if test="null != establishTime4 and '' != establishTime4" >
+                establish_time4,
+            </if>
+            <if test="null != establishTime5 and '' != establishTime5" >
+                establish_time5,
+            </if>
+            <if test="openBank != null" >
+               openBank
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test ='null != insuranceSalesId'>
+            #{insuranceSalesId},
+            </if>
+            <if test ='null != insuranceSaler'>
+            #{insuranceSaler},
+            </if>
+            <if test ='null != sex'>
+            #{sex},
+            </if>
+            <if test ='null != insuranceSalerNo'>
+            #{insuranceSalerNo},
+            </if>
+            <if test ='null != cooperationType'>
+            #{cooperationType},
+            </if>
+            <if test ='null != salesOrgId'>
+            #{salesOrgId},
+            </if>
+            <if test ='null != salesTeamId'>
+            #{salesTeamId},
+            </if>
+            <if test ='null != rankSequenceId'>
+            #{rankSequenceId},
+            </if>
+            <if test ='null != salesGradeId'>
+            #{salesGradeId},
+            </if>
+            <if test ='null != cardType'>
+            #{cardType},
+            </if>
+            <if test ='null != cardNo'>
+            #{cardNo},
+            </if>
+            <if test ='null != mobile'>
+            #{mobile},
+            </if>
+            <if test ="null != joinDate and '' != joinDate">
+            #{joinDate},
+            </if>
+            <if test ="null != passDate and '' != passDate">
+            #{passDate},
+            </if>
+            <if test ='null != bankChannel'>
+            #{bankChannel},
+            </if>
+            <if test ='null != bankCardNo'>
+            #{bankCardNo},
+            </if>
+            <if test ="null != birthday and '' != birthday">
+            #{birthday},
+            </if>
+            <if test ='null != country'>
+            #{country},
+            </if>
+            <if test ='null != nation'>
+            #{nation},
+            </if>
+            <if test ='null != politicalAppearance'>
+            #{politicalAppearance},
+            </if>
+            <if test ='null != party'>
+            #{party},
+            </if>
+            <if test ='null != areaCode'>
+            #{areaCode},
+            </if>
+            <if test ='null != address'>
+            #{address},
+            </if>
+            <if test ='null != nativePlace'>
+            #{nativePlace},
+            </if>
+            <if test ='null != householdRegPlace'>
+            #{householdRegPlace},
+            </if>
+            <if test ='null != archivesPreservationPlace'>
+            #{archivesPreservationPlace},
+            </if>
+            <if test ='null != postCode'>
+            #{postCode},
+            </if>
+            <if test ='null != cellPhone'>
+            #{cellPhone},
+            </if>
+            <if test ='null != dutyType'>
+            #{dutyType},
+            </if>
+            <if test ='null != email'>
+            #{email},
+            </if>
+            <if test ='null != qqNumber'>
+            #{qqNumber},
+            </if>
+            <if test ='null != wechatNumber'>
+            #{wechatNumber},
+            </if>
+            <if test ='null != academicDegree'>
+            #{academicDegree},
+            </if>
+            <if test ='null != educationalBg'>
+            #{educationalBg},
+            </if>
+            <if test ='null != foreignLanguageAbility'>
+            #{foreignLanguageAbility},
+            </if>
+            <if test ='null != maritalStatus'>
+            #{maritalStatus},
+            </if>
+            <if test ="null != marriageDate  and '' != marriageDate">
+            #{marriageDate},
+            </if>
+            <if test ='null != preCompany'>
+            #{preCompany},
+            </if>
+            <if test ='null != preOccupation'>
+            #{preOccupation},
+            </if>
+            <if test ='null != leavingCertificate'>
+            #{leavingCertificate},
+            </if>
+            <if test ='null != certificateNumber'>
+            #{certificateNumber},
+            </if>
+            <if test ='null != certificateStatus'>
+            #{certificateStatus},
+            </if>
+            <if test ="null != certificateStartDate and '' != certificateStartDate">
+            #{certificateStartDate},
+            </if>
+            <if test ="null != certificateEndDate and '' != certificateEndDate">
+            #{certificateEndDate},
+            </if>
+            <if test ='null != havingWorkGroup'>
+            #{havingWorkGroup},
+            </if>
+            <if test ='null != workGroupPhone'>
+            #{workGroupPhone},
+            </if>
+            <if test ='null != internalReferral'>
+            #{internalReferral},
+            </if>
+            <if test ='null != interest'>
+            #{interest},
+            </if>
+            <if test ='null != remark'>
+            #{remark},
+            </if>
+            <if test ='null != dbSalesId'>
+            #{dbSalesId},
+            </if>
+            <if test ='null != tjSalesId'>
+            #{tjSalesId},
+            </if>
+            <if test ='null != ycSalesId'>
+            #{ycSalesId},
+            </if>
+            <if test ='null != sjSalesId'>
+            #{sjSalesId},
+            </if>
+            <if test ='null != jcSalesId'>
+            #{jcSalesId},
+            </if>
+            <if test ='null != fdSalesId'>
+            #{fdSalesId},
+            </if>
+			<if test ="null != dbSalesDate and '' != dbSalesDate">
+            #{dbSalesDate},
+            </if>
+            <if test ="null != tjSalesDate and '' != tjSalesDate">
+            #{tjSalesDate},
+            </if>
+            <if test ="null != ycSalesDate and '' != ycSalesDate">
+            #{ycSalesDate},
+            </if>
+            <if test ="null != sjSalesDate and '' != sjSalesDate">
+            #{sjSalesDate},
+            </if>
+            <if test ="null != jcSalesDate and '' != jcSalesDate">
+            #{jcSalesDate},
+            </if>
+            <if test ="null != fdSalesDate and '' != fdSalesDate">
+            #{fdSalesDate},
+            </if>            
+            <if test ='null != nowTreeCode'>
+            #{nowTreeCode},
+            </if>
+            <if test ='null != nextTreeCode'>
+            #{nextTreeCode},
+            </if>
+            <if test ="null != nextTreeCodeIdate and '' != nextTreeCodeIdate">
+            #{nextTreeCodeIdate},
+            </if>
+            <if test ='null != salesStatus'>
+            #{salesStatus},
+            </if>            
+            <if test ='null != createdBy'>
+            #{createdBy},
+            </if>
+            <if test ='null != createdTime'>
+            #{createdTime},
+            </if>
+            <if test ='null != updatedBy'>
+            #{updatedBy},
+            </if>
+            <if test ='null != updatedTime'>
+            #{updatedTime},
+            </if>
+            <if test="ycCFirstGener != null" >
+                #{ycCFirstGener},
+            </if>
+            <if test="ycCSecondGener != null" >
+                #{ycCSecondGener},
+            </if>
+            <if test="ycBFirstGener != null" >
+                #{ycBFirstGener},
+            </if>
+            <if test="ycBSecondGener != null" >
+                #{ycBSecondGener},
+            </if>
+            <if test="directGroupC != null" >
+                #{directGroupC},
+            </if>
+            <if test="directDeptB != null" >
+                #{directDeptB},
+            </if>
+            <if test="null != establishTime and '' != establishTime" >
+                #{establishTime},
+            </if>
+            <if test="null != establishTime1 and '' != establishTime1" >
+                #{establishTime1},
+            </if>
+            <if test="null != establishTime2 and '' != establishTime2" >
+                #{establishTime2},
+            </if>
+            <if test="null != establishTime3 and '' != establishTime3" >
+                #{establishTime3},
+            </if>
+            <if test="null != establishTime4 and '' != establishTime4" >
+                #{establishTime4},
+            </if>
+            <if test="null != establishTime5 and '' != establishTime5" >
+                #{establishTime5},
+            </if>
+            <if test="openBank != null">
+                #{openBank}
+            </if>
+        </trim>
+   </insert> 
+    
+   <update id="updateInsuranceSales" parameterType="com.hzcf.pojo.insurance.sales.InsuranceSalesInfo">
+        UPDATE insurance_sales_info
+        <set>
+			<if test ='null != insuranceSalesId'>insurance_sales_id = #{insuranceSalesId},</if>
+            <if test ='null != insuranceSaler'>insurance_saler = #{insuranceSaler},</if>
+            <if test ='null != sex'>sex = #{sex},</if>
+            <if test ='null != insuranceSalerNo'>insurance_saler_no = #{insuranceSalerNo},</if>
+            <if test ='null != cooperationType'>cooperation_type = #{cooperationType},</if>
+            <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+            <if test ='null != salesTeamId'>sales_team_id = #{salesTeamId},</if>
+            <if test ='null != rankSequenceId'>rank_sequence_id = #{rankSequenceId},</if>
+            <if test ='null != salesGradeId'>sales_grade_id = #{salesGradeId},</if>
+            <if test ='null != cardType'>card_type = #{cardType},</if>
+            <if test ='null != cardNo'>card_no = #{cardNo},</if>
+            <if test ='null != mobile'>mobile = #{mobile},</if>
+            <choose>
+                <when test ="null != joinDate and '' != joinDate">join_date = #{joinDate},</when>
+                <otherwise>join_date = null,</otherwise>
+            </choose>    
+            <choose>
+                <when test ="null != passDate and '' != passDate">pass_date = #{passDate},</when>
+                <otherwise>pass_date = null,</otherwise>
+            </choose> 
+            <if test ='null != bankChannel'>bank_channel = #{bankChannel},</if>
+            <if test ='null != bankCardNo'>bank_card_no = #{bankCardNo},</if>
+            <choose>
+                <when test ="null != birthday and '' != birthday">birthday = #{birthday},</when>
+                <otherwise>birthday = null,</otherwise>
+            </choose>
+            <if test ='null != country'>country = #{country},</if>
+            <if test ='null != nation'>nation = #{nation},</if>
+            <if test ='null != politicalAppearance'>political_appearance = #{politicalAppearance},</if>
+            <if test ='null != party'>party = #{party},</if>
+            <if test ='null != areaCode'>area_code = #{areaCode},</if>
+            <if test ='null != address'>address = #{address},</if>
+            <if test ='null != nativePlace'>native_place = #{nativePlace},</if>
+            <if test ='null != householdRegPlace'>household_reg_place = #{householdRegPlace},</if>
+            <if test ='null != archivesPreservationPlace'>archives_preservation_place = #{archivesPreservationPlace},</if>
+            <if test ='null != postCode'>post_code = #{postCode},</if>
+            <if test ='null != cellPhone'>cell_phone = #{cellPhone},</if>
+            <if test ='null != dutyType'>duty_type = #{dutyType},</if>
+            <if test ='null != email'>email = #{email},</if>
+            <if test ='null != qqNumber'>qq_number = #{qqNumber},</if>
+            <if test ='null != wechatNumber'>wechat_number = #{wechatNumber},</if>
+            <if test ='null != academicDegree'>academic_degree = #{academicDegree},</if>
+            <if test ='null != educationalBg'>educational_bg = #{educationalBg},</if>
+            <if test ='null != foreignLanguageAbility'>foreign_language_ability = #{foreignLanguageAbility},</if>
+            <if test ='null != maritalStatus'>marital_status = #{maritalStatus},</if>
+            <choose>
+                <when test ="null != marriageDate and '' != marriageDate">marriage_date = #{marriageDate},</when>
+                <otherwise>marriage_date = null,</otherwise>
+            </choose>
+            <if test ='null != preCompany'>pre_company = #{preCompany},</if>
+            <if test ='null != preOccupation'>pre_occupation = #{preOccupation},</if>
+            <if test ='null != leavingCertificate'>leaving_certificate = #{leavingCertificate},</if>
+            <if test ='null != certificateNumber'>certificate_number = #{certificateNumber},</if>
+            <if test ='null != certificateStatus'>certificate_status = #{certificateStatus},</if>
+            <choose>
+                <when test ="null != certificateStartDate and '' != certificateStartDate">certificate_start_date = #{certificateStartDate},</when>
+                <otherwise>certificate_start_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != certificateEndDate and '' != certificateEndDate">certificate_end_date = #{certificateEndDate},</when>
+                <otherwise>certificate_end_date = null,</otherwise>
+            </choose>
+            <if test ='null != havingWorkGroup'>having_work_group = #{havingWorkGroup},</if>
+            <if test ='null != workGroupPhone'>work_group_phone = #{workGroupPhone},</if>
+            <if test ='null != internalReferral'>internal_referral = #{internalReferral},</if>
+            <if test ='null != interest'>interest = #{interest},</if>
+            <if test ='null != remark'>remark = #{remark},</if>
+            <if test ='null != nowTreeCode'>now_tree_code = #{nowTreeCode},</if>
+            <if test ='null != nextTreeCode'>next_tree_code = #{nextTreeCode},</if>
+            <choose>
+                <when test ="null != nextTreeCodeIdate and '' != nextTreeCodeIdate">next_tree_code_idate = #{nextTreeCodeIdate},</when>
+                <otherwise>next_tree_code_idate = null,</otherwise>
+            </choose>
+            <if test ='null != salesStatus'>sales_status = #{salesStatus},</if>            
+            <if test ='null != createdBy'>created_by = #{createdBy},</if>
+            <if test ='null != createdTime'>created_time = #{createdTime},</if>
+            <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test="openBank !=null">
+                openBank = #{openBank},
+            </if>
+
+            <if test ='null != updatedTime'>updated_time = now(),</if>
+            <if test="null != quitDate">QUIT_DATE = #{quitDate}</if>
+
+        </set>
+        WHERE `insurance_sales_id` = #{insuranceSalesId}
+    </update>
+
+    <update id="batchUpdateSalesInfo" parameterType="java.util.Map">
+        UPDATE insurance_sales_info
+        <set>
+			<if test ='null != insuranceSalesId'>insurance_sales_id = #{insuranceSalesId},</if>
+            <if test ='null != insuranceSaler'>insurance_saler = #{insuranceSaler},</if>
+            <if test ='null != sex'>sex = #{sex},</if>
+            <if test ='null != insuranceSalerNo'>insurance_saler_no = #{insuranceSalerNo},</if>
+            <if test ='null != cooperationType'>cooperation_type = #{cooperationType},</if>
+            <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+            <if test ='null != salesTeamId'>sales_team_id = #{salesTeamId},</if>
+            <if test ='null != rankSequenceId'>rank_sequence_id = #{rankSequenceId},</if>
+            <if test ='null != salesGradeId'>sales_grade_id = #{salesGradeId},</if>
+            <if test ='null != cardType'>card_type = #{cardType},</if>
+            <if test ='null != cardNo'>card_no = #{cardNo},</if>
+            <if test ='null != mobile'>mobile = #{mobile},</if>
+            <choose>
+                <when test ="null != joinDate and '' != joinDate">join_date = #{joinDate},</when>
+                <otherwise>join_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != passDate and '' != passDate">pass_date = #{passDate},</when>
+                <otherwise>pass_date = null,</otherwise>
+            </choose>
+            <if test ='null != bankChannel'>bank_channel = #{bankChannel},</if>
+            <if test ='null != bankCardNo'>bank_card_no = #{bankCardNo},</if>
+            <choose>
+                <when test ="null != birthday and '' != birthday">birthday = #{birthday},</when>
+                <otherwise>birthday = null,</otherwise>
+            </choose>
+            <if test ='null != country'>country = #{country},</if>
+            <if test ='null != nation'>nation = #{nation},</if>
+            <if test ='null != politicalAppearance'>political_appearance = #{politicalAppearance},</if>
+            <if test ='null != party'>party = #{party},</if>
+            <if test ='null != areaCode'>area_code = #{areaCode},</if>
+            <if test ='null != address'>address = #{address},</if>
+            <if test ='null != nativePlace'>native_place = #{nativePlace},</if>
+            <if test ='null != householdRegPlace'>household_reg_place = #{householdRegPlace},</if>
+            <if test ='null != archivesPreservationPlace'>archives_preservation_place = #{archivesPreservationPlace},</if>
+            <if test ='null != postCode'>post_code = #{postCode},</if>
+            <if test ='null != cellPhone'>cell_phone = #{cellPhone},</if>
+            <if test ='null != dutyType'>duty_type = #{dutyType},</if>
+            <if test ='null != email'>email = #{email},</if>
+            <if test ='null != qqNumber'>qq_number = #{qqNumber},</if>
+            <if test ='null != wechatNumber'>wechat_number = #{wechatNumber},</if>
+            <if test ='null != academicDegree'>academic_degree = #{academicDegree},</if>
+            <if test ='null != educationalBg'>educational_bg = #{educationalBg},</if>
+            <if test ='null != foreignLanguageAbility'>foreign_language_ability = #{foreignLanguageAbility},</if>
+            <if test ='null != maritalStatus'>marital_status = #{maritalStatus},</if>
+            <choose>
+                <when test ="null != marriageDate and '' != marriageDate">marriage_date = #{marriageDate},</when>
+                <otherwise>marriage_date = null,</otherwise>
+            </choose>
+            <if test ='null != preCompany'>pre_company = #{preCompany},</if>
+            <if test ='null != preOccupation'>pre_occupation = #{preOccupation},</if>
+            <if test ='null != leavingCertificate'>leaving_certificate = #{leavingCertificate},</if>
+            <if test ='null != certificateNumber'>certificate_number = #{certificateNumber},</if>
+            <if test ='null != certificateStatus'>certificate_status = #{certificateStatus},</if>
+            <choose>
+                <when test ="null != certificateStartDate and '' != certificateStartDate">certificate_start_date = #{certificateStartDate},</when>
+                <otherwise>certificate_start_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != certificateEndDate and '' != certificateEndDate">certificate_end_date = #{certificateEndDate},</when>
+                <otherwise>certificate_end_date = null,</otherwise>
+            </choose>
+            <if test ='null != havingWorkGroup'>having_work_group = #{havingWorkGroup},</if>
+            <if test ='null != workGroupPhone'>work_group_phone = #{workGroupPhone},</if>
+            <if test ='null != internalReferral'>internal_referral = #{internalReferral},</if>
+            <if test ='null != interest'>interest = #{interest},</if>
+            <if test ='null != remark'>remark = #{remark},</if>
+            <if test ='null != nowTreeCode'>now_tree_code = #{nowTreeCode},</if>
+            <if test ='null != nextTreeCode'>next_tree_code = #{nextTreeCode},</if>
+            <choose>
+                <when test ="null != nextTreeCodeIdate and '' != nextTreeCodeIdate">next_tree_code_idate = #{nextTreeCodeIdate},</when>
+                <otherwise>next_tree_code_idate = null,</otherwise>
+            </choose>
+            <if test ='null != salesStatus'>sales_status = #{salesStatus},</if>
+            <if test ='null != createdBy'>created_by = #{createdBy},</if>
+            <if test ='null != createdTime'>created_time = #{createdTime},</if>
+            <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test="openBank !=null">
+                openBank = #{openBank},
+            </if>
+
+            <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>
+
+        </set>
+        WHERE `insurance_sales_id` = #{insuranceSalesId}
+    </update>
+
+
+    <update id="updateDirectGroupC">
+        update insurance_sales_info
+        <set>
+            direct_group_c = insurance_sales_id
+        </set>
+        where direct_group_c = '0000'
+    </update>
+
+    <update id="updatedDirectDeptB">
+        update insurance_sales_info
+        <set>
+            direct_dept_b = insurance_sales_id
+        </set>
+        where direct_dept_b = '0000'
+    </update>
+    
+    <select id="getInsuranceSalesList" parameterType="java.util.Map" resultType="java.util.Map">
+    	select isi.*,sog.SALES_ORG_NAME,st.SALES_TEAM_NAME,sg.SALES_GRADE_NAME,sg.RANK_SEQUENCE_NAME,ewg.id AS GROUP_ID from insurance_sales_info isi 
+    	left join sales_org_info sog on isi.sales_org_id = sog.sales_org_id 
+    	left join sales_team_info st on isi.sales_team_id = st.sales_team_id
+    	left join sales_grade sg on isi.sales_grade_id = sg.sales_grade_id
+		left join emp_work_group ewg on isi.INSURANCE_SALES_ID = ewg.INSURANCE_SALES_ID
+    	<where>
+	    1=1
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT('%',#{insuranceSaler},'%')</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(isi.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != passDate'>and isi.pass_date = #{passDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>	       
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+            <if test="null != minJoinDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.join_date ,'%Y-%m-%d') >= #{minJoinDate}
+ 		    ]]>
+            </if>
+            <if test="null != maxJoinDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.join_date ,'%Y-%m-%d') <= #{maxJoinDate}
+ 		    ]]>
+            </if>
+             <if test="null != minQuitDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.QUIT_DATE ,'%Y-%m-%d') >= #{minQuitDate}
+ 		    ]]>
+            </if>
+            <if test="null != maxQuitDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.QUIT_DATE ,'%Y-%m-%d') <= #{maxQuitDate}
+ 		    ]]>
+            </if>
+
+    	</where>
+    	GROUP BY isi.INSURANCE_SALES_ID
+    	order by isi.created_time desc
+    	limit #{startIndex},#{endIndex}    	
+    </select>
+    
+	<select id="insuranceSalesList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select isi.*,sg.SALES_ORG_NAME,st.SALES_TEAM_NAME from insurance_sales_info isi left join sales_org_info sg on isi.sales_org_id = sg.sales_org_id 
+    	left join sales_team_info st on isi.sales_team_id = st.sales_team_id 
+    	<where>
+	    1=1
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+		   <if test ='null != insuranceSalesIds'>and isi.insurance_sales_id in (${insuranceSalesIds})</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT('%',#{insuranceSaler},'%')</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != likeSalerNo'>and isi.insurance_saler_no like CONCAT('%',#{likeSalerNo},'%')</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>	       
+	       <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(isi.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != passDate'>and isi.pass_date = #{passDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>
+	       <if test ='null != effective'>and isi.sales_status BETWEEN 0 AND 1</if>	       
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if>
+            <if test='"admin" != isAdmin and "1" == dataAuthFlag and "superAdmin" != isAdmin '>
+               <!-- AND (FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0 -->
+                AND (FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0 OR isi.insurance_saler_no = 'admin')
+            </if>
+            <if test ='null != salesStatusList'>
+                AND FIND_IN_SET(isi.sales_status, #{salesStatusList}) > 0
+            </if>
+    	</where>  	
+    	GROUP BY isi.INSURANCE_SALES_ID
+    	order by isi.created_time desc
+    </select>    
+    
+    <select id="getInsuranceSalesListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from insurance_sales_info isi
+    	<where>
+    	1=1
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT('%',#{insuranceSaler},'%')</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(isi.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != passDate'>and isi.pass_date = #{passDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>	       
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+             <if test="null != minJoinDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.join_date ,'%Y-%m-%d') >= #{minJoinDate}
+ 		    ]]>
+            </if>
+            <if test="null != maxJoinDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.join_date ,'%Y-%m-%d') <= #{maxJoinDate}
+ 		    ]]>
+            </if>
+             <if test="null != minQuitDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.QUIT_DATE ,'%Y-%m-%d') >= #{minQuitDate}
+ 		    ]]>
+            </if>
+            <if test="null != maxQuitDate">
+            <![CDATA[
+ 		      AND DATE_FORMAT(isi.QUIT_DATE ,'%Y-%m-%d') <= #{maxQuitDate}
+ 		    ]]>
+            </if>
+
+    	</where>
+    </select>    
+    
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select isi.*,sg.SALES_ORG_NAME,st.SALES_TEAM_NAME from insurance_sales_info isi left join sales_org_info sg on isi.sales_org_id = sg.sales_org_id 
+    	left join sales_team_info st on isi.sales_team_id = st.sales_team_id  
+   		<where>
+   		1=1
+   			<if test ='null != insuranceSalesId'>
+   				AND isi.insurance_sales_id = #{insuranceSalesId}
+   			</if>
+   		</where>
+   		 limit 1
+   	</select>
+   	
+   	<select id="selectBySalerInvitation" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select isi.*,sg.SALES_ORG_NAME,st.SALES_TEAM_NAME from insurance_sales_info isi left join sales_org_info sg on isi.sales_org_id = sg.sales_org_id 
+    	left join sales_team_info st on isi.sales_team_id = st.sales_team_id  
+   		<where>
+   		1=1
+        and    isi.SALES_STATUS in ('0', '1')
+   			<if test ='null != insuranceSaler'>
+   				AND isi.insurance_saler = #{insuranceSaler}
+   			</if>
+   			<if test ='null != mobile'>
+   				AND isi.mobile = #{mobile}
+   			</if>   			
+   		</where> 
+   	</select>
+   	
+    <select id="findMaxTreeCode" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select case when max(now_tree_code*1) is null then 0 
+    	else MAX(RIGHT(now_tree_code,4)*1)
+    	end
+		from insurance_sales_info 
+		<where> 
+		length(now_tree_code) = ${treeCodeLen}
+		<if test ='"" != pTreeCode'> 
+			and left(now_tree_code,#{treeCodeLen}-4) = ${pTreeCode}
+		</if>
+		</where>
+    </select>  
+
+    <select id="findMaxSalerNo" parameterType="java.util.Map" resultType="java.lang.Integer">		
+		select count(1) from insurance_sales_info isi
+    	<where>
+    	1=1
+    	and isi.SALES_STATUS in ('0', '1', '3')
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler = #{insuranceSaler}</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>	       
+	       <if test ='null != salesOrgId'>and isi.sales_org_id = #{salesOrgId}</if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != passDate'>and isi.pass_date = #{passDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>	       
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if> 	
+    	</where>
+    </select>      
+    
+    <resultMap id="QuitBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalerQuitInfo" >
+        <result column="quit_id" property="quitId" />
+        <result column="saler_id" property="salerId" />
+        <result column="quit_mark" property="quitMark" />
+        <result column="quit_to" property="quitTo" />
+        <result column="quit_date" property="quitDate" />
+        <result column="job_handover_no" property="jobHandoverId" />
+        <result column="saler_tree_handover_no" property="salerTreeHandoverId" />
+        <result column="tree_handover_to_code" property="treeHandoverToCode" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />      
+    </resultMap>
+    
+	<insert id="insertQuit" useGeneratedKeys="true" keyColumn="quit_id" parameterType="com.hzcf.pojo.insurance.sales.SalerQuitInfo">
+        INSERT INTO saler_quit_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             `saler_id`,
+             </if>
+             <if test ='null != quitMark'>
+             `quit_mark`,
+             </if>
+             <if test ='null != quitTo'>
+             `quit_to`,
+             </if>
+             <if test ='null != quitDate'>
+             `quit_date`,
+             </if>
+             <if test ='null != jobHandoverId'>
+             `job_handover_id`,
+             </if>
+             <if test ='null != salerTreeHandoverId'>
+             `saler_tree_handover_id`,
+             </if>
+             <if test ='null != treeHandoverToCode'>
+             `tree_handover_to_code`,
+             </if>
+             <if test ='null != createdBy'>
+             `created_by`,
+             </if>
+             <if test ='null != createdTime'>
+             `created_time`,
+             </if>
+             <if test ='null != updatedBy'>
+             `updated_by`,
+             </if>
+             <if test ='null != updatedTime'>
+             `updated_time`
+             </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             #{salerId},
+             </if>
+             <if test ='null != quitMark'>
+             #{quitMark},
+             </if>
+             <if test ='null != quitTo'>
+             #{quitTo},
+             </if>
+             <if test ='null != quitDate'>
+             #{quitDate},
+             </if>
+             <if test ='null != jobHandoverId'>
+             #{jobHandoverId},
+             </if>
+             <if test ='null != salerTreeHandoverId'>
+             #{salerTreeHandoverId},
+             </if>
+             <if test ='null != treeHandoverToCode'>
+             #{treeHandoverToCode},
+             </if>
+             <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime}
+             </if>
+        </trim>
+    </insert>
+    
+    <select id="selectQuit" parameterType="java.util.Map" resultType="java.util.Map">
+    	select isi.insurance_saler_no,sq.* from saler_quit_info sq left join insurance_sales_info isi on sq.saler_id = isi.insurance_sales_id
+   		<where>
+   		1=1
+   			<if test ='null != salerId'>
+   				AND sq.saler_id = #{salerId}
+   			</if>
+   		</where>
+   		order by sq.quit_id desc
+   		limit 1 
+   	</select>    
+    
+    <resultMap id="SalerBlackBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalerBlackInfo" >
+         <result column="black_id" property="blackId" />
+         <result column="saler_id" property="salerId" />
+         <result column="saler_name" property="salerName" />
+         <result column="black_date" property="blackDate" />
+         <result column="black_reason" property="blackReason" />
+         <result column="black_mark" property="blackMark" />
+         <result column="black_status" property="blackStatus" />
+         <result column="created_by" property="createdBy" />
+         <result column="created_time" property="createdTime" />
+         <result column="updated_by" property="updatedBy" />
+         <result column="updated_time" property="updatedTime" />
+    </resultMap> 
+    
+	<insert id="insertBlack" useGeneratedKeys="true" keyColumn="black_id" parameterType="com.hzcf.pojo.insurance.sales.SalerBlackInfo">
+        INSERT INTO saler_black_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             `saler_id`,
+             </if>
+             <if test ='null != salerName'>
+             `saler_name`,
+             </if>
+             <if test ='null != blackMark'>
+             `black_mark`,
+             </if>
+             <if test ='null != blackReason'>
+             `black_reason`,
+             </if>
+             <if test ="null != blackDate and '' != blackDate">
+             `black_date`,
+             </if>
+             <if test ='null != blackStatus'>
+             `black_status`,
+             </if>
+             <if test ='null != createdBy'>
+             `created_by`,
+             </if>
+             <if test ='null != createdTime'>
+             `created_time`,
+             </if>
+             <if test ='null != updatedBy'>
+             `updated_by`,
+             </if>
+             <if test ='null != updatedTime'>
+             `updated_time`
+             </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             #{salerId},
+             </if>
+             <if test ='null != salerName'>
+             #{salerName},
+             </if>
+             <if test ='null != blackMark'>
+             #{blackMark},
+             </if>
+             <if test ='null != blackReason'>
+             #{blackReason},
+             </if>
+             <if test ="null != blackDate and '' != blackDate">
+             #{blackDate},
+             </if>
+             <if test ='null != blackStatus'>
+             #{blackStatus},
+             </if>
+             <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime}
+             </if>
+        </trim>
+    </insert> 
+    
+	<select id="getSalerBlackPage" parameterType="java.util.Map" resultType="java.util.Map">
+    	select ins.*,sb.black_id,sb.saler_id,sb.black_date,sb.black_reason,sb.black_mark,sb.black_status from saler_black_info sb left join insurance_sales_info ins on sb.saler_id = ins.insurance_sales_id
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and sb.saler_id = #{salerId}</if>
+		    <if test ='null != insuranceSalerNo'>and ins.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+			<if test ='null != blackStatus'>and sb.black_status = #{blackStatus}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(ins.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+    	</where>
+    	limit #{startIndex},#{endIndex}    	   
+    </select>
+    
+    <select id="getSalerBlackList" parameterType="java.util.Map" resultType="java.util.Map">
+    	select ins.*,sb.black_id,sb.saler_id,sb.black_date,sb.black_reason,sb.black_mark,sb.black_status from saler_black_info sb left join insurance_sales_info ins on sb.saler_id = ins.insurance_sales_id
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and sb.saler_id = #{salerId}</if>
+			<if test ='null != insuranceSalerNo'>and ins.insurance_saler_no = #{insuranceSalerNo}</if> 
+			<if test ='null != blackStatus'>and sb.black_status = #{blackStatus}</if>	
+    	</where>    	   
+    </select>    
+    
+    <select id="getSalerBlackPageSize" parameterType="java.util.Map"  resultType="java.lang.Long">
+    	select count(1) from saler_black_info sb left join insurance_sales_info ins on sb.saler_id = ins.insurance_sales_id
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and sb.saler_id = #{salerId}</if>
+			<if test ='null != insuranceSalerNo'>and ins.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+			<if test ='null != blackStatus'>and sb.black_status = #{blackStatus}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(ins.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+    	</where> 	   
+    </select>          
+    
+   	<resultMap id="SalesMoveBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesMoveLogs" >
+         <result column="move_id" property="moveId" />
+         <result column="saler_Id" property="salerId" />
+         <result column="saler_name" property="salerName" />
+         <result column="pre_org_id" property="preOrgId" />
+         <result column="pre_team_id" property="preTeamId" />
+         <result column="pre_rank_seq_id" property="preRankSeqId" />
+         <result column="pre_sales_grade_id" property="preSalesGradeId" />
+         <result column="next_org_id" property="nextOrgId" />
+         <result column="next_team_id" property="nextTeamId" />
+         <result column="next_rank_seq_id" property="nextRankSeqId" />
+         <result column="next_sales_grade_id" property="nextSalesGradeId" />
+         <result column="yc_saler_id" property="ycSalerId" />
+         <result column="tj_saler_id" property="tjSalerId" />         
+         <result column="move_file" property="moveFile" />
+         <result column="move_mark" property="moveMark" />
+         <result column="move_date" property="moveDate" />
+         <result column="check_status" property="checkStatus" />
+         <result column="check_mark" property="checkMark" />
+         <result column="change_flag" property="changeFlag" />
+         <result column="created_by" property="createdBy" />
+         <result column="created_time" property="createdTime" />
+         <result column="updated_by" property="updatedBy" />
+         <result column="updated_time" property="updatedTime" />        
+    </resultMap>
+    
+	<insert id="insertMove" useGeneratedKeys="true" keyColumn="move_id" parameterType="com.hzcf.pojo.insurance.sales.SalesMoveLogs">
+        INSERT INTO sales_move_logs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             `saler_Id`,
+             </if>
+             <if test ='null != salerName'>
+             `saler_name`,
+             </if>
+             <if test ='null != preOrgId'>
+             `pre_org_id`,
+             </if>
+             <if test ='null != preTeamId'>
+             `pre_team_id`,
+             </if>
+             <if test ='null != preRankSeqId'>
+             `pre_rank_seq_id`,
+             </if>
+             <if test ='null != preSalesGradeId'>
+             `pre_sales_grade_id`,
+             </if>
+             <if test ='null != nextOrgId'>
+             `next_org_id`,
+             </if>
+             <if test ='null != moveMark'>
+             `move_mark`,
+             </if>
+             <if test ='null != nextTeamId'>
+             `next_team_id`,
+             </if>
+             <if test ='null != nextRankSeqId'>
+             `next_rank_seq_id`,
+             </if>
+             <if test ='null != nextSalesGradeId'>
+             `next_sales_grade_id`,
+             </if>
+             <if test ='null != ycSalerId'>
+             `yc_saler_id`,
+             </if> 
+             <if test ='null != tjSalerId'>
+             `tj_saler_id`,
+             </if>                          
+             <if test ='null != moveFile'>
+             `move_file`,
+             </if>
+             <if test ="null != moveDate and '' != moveDate">
+             `move_date`,
+             </if>
+             <if test ='null != checkStatus'>
+             `check_status`,
+             </if>             
+             <if test ='null != changeFlag'>
+             `change_flag`,
+             </if>
+             <if test ='null != createdBy'>
+             `created_by`,
+             </if>
+             <if test ='null != createdTime'>
+             `created_time`,
+             </if>
+             <if test ='null != updatedBy'>
+             `updated_by`,
+             </if>
+             <if test ='null != updatedTime'>
+             `updated_time`
+             </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test ='null != salerId'>
+             #{salerId},
+             </if>
+             <if test ='null != salerName'>
+             #{salerName},
+             </if>
+             <if test ='null != preOrgId'>
+             #{preOrgId},
+             </if>
+             <if test ='null != preTeamId'>
+             #{preTeamId},
+             </if>
+             <if test ='null != preRankSeqId'>
+             #{preRankSeqId},
+             </if>
+             <if test ='null != preSalesGradeId'>
+             #{preSalesGradeId},
+             </if>
+             <if test ='null != nextOrgId'>
+             #{nextOrgId},
+             </if>
+             <if test ='null != moveMark'>
+             #{moveMark},
+             </if>
+             <if test ='null != nextTeamId'>
+             #{nextTeamId},
+             </if>
+             <if test ='null != nextRankSeqId'>
+             #{nextRankSeqId},
+             </if>
+             <if test ='null != nextSalesGradeId'>
+             #{nextSalesGradeId},
+             </if>
+             <if test ='null != ycSalerId'>
+             #{ycSalerId},
+             </if>
+             <if test ='null != tjSalerId'>
+             #{tjSalerId},
+             </if>             
+             <if test ='null != moveFile'>
+             #{moveFile},
+             </if>
+             <if test ="null != moveDate and '' != moveDate">
+             #{moveDate},
+             </if>
+             <if test ='null != checkStatus'>
+             #{checkStatus},
+             </if>             
+             <if test ='null != changeFlag'>
+             #{changeFlag},
+             </if>
+             <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime}
+             </if>
+        </trim>
+    </insert>    
+    
+    <select id="getSalesMovePage" parameterType="java.util.Map" resultType="java.util.Map">
+    	select sml.*,isi.insurance_saler_no from sales_move_logs sml 
+    	left join insurance_sales_info isi on sml.saler_id = isi.insurance_sales_id
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and sml.saler_id = #{salerId}</if>
+			<if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+			<if test ='null != checkStatus'>and sml.check_status = #{checkStatus}</if>
+			<if test ='null != changeFlag'>and sml.change_flag = #{changeFlag}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+              and IF(sml.CHECK_STATUS = '0',  FIND_IN_SET(sml.PRE_ORG_ID, #{myAllOrgIds}) > 0,  FIND_IN_SET(sml.NEXT_ORG_ID, #{myAllOrgIds}) > 0)
+            </if>
+    	</where>
+    	order by sml.move_id desc
+    	limit #{startIndex},#{endIndex}    	   
+    </select>
+    
+    <select id="getSalesMoveList" parameterType="java.util.Map" resultMap="SalesMoveBaseResultMap">
+    	select * from sales_move_logs
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and saler_id = #{salerId}</if>
+			<if test ='null != currDateDo'>and move_date = (select curdate())</if>
+			<if test ='null != checkStatus'>and check_status = #{checkStatus}</if>
+			<if test ='null != changeFlag'>and change_flag = #{changeFlag}</if> 			
+    	</where>    	   
+    </select>    
+    
+    <select id="getSalesMovePageSize" parameterType="java.util.Map"  resultType="java.lang.Long">
+    	select count(1) from sales_move_logs sml 
+    	left join insurance_sales_info isi on sml.saler_id = isi.insurance_sales_id
+    	<where>
+    		1=1
+			<if test ='null != salerId'>and sml.saler_id = #{salerId}</if>	
+			<if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT('%',#{insuranceSalerNo},'%')</if>
+			<if test ='null != checkStatus'>and sml.check_status = #{checkStatus}</if>	
+			<if test ='null != changeFlag'>and sml.change_flag = #{changeFlag}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                and IF(sml.CHECK_STATUS = '0',  FIND_IN_SET(sml.PRE_ORG_ID, #{myAllOrgIds}) > 0,  FIND_IN_SET(sml.NEXT_ORG_ID, #{myAllOrgIds}) > 0)
+            </if>
+    	</where> 	   
+    </select>  
+    
+    <select id="selectSalerMoveLogs" parameterType="java.util.Map" resultMap="SalesMoveBaseResultMap">
+    	select * from sales_move_logs sml 
+    	<where>
+    		1=1
+			<if test ='null != moveId'>and sml.move_id = #{moveId}</if>	
+    	</where> 	   
+    </select> 
+    
+    <update id="updateSalerMove" parameterType="com.hzcf.pojo.insurance.sales.SalesMoveLogs">
+        UPDATE sales_move_logs
+        <set>
+            <if test ='null != salerId'>saler_id = #{salerId},</if>
+            <if test ='null != salerName'>saler_name = #{salerName},</if>
+            <if test ='null != preOrgId'>pre_org_id = #{preOrgId},</if>
+            <if test ='null != preTeamId'>pre_team_id = #{preTeamId},</if>
+            <if test ='null != preRankSeqId'>pre_rank_seq_id = #{preRankSeqId},</if>
+            <if test ='null != preSalesGradeId'>pre_sales_grade_id = #{preSalesGradeId},</if>
+            <if test ='null != nextOrgId'>next_org_id = #{nextOrgId},</if>
+            <if test ='null != nextTeamId'>next_team_id = #{nextTeamId},</if>
+            <if test ='null != nextRankSeqId'>next_rank_seq_id = #{nextRankSeqId},</if>
+            <if test ='null != nextSalesGradeId'>next_sales_grade_id = #{nextSalesGradeId},</if>
+            <if test ='null != ycSalerId'>yc_saler_id = #{ycSalerId},</if>
+            <if test ='null != tjSalerId'>tj_saler_id = #{tjSalerId},</if>
+            <if test ='null != moveFile'>move_file = #{moveFile},</if>
+            <if test ='null != moveMark'>move_mark = #{moveMark},</if>
+            <if test ='null != moveDate'>move_date = #{moveDate},</if>
+            <if test ='null != checkStatus'>check_status = #{checkStatus},</if>
+            <if test ='null != checkMark'>check_mark = #{checkMark},</if>
+            <if test ='null != changeFlag'>change_flag = #{changeFlag},</if>
+            <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>
+        </set>
+        WHERE move_id = #{moveId}
+    </update>        		
+
+   	<resultMap id="ZjjtBaseResultMap" type="com.hzcf.pojo.allowance.DirectorAllowanceStandardPojo" >
+          <result column="allowance_id" property="allowanceId" />
+          <result column="sales_org_id" property="salesOrgId" />
+          <result column="ins_sales_id" property="insSalesId" />
+          <result column="allowance_formula" property="allowanceFormula" />
+          <result column="allowance_ratio" property="allowanceRatio" />
+          <result column="created_by" property="createdBy" />
+          <result column="created_time" property="createdTime" />
+          <result column="updated_by" property="updatedBy" />
+          <result column="updated_time" property="updatedTime" />
+          <result column="delete_flag" property="deleteFlag" />       
+    </resultMap>
+    
+    <select id="findZjjt" parameterType="java.util.Map" resultMap="ZjjtBaseResultMap">
+   		select * from director_allowance_standard 
+   		<where>
+   		1=1
+   			<if test ='null != salesId'>
+   				AND ins_sales_id = #{salesId}
+   			</if>
+   			<if test ='null != salesOrgId'>
+   				AND sales_org_id = #{salesOrgId}
+   			</if>   			
+   			<if test ='null != deleteFlag'>
+   				AND delete_flag = #{deleteFlag}
+   			</if>   			
+   		</where> 
+   	</select> 
+   	
+   	<resultMap id="SalesTitleBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesTitles" >
+         <result column="title_id" property="titleId" />
+         <result column="sales_id" property="salesId" />
+         <result column="title" property="title" />
+         <result column="certificate_no" property="certificateNo" />
+         <result column="award_org" property="awardOrg" />
+         <result column="got_date" property="gotDate" />
+         <result column="effective_date" property="effectiveDate" />
+         <result column="invalid_date" property="invalidDate" />
+         <result column="title_status" property="titleStatus" />
+         <result column="remark" property="remark" />
+         <result column="title_type" property="titleType" />
+         <result column="created_by" property="createdBy" />
+         <result column="created_time" property="createdTime" />
+         <result column="updated_by" property="updatedBy" />
+         <result column="updated_time" property="updatedTime" />
+         <result column="delete_flag" property="deleteFlag" />         
+    </resultMap>
+    
+    <select id="findSalesTitles" parameterType="java.util.Map" resultMap="SalesTitleBaseResultMap">
+   		select * from sales_titles 
+   		<where>
+   		1=1
+   			<if test ='null != salesId'>
+   				AND sales_id = #{salesId}
+   			</if>
+   			<if test ='null != deleteFlag'>
+   				AND delete_flag = #{deleteFlag}
+   			</if>   			
+   		</where> 
+   	</select>    
+    
+    <resultMap id="SalesEduJobBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesEduJob" >
+         <result column="edu_id" property="eduId" />
+         <result column="sales_id" property="salesId" />
+         <result column="edu_name" property="eduName" />
+         <result column="start_date" property="startDate" />
+         <result column="end_date" property="endDate" />
+         <result column="education" property="education" />
+         <result column="academic_degree" property="academicDegree" />
+         <result column="achievement" property="achievement" />
+         <result column="position" property="position" />
+         <result column="remark" property="remark" />
+         <result column="table_type" property="tableType" />
+         <result column="created_by" property="createdBy" />
+         <result column="created_time" property="createdTime" />
+         <result column="updated_by" property="updatedBy" />
+         <result column="updated_time" property="updatedTime" />
+         <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+    
+    <select id="findSalesEduJobs" parameterType="java.util.Map" resultMap="SalesEduJobBaseResultMap">
+   		select * from sales_edu_jobs 
+   		<where>
+   		1=1
+   			<if test ='null != salesId'>
+   				AND sales_id = #{salesId}
+   			</if>
+   			<if test ='null != deleteFlag'>
+   				AND delete_flag = #{deleteFlag}
+   			</if>   			
+   		</where> 
+   	</select>          
+    
+    <resultMap id="SalesRelativeBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesRelative" >
+          <result column="relative_id" property="relativeId" />
+          <result column="sales_id" property="salesId" />
+          <result column="person_name" property="personName" />
+          <result column="relation_ship" property="relationShip" />
+          <result column="ship_cell_phone" property="shipCellPhone" />
+          <result column="ship_email" property="shipEmail" />
+          <result column="ship_addr" property="shipAddr" />
+          <result column="id_card" property="idCard" />
+          <result column="ship_occupation" property="shipOccupation" />
+          <result column="remark" property="remark" />
+          <result column="ship_type" property="shipType" />
+          <result column="guarantee_date" property="guaranteeDate" />
+          <result column="created_by" property="createdBy" />
+          <result column="created_time" property="createdTime" />
+          <result column="updated_by" property="updatedBy" />
+          <result column="updated_time" property="updatedTime" />
+          <result column="delete_flag" property="deleteFlag" />
+    </resultMap> 
+    
+    <select id="findSalesRelatives" parameterType="java.util.Map" resultMap="SalesRelativeBaseResultMap">
+   		select * from sales_relative 
+   		<where>
+   		1=1
+   			<if test ='null != salesId'>
+   				AND sales_id = #{salesId}
+   			</if>
+   			<if test ='null != shipType'>
+   				AND ship_type = #{shipType}
+   			</if>
+   			<if test ='null != deleteFlag'>
+   				AND delete_flag = #{deleteFlag}
+   			</if>   			
+   		</where> 
+   	</select>     
+    
+    <resultMap id="SalesContractBaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesContract" >
+          <result column="contract_id" property="contractId" />
+          <result column="sales_id" property="salesId" />
+          <result column="contract_no" property="contractNo" />
+          <result column="contract_type" property="contractType" />
+          <result column="business_agreement_flag" property="businessAgreementFlag" />
+          <result column="secret_agreement_flag" property="secretAgreementFlag" />
+          <result column="write_date" property="writeDate" />
+          <result column="probation_end" property="probationEnd" />
+          <result column="contract_effect_date" property="contractEffectDate" />
+          <result column="contract_stop_date" property="contractStopDate" />
+          <result column="created_by" property="createdBy" />
+          <result column="created_time" property="createdTime" />
+          <result column="updated_by" property="updatedBy" />
+          <result column="updated_time" property="updatedTime" />
+          <result column="delete_flag" property="deleteFlag" />
+    </resultMap>  
+    
+    <select id="findSalesContracts" parameterType="java.util.Map" resultMap="SalesContractBaseResultMap">
+   		select * from sales_contract 
+   		<where>
+   		1=1
+   			<if test ='null != salesId'>
+   				AND sales_id = #{salesId}
+   			</if>
+   			<if test ='null != deleteFlag'>
+   				AND delete_flag = #{deleteFlag}
+   			</if>   			
+   		</where> 
+   	</select>                
+
+	<insert id="addZjjt" parameterType="java.util.List">
+        insert into director_allowance_standard
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+             `sales_org_id`,
+             `ins_sales_id`,
+             `allowance_formula`,
+             `allowance_ratio`,
+             `created_by`,
+             `created_time`,
+             `updated_by`,
+             `updated_time`,
+             `delete_flag`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+         	 #{item.salesOrgId},
+             #{item.insSalesId},
+             #{item.allowanceFormula},
+             #{item.allowanceRatio},
+             #{item.createdBy},
+             #{item.createdTime},
+             #{item.updatedBy},
+             #{item.updatedTime},
+             '0'
+           )          	
+        </foreach>
+    </insert>
+    
+	<insert id="addSalesTitle" parameterType="java.util.List">
+        insert into sales_titles
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			`sales_id`,
+            `title`,
+            `certificate_no`,
+            `award_org`,
+            `got_date`,
+            `effective_date`,
+            `invalid_date`,
+            `title_status`,
+            `remark`,
+            `title_type`,
+            `created_by`,
+            `created_time`,
+            `updated_by`,
+            `updated_time`,
+            `delete_flag`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+         	 #{item.salesId},
+             #{item.title},
+             #{item.certificateNo},
+             #{item.awardOrg},
+             #{item.gotDate},
+             #{item.effectiveDate},
+             #{item.invalidDate},
+             #{item.titleStatus},
+             #{item.remark},
+             #{item.titleType},
+             #{item.createdBy},
+             #{item.createdTime},
+             #{item.updatedBy},
+             #{item.updatedTime},
+             #{item.deleteFlag}
+           )          	
+        </foreach>
+    </insert> 
+    
+   	<insert id="addSalesEduJob" parameterType="java.util.List">
+        insert into sales_edu_jobs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+            `sales_id`,
+            `edu_name`,
+            `start_date`,
+            `end_date`,
+            `education`,
+            `academic_degree`,
+            `achievement`,
+            `position`,
+            `remark`,
+            `table_type`,
+            `created_by`,
+            `created_time`,
+            `updated_by`,
+            `updated_time`,
+            `delete_flag`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+             #{item.salesId},                     
+             #{item.eduName},                      
+             #{item.startDate},
+             #{item.endDate},       
+             #{item.education},        
+             #{item.academicDegree},           
+             #{item.achievement},          
+             #{item.position},        
+             #{item.remark},  
+             #{item.tableType},        
+             #{item.createdBy},         
+             #{item.createdTime},         
+             #{item.updatedBy},       
+             #{item.updatedTime},
+             #{item.deleteFlag}                     
+           )          	
+        </foreach>
+    </insert>  
+    
+   	<insert id="addSalesRelative" parameterType="java.util.List">
+        insert into sales_relative
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+            `sales_id`,
+            `person_name`,
+            `relation_ship`,
+            `ship_cell_phone`,
+            `ship_email`,
+            `ship_addr`,
+            `id_card`,
+            `ship_occupation`,
+            `remark`,
+            `ship_type`,
+            `guarantee_date`,
+            `created_by`,
+            `created_time`,
+            `updated_by`,
+            `updated_time`,
+            `delete_flag`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+           #{item.salesId},
+           #{item.personName},
+           #{item.relationShip},
+           #{item.shipCellPhone},
+           #{item.shipEmail},
+           #{item.shipAddr},
+           #{item.idCard},
+           #{item.shipOccupation},
+           #{item.remark},
+           #{item.shipType},
+           #{item.guaranteeDate},
+           #{item.createdBy},
+           #{item.createdTime},
+           #{item.updatedBy},
+           #{item.updatedTime},
+           #{item.deleteFlag}                    
+          )          	
+        </foreach>
+    </insert>
+    <insert id="batchSalesRelative"  parameterType="java.util.List">
+        insert into sales_relative
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            `sales_id`,
+            `person_name`,
+            `ship_cell_phone`,
+            `relation_ship`,
+            `ship_addr`,
+            `ship_email`,
+            `remark`,
+            `created_time`,
+            `ship_type`
+        </trim>
+          values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+            #{item.salesId},
+            #{item.personName},
+            #{item.shipCellPhone},
+            #{item.relationShip},
+            #{item.shipAddr},
+            #{item.shipEmail},
+            #{item.remark},
+            #{item.createdTime},
+            #{item.shipType}
+          )
+        </foreach>
+    </insert>
+    
+    <insert id="addSalesContract" parameterType="java.util.List">
+        insert into sales_contract
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+           `sales_id`,
+           `contract_no`,
+           `contract_type`,
+           `business_agreement_flag`,
+           `secret_agreement_flag`,
+           `write_date`,
+           `probation_end`,
+           `contract_effect_date`,
+           `contract_stop_date`,
+           `created_by`,
+           `created_time`,
+           `updated_by`,
+           `updated_time`,
+           `delete_flag`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+			#{item.salesId},
+            #{item.contractNo},
+            #{item.contractType},
+            #{item.businessAgreementFlag},
+            #{item.secretAgreementFlag},
+            #{item.writeDate},
+            #{item.probationEnd},
+            #{item.contractEffectDate},
+            #{item.contractStopDate},
+            #{item.createdBy},
+            #{item.createdTime},
+            #{item.updatedBy},
+            #{item.updatedTime},
+            #{item.deleteFlag}             
+          )          	
+        </foreach>
+    </insert>
+  
+    <update id="updateZjjts"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE director_allowance_standard
+	        <trim prefix="set" suffixOverrides=",">
+		        allowance_id=#{item.allowanceId},
+		        <if test = 'null != item.salesOrgId'>sales_org_id=#{item.salesOrgId},</if>
+		        <if test = 'null != item.insSalesId'>ins_sales_id=#{item.insSalesId},</if>
+		        allowance_formula=#{item.allowanceFormula},
+	            allowance_ratio=#{item.allowanceRatio},
+	            <if test = 'null != item.createdBy'>created_by=#{item.createdBy},</if>
+	            <if test = 'null != item.createdTime'>created_time=#{item.createdTime},</if>
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime},</if>
+	            <if test = 'null != item.deleteFlag'>delete_flag=#{item.deleteFlag}</if>
+	        </trim>
+	        <where>
+		        1=1 
+		        <if test = 'null != item.salesOrgId'>and sales_org_id=#{item.salesOrgId}</if>
+		        <if test = 'null != item.insSalesId'>and ins_sales_id=${item.insSalesId}</if>
+		         and allowance_id = ${item.allowanceId}
+	        </where>
+	    </foreach>      
+	</update>
+ 
+     <update id="deleteZjjtByIds" parameterType="java.util.Map">  
+	    	update director_allowance_standard set `delete_flag` = '1'
+	    	<where>
+	    	1=1
+	    		<if test = 'null != salesOrgId'>and sales_org_id = ${salesOrgId}</if>
+	    		<if test = 'null != insSalesId'>and ins_sales_id = ${insSalesId}</if>
+				<if test ='"" != updateIds and null != updateIds'>  
+					and allowance_id  in (${updateIds})
+				</if>	    		
+	    	</where>
+	</update>  
+    
+    <update id="updateSalesTitle"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_titles
+	        <trim prefix="set" suffixOverrides=",">
+		        title_id=#{item.titleId},sales_id=#{item.salesId},title=#{item.title},
+	            <if test = 'null != item.certificateNo'> certificate_no=#{item.certificateNo},</if>
+	            award_org=#{item.awardOrg},
+	            <if test = 'null != item.gotDate'>got_date=#{item.gotDate},</if>
+	            <if test = 'null != item.effectiveDate'>effective_date=#{item.effectiveDate},</if>
+	            <if test = 'null != item.invalidDate'>invalid_date=#{item.invalidDate},</if>
+	            <if test = 'null != item.titleStatus'>title_status=#{item.titleStatus},</if>
+	            <if test = 'null != item.remark'>remark=#{item.remark},</if>
+	            title_type=#{item.titleType},
+	            <if test = 'null != item.createdBy'>created_by=#{item.createdBy},</if>
+	            <if test = 'null != item.createdTime'>created_time=#{item.createdTime},</if>
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime},</if>
+	            <if test = 'null != item.deleteFlag'>delete_flag=#{item.deleteFlag}</if>
+	        </trim>
+	        <where> 
+	        sales_id=${item.salesId} and title_id = ${item.titleId}
+	        </where>
+	    </foreach>      
+	</update>
+ 
+     <update id="deleteTitleByIds" parameterType="java.util.Map">  
+	    	update sales_titles set `delete_flag` = '1'
+	    	<where>
+	    		sales_id = ${salesId}
+				<if test ='"" != updateIds and null != updateIds'>  
+					and title_id  in (${updateIds})
+				</if>	    		
+	    	</where>
+	</update>
+	
+    <update id="updateSalesEduJob"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_edu_jobs
+	        <trim prefix="set" suffixOverrides=",">
+		        edu_id=#{item.eduId},sales_id=#{item.salesId},edu_name=#{item.eduName},
+	            <if test = 'null != item.startDate'> start_date=#{item.startDate},</if>
+	            <if test = 'null != item.endDate'>end_date=#{item.endDate},</if>
+	            <if test = 'null != item.education'>education=#{item.education},</if>
+	            <if test = 'null != item.academicDegree'>academic_degree=#{item.academicDegree},</if>
+	            <if test = 'null != item.achievement'>achievement=#{item.achievement},</if>
+	            <if test = 'null != item.remark'>remark=#{item.remark},</if>
+	            <if test = 'null != item.position'>position=#{item.position},</if>
+	            <if test = 'null != item.tableType'>table_type=#{item.tableType},</if>	            
+	            <if test = 'null != item.createdBy'>created_by=#{item.createdBy},</if>
+	            <if test = 'null != item.createdTime'>created_time=#{item.createdTime},</if>
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime},</if>
+	            <if test = 'null != item.deleteFlag'>delete_flag=#{item.deleteFlag}</if>
+	        </trim>
+	        <where> 
+	        sales_id=${item.salesId} and edu_id = ${item.eduId}
+	        </where>
+	    </foreach>      
+	</update>
+	
+    <update id="deleteEduByIds" parameterType="java.util.Map">  
+	    	update sales_edu_jobs set `delete_flag` = '1'
+	    	<where>
+	    		sales_id = ${salesId}
+				<if test ='"" != updateIds and null != updateIds'>  
+					and edu_id  in (${updateIds})
+				</if>	    		
+	    	</where>
+	</update>
+		
+    <update id="updateSalesRelative"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_relative
+	        <trim prefix="set" suffixOverrides=",">
+		        relative_id=#{item.relativeId},sales_id=#{item.salesId},person_name=#{item.personName},
+	            <if test = 'null != item.relationShip'> relation_ship=#{item.relationShip},</if>
+	            <if test = 'null != item.shipCellPhone'>ship_cell_phone=#{item.shipCellPhone},</if>
+	            <if test = 'null != item.shipEmail'>ship_email=#{item.shipEmail},</if>
+	            <if test = 'null != item.shipAddr'>ship_addr=#{item.shipAddr},</if>
+	            <if test = 'null != item.idCard'>id_card=#{item.idCard},</if>
+	            <if test = 'null != item.shipOccupation'>ship_occupation=#{item.shipOccupation},</if>
+	            <if test = 'null != item.guaranteeDate'>guarantee_date=#{item.guaranteeDate},</if>
+	            <if test = 'null != item.shipType'>ship_type=#{item.shipType},</if>	            
+	            <if test = 'null != item.createdBy'>created_by=#{item.createdBy},</if>
+	            <if test = 'null != item.createdTime'>created_time=#{item.createdTime},</if>
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime},</if>
+	            <if test = 'null != item.deleteFlag'>delete_flag=#{item.deleteFlag}</if>
+	        </trim>
+	        <where> 
+	        sales_id=${item.salesId} and relative_id = ${item.relativeId}
+	        </where>
+	    </foreach>      
+	</update>
+	
+	<update id="deleteShipByIds" parameterType="java.util.Map">  
+	    	update sales_relative set `delete_flag` = '1'
+	    	<where>
+	    		sales_id = ${salesId}
+				<if test ='"" != updateIds and null != updateIds'>  
+					and relative_id  in (${updateIds})
+				</if>	    		
+	    	</where>
+	</update>
+	
+    <update id="updateSalesContracts"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_contract
+	        <trim prefix="set" suffixOverrides=",">
+		        contract_id=#{item.contractId},sales_id=#{item.salesId},contract_no=#{item.contractNo},
+	            <if test = 'null != item.contractType'> contract_type=#{item.contractType},</if>
+	            <if test = 'null != item.businessAgreementFlag'>business_agreement_flag=#{item.businessAgreementFlag},</if>
+	            <if test = 'null != item.secretAgreementFlag'>secret_agreement_flag=#{item.secretAgreementFlag},</if>
+	            <if test = 'null != item.writeDate'>write_date=#{item.writeDate},</if>
+	            <if test = 'null != item.probationEnd'>probation_end=#{item.probationEnd},</if>
+	            <if test = 'null != item.contractEffectDate'>contract_effect_date=#{item.contractEffectDate},</if>
+	            <if test = 'null != item.contractStopDate'>contract_stop_date=#{item.contractStopDate},</if>          
+	            <if test = 'null != item.createdBy'>created_by=#{item.createdBy},</if>
+	            <if test = 'null != item.createdTime'>created_time=#{item.createdTime},</if>
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime},</if>
+	            <if test = 'null != item.deleteFlag'>delete_flag=#{item.deleteFlag}</if>
+	        </trim>
+	        <where> 
+	        sales_id=${item.salesId} and contract_id = ${item.contractId}
+	        </where>
+	    </foreach>      
+	</update>
+	
+	<update id="deleteHtByIds" parameterType="java.util.Map">  
+	    	update sales_contract set `delete_flag` = '1'
+	    	<where>
+	    		sales_id = ${salesId}
+				<if test ='"" != updateIds and null != updateIds'>  
+					and contract_id  in (${updateIds})
+				</if>	    		
+	    	</where>
+	</update>				            
+   	 <select id="selectInsuranceSalesOne" resultType="java.util.Map">
+         select  * from  insurance_sales_info
+         <where>
+             <if test = 'null != insuranceSalerNo'> INSURANCE_SALER_NO=#{insuranceSalerNo}</if>
+         </where>
+
+     </select>
+
+    <select id="queryBTJCount" parameterType="long" resultType="int">
+        SELECT COUNT(1)
+        FROM insurance_sales_info
+        WHERE TJ_SALES_ID = #{tjSalesId} AND SALES_STATUS BETWEEN 0 AND 1
+    </select>
+
+    <select id="queryTJSubordinateForKZ" parameterType="long" resultType="long">
+        SELECT INSURANCE_SALES_ID
+        FROM insurance_sales_info
+        WHERE TJ_SALES_ID = #{tjSalesId} AND SJ_SALES_ID = #{tjSalesId} AND SALES_GRADE_ID = 5 AND (SALES_STATUS BETWEEN 0 AND 1)
+    </select>
+
+    <select id="queryBeRecommendedKZBySalesId" parameterType="long" resultType="long">
+        SELECT INSURANCE_SALES_ID
+        FROM insurance_sales_info
+        WHERE SJ_SALES_ID = #{salesId} AND (SALES_GRADE_ID BETWEEN 4 AND 5)  AND (SALES_STATUS BETWEEN 0 AND 1)
+    </select>
+
+    <select id="queryBYCCount" parameterType="map" resultType="int">
+        SELECT COUNT(1)
+        FROM insurance_sales_info
+        WHERE YC_SALES_ID = #{ycSalesId} AND SALES_GRADE_ID = #{salesGradeId} AND SALES_STATUS BETWEEN 0 AND 1
+    </select>
+
+    <select id="querySubordinate" parameterType="map" resultType="long">
+        SELECT INSURANCE_SALES_ID
+        FROM insurance_sales_info
+        WHERE (SJ_SALES_ID = #{salesId} OR SJ_SALES_ID = #{salesId})
+        AND (SALES_STATUS BETWEEN 0 AND 1)
+        <if test = '2 == salesGradeId'>
+            AND SALES_GRADE_ID BETWEEN 3 AND 7
+        </if>
+        <if test = '7 == salesGradeId'>
+            AND SALES_GRADE_ID BETWEEN 3 AND 6
+        </if>
+        <if test = '1 == salesGradeId'>
+            AND SALES_GRADE_ID BETWEEN 2 AND 7
+        </if>
+    </select>
+
+    <select id="queryEmploymentPeriod" parameterType="map" resultType="string">
+        SELECT m.MOVE_DATE
+        FROM sales_move_logs m JOIN sales_grade sg ON m.NEXT_SALES_GRADE_ID = sg.SALES_GRADE_ID
+        WHERE m.SALER_ID = #{salesId}
+        AND m.CHECK_STATUS = '1' AND m.NEXT_SALES_GRADE_ID = #{salesGradeId}
+        ORDER BY m.UPDATED_TIME DESC limit 1
+    </select>
+
+    <select id="queryDutyCount" parameterType="map" resultType="int">
+        SELECT
+        FROM sales_move_logs m JOIN sales_grade sg ON m.NEXT_SALES_GRADE_ID = sg.SALES_GRADE_ID
+        WHERE m.SALER_ID = #{salesId}
+        AND m.CHECK_STATUS = '1' AND sg.SALES_GRADE_ID = #{salesGradeId}
+        AND m.MOVE_DATE BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+    <!--批量导入销售人员信息-->
+        <insert id="batchAddSalesInfo" parameterType="java.util.List">
+        INSERT INTO insurance_sales_info
+        (
+                `cooperation_type`,
+                `sales_org_id`,
+                `sales_team_id`,
+                `insurance_saler`,
+                `rank_sequence_id`,
+                `sales_grade_id`,
+                `card_type`,
+                `card_no`,
+                `mobile`,
+        `join_date`,
+        `sex`,
+        `db_sales_id`,
+        `tj_sales_id`,
+        `yc_sales_id`,
+        `sj_sales_id`,
+        `jc_sales_id`,
+        `fd_sales_id`,
+        `created_time`,
+        `insurance_saler_no`,
+        `sales_status`,
+        `now_tree_code`,
+        `pass_date`,
+        `leaving_certificate`,
+        `having_work_group`,
+        `birthday`,
+        `bank_channel`,
+        `openBank`,
+        `bank_card_no`,
+        `political_appearance`,
+        `area_code`,
+        `educational_bg` ,
+        `certificate_number`,
+        `yc_c_first_gener`,
+        `yc_c_second_gener`,
+        `yc_b_first_gener`,
+        `yc_b_second_gener`,
+        `direct_group_c`,
+        `direct_dept_b`,
+         `db_sales_date`,
+         `tj_sales_date`,
+         `sj_sales_date`,
+          `jc_sales_date`,
+         `fd_sales_date`,
+         `establish_time`,
+         `establish_time1`,
+         `establish_time2`,
+         `establish_time3`,
+         `establish_time4`,
+         `establish_time5`
+           )
+        VALUES
+         <foreach collection="list" item="item"  separator=",">
+           (
+             #{item.cooperationType},
+             #{item.salesOrgId},
+              #{item.salesTeamId},
+              #{item.insuranceSaler},
+              #{item.rankSequenceId},
+              #{item.salesGradeId},
+              #{item.cardType},
+              #{item.cardNo},
+              #{item.mobile},
+             #{item.joinDate},
+             #{item.sex},
+             #{item.dbSalesId},
+             #{item.tjSalesId},
+             #{item.ycSalesId},
+             #{item.sjSalesId},
+             #{item.jcSalesId},
+             #{item.fdSalesId},
+              #{item.createdTime},
+              #{item.insuranceSalerNo},
+             #{item.salesStatus},
+             #{item.nowTreeCode},
+            #{item.passDate},
+             #{item.leavingCertificate},
+             #{item.havingWorkGroup},
+              #{item.birthday},
+             #{item.bankChannel},
+             #{item.openBank},
+             #{item.bankCardNo},
+             #{item.politicalAppearance},
+             #{item.areaCode},
+             #{item.educationalBg},
+             #{item.certificateNumber},
+             #{item.ycCFirstGener},
+             #{item.ycCSecondGener},
+             #{item.ycBFirstGener},
+             #{item.ycBSecondGener},
+             #{item.directGroupC},
+             #{item.directDeptB},
+             #{item.dbSalesDate},
+             #{item.tjSalesDate},
+             #{item.sjSalesDate},
+             #{item.jcSalesDate},
+             #{item.fdSalesDate},
+             #{item.establishTime},
+             #{item.establishTime1},
+             #{item.establishTime2},
+             #{item.establishTime3},
+             #{item.establishTime4},
+             #{item.establishTime5}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="insuranceSalesListForSalesNo" parameterType="java.util.List" resultMap="BaseResultMap">
+        select isi.*,sg.SALES_ORG_NAME,st.SALES_TEAM_NAME from insurance_sales_info isi left join sales_org_info sg on isi.sales_org_id = sg.sales_org_id
+    	left join sales_team_info st on isi.sales_team_id = st.sales_team_id
+        where isi.insurance_sales_id IN
+          <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+             #{item}
+        </foreach>
+     </select>
+    <update id="updateSalfeIdForZreo">
+        UPDATE insurance_sales_info isi
+        SET isi.direct_dept_b = (
+            CASE isi.direct_dept_b
+            WHEN '0' THEN
+                isi.INSURANCE_SALES_ID
+            ELSE
+                isi.direct_dept_b
+            END
+        ),
+         isi.direct_group_c = (
+            CASE isi.direct_group_c
+            WHEN '0' THEN
+                isi.INSURANCE_SALES_ID
+            ELSE
+                isi.direct_group_c
+            END
+        )
+        WHERE
+            isi.INSURANCE_SALES_ID = #{salesId}
+    </update>
+    <select id="selectByMax" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from insurance_sales_info isi
+        <where>
+    	1=1
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler = #{insuranceSaler}</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>
+	       <if test ='null != salesOrgId'>and isi.sales_org_id = #{salesOrgId}</if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != passDate'>and isi.pass_date = #{passDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if>
+           <if test ='null != reEntryFlag'>and isi.SALES_STATUS in ('0', '1')</if>
+    	</where>
+    </select>
+    <delete id="deleteRelativeById" parameterType="java.util.List">
+        delete from sales_relative 
+        where ship_type = '2'
+        and sales_id in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item.salesId}
+        </foreach>
+    </delete>
+    <select id="insuranceSalesRelationList" parameterType="java.util.Map" resultType="java.util.Map">
+        <![CDATA[
+        SELECT
+            CONCAT(
+                isi.INSURANCE_SALER,
+                '<',
+                ifnull(sti.SALES_TEAM_NAME, '-'),
+                '>'
+            ) AS name_team,
+            isi.INSURANCE_SALER_NO,
+            isi.INSURANCE_SALER,
+            soi.SALES_ORG_NAME,
+            sti.SALES_TEAM_NAME,
+            isi.SALES_GRADE_ID,
+        sg.SALES_GRADE_NAME,
+        isi.INSURANCE_SALES_ID,
+        soi.cal_org_id,
+        CASE
+        WHEN sml.NEXT_SALES_GRADE_ID IS NOT NULL
+        THEN
+            sml.NEXT_SALES_GRADE_ID
+        ELSE
+            isi.SALES_GRADE_ID
+        END AS NEXT_SALES_GRADE_ID
+        FROM
+            insurance_sales_info isi
+        LEFT JOIN sales_org_info soi ON isi.SALES_ORG_ID = soi.SALES_ORG_ID
+        LEFT JOIN sales_team_info sti ON isi.SALES_TEAM_ID = sti.SALES_TEAM_ID
+        LEFT JOIN sales_grade sg ON isi.SALES_GRADE_ID = sg.SALES_GRADE_ID
+        LEFT JOIN (SELECT * from sales_move_logs sm where sm.MOVE_DATE = #{moveDate}) sml ON sml.SALER_ID = isi.INSURANCE_SALES_ID
+      ]]>
+       <where>
+         1=1
+           <if test = "null != screen and '' != screen">and isi.SALES_STATUS in ('0', '1')</if>
+           <if test = "null != salerNo and '' != salerNo">and isi.INSURANCE_SALER_NO = #{salerNo}</if>
+         <if test = "null != salesIds and '' != salesIds">and isi.INSURANCE_SALES_ID IN (${salesIds})</if>
+         <if test = "null != query and '' != query">and isi.INSURANCE_SALER LIKE CONCAT(CONCAT('%', #{query}), '%')</if>
+         <if test = "null != queryNo and '' != queryNo">and isi.INSURANCE_SALER_NO LIKE CONCAT(CONCAT('%', #{queryNo}), '%')</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0
+        </if>
+    </where>
+
+    </select>
+
+    <!--查询次月职级，团队-->
+      <select id="salerNextMessage" parameterType="java.util.Map" resultType="java.util.Map">
+       SELECT
+	nisi.INSURANCE_SALES_ID,
+	nisi.INSURANCE_SALER,
+	nisi.INSURANCE_SALER_NO,
+	nisi.NEXT_SALES_GRADE_ID,
+	nisi.NEXT_TEAM_ID,
+	sti.SALES_TEAM_NAME,
+	sg.SALES_GRADE_NAME,
+	soi.cal_org_id
+    FROM
+        (
+            SELECT
+                isi.INSURANCE_SALES_ID,
+                isi.INSURANCE_SALER_NO,
+                isi.INSURANCE_SALER,
+                CASE
+            WHEN sml.NEXT_ORG_ID IS NOT NULL
+            THEN
+                sml.NEXT_ORG_ID
+            ELSE
+                isi.SALES_ORG_ID
+            END AS NEXT_ORG_ID,
+            CASE
+        WHEN sml.NEXT_SALES_GRADE_ID IS NOT NULL
+        THEN
+            sml.NEXT_SALES_GRADE_ID
+        ELSE
+            isi.SALES_GRADE_ID
+        END AS NEXT_SALES_GRADE_ID,
+        CASE
+    WHEN sml.NEXT_TEAM_ID IS NOT NULL
+    THEN
+        sml.NEXT_TEAM_ID
+    ELSE
+        isi.SALES_TEAM_ID
+    END AS NEXT_TEAM_ID
+    FROM
+        insurance_sales_info isi
+    LEFT JOIN (SELECT * from sales_move_logs sm where sm.MOVE_DATE = #{moveDate}) sml ON isi.INSURANCE_SALES_ID = sml.SALER_ID
+    WHERE
+        isi.INSURANCE_SALES_ID = #{insuranceSalesId}) nisi
+    LEFT JOIN sales_team_info sti ON nisi.NEXT_TEAM_ID = sti.SALES_TEAM_ID
+    LEFT JOIN sales_grade sg ON nisi.NEXT_SALES_GRADE_ID = sg.SALES_GRADE_ID
+    LEFT JOIN sales_org_info soi ON nisi.NEXT_ORG_ID = soi.SALES_ORG_ID
+
+    </select>
+
+
+    <update id="addSalesRelation" parameterType="com.hzcf.pojo.insurance.sales.InsuranceSalesInfo">
+         UPDATE insurance_sales_info
+        <set>
+
+           db_sales_id = #{dbSalesId},
+          tj_sales_id = #{tjSalesId},
+          sj_sales_id = #{sjSalesId},
+           jc_sales_id = #{jcSalesId},
+          fd_sales_id = #{fdSalesId},
+            <choose>
+                <when test ="null != dbSalesDate and '' != dbSalesDate">db_sales_date = #{dbSalesDate},</when>
+                <otherwise>db_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != tjSalesDate and '' != tjSalesDate">tj_sales_date = #{tjSalesDate},</when>
+                <otherwise>tj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != sjSalesDate and '' != sjSalesDate">sj_sales_date = #{sjSalesDate},</when>
+                <otherwise>sj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != jcSalesDate and '' != jcSalesDate">jc_sales_date = #{jcSalesDate},</when>
+                <otherwise>jc_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != fdSalesDate and '' != fdSalesDate">fd_sales_date = #{fdSalesDate},</when>
+                <otherwise>fd_sales_date = null,</otherwise>
+            </choose>
+                yc_c_first_gener = #{ycCFirstGener},
+                yc_c_second_gener = #{ycCSecondGener},
+                yc_b_first_gener = #{ycBFirstGener},
+                yc_b_second_gener = #{ycBSecondGener},
+                direct_group_c = #{directGroupC},
+                direct_dept_b = #{directDeptB},
+            <choose>
+                <when test ="null != establishTime and '' != establishTime">establish_time = #{establishTime},</when>
+                <otherwise>establish_time = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime1 and '' != establishTime1">establish_time1 = #{establishTime1},</when>
+                <otherwise>establish_time1 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime2 and '' != establishTime2">establish_time2 = #{establishTime2},</when>
+                <otherwise>establish_time2 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime3 and '' != establishTime3">establish_time3 = #{establishTime3},</when>
+                <otherwise>establish_time3 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime4 and '' != establishTime4">establish_time4 = #{establishTime4},</when>
+                <otherwise>establish_time4 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime5 and '' != establishTime5">establish_time5 = #{establishTime5},</when>
+                <otherwise>establish_time5 = null,</otherwise>
+            </choose>
+            <if test ='null != updatedTime'>updated_time = now()</if>
+
+        </set>
+        WHERE `insurance_sales_id` = #{insuranceSalesId}
+    </update>
+
+    <select id="findMaxSalerNoForOrg" parameterType="java.util.Map" resultType="java.lang.Long">
+           SELECT
+                IFNULL(
+                    max(
+                        SUBSTRING(shi.INSURANCE_SALER_NO ,- 5)
+                    ),
+                    '00000'
+                ) AS maxSalerNo
+            FROM
+                insurance_sales_info shi
+            WHERE
+                LEFT(shi.INSURANCE_SALER_NO,LENGTH(shi.INSURANCE_SALER_NO) - 5) =  #{prefixInsuranceSalerNo};
+    </select>
+
+    <select id="findMaxSalerNoForPrefixSalerNo" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT
+                IFNULL(
+                    max(
+                        SUBSTRING(shi.employee_no ,- 5)
+                    ),
+                    '00000'
+                ) AS maxSalerNo
+            FROM
+                salers_hk_info shi
+            WHERE
+                LEFT(shi.employee_no,LENGTH(shi.employee_no) - 5) =  #{findMaxSalerNo};
+    </select>
+
+    <update id="batchUpdateSalesRelation" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE insurance_sales_info
+        <set>
+
+           db_sales_id = #{item.dbSalesId},
+          tj_sales_id = #{item.tjSalesId},
+          sj_sales_id = #{item.sjSalesId},
+           jc_sales_id = #{item.jcSalesId},
+          fd_sales_id = #{item.fdSalesId},
+            <choose>
+                <when test ="null != item.dbSalesDate and '' != item.dbSalesDate">db_sales_date = #{item.dbSalesDate},</when>
+                <otherwise>db_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.tjSalesDate and '' != item.tjSalesDate">tj_sales_date = #{item.tjSalesDate},</when>
+                <otherwise>tj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.sjSalesDate and '' != item.sjSalesDate">sj_sales_date = #{item.sjSalesDate},</when>
+                <otherwise>sj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.jcSalesDate and '' != item.jcSalesDate">jc_sales_date = #{item.jcSalesDate},</when>
+                <otherwise>jc_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.fdSalesDate and '' != item.fdSalesDate">fd_sales_date = #{item.fdSalesDate},</when>
+                <otherwise>fd_sales_date = null,</otherwise>
+            </choose>
+                yc_c_first_gener = #{item.ycCFirstGener},
+                yc_c_second_gener = #{item.ycCSecondGener},
+                yc_b_first_gener = #{item.ycBFirstGener},
+                yc_b_second_gener = #{item.ycBSecondGener},
+                direct_group_c = #{item.directGroupC},
+                direct_dept_b = #{item.directDeptB},
+            <choose>
+                <when test ="null != item.establishTime and '' != item.establishTime">establish_time = #{item.establishTime},</when>
+                <otherwise>establish_time = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.establishTime1 and '' != item.establishTime1">establish_time1 = #{item.establishTime1},</when>
+                <otherwise>establish_time1 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.establishTime2 and '' != item.establishTime2">establish_time2 = #{item.establishTime2},</when>
+                <otherwise>establish_time2 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.establishTime3 and '' != item.establishTime3">establish_time3 = #{item.establishTime3},</when>
+                <otherwise>establish_time3 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.establishTime4 and '' != item.establishTime4">establish_time4 = #{item.establishTime4},</when>
+                <otherwise>establish_time4 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != item.establishTime5 and '' != item.establishTime5">establish_time5 = #{item.establishTime5},</when>
+                <otherwise>establish_time5 = null,</otherwise>
+            </choose>
+            updated_time = now()
+
+        </set>
+        WHERE `insurance_sales_id` = #{item.insuranceSalesId}
+
+        </foreach>
+    </update>
+    <update id="invalidYcCFirstGener">
+        UPDATE insurance_sales_info isi
+        SET isi.yc_c_first_gener = NULL,
+         isi.establish_time = NULL
+        WHERE
+            isi.yc_c_first_gener = #{insuranceSalerId}
+    </update>
+
+    <update id="invalidYcCSecondGener">
+       UPDATE insurance_sales_info isi
+        SET isi.yc_c_second_gener = NULL,
+         isi.establish_time1 = NULL
+        WHERE
+            isi.yc_c_second_gener = #{insuranceSalerId}
+    </update>
+
+    <update id="invalidYcBFirstGener">
+       UPDATE insurance_sales_info isi
+        SET isi.yc_b_first_gener = NULL,
+         isi.establish_time2 = NULL
+        WHERE
+            isi.yc_b_first_gener = #{insuranceSalerId}
+    </update>
+
+    <update id="invalidYcBSecondGener">
+       UPDATE insurance_sales_info isi
+        SET isi.yc_b_second_gener = NULL,
+         isi.establish_time3 = NULL
+        WHERE
+            isi.yc_b_second_gener = #{insuranceSalerId}
+    </update>
+
+    <update id="updateInsuranceSalerForMove" parameterType="com.hzcf.pojo.insurance.sales.InsuranceSalesInfo">
+        UPDATE insurance_sales_info
+        <set>
+            <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+            <if test ='null != salesTeamId'>sales_team_id = #{salesTeamId},</if>
+            <if test ='null != rankSequenceId'>rank_sequence_id = #{rankSequenceId},</if>
+            <if test ='null != salesGradeId'>sales_grade_id = #{salesGradeId},</if>
+            db_sales_id = #{dbSalesId},
+            tj_sales_id = #{tjSalesId},
+            sj_sales_id = #{sjSalesId},
+            jc_sales_id = #{jcSalesId},
+            fd_sales_id = #{fdSalesId},
+            <choose>
+                <when test ="null != dbSalesDate and '' != dbSalesDate">db_sales_date = #{dbSalesDate},</when>
+                <otherwise>db_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != tjSalesDate and '' != tjSalesDate">tj_sales_date = #{tjSalesDate},</when>
+                <otherwise>tj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != sjSalesDate and '' != sjSalesDate">sj_sales_date = #{sjSalesDate},</when>
+                <otherwise>sj_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != jcSalesDate and '' != jcSalesDate">jc_sales_date = #{jcSalesDate},</when>
+                <otherwise>jc_sales_date = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != fdSalesDate and '' != fdSalesDate">fd_sales_date = #{fdSalesDate},</when>
+                <otherwise>fd_sales_date = null,</otherwise>
+            </choose>
+                yc_c_first_gener = #{ycCFirstGener},
+                yc_c_second_gener = #{ycCSecondGener},
+                yc_b_first_gener = #{ycBFirstGener},
+                yc_b_second_gener = #{ycBSecondGener},
+                direct_group_c = #{directGroupC},
+                direct_dept_b = #{directDeptB},
+            <choose>
+                <when test ="null != establishTime and '' != establishTime">establish_time = #{establishTime},</when>
+                <otherwise>establish_time = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime1 and '' != establishTime1">establish_time1 = #{establishTime1},</when>
+                <otherwise>establish_time1 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime2 and '' != establishTime2">establish_time2 = #{establishTime2},</when>
+                <otherwise>establish_time2 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime3 and '' != establishTime3">establish_time3 = #{establishTime3},</when>
+                <otherwise>establish_time3 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime4 and '' != establishTime4">establish_time4 = #{establishTime4},</when>
+                <otherwise>establish_time4 = null,</otherwise>
+            </choose>
+            <choose>
+                <when test ="null != establishTime5 and '' != establishTime5">establish_time5 = #{establishTime5},</when>
+                <otherwise>establish_time5 = null,</otherwise>
+            </choose>
+
+            <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>
+
+        </set>
+        WHERE `insurance_sales_id` = #{insuranceSalesId}
+    </update>
+    <!--汇康数据同步入库-->
+    <insert id="addSalesHkNoticeLog" parameterType="java.util.List">
+        INSERT into sales_noticy_hk_logs
+        (`saler_no`,`sale_org_id`,`type`,`is_finshed`,`create_time`)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.salerNo},
+            #{item.saleOrgId},
+            #{item.type},
+            #{item.isFinshed},
+            now()
+            )
+
+        </foreach>
+
+    </insert>
+
+    <update id="updateSalesHkNoticeLog" parameterType="java.util.Map">
+        UPDATE sales_noticy_hk_logs SET
+        is_finshed = '1',update_time = now()
+       <where>
+           <if test = "salerNos != null"> saler_no IN ${salerNos} </if>
+           <if test = "saleOrgIds != null">  and sale_org_id IN ${saleOrgIds} </if>
+       </where>
+
+    </update>
+
+    <select id="searchHKSalerData" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+            shi.employee_no
+        FROM
+            salers_hk_info shi
+        WHERE
+            shi.mobile = #{mobile}
+    </select>
+    <!-- 查询待同步到汇康的销售人员数据 -->
+    <select id="getAccessHKInsuranceSalesInfos" parameterType="hashmap" resultMap="BaseResultMap">
+        SELECT
+            isi.SALES_ORG_ID,
+            isi.CARD_NO,
+            isi.INSURANCE_SALER,
+            isi.INSURANCE_SALER_NO,
+            isi.SALES_STATUS,
+            isi.MOBILE
+        FROM
+            insurance_sales_info isi,
+            (SELECT log.saler_no FROM sales_noticy_hk_logs log WHERE is_finshed = '0' AND `type` = '0'
+		GROUP BY saler_no) a
+        WHERE
+            a.saler_no = isi.INSURANCE_SALER_NO
+            limit #{startIndex}, #{pageSize}
+    </select>
+    <!--查询所有销售人员 并管理基本法参数配置表-->
+    <select id="querySalesForCalCommission" resultType="java.util.Map">
+        SELECT
+        isi.INSURANCE_SALES_ID as saler_id,isi.INSURANCE_SALER_NO,isi.SALES_GRADE_ID,isi.SALES_ORG_ID,isi.SALES_TEAM_ID,
+        CASE WHEN sml.PRE_SALES_GRADE_ID is not null
+        then sml.PRE_SALES_GRADE_ID ELSE isi.SALES_GRADE_ID END AS PRE_SALES_GRADE_ID,
+        CASE when sml.PRE_TEAM_ID is not null
+        then sml.PRE_TEAM_ID ELSE isi.SALES_TEAM_ID END AS PRE_TEAM_ID,
+        CASE when sml.PRE_ORG_ID is not null
+        then sml.PRE_ORG_ID ELSE isi.SALES_ORG_ID END AS PRE_ORG_ID,
+        cprc.exclude_directly_group_flag,cprc1.include_directly_group_flag,IFNULL(cprc.active_saler_flag,'0') AS active_saler_flag,
+        case WHEN soi.is_default_cal = '0' THEN soi.cal_org_id ELSE soi.SALES_ORG_ID END AS cal_use_org_id
+        FROM
+        insurance_sales_info isi
+        LEFT JOIN sales_org_info soi ON isi.SALES_ORG_ID = soi.SALES_ORG_ID
+        LEFT JOIN cal_param_rule_config cprc ON soi.cal_org_id = cprc.org_id
+        LEFT JOIN (SELECT * from sales_move_logs sm where sm.MOVE_DATE = #{lastMonth}) sml ON isi.INSURANCE_SALES_ID = sml.SALER_ID
+        LEFT JOIN cal_param_rule_config cprc1 ON soi.cal_org_id = cprc1.org_id
+where cprc.param_type = '4' and cprc1.param_type = '5'
+
+
+    </select>
+    <select id="findSalesInfoMessage" resultType="java.util.Map">
+      SELECT isi.*,soi.SALES_ORG_NAME,get_cal_basic_org(isi.SALES_ORG_ID) basic_org,sti.SALES_TEAM_NAME,sg.SALES_GRADE_NAME from insurance_sales_info isi LEFT JOIN sales_org_info soi ON isi.SALES_ORG_ID = soi.SALES_ORG_ID
+        LEFT JOIN sales_team_info sti ON isi.SALES_TEAM_ID = sti.SALES_TEAM_ID
+        LEFT JOIN sales_grade sg ON isi.SALES_GRADE_ID = sg.SALES_GRADE_ID
+        WHERE  1=1
+       <if test = "null != insuranceSalesId and '' != insuranceSalesId">and isi.INSURANCE_SALES_ID = #{insuranceSalesId}</if>
+
+    </select>
+
+    <!--批量修改员工状态-->
+  <update id="updateSalesStatus">
+      <foreach collection="list" index="index" item="item" open="" close="" separator=";">
+          UPDATE  insurance_sales_info
+          <set>
+                 <if test='null != item.salesStatus' >
+                  SALES_STATUS = #{item.salesStatus},
+                 </if>
+                <if test='null != item.quitDate'>
+                     QUIT_DATE = #{item.quitDate},
+                 </if>
+              updated_time = now()
+	       </set>
+	        <where>
+				INSURANCE_SALER_NO = #{item.salesNo}
+	        </where>
+      </foreach>
+
+</update>
+
+    <!--批量插入离职信息-->
+    <insert id="batchInsertQuit" parameterType="java.util.List">
+        INSERT INTO  saler_quit_info
+        (`saler_id`,`quit_mark`, `quit_to`,`quit_date`,`job_handover_id`, `created_by`, `created_time`)
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.salerId},#{item.quitMark},#{item.quitTo},#{item.quitDate},#{item.jobHandoverId},#{item.createdBy},now())
+        </foreach>
+    </insert>
+</mapper>

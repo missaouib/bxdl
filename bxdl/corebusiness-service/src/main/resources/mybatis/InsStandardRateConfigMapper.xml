@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsStandardRateConfigMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsStandardRateConfig">
+    <id column="STANDARD_ID" jdbcType="BIGINT" property="standardId" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="PRODUCT_CODE" jdbcType="VARCHAR" property="productCode" />
+    <result column="FIRST_STANDARD_RATE" jdbcType="DECIMAL" property="firstStandardRate" />
+    <result column="NEXT_STANDARD_RATE" jdbcType="DECIMAL" property="nextStandardRate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    STANDARD_ID, PROTOCOL_ID, PRODUCT_ID, PRODUCT_CODE, FIRST_STANDARD_RATE, NEXT_STANDARD_RATE, 
+    CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_standard_rate_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_standard_rate_config
+    where STANDARD_ID = #{standardId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_standard_rate_config
+    where STANDARD_ID = #{standardId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfigExample">
+    delete from ins_standard_rate_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfig">
+    insert into ins_standard_rate_config (STANDARD_ID, PROTOCOL_ID, PRODUCT_ID, 
+      PRODUCT_CODE, FIRST_STANDARD_RATE, NEXT_STANDARD_RATE, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_BY
+      )
+    values (#{standardId,jdbcType=BIGINT}, #{protocolId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{productCode,jdbcType=VARCHAR}, #{firstStandardRate,jdbcType=DECIMAL}, #{nextStandardRate,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfig">
+    insert into ins_standard_rate_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="standardId != null">
+        STANDARD_ID,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE,
+      </if>
+      <if test="firstStandardRate != null">
+        FIRST_STANDARD_RATE,
+      </if>
+      <if test="nextStandardRate != null">
+        NEXT_STANDARD_RATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="standardId != null">
+        #{standardId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstStandardRate != null">
+        #{firstStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="nextStandardRate != null">
+        #{nextStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfigExample" resultType="java.lang.Long">
+    select count(*) from ins_standard_rate_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_standard_rate_config
+    <set>
+      <if test="record.standardId != null">
+        STANDARD_ID = #{record.standardId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productCode != null">
+        PRODUCT_CODE = #{record.productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstStandardRate != null">
+        FIRST_STANDARD_RATE = #{record.firstStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nextStandardRate != null">
+        NEXT_STANDARD_RATE = #{record.nextStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_standard_rate_config
+    set STANDARD_ID = #{record.standardId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      PRODUCT_CODE = #{record.productCode,jdbcType=VARCHAR},
+      FIRST_STANDARD_RATE = #{record.firstStandardRate,jdbcType=DECIMAL},
+      NEXT_STANDARD_RATE = #{record.nextStandardRate,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfig">
+    update ins_standard_rate_config
+    <set>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstStandardRate != null">
+        FIRST_STANDARD_RATE = #{firstStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="nextStandardRate != null">
+        NEXT_STANDARD_RATE = #{nextStandardRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STANDARD_ID = #{standardId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsStandardRateConfig">
+    update ins_standard_rate_config
+    set PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      FIRST_STANDARD_RATE = #{firstStandardRate,jdbcType=DECIMAL},
+      NEXT_STANDARD_RATE = #{nextStandardRate,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where STANDARD_ID = #{standardId,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insertStandardBatch" parameterType="java.util.List">
+	insert into ins_standard_rate_config (
+			PROTOCOL_ID,
+			PRODUCT_ID,
+			PRODUCT_CODE,
+			FIRST_STANDARD_RATE,
+			NEXT_STANDARD_RATE,
+			CREATE_TIME,
+			UPDATE_BY
+			)
+	values
+  <foreach collection="list" item="item" index="index" separator=",">
+  		 (
+	  		  #{item.protocolId},
+	  		  #{item.productId},
+	  		  #{item.productCode}, 
+	  		  #{item.firstStandardRate},
+	  		  #{item.nextStandardRate},
+	  		  #{item.createTime}, 
+	  		  #{item.updateBy}
+  		)
+    </foreach>
+  </insert>
+ 
+  
+  <select id="findStandardByProtocolId" parameterType="long" resultType="hashmap">
+  	select 
+	  		<include refid="Base_Column_List"/>
+	  	from 
+	  ins_standard_rate_config
+	  where PROTOCOL_ID = #{protocolId}
+	  LIMIT 1;
+  </select>
+  
+  <!-- 根据协议id删除 -->
+  <delete id="deleteStandardByProtocolId" parameterType="long">
+  		delete from ins_standard_rate_config where PROTOCOL_ID = #{protocolId}
+  </delete>
+  
+  <!-- 修改回显 -->
+  <select id="getUpdateProtocolStandardList"  parameterType="hashmap" resultMap="BaseResultMap">
+ 		SELECT
+			<include refid="Base_Column_List"/>
+		FROM
+			ins_standard_rate_config 
+		where PROTOCOL_ID = #{protocolId}
+  </select>
+</mapper>

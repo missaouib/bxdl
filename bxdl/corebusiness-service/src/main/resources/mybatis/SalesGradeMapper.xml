@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesGradeMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.SalesGrade">
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="sales_grade_id" property="salesGradeId"/>
+        <result column="sales_grade_name" property="salesGradeName"/>
+        <result column="sales_grade_code" property="salesGradeCode"/>
+        <result column="rank_sequence_id" property="rankSequenceId"/>
+        <result column="rank_sequence_name" property="rankSequenceName"/>
+        <result column="sales_grade_status" property="salesGradeStatus"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+     `created_by`,
+     `created_time`,
+     `updated_by`,
+     `updated_time`,
+     `sales_grade_id`,
+     `sales_grade_name`,
+     `sales_grade_code`,
+     `rank_sequence_id`,
+     `rank_sequence_name`,
+     `sales_grade_status`
+  </sql>
+
+    <insert id="addSalesGrade" parameterType="com.hzcf.pojo.insurance.SalesGrade" useGeneratedKeys="true"
+            keyProperty="salesGradeId" keyColumn="sales_grade_id">
+        INSERT INTO sales_grade
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test='null != createdBy'>
+                `created_by`,
+            </if>
+            <if test='null != createdTime'>
+                `created_time`,
+            </if>
+            <if test='null != updatedBy'>
+                `updated_by`,
+            </if>
+            <if test='null != updatedTime'>
+                `updated_time`,
+            </if>
+            <if test='null != salesGradeId'>
+                `sales_grade_id`,
+            </if>
+            <if test='null != salesGradeName'>
+                `sales_grade_name`,
+            </if>
+            <if test='null != salesGradeCode'>
+                `sales_grade_code`,
+            </if>
+            <if test='null != rankSequenceId'>
+                `rank_sequence_id`,
+            </if>
+            <if test='null != rankSequenceName'>
+                `rank_sequence_name`,
+            </if>
+            <if test='null != salesGradeStatus'>
+                `sales_grade_status`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='null != createdBy'>
+                #{createdBy},
+            </if>
+            <if test='null != createdTime'>
+                #{createdTime},
+            </if>
+            <if test='null != updatedBy'>
+                #{updatedBy},
+            </if>
+            <if test='null != updatedTime'>
+                #{updatedTime},
+            </if>
+            <if test='null != salesGradeId'>
+                #{salesGradeId},
+            </if>
+            <if test='null != salesGradeName'>
+                #{salesGradeName},
+            </if>
+            <if test='null != salesGradeCode'>
+                #{salesGradeCode},
+            </if>
+            <if test='null != rankSequenceId'>
+                #{rankSequenceId},
+            </if>
+            <if test='null != rankSequenceName'>
+                #{rankSequenceName},
+            </if>
+            <if test='null != salesGradeStatus'>
+                #{salesGradeStatus}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateSalesGrade" parameterType="com.hzcf.pojo.insurance.SalesGrade">
+        UPDATE sales_grade
+        <set>
+            <if test='null != createdBy'>created_by = #{createdBy},</if>
+            <if test='null != createdTime'>created_time = #{createdTime},</if>
+            <if test='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test='null != updatedTime'>updated_time = #{updatedTime},</if>
+            <if test='null != salesGradeId'>sales_grade_id = #{salesGradeId},</if>
+            <if test='null != salesGradeName'>sales_grade_name = #{salesGradeName},</if>
+            <if test='null != salesGradeCode'>sales_grade_code = #{salesGradeCode},</if>
+            <if test='null != rankSequenceId'>rank_sequence_id = #{rankSequenceId},</if>
+            <if test='null != rankSequenceName'>rank_sequence_name = #{rankSequenceName},</if>
+            <if test='null != salesGradeStatus'>sales_grade_status = #{salesGradeStatus}</if>
+        </set>
+        WHERE `sales_grade_id` = #{salesGradeId}
+    </update>
+
+    <select id="getSalesGradePage" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from sales_grade
+        <where>
+            1=1
+            <if test='null != createdBy'>and created_by = #{createdBy}</if>
+            <if test='null != createdTime'>and created_time = #{createdTime}</if>
+            <if test='null != updatedBy'>and updated_by = #{updatedBy}</if>
+            <if test='null != updatedTime'>and updated_time = #{updatedTime}</if>
+            <if test='null != salesGradeId'>and sales_grade_id = #{salesGradeId}</if>
+            <if test='null != salesGradeName'>and sales_grade_name = #{salesGradeName}</if>
+            <if test='null != salesGradeCode'>and sales_grade_code = #{salesGradeCode}</if>
+            <if test='null != rankSequenceId'>and rank_sequence_id = #{rankSequenceId}</if>
+            <if test='null != rankSequenceName'>and rank_sequence_name = #{rankSequenceName}</if>
+            <if test='null != salesGradeStatus'>and sales_grade_status = #{salesGradeStatus}</if>
+        </where>
+        limit #{startIndex},#{endIndex}
+    </select>
+
+    <select id="getSalesGradeList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from sales_grade
+        <where>
+            1=1
+            <if test='null != createdBy'>and created_by = #{createdBy}</if>
+            <if test='null != createdTime'>and created_time = #{createdTime}</if>
+            <if test='null != updatedBy'>and updated_by = #{updatedBy}</if>
+            <if test='null != updatedTime'>and updated_time = #{updatedTime}</if>
+            <if test='null != salesGradeId'>and sales_grade_id = #{salesGradeId}</if>
+            <if test='null != checkSalesGradeId'>and sales_grade_id != #{checkSalesGradeId}</if>
+            <if test='null != salesGradeName'>and sales_grade_name = #{salesGradeName}</if>
+            <if test='null != salesGradeCode'>and sales_grade_code = #{salesGradeCode}</if>
+            <if test='null != rankSequenceId'>and rank_sequence_id = #{rankSequenceId}</if>
+            <if test='null != rankSequenceName'>and rank_sequence_name = #{rankSequenceName}</if>
+            <if test='null != salesGradeStatus'>and sales_grade_status = #{salesGradeStatus}</if>
+        </where>
+    </select>
+
+    <select id="getSalesGradeListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1) from sales_grade
+        <where>
+            1=1
+            <if test='null != createdBy'>and created_by = #{createdBy}</if>
+            <if test='null != createdTime'>and created_time = #{createdTime}</if>
+            <if test='null != updatedBy'>and updated_by = #{updatedBy}</if>
+            <if test='null != updatedTime'>and updated_time = #{updatedTime}</if>
+            <if test='null != salesGradeId'>and sales_grade_id = #{salesGradeId}</if>
+            <if test='null != salesGradeName'>and sales_grade_name = #{salesGradeName}</if>
+            <if test='null != salesGradeCode'>and sales_grade_code = #{salesGradeCode}</if>
+            <if test='null != rankSequenceId'>and rank_sequence_id = #{rankSequenceId}</if>
+            <if test='null != rankSequenceName'>and rank_sequence_name = #{rankSequenceName}</if>
+            <if test='null != salesGradeStatus'>and sales_grade_status = #{salesGradeStatus}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from sales_grade
+        <where>
+            1=1
+            <if test='null != salesGradeId'>
+                AND sales_grade_id = #{salesGradeId}
+            </if>
+        </where>
+    </select>
+
+    <select id="querySalesGradeByName" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sales_grade
+        WHERE sales_grade_name = #{salesGradeName}
+    </select>
+</mapper>

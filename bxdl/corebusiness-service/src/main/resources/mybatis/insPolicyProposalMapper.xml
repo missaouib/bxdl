@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyProposalMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsPolicyProposalEntity">
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="proposal_id" property="proposalId"/>
+        <result column="insurance_company_id" property="insuranceCompanyId"/>
+        <result column="total_premium" property="totalPremium"/>
+        <result column="propose_date" property="proposeDate"/>
+        <result column="agent_id" property="agentId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `created_by`,
+                `created_time`,
+                `updated_by`,
+                `updated_time`,
+                `proposal_id`,
+                `insurance_company_id`,
+                `total_premium`,
+                `propose_date`,
+                `agent_id`
+    </sql>
+
+    <insert id="addInsPolicyProposal" parameterType="java.util.Map">
+        INSERT INTO ins_policy_proposal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test='null != createdBy'>
+                `created_by`,
+            </if>
+            <if test='null != createdTime'>
+                `created_time`,
+            </if>
+            <if test='null != updatedBy'>
+                `updated_by`,
+            </if>
+            <if test='null != updatedTime'>
+                `updated_time`,
+            </if>
+            <if test='null != policyId'>
+                `proposal_id`,
+            </if>
+            <if test='null != insuranceCompanyId'>
+                `insurance_company_id`,
+            </if>
+            <if test='null != totalPremium'>
+                `total_premium`,
+            </if>
+            <if test='null != proposeDate'>
+                `propose_date`,
+            </if>
+            <if test='null != agentId'>
+                `agent_id`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='null != createdBy'>
+                #{createdBy},
+            </if>
+            <if test='null != createdTime'>
+                #{createdTime},
+            </if>
+            <if test='null != updatedBy'>
+                #{updatedBy},
+            </if>
+            <if test='null != updatedTime'>
+                #{updatedTime},
+            </if>
+            <if test='null != policyId'>
+                #{policyId},
+            </if>
+            <if test='null != insuranceCompanyId'>
+                #{insuranceCompanyId},
+            </if>
+            <if test='null != totalPremium'>
+                #{totalPremium},
+            </if>
+            <if test='null != proposeDate'>
+                #{proposeDate},
+            </if>
+            <if test='null != agentId'>
+                #{agentId}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM ins_policy_proposal
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="updateInsPolicyProposal" parameterType="java.util.Map">
+        UPDATE ins_policy_proposal
+        <set>
+            <if test='null != createdBy'>created_by = #{createdBy},</if>
+            <if test='null != createdTime'>created_time = #{createdTime},</if>
+            <if test='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test='null != updatedTime'>updated_time = #{updatedTime},</if>
+            <if test='null != proposalId'>proposal_id = #{proposalId},</if>
+            <if test='null != insuranceCompanyId'>insurance_company_id = #{insuranceCompanyId},</if>
+            <if test='null != totalPremium'>total_premium = #{totalPremium},</if>
+            <if test='null != proposeDate'>propose_date = #{proposeDate},</if>
+            <if test='null != agentId'>agent_id = #{agentId}</if>
+        </set>
+        WHERE `PROPOSAL_ID` = #{policyId}
+    </update>
+
+
+    <select id="selectInsPolicyProposalEntityByKey" resultType="java.util.Map">
+        SELECT
+                                ipp.`created_by`,
+                                ipp.`created_time`,
+                                ipp.`updated_by`,
+                                ipp.`updated_time`,
+                                ipp.`proposal_id`,
+                                ipp.`insurance_company_id`,
+                                ipp.`total_premium`,
+                                ipp.`propose_date`,
+                                ipp.`agent_id`,
+								isi.INSURANCE_SALER_NO,
+								isi.INSURANCE_SALER,
+								isi.INSURANCE_SALES_ID,
+								soi.SALES_ORG_ID,
+        soi.SALES_ORG_ENAME,
+        sti.SALES_TEAM_ID,
+        sti.SALES_TEAM_NAME
+        FROM ins_policy_proposal ipp
+        LEFT JOIN insurance_sales_info isi on ipp.AGENT_ID = isi.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info soi on soi.SALES_ORG_ID = isi.SALES_ORG_ID
+        LEFT JOIN sales_team_info sti on sti.SALES_TEAM_ID = isi.SALES_TEAM_ID
+        WHERE `PROPOSAL_ID` = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_policy_proposal
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_policy_proposal
+    </select>
+
+</mapper>

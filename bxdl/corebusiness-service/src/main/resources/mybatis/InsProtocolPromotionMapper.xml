@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsProtocolPromotionMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.promotion.InsProtocolPromotion">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="promotion_name" jdbcType="VARCHAR" property="promotionName"/>
+        <result column="org_scope" jdbcType="TINYINT" property="orgScope"/>
+        <result column="product_scope" jdbcType="TINYINT" property="productScope"/>
+        <result column="protocol_id" jdbcType="BIGINT" property="protocolId"/>
+        <result column="start_time" jdbcType="TIMESTAMP"  property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP"  property="endTime"/>
+        <result column="rate_type" jdbcType="TINYINT" property="rateType"/>
+        <result column="settlement_cycle" jdbcType="TINYINT" property="settlementCycle"/>
+        <result column="common_cycle" jdbcType="TINYINT" property="commonCycle"/>
+        <result column="settlement_cycle_rate" jdbcType="VARCHAR" property="settlementCycleRate"/>
+        <result column="common_cycle_rate" jdbcType="VARCHAR" property="commonCycleRate"/>
+        <result column="state" jdbcType="TINYINT"  property="state"/>
+        <result column="deleted" jdbcType="TINYINT" property="deleted"/>
+        <result column="created_time" jdbcType="TIMESTAMP"  property="createdTime"/>
+        <result column="updated_time" jdbcType="TIMESTAMP"  property="updatedTime"/>
+        <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, promotion_name, protocol_id, org_scope, product_scope, start_time, end_time, rate_type,
+        settlement_cycle, common_cycle, settlement_cycle_rate, common_cycle_rate, state,
+        deleted, created_time, updated_time, last_modifier
+    </sql>
+
+    <!--新增推动奖励-->
+    <insert id="insertPromotion" parameterType="com.hzcf.pojo.insurance.promotion.InsProtocolPromotion" keyColumn="id"
+            keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO ins_protocol_promotion (
+        <include refid="Base_Column_List"/>
+        ) VALUES(
+        #{id}, #{promotionName}, #{protocolId}, #{orgScope}, #{productScope}, #{startTime}, #{endTime},
+        #{rateType}, #{settlementCycle}, #{commonCycle}, #{settlementCycleRate}, #{commonCycleRate}, #{state},
+        #{deleted}, now(), now(), #{lastModifier})
+    </insert>
+
+    <!--更新推动奖励-->
+    <update id="updatePromotion" parameterType="map">
+        UPDATE ins_protocol_promotion
+        <set>
+            <if test="insProtocolPromotion.promotionName != null">
+                promotion_name = #{insProtocolPromotion.promotionName},
+            </if>
+            <if test="insProtocolPromotion.orgScope != null">
+                org_scope = #{insProtocolPromotion.orgScope},
+            </if>
+            <if test="insProtocolPromotion.productScope != null">
+                product_scope = #{insProtocolPromotion.productScope},
+            </if>
+            <if test="insProtocolPromotion.protocolId != null">
+                protocol_id = #{insProtocolPromotion.protocolId},
+            </if>
+            <if test="insProtocolPromotion.startTime != null">
+                start_time = #{insProtocolPromotion.startTime},
+            </if>
+            <if test="insProtocolPromotion.endTime != null">
+                end_time = #{insProtocolPromotion.endTime},
+            </if>
+            <if test="insProtocolPromotion.rateType != null">
+                rate_type = #{insProtocolPromotion.rateType},
+            </if>
+            <if test="insProtocolPromotion.settlementCycle != null">
+                settlement_cycle = #{insProtocolPromotion.settlementCycle},
+            </if>
+            <if test="insProtocolPromotion.commonCycle != null">
+                common_cycle = #{insProtocolPromotion.commonCycle},
+            </if>
+            <if test="insProtocolPromotion.settlementCycleRate != null">
+                settlement_cycle_rate = #{insProtocolPromotion.settlementCycleRate},
+            </if>
+            <if test="insProtocolPromotion.commonCycleRate != null">
+                common_cycle_rate = #{insProtocolPromotion.commonCycleRate},
+            </if>
+            <if test="insProtocolPromotion.state != null">
+                state = #{insProtocolPromotion.state},
+            </if>
+            <if test="insProtocolPromotion.deleted != null">
+                deleted = #{insProtocolPromotion.deleted},
+            </if>
+            <if test="insProtocolPromotion.createdTime != null">
+                created_time = #{insProtocolPromotion.createdTime},
+            </if>
+            <if test="insProtocolPromotion.lastModifier != null">
+                last_modifier = #{insProtocolPromotion.lastModifier},
+            </if>
+            updated_time = now(),
+        </set>
+        WHERE id = #{insProtocolPromotion.id}
+    </update>
+
+    <!--更新生效状态-->
+    <update id="updatePromotionState" parameterType="map">
+        UPDATE ins_protocol_promotion
+        <set>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="lastModifier != null">
+                last_modifier = #{lastModifier},
+            </if>
+            updated_time = now(),
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--删除推动奖励-->
+    <update id="deletePromotion" parameterType="map">
+        UPDATE ins_protocol_promotion
+        <set>
+            deleted = 1,
+            updated_time = now(),
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id查询推动奖励 -->
+    <select id="queryPromotion" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_protocol_promotion WHERE id = #{id}
+    </select>
+
+    <!-- 根据协议id查询推动奖励 -->
+    <select id="queryPromotions" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_protocol_promotion
+        WHERE protocol_id = #{protocolId}
+        ORDER BY updated_time DESC,id DESC
+    </select>
+
+    <select id="queryNotDeletedPromotions" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_protocol_promotion
+        WHERE protocol_id = #{protocolId} AND deleted = 0
+        ORDER BY updated_time DESC,id DESC
+    </select>
+
+</mapper>

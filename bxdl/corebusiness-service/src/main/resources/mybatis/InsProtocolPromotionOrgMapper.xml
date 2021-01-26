@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsProtocolPromotionOrgMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.promotion.InsProtocolPromotionOrg" >
+    <result column="id" property="id" />
+    <result column="promotion_id" property="promotionId" />
+    <result column="sales_org_id" property="salesOrgId" />
+    <result column="deleted" property="deleted" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+        id, promotion_id, sales_org_id, deleted
+  </sql>
+
+  <!-- 批量插入insertPromotionOrg记录 -->
+  <insert id="insertPromotionOrgList" parameterType="com.hzcf.pojo.insurance.promotion.InsProtocolPromotionOrg"
+          keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO ins_protocol_promotion_org (
+    <include refid="Base_Column_List"/>
+    ) VALUES
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id}, #{item.promotionId},#{item.salesOrgId},#{item.deleted})
+    </foreach>
+  </insert>
+
+  <!--根据id集合删除关联机构-->
+  <update id="deletePromotionOrg" parameterType="java.util.List">
+    UPDATE ins_protocol_promotion_org SET deleted = 1
+    WHERE Id IN
+    <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </update>
+
+  <!-- 根据推动奖励id查询机构信息 -->
+  <select id="queryPromotionOrgs" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM ins_protocol_promotion_org WHERE deleted = 0 AND promotion_id = #{promotionId}
+  </select>
+
+  <!-- 根据业务推动id查询机构关系表id集合 -->
+  <select id="queryPromotionOrgIds" parameterType="java.lang.Long" resultType="long">
+    SELECT id FROM ins_protocol_promotion_org WHERE deleted = 0 AND promotion_id = #{promotionId}
+  </select>
+
+  <select id="queryOrgIdsByPromotionId" parameterType="java.lang.Long" resultType="long">
+    SELECT sales_org_id FROM ins_protocol_promotion_org WHERE deleted = 0 AND promotion_id = #{promotionId}
+  </select>
+
+</mapper>

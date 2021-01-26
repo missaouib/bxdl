@@ -1,0 +1,15 @@
+.modal {
+    position: fixed;
+    top: -12%;
+    left: 30%;
+    width: 600px;
+    height: 800px;
+    margin: 100px 100 0 0px;/* margin 负值为宽高的一半 */
+}
+
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    margin: -1px auto;
+  }
+}

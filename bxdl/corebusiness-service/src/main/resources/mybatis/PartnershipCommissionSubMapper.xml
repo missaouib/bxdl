@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.PartnershipCommissionSubMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.parameter.PartnershipCommissionSub" >
+    <id column="PARTNERSHIP_SUB_ID" property="partnershipSubId" jdbcType="BIGINT" />
+    <result column="PARTNERSHIP_ID" property="partnershipId" jdbcType="BIGINT" />
+    <result column="INSURANCE_PERIOD_MIN" property="insurancePeriodMin" jdbcType="VARCHAR" />
+    <result column="INSURANCE_PERIOD_MAX" property="insurancePeriodMax" jdbcType="VARCHAR" />
+    <result column="RENEW_PERIOD_MIN" property="renewPeriodMin" jdbcType="VARCHAR" />
+    <result column="RENEW_PERIOD_MAX" property="renewPeriodMax" jdbcType="VARCHAR" />
+    <result column="PRODUCTS_NAME" property="productsName" jdbcType="VARCHAR" />
+    <result column="PRODUCTS_CODE" property="productsCode" jdbcType="VARCHAR" />
+    <result column="FIRST_ANNUAL_RATE" property="firstAnnualRate" jdbcType="VARCHAR" />
+    <result column="SECOND_ANNUAL_RATE" property="secondAnnualRate" jdbcType="VARCHAR" />
+    <result column="THIRD_ANNUAL_RATE" property="thirdAnnualRate" jdbcType="VARCHAR" />
+    <result column="FOURTH_ANNUAL_RATE" property="fourthAnnualRate" jdbcType="VARCHAR" />
+    <result column="FIFTH_ANNUAL_RATE" property="fifthAnnualRate" jdbcType="VARCHAR" />
+    <result column="SIXTH_ANNUAL_RATE" property="sixthAnnualRate" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PARTNERSHIP_SUB_ID, PARTNERSHIP_ID, INSURANCE_PERIOD_MIN, INSURANCE_PERIOD_MAX, RENEW_PERIOD_MIN, 
+    RENEW_PERIOD_MAX, PRODUCTS_NAME, PRODUCTS_CODE, FIRST_ANNUAL_RATE, SECOND_ANNUAL_RATE, 
+    THIRD_ANNUAL_RATE, FOURTH_ANNUAL_RATE, FIFTH_ANNUAL_RATE, SIXTH_ANNUAL_RATE, CREATED_BY, 
+    CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from partnership_commission_sub
+    where PARTNERSHIP_SUB_ID = #{partnershipSubId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from partnership_commission_sub
+    where PARTNERSHIP_SUB_ID = #{partnershipSubId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSub" >
+    insert into partnership_commission_sub (PARTNERSHIP_SUB_ID, PARTNERSHIP_ID, INSURANCE_PERIOD_MIN, 
+      INSURANCE_PERIOD_MAX, RENEW_PERIOD_MIN, RENEW_PERIOD_MAX, 
+      PRODUCTS_NAME, PRODUCTS_CODE, FIRST_ANNUAL_RATE, 
+      SECOND_ANNUAL_RATE, THIRD_ANNUAL_RATE, FOURTH_ANNUAL_RATE, 
+      FIFTH_ANNUAL_RATE, SIXTH_ANNUAL_RATE, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME
+      )
+    values (#{partnershipSubId,jdbcType=BIGINT}, #{partnershipId,jdbcType=BIGINT}, #{insurancePeriodMin,jdbcType=VARCHAR}, 
+      #{insurancePeriodMax,jdbcType=VARCHAR}, #{renewPeriodMin,jdbcType=VARCHAR}, #{renewPeriodMax,jdbcType=VARCHAR}, 
+      #{productsName,jdbcType=VARCHAR}, #{productsCode,jdbcType=VARCHAR}, #{firstAnnualRate,jdbcType=VARCHAR}, 
+      #{secondAnnualRate,jdbcType=VARCHAR}, #{thirdAnnualRate,jdbcType=VARCHAR}, #{fourthAnnualRate,jdbcType=VARCHAR}, 
+      #{fifthAnnualRate,jdbcType=VARCHAR}, #{sixthAnnualRate,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSub" >
+    insert into partnership_commission_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partnershipSubId != null" >
+        PARTNERSHIP_SUB_ID,
+      </if>
+      <if test="partnershipId != null" >
+        PARTNERSHIP_ID,
+      </if>
+      <if test="insurancePeriodMin != null" >
+        INSURANCE_PERIOD_MIN,
+      </if>
+      <if test="insurancePeriodMax != null" >
+        INSURANCE_PERIOD_MAX,
+      </if>
+      <if test="renewPeriodMin != null" >
+        RENEW_PERIOD_MIN,
+      </if>
+      <if test="renewPeriodMax != null" >
+        RENEW_PERIOD_MAX,
+      </if>
+      <if test="productsName != null" >
+        PRODUCTS_NAME,
+      </if>
+      <if test="productsCode != null" >
+        PRODUCTS_CODE,
+      </if>
+      <if test="firstAnnualRate != null" >
+        FIRST_ANNUAL_RATE,
+      </if>
+      <if test="secondAnnualRate != null" >
+        SECOND_ANNUAL_RATE,
+      </if>
+      <if test="thirdAnnualRate != null" >
+        THIRD_ANNUAL_RATE,
+      </if>
+      <if test="fourthAnnualRate != null" >
+        FOURTH_ANNUAL_RATE,
+      </if>
+      <if test="fifthAnnualRate != null" >
+        FIFTH_ANNUAL_RATE,
+      </if>
+      <if test="sixthAnnualRate != null" >
+        SIXTH_ANNUAL_RATE,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partnershipSubId != null" >
+        #{partnershipSubId,jdbcType=BIGINT},
+      </if>
+      <if test="partnershipId != null" >
+        #{partnershipId,jdbcType=BIGINT},
+      </if>
+      <if test="insurancePeriodMin != null" >
+        #{insurancePeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePeriodMax != null" >
+        #{insurancePeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMin != null" >
+        #{renewPeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMax != null" >
+        #{renewPeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="productsName != null" >
+        #{productsName,jdbcType=VARCHAR},
+      </if>
+      <if test="productsCode != null" >
+        #{productsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstAnnualRate != null" >
+        #{firstAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="secondAnnualRate != null" >
+        #{secondAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdAnnualRate != null" >
+        #{thirdAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fourthAnnualRate != null" >
+        #{fourthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fifthAnnualRate != null" >
+        #{fifthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="sixthAnnualRate != null" >
+        #{sixthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSub" >
+    update partnership_commission_sub
+    <set >
+      <if test="firstAnnualRate != null" >
+        FIRST_ANNUAL_RATE = #{firstAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="secondAnnualRate != null" >
+        SECOND_ANNUAL_RATE = #{secondAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdAnnualRate != null" >
+        THIRD_ANNUAL_RATE = #{thirdAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fourthAnnualRate != null" >
+        FOURTH_ANNUAL_RATE = #{fourthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fifthAnnualRate != null" >
+        FIFTH_ANNUAL_RATE = #{fifthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="sixthAnnualRate != null" >
+        SIXTH_ANNUAL_RATE = #{sixthAnnualRate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PARTNERSHIP_SUB_ID = #{partnershipSubId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSub" >
+    update partnership_commission_sub
+    set PARTNERSHIP_ID = #{partnershipId,jdbcType=BIGINT},
+      INSURANCE_PERIOD_MIN = #{insurancePeriodMin,jdbcType=VARCHAR},
+      INSURANCE_PERIOD_MAX = #{insurancePeriodMax,jdbcType=VARCHAR},
+      RENEW_PERIOD_MIN = #{renewPeriodMin,jdbcType=VARCHAR},
+      RENEW_PERIOD_MAX = #{renewPeriodMax,jdbcType=VARCHAR},
+      PRODUCTS_NAME = #{productsName,jdbcType=VARCHAR},
+      PRODUCTS_CODE = #{productsCode,jdbcType=VARCHAR},
+      FIRST_ANNUAL_RATE = #{firstAnnualRate,jdbcType=VARCHAR},
+      SECOND_ANNUAL_RATE = #{secondAnnualRate,jdbcType=VARCHAR},
+      THIRD_ANNUAL_RATE = #{thirdAnnualRate,jdbcType=VARCHAR},
+      FOURTH_ANNUAL_RATE = #{fourthAnnualRate,jdbcType=VARCHAR},
+      FIFTH_ANNUAL_RATE = #{fifthAnnualRate,jdbcType=VARCHAR},
+      SIXTH_ANNUAL_RATE = #{sixthAnnualRate,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where PARTNERSHIP_SUB_ID = #{partnershipSubId,jdbcType=BIGINT}
+  </update>
+  <!-- 查询子产品 -->
+   <select id="getPartnershipCommissionSubList" resultMap="BaseResultMap"  parameterType="hashmap">
+    select 
+    <include refid="Base_Column_List" />
+    from partnership_commission_sub
+    where PARTNERSHIP_ID = #{partnershipId}
+  </select>
+   <select id="getPartnershipListSubs" parameterType="hashmap" resultType="java.util.Map">
+   SELECT
+   PARTNERSHIP_SUB_ID as  PRODUCTS_RATIO_ID,
+   PRODUCTS_NAME,
+   PRODUCTS_CODE,
+   INSURANCE_PERIOD_MIN,
+   INSURANCE_PERIOD_MAX,
+   RENEW_PERIOD_MIN,
+   RENEW_PERIOD_MAX,
+   FIRST_ANNUAL_RATE,
+   SECOND_ANNUAL_RATE,
+   THIRD_ANNUAL_RATE,
+   FOURTH_ANNUAL_RATE,
+   FIFTH_ANNUAL_RATE,
+   SIXTH_ANNUAL_RATE
+	FROM
+		partnership_commission_sub 
+	where 1=1
+	<if test="null != partnershipId">
+     and  PARTNERSHIP_ID = #{partnershipId}</if>
+     limit #{startIndex},#{pageSize}
+  </select>
+  <!-- 查询分页总条数 -->
+    <select id="getPartnershipListsSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM partnership_commission_sub
+        where 1=1
+        	<if test="null != productId">
+    and  PARTNERSHIP_ID = #{productId}</if>
+    </select>
+</mapper>

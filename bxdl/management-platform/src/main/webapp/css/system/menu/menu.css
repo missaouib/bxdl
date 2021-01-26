@@ -1,0 +1,31 @@
+.modal {
+    position: fixed;
+    top: -12%;
+    left: 30%;
+    width: 600px;
+    height: 800px;
+    margin: 100px 100 0 0px;
+}
+
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    margin: -1px auto;
+  }
+}
+#menu_parentIdtreeview .list-group-item {
+    background-color: inherit;
+    border: 1px solid #f1f3f5;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    position: relative;
+}
+#update_parentMenuIdtreeview .list-group-item {
+    background-color: inherit;
+    border: 1px solid #f1f3f5;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    position: relative;
+}

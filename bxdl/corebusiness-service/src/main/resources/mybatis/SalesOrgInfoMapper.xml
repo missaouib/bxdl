@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesOrgInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.SalesOrgInfo" >
+ 	   <result column="created_by" property="createdBy" />
+       <result column="created_time" property="createdTime" />
+       <result column="updated_by" property="updatedBy" />
+       <result column="updated_time" property="updatedTime" />
+       <result column="sales_org_id" property="salesOrgId" />
+       <result column="sales_org_code" property="salesOrgCode" />
+       <result column="sales_org_name" property="salesOrgName" />
+       <result column="sales_org_name_less" property="salesOrgNameLess" />
+       <result column="sales_org_en_name" property="salesOrgEnName" />
+       <result column="sales_org_ename" property="salesOrgEname" />
+       <result column="sales_org_level" property="salesOrgLevel" />
+       <result column="accounting_org" property="accountingOrg" />
+       <result column="top_parent_sales_org_code" property="topParentSalesOrgCode" />
+       <result column="parent_sales_org_code" property="parentSalesOrgCode" />
+       <result column="belong_accounting_org_code" property="belongAccountingOrgCode" />
+       <result column="belong_accounting_org_name" property="belongAccountingOrgName" />
+       <result column="area_code" property="areaCode" />
+       <result column="address" property="address" />
+       <result column="fax" property="fax" />
+       <result column="phone" property="phone" />
+       <result column="post_code" property="postCode" />
+       <result column="have_listed" property="haveListed" />
+       <result column="business_license" property="businessLicense" />
+       <result column="invoice_org_code" property="invoiceOrgCode" />
+       <result column="business_pay_taxes_type" property="businessPayTaxesType" />
+       <result column="business_tax_rate" property="businessTaxRate" />
+       <result column="income_pay_taxes_type" property="incomePayTaxesType" />
+       <result column="income_tax_rate" property="incomeTaxRate" />
+       <result column="reg_addr" property="regAddr" />
+       <result column="date_of_establishment" property="dateOfEstablishment" />
+       <result column="license_addr" property="licenseAddr" />
+       <result column="licensing_authority" property="licensingAuthority" />
+       <result column="contacts_tel" property="contactsTel" />
+       <result column="liable_name" property="liableName" />
+       <result column="employees_num" property="employeesNum" />
+       <result column="social_security_num" property="socialSecurityNum" />
+       <result column="bank_account_license" property="bankAccountLicense" />
+       <result column="business_license_pic" property="businessLicensePic" />
+       <result column="credit_code_pic" property="creditCodePic" />
+       <result column="carry_out_business_pic" property="carryOutBusinessPic" />
+       <result column="cooperation_type" property="cooperationType" />
+       <result column="org_status" property="orgStatus" />
+       <result column="tree_code" property="treeCode" />
+      <result column="is_default_cal" property="isDefaultCal" />
+      <result column="cal_org_id" property="calOrgId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+       `created_by`,
+       `created_time`,
+       `updated_by`,
+       `updated_time`,
+       `sales_org_id`,
+       `sales_org_code`,
+       `sales_org_name`,
+       `sales_org_name_less`,
+       `sales_org_en_name`,
+       `sales_org_ename`,
+       `sales_org_level`,
+       `accounting_org`,
+       `top_parent_sales_org_code`,
+       `parent_sales_org_code`,
+       `belong_accounting_org_code`,
+       `belong_accounting_org_name`,
+       `area_code`,
+       `address`,
+       `fax`,
+       `phone`,
+       `post_code`,
+       `have_listed`,
+       `business_license`,
+       `invoice_org_code`,
+       `business_pay_taxes_type`,
+       `business_tax_rate`,
+       `income_pay_taxes_type`,
+       `income_tax_rate`,
+       `reg_addr`,
+       `date_of_establishment`,
+       `license_addr`,
+       `licensing_authority`,
+       `contacts_tel`,
+       `liable_name`,
+       `employees_num`,
+       `social_security_num`,
+       `bank_account_license`,
+       `business_license_pic`,
+       `credit_code_pic`,
+       `carry_out_business_pic`,
+       `cooperation_type`,
+       `org_status`,
+       'tree_code',
+       'is_default_cal',
+       'cal_org_id'
+  </sql>  
+  
+  <insert id="addSalesOrgInfo"  parameterType="com.hzcf.pojo.insurance.SalesOrgInfo" useGeneratedKeys="true" keyProperty="salesOrgId" keyColumn="sales_org_id">
+    INSERT INTO sales_org_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+           <if test ='null != createdBy'>
+           `created_by`,
+           </if>
+           <if test ='null != createdTime'>
+           `created_time`,
+           </if>
+           <if test ='null != updatedBy'>
+           `updated_by`,
+           </if>
+           <if test ='null != updatedTime'>
+           `updated_time`,
+           </if>
+           <if test ='null != salesOrgId'>
+           `sales_org_id`,
+           </if>
+           <if test ='null != salesOrgCode'>
+           `sales_org_code`,
+           </if>
+           <if test ='null != salesOrgName'>
+           `sales_org_name`,
+           </if>
+           <if test ='null != salesOrgNameLess'>
+           `sales_org_name_less`,
+           </if>
+           <if test ='null != salesOrgEnName'>
+           `sales_org_en_name`,
+           </if>
+           <if test ='null != salesOrgEname'>
+           `sales_org_ename`,
+           </if>
+           <if test ='null != salesOrgLevel'>
+           `sales_org_level`,
+           </if>
+           <if test ='null != accountingOrg'>
+           `accounting_org`,
+           </if>
+           <if test ='null != topParentSalesOrgCode'>
+           `top_parent_sales_org_code`,
+           </if>
+           <if test ='null != parentSalesOrgCode'>
+           `parent_sales_org_code`,
+           </if>
+           <if test ='null != belongAccountingOrgCode'>
+           `belong_accounting_org_code`,
+           </if>
+           <if test ='null != belongAccountingOrgName'>
+           `belong_accounting_org_name`,
+           </if>
+           <if test ='null != areaCode'>
+           `area_code`,
+           </if>
+           <if test ='null != address'>
+           `address`,
+           </if>
+           <if test ='null != fax'>
+           `fax`,
+           </if>
+           <if test ='null != phone'>
+           `phone`,
+           </if>
+           <if test ='null != postCode'>
+           `post_code`,
+           </if>
+           <if test ='null != haveListed'>
+           `have_listed`,
+           </if>           
+           <if test ='null != businessLicense'>
+           `business_license`,
+           </if>
+           <if test ='null != invoiceOrgCode'>
+           `invoice_org_code`,
+           </if>
+           <if test ='null != businessPayTaxesType'>
+           `business_pay_taxes_type`,
+           </if>
+           <if test ='null != businessTaxRate'>
+           `business_tax_rate`,
+           </if>
+           <if test ='null != incomePayTaxesType'>
+           `income_pay_taxes_type`,
+           </if>
+           <if test ='null != incomeTaxRate'>
+           `income_tax_rate`,
+           </if>
+           <if test ='null != regAddr'>
+           `reg_addr`,
+           </if>
+           <if test ="null != dateOfEstablishment and '' != dateOfEstablishment">
+           `date_of_establishment`,
+           </if>
+           <if test ='null != licenseAddr'>
+           `license_addr`,
+           </if>
+           <if test ='null != licensingAuthority'>
+           `licensing_authority`,
+           </if>
+           <if test ='null != contactsTel'>
+           `contacts_tel`,
+           </if>
+           <if test ='null != liableName'>
+           `liable_name`,
+           </if>
+           <if test ='null != employeesNum'>
+           `employees_num`,
+           </if>
+           <if test ='null != socialSecurityNum'>
+           `social_security_num`,
+           </if>
+           <if test ='null != bankAccountLicense'>
+           `bank_account_license`,
+           </if>
+           <if test ='null != businessLicensePic'>
+           `business_license_pic`,
+           </if>
+           <if test ='null != creditCodePic'>
+           `credit_code_pic`,
+           </if>
+           <if test ='null != carryOutBusinessPic'>
+           `carry_out_business_pic`,
+           </if>
+           <if test ='null != cooperationType'>
+           `cooperation_type`,
+           </if>
+           <if test ='null != orgStatus'>
+           `org_status`,
+           </if>
+           <if test ='null != treeCode'>
+           `tree_code`,
+           </if>
+         <if test ='null != isDefaultCal'>
+           `is_default_cal`,
+           </if>
+         <if test ='null != calOrgId'>
+           `cal_org_id`
+           </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != createdBy'>
+            #{createdBy},
+            </if>
+            <if test ='null != createdTime'>
+            #{createdTime},
+            </if>
+            <if test ='null != updatedBy'>
+            #{updatedBy},
+            </if>
+            <if test ='null != updatedTime'>
+            #{updatedTime},
+            </if>
+            <if test ='null != salesOrgId'>
+            #{salesOrgId},
+            </if>
+            <if test ='null != salesOrgCode'>
+            #{salesOrgCode},
+            </if>
+            <if test ='null != salesOrgName'>
+            #{salesOrgName},
+            </if>
+            <if test ='null != salesOrgNameLess'>
+            #{salesOrgNameLess},
+            </if>
+            <if test ='null != salesOrgEnName'>
+            #{salesOrgEnName},
+            </if>
+            <if test ='null != salesOrgEname'>
+            #{salesOrgEname},
+            </if>
+            <if test ='null != salesOrgLevel'>
+            #{salesOrgLevel},
+            </if>
+            <if test ='null != accountingOrg'>
+            #{accountingOrg},
+            </if>
+            <if test ='null != topParentSalesOrgCode'>
+            #{topParentSalesOrgCode},
+            </if>
+            <if test ='null != parentSalesOrgCode'>
+            #{parentSalesOrgCode},
+            </if>
+            <if test ='null != belongAccountingOrgCode'>
+            #{belongAccountingOrgCode},
+            </if>
+            <if test ='null != belongAccountingOrgName'>
+            #{belongAccountingOrgName},
+            </if>
+            <if test ='null != areaCode'>
+            #{areaCode},
+            </if>
+            <if test ='null != address'>
+            #{address},
+            </if>
+            <if test ='null != fax'>
+            #{fax},
+            </if>
+            <if test ='null != phone'>
+            #{phone},
+            </if>
+            <if test ='null != postCode'>
+            #{postCode},
+            </if>
+            <if test ='null != haveListed'>
+            #{haveListed},
+            </if>            
+            <if test ='null != businessLicense'>
+            #{businessLicense},
+            </if>
+            <if test ='null != invoiceOrgCode'>
+            #{invoiceOrgCode},
+            </if>
+            <if test ='null != businessPayTaxesType'>
+            #{businessPayTaxesType},
+            </if>
+            <if test ='null != businessTaxRate'>
+            #{businessTaxRate},
+            </if>
+            <if test ='null != incomePayTaxesType'>
+            #{incomePayTaxesType},
+            </if>
+            <if test ='null != incomeTaxRate'>
+            #{incomeTaxRate},
+            </if>
+            <if test ='null != regAddr'>
+            #{regAddr},
+            </if>
+            <if test ="null != dateOfEstablishment and '' != dateOfEstablishment">
+            #{dateOfEstablishment},
+            </if>
+            <if test ='null != licenseAddr'>
+            #{licenseAddr},
+            </if>
+            <if test ='null != licensingAuthority'>
+            #{licensingAuthority},
+            </if>
+            <if test ='null != contactsTel'>
+            #{contactsTel},
+            </if>
+            <if test ='null != liableName'>
+            #{liableName},
+            </if>
+            <if test ='null != employeesNum'>
+            #{employeesNum},
+            </if>
+            <if test ='null != socialSecurityNum'>
+            #{socialSecurityNum},
+            </if>
+            <if test ='null != bankAccountLicense'>
+            #{bankAccountLicense},
+            </if>
+            <if test ='null != businessLicensePic'>
+            #{businessLicensePic},
+            </if>
+            <if test ='null != creditCodePic'>
+            #{creditCodePic},
+            </if>
+            <if test ='null != carryOutBusinessPic'>
+            #{carryOutBusinessPic},
+            </if>
+            <if test ='null != cooperationType'>
+            #{cooperationType},
+            </if>
+            <if test ='null != orgStatus'>
+            #{orgStatus},
+            </if>
+            <if test ='null != treeCode'>
+            #{treeCode},
+            </if>
+             <if test ='null != isDefaultCal'>
+            #{isDefaultCal},
+            </if>
+             <if test ='null != calOrgId'>
+            #{calOrgId}
+            </if>
+
+        </trim>
+   </insert> 
+   
+   <insert id="addSalesOrgDetail"  parameterType="com.hzcf.pojo.insurance.SalesOrgDetail">
+   		INSERT INTO sales_org_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != createdBy'>
+            `created_by`,
+            </if>
+            <if test ='null != createdTime'>
+            `created_time`,
+            </if>
+            <if test ='null != updatedBy'>
+            `updated_by`,
+            </if>
+            <if test ='null != updatedTime'>
+            `updated_time`,
+            </if>
+            <if test ='null != salesOrgId'>
+            `sales_org_id`,
+            </if>
+            <if test ='null != developmentHistory'>
+            `development_history`,
+            </if>
+            <if test ='null != qualifications'>
+            `qualifications`,
+            </if>
+            <if test ='null != operatingIndicators'>
+            `operating_indicators`,
+            </if>
+            <if test ='null != personnelAdvantage'>
+            `personnel_advantage`,
+            </if>
+            <if test ='null != projectAdvantage'>
+            `project_advantage`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime},
+             </if>
+             <if test ='null != salesOrgId'>
+             #{salesOrgId},
+             </if>
+             <if test ='null != developmentHistory'>
+             #{developmentHistory},
+             </if>
+             <if test ='null != qualifications'>
+             #{qualifications},
+             </if>
+             <if test ='null != operatingIndicators'>
+             #{operatingIndicators},
+             </if>
+             <if test ='null != personnelAdvantage'>
+             #{personnelAdvantage},
+             </if>
+             <if test ='null != projectAdvantage'>
+             #{projectAdvantage}
+             </if>
+        </trim>
+   </insert>
+   
+       <update id="updateSalesOrgInfo" parameterType="com.hzcf.pojo.insurance.SalesOrgInfo">
+        UPDATE sales_org_info
+        <set>
+             <if test ='null != createdBy'>created_by = #{createdBy},</if>
+             <if test ='null != createdTime'>created_time = #{createdTime},</if>
+             <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+             <if test ='null != updatedTime'>updated_time = #{updatedTime},</if>
+             <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+             <if test ='null != salesOrgCode'>sales_org_code = #{salesOrgCode},</if>
+             <if test ='null != salesOrgName'>sales_org_name = #{salesOrgName},</if>
+             <if test ='null != salesOrgNameLess'>sales_org_name_less = #{salesOrgNameLess},</if>
+             <if test ='null != salesOrgEnName'>sales_org_en_name = #{salesOrgEnName},</if>
+             <if test ='null != salesOrgEname'>sales_org_ename = #{salesOrgEname},</if>
+             <if test ='null != salesOrgLevel'>sales_org_level = #{salesOrgLevel},</if>
+             <if test ='null != accountingOrg'>accounting_org = #{accountingOrg},</if>
+             <if test ='null != parentSalesOrgCode'>parent_sales_org_code = #{parentSalesOrgCode},</if>
+             <if test ='null != parentSalesOrgCode'>parent_sales_org_code = #{parentSalesOrgCode},</if>
+             <if test ='null != belongAccountingOrgCode'>belong_accounting_org_code = #{belongAccountingOrgCode},</if>
+             <if test ='null != belongAccountingOrgName'>belong_accounting_org_name = #{belongAccountingOrgName},</if>
+             <if test ='null != areaCode'>area_code = #{areaCode},</if>
+             <if test ='null != address'>address = #{address},</if>
+             <if test ='null != fax'>fax = #{fax},</if>
+             <if test ='null != phone'>phone = #{phone},</if>
+             <if test ='null != postCode'>post_code = #{postCode},</if>
+             <if test ='null != haveListed'>have_listed = #{haveListed},</if>
+             <if test ='null != businessLicense'>business_license = #{businessLicense},</if>
+             <if test ='null != invoiceOrgCode'>invoice_org_code = #{invoiceOrgCode},</if>
+             <if test ='null != businessPayTaxesType'>business_pay_taxes_type = #{businessPayTaxesType},</if>
+             <if test ='null != businessTaxRate'>business_tax_rate = #{businessTaxRate},</if>
+             <if test ='null != incomePayTaxesType'>income_pay_taxes_type = #{incomePayTaxesType},</if>
+             <if test ='null != incomeTaxRate'>income_tax_rate = #{incomeTaxRate},</if>
+             <if test ='null != regAddr'>reg_addr = #{regAddr},</if>
+             <choose>
+                <when test ="null != dateOfEstablishment and '' != dateOfEstablishment">date_of_establishment = #{dateOfEstablishment},</when>
+                <otherwise>date_of_establishment = null,</otherwise>
+            </choose> 
+             <if test ='null != licenseAddr'>license_addr = #{licenseAddr},</if>
+             <if test ='null != licensingAuthority'>licensing_authority = #{licensingAuthority},</if>
+             <if test ='null != contactsTel'>contacts_tel = #{contactsTel},</if>
+             <if test ='null != liableName'>liable_name = #{liableName},</if>
+             <if test ='null != employeesNum'>employees_num = #{employeesNum},</if>
+             <if test ='null != socialSecurityNum'>social_security_num = #{socialSecurityNum},</if>
+             <if test ='null != bankAccountLicense'>bank_account_license = #{bankAccountLicense},</if>
+             <if test ='null != businessLicensePic'>business_license_pic = #{businessLicensePic},</if>
+             <if test ='null != creditCodePic'>credit_code_pic = #{creditCodePic},</if>
+             <if test ='null != carryOutBusinessPic'>carry_out_business_pic = #{carryOutBusinessPic},</if>
+             <if test ='null != cooperationType'>cooperation_type = #{cooperationType},</if>
+             <if test ='null != orgStatus'>org_status = #{orgStatus}</if>
+        </set>
+        WHERE `sales_org_id` = #{salesOrgId}
+    </update>
+    
+    <update id="updateSalesOrgDetail" parameterType="com.hzcf.pojo.insurance.SalesOrgDetail">
+        UPDATE sales_org_detail
+        <set>
+             <if test ='null != createdBy'>created_by = #{createdBy},</if>
+             <if test ='null != createdTime'>created_time = #{createdTime},</if>
+             <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+             <if test ='null != updatedTime'>updated_time = #{updatedTime},</if>
+             <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+             <if test ='null != developmentHistory'>development_history = #{developmentHistory},</if>
+             <if test ='null != qualifications'>qualifications = #{qualifications},</if>
+             <if test ='null != operatingIndicators'>operating_indicators = #{operatingIndicators},</if>
+             <if test ='null != personnelAdvantage'>personnel_advantage = #{personnelAdvantage},</if>
+             <if test ='null != projectAdvantage'>project_advantage = #{projectAdvantage}</if>
+        </set>
+        WHERE `sales_org_id` = #{salesOrgId}
+    </update>
+   
+    <select id="getSalesOrgInfoList" parameterType="java.util.Map" resultType="java.util.Map">
+    	select * from sales_org_info
+    	<where>
+    	1=1
+    	<if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+        <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+        <if test ='null != salesOrgCode'>AND sales_org_code = #{salesOrgCode}</if>
+        <if test ='null != salesOrgName'>AND sales_org_name like CONCAT('%',#{salesOrgName},'%')</if>
+        <if test ='null != salesOrgNameLess'>AND sales_org_name_less = #{salesOrgNameLess}</if>
+        <if test ='null != salesOrgEnName'>AND sales_org_en_name = #{salesOrgEnName}</if>
+        <if test ='null != salesOrgEname'>AND sales_org_ename = #{salesOrgEname}</if>
+        <if test ='null != salesOrgLevel'>AND sales_org_level = #{salesOrgLevel}</if>
+        <if test ='null != accountingOrg'>AND accounting_org = #{accountingOrg}</if>
+        <if test ='null != topParentSalesOrgCode'>AND top_parent_sales_org_code = #{topParentSalesOrgCode}</if>
+        <if test ='null != parentSalesOrgCode'>AND parent_sales_org_code = #{parentSalesOrgCode}</if>
+        <if test ='null != belongAccountingOrgCode'>AND belong_accounting_org_code = #{belongAccountingOrgCode}</if>
+        <if test ='null != belongAccountingOrgName'>AND belong_accounting_org_name = #{belongAccountingOrgName}</if>
+        <if test ='null != areaCode'>AND area_code = #{areaCode}</if>
+        <if test ='null != address'>AND address = #{address}</if>
+        <if test ='null != fax'>AND fax = #{fax}</if>
+        <if test ='null != phone'>AND phone = #{phone}</if>
+        <if test ='null != postCode'>AND post_code = #{postCode}</if>
+        <if test ='null != businessLicense'>AND business_license = #{businessLicense}</if>
+        <if test ='null != invoiceOrgCode'>AND invoice_org_code = #{invoiceOrgCode}</if>
+        <if test ='null != businessPayTaxesType'>AND business_pay_taxes_type = #{businessPayTaxesType}</if>
+        <if test ='null != businessTaxRate'>AND business_tax_rate = #{businessTaxRate}</if>
+        <if test ='null != incomePayTaxesType'>AND income_pay_taxes_type = #{incomePayTaxesType}</if>
+        <if test ='null != incomeTaxRate'>AND income_tax_rate = #{incomeTaxRate}</if>
+        <if test ='null != regAddr'>AND reg_addr = #{regAddr}</if>
+        <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+        <if test ='null != licenseAddr'>AND license_addr = #{licenseAddr}</if>
+        <if test ='null != licensingAuthority'>AND licensing_authority = #{licensingAuthority}</if>
+        <if test ='null != contactsTel'>AND contacts_tel = #{contactsTel}</if>
+        <if test ='null != liableName'>AND liable_name = #{liableName}</if>
+        <if test ='null != employeesNum'>AND employees_num = #{employeesNum}</if>
+        <if test ='null != socialSecurityNum'>AND social_security_num = #{socialSecurityNum}</if>
+        <if test ='null != bankAccountLicense'>AND bank_account_license = #{bankAccountLicense}</if>
+        <if test ='null != businessLicensePic'>AND business_license_pic = #{businessLicensePic}</if>
+        <if test ='null != creditCodePic'>AND credit_code_pic = #{creditCodePic}</if>
+        <if test ='null != carryOutBusinessPic'>AND carry_out_business_pic = #{carryOutBusinessPic}</if>
+        <if test ='null != cooperationType'>AND cooperation_type = #{cooperationType}</if>
+        <if test ='null != orgStatus'>AND org_status = #{orgStatus}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+        </if>
+    	</where>
+        ORDER BY CREATED_TIME DESC
+    	limit #{startIndex},#{endIndex}    	
+    </select>
+    
+    <select id="getSalesOrgInfoListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from sales_org_info
+    	<where>
+    	1=1
+    	<if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+        <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+        <if test ='null != salesOrgCode'>AND sales_org_code = #{salesOrgCode}</if>
+        <if test ='null != salesOrgName'>AND sales_org_name like CONCAT('%',#{salesOrgName},'%')</if>        
+        <if test ='null != salesOrgNameLess'>AND sales_org_name_less = #{salesOrgNameLess}</if>
+        <if test ='null != salesOrgEnName'>AND sales_org_en_name = #{salesOrgEnName}</if>
+        <if test ='null != salesOrgEname'>AND sales_org_ename = #{salesOrgEname}</if>
+        <if test ='null != salesOrgLevel'>AND sales_org_level = #{salesOrgLevel}</if>
+        <if test ='null != accountingOrg'>AND accounting_org = #{accountingOrg}</if>
+        <if test ='null != topParentSalesOrgCode'>AND top_parent_sales_org_code = #{topParentSalesOrgCode}</if>        
+        <if test ='null != parentSalesOrgCode'>AND parent_sales_org_code = #{parentSalesOrgCode}</if>
+        <if test ='null != belongAccountingOrgCode'>AND belong_accounting_org_code = #{belongAccountingOrgCode}</if>
+        <if test ='null != belongAccountingOrgName'>AND belong_accounting_org_name = #{belongAccountingOrgName}</if>
+        <if test ='null != areaCode'>AND area_code = #{areaCode}</if>
+        <if test ='null != address'>AND address = #{address}</if>
+        <if test ='null != fax'>AND fax = #{fax}</if>
+        <if test ='null != phone'>AND phone = #{phone}</if>
+        <if test ='null != postCode'>AND post_code = #{postCode}</if>
+        <if test ='null != businessLicense'>AND business_license = #{businessLicense}</if>
+        <if test ='null != invoiceOrgCode'>AND invoice_org_code = #{invoiceOrgCode}</if>
+        <if test ='null != businessPayTaxesType'>AND business_pay_taxes_type = #{businessPayTaxesType}</if>
+        <if test ='null != businessTaxRate'>AND business_tax_rate = #{businessTaxRate}</if>
+        <if test ='null != incomePayTaxesType'>AND income_pay_taxes_type = #{incomePayTaxesType}</if>
+        <if test ='null != incomeTaxRate'>AND income_tax_rate = #{incomeTaxRate}</if>
+        <if test ='null != regAddr'>AND reg_addr = #{regAddr}</if>
+        <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+        <if test ='null != licenseAddr'>AND license_addr = #{licenseAddr}</if>
+        <if test ='null != licensingAuthority'>AND licensing_authority = #{licensingAuthority}</if>
+        <if test ='null != contactsTel'>AND contacts_tel = #{contactsTel}</if>
+        <if test ='null != liableName'>AND liable_name = #{liableName}</if>
+        <if test ='null != employeesNum'>AND employees_num = #{employeesNum}</if>
+        <if test ='null != socialSecurityNum'>AND social_security_num = #{socialSecurityNum}</if>
+        <if test ='null != bankAccountLicense'>AND bank_account_license = #{bankAccountLicense}</if>
+        <if test ='null != businessLicensePic'>AND business_license_pic = #{businessLicensePic}</if>
+        <if test ='null != creditCodePic'>AND credit_code_pic = #{creditCodePic}</if>
+        <if test ='null != carryOutBusinessPic'>AND carry_out_business_pic = #{carryOutBusinessPic}</if>
+        <if test ='null != cooperationType'>AND cooperation_type = #{cooperationType}</if>
+        <if test ='null != orgStatus'>AND org_status = #{orgStatus}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+        </if>
+    	</where>
+    </select>    
+    
+    <select id="findPreCode" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select case when max(tree_code*1) is null then 0 
+    	else MAX(RIGHT(tree_code,4)*1) 
+    	end
+		from sales_org_info 
+		<where> 
+		length(tree_code) = ${treeCodeLen}
+		<if test ="'' != parentSalesOrgCode"> 
+			and left(tree_code,#{treeCodeLen}-4) = (SELECT `tree_code` FROM `sales_org_info` WHERE SALES_ORG_CODE = #{parentSalesOrgCode} limit 1)
+		</if>
+		</where>
+    </select>
+    
+    <select id="findSalesOrgs" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from sales_org_info
+    	<where>
+    	1=1
+    	<if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+        <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+        <if test ='null != ids'>AND sales_org_id in (${ids})</if>
+        <if test ='null != salesOrgCode'>AND sales_org_code = #{salesOrgCode}</if>
+        <if test ='null != salesOrgName'>AND sales_org_name like CONCAT('%',#{salesOrgName},'%')</if>
+        <if test ='null != salesOrgNameLess'>AND sales_org_name_less = #{salesOrgNameLess}</if>
+        <if test ='null != salesOrgEnName'>AND sales_org_en_name = #{salesOrgEnName}</if>
+        <if test ='null != salesOrgEname'>AND sales_org_ename = #{salesOrgEname}</if>
+        <if test ='null != salesOrgLevel'>AND sales_org_level = #{salesOrgLevel}</if>
+        <if test ='null != accountingOrg'>AND accounting_org = #{accountingOrg}</if>
+        <if test ='null != topParentSalesOrgCode'>AND top_parent_sales_org_code = #{topParentSalesOrgCode}</if>        
+        <if test ='null != parentSalesOrgCode'>AND parent_sales_org_code = #{parentSalesOrgCode}</if>
+        <if test ='null != belongAccountingOrgCode'>AND belong_accounting_org_code = #{belongAccountingOrgCode}</if>
+        <if test ='null != belongAccountingOrgName'>AND belong_accounting_org_name = #{belongAccountingOrgName}</if>
+        <if test ='null != areaCode'>AND area_code = #{areaCode}</if>
+        <if test ='null != address'>AND address = #{address}</if>
+        <if test ='null != fax'>AND fax = #{fax}</if>
+        <if test ='null != phone'>AND phone = #{phone}</if>
+        <if test ='null != postCode'>AND post_code = #{postCode}</if>
+        <if test ='null != businessLicense'>AND business_license = #{businessLicense}</if>
+        <if test ='null != invoiceOrgCode'>AND invoice_org_code = #{invoiceOrgCode}</if>
+        <if test ='null != businessPayTaxesType'>AND business_pay_taxes_type = #{businessPayTaxesType}</if>
+        <if test ='null != businessTaxRate'>AND business_tax_rate = #{businessTaxRate}</if>
+        <if test ='null != incomePayTaxesType'>AND income_pay_taxes_type = #{incomePayTaxesType}</if>
+        <if test ='null != incomeTaxRate'>AND income_tax_rate = #{incomeTaxRate}</if>
+        <if test ='null != regAddr'>AND reg_addr = #{regAddr}</if>
+        <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+        <if test ='null != licenseAddr'>AND license_addr = #{licenseAddr}</if>
+        <if test ='null != licensingAuthority'>AND licensing_authority = #{licensingAuthority}</if>
+        <if test ='null != contactsTel'>AND contacts_tel = #{contactsTel}</if>
+        <if test ='null != liableName'>AND liable_name = #{liableName}</if>
+        <if test ='null != employeesNum'>AND employees_num = #{employeesNum}</if>
+        <if test ='null != socialSecurityNum'>AND social_security_num = #{socialSecurityNum}</if>
+        <if test ='null != bankAccountLicense'>AND bank_account_license = #{bankAccountLicense}</if>
+        <if test ='null != businessLicensePic'>AND business_license_pic = #{businessLicensePic}</if>
+        <if test ='null != creditCodePic'>AND credit_code_pic = #{creditCodePic}</if> 
+        <if test ='null != carryOutBusinessPic'>AND carry_out_business_pic = #{carryOutBusinessPic}</if>
+        <if test ='null != cooperationType'>AND cooperation_type = #{cooperationType}</if>
+        <if test ='null != orgStatus'>AND org_status = #{orgStatus}</if>
+        <if test ='null != treeCode'>AND SUBSTR(tree_code,1,length(#{treeCode})) = #{treeCode}</if>
+        <if test='"admin" != isAdmin and "1" == dataAuthFlag and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+        </if>
+        <if test='null != basicOrg and "" !=basicOrg '> and get_cal_basic_org(sales_org_id) = #{basicOrg}</if>
+    	</where>  	
+    </select>
+    <select id="findSalesOrgsByNames" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from sales_org_info
+    	<where>
+    	1=1
+    	<if test ='null != salesOrgName'>AND sales_org_name = #{salesOrgName}</if>
+    	<if test='null != salesOrgId'>AND SALES_ORG_ID != #{salesOrgId}</if>
+    	<if test='"admin" != isAdmin and "1" == dataAuthFlag and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+        </if>
+        </where>
+    </select>
+
+    <select id="findSalesOrgsByTeamLevel" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from sales_org_info
+        <where>
+            1=1
+            <if test ='null != treeCode'>AND SUBSTR(tree_code,1,length(#{treeCode})) = #{treeCode}</if>
+            <if test ='null != salesOrgId'>
+            AND sales_org_id &lt;&gt; #{salesOrgId}
+            </if>
+            <if test='"admin" != isAdmin and "1" == dataAuthFlag'>
+                AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+           <if test='null != basicOrg and "" !=basicOrg '> and get_cal_basic_org(sales_org_id) = #{basicOrg}</if>
+
+        </where>
+    </select>
+        
+    <select id="getParents" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from sales_org_info
+    	<where>
+    	1=1
+    	<if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+        <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+        <if test ='null != salesOrgCode'>AND sales_org_code = #{salesOrgCode}</if>
+        <if test ='null != salesOrgName'>AND sales_org_name = #{salesOrgName}</if>
+        <if test ='null != salesOrgNameLess'>AND sales_org_name_less = #{salesOrgNameLess}</if>
+        <if test ='null != salesOrgEnName'>AND sales_org_en_name = #{salesOrgEnName}</if>
+        <if test ='null != salesOrgEname'>AND sales_org_ename = #{salesOrgEname}</if>
+        <if test ='null != salesOrgLevel'>AND sales_org_level = #{salesOrgLevel}</if>
+        <if test ='null != accountingOrg'>AND accounting_org = #{accountingOrg}</if>
+        <if test ='null != topParentSalesOrgCode'>AND top_parent_sales_org_code = #{topParentSalesOrgCode}</if>        
+        <if test ='null != parentSalesOrgCode'>AND parent_sales_org_code = #{parentSalesOrgCode}</if>
+        <if test ='null != belongAccountingOrgCode'>AND belong_accounting_org_code = #{belongAccountingOrgCode}</if>
+        <if test ='null != belongAccountingOrgName'>AND belong_accounting_org_name = #{belongAccountingOrgName}</if>
+        <if test ='null != areaCode'>AND area_code = #{areaCode}</if>
+        <if test ='null != address'>AND address = #{address}</if>
+        <if test ='null != fax'>AND fax = #{fax}</if>
+        <if test ='null != phone'>AND phone = #{phone}</if>
+        <if test ='null != postCode'>AND post_code = #{postCode}</if>
+        <if test ='null != businessLicense'>AND business_license = #{businessLicense}</if>
+        <if test ='null != invoiceOrgCode'>AND invoice_org_code = #{invoiceOrgCode}</if>
+        <if test ='null != businessPayTaxesType'>AND business_pay_taxes_type = #{businessPayTaxesType}</if>
+        <if test ='null != businessTaxRate'>AND business_tax_rate = #{businessTaxRate}</if>
+        <if test ='null != incomePayTaxesType'>AND income_pay_taxes_type = #{incomePayTaxesType}</if>
+        <if test ='null != incomeTaxRate'>AND income_tax_rate = #{incomeTaxRate}</if>
+        <if test ='null != regAddr'>AND reg_addr = #{regAddr}</if>
+        <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+        <if test ='null != licenseAddr'>AND license_addr = #{licenseAddr}</if>
+        <if test ='null != licensingAuthority'>AND licensing_authority = #{licensingAuthority}</if>
+        <if test ='null != contactsTel'>AND contacts_tel = #{contactsTel}</if>
+        <if test ='null != liableName'>AND liable_name = #{liableName}</if>
+        <if test ='null != employeesNum'>AND employees_num = #{employeesNum}</if>
+        <if test ='null != socialSecurityNum'>AND social_security_num = #{socialSecurityNum}</if>
+        <if test ='null != bankAccountLicense'>AND bank_account_license = #{bankAccountLicense}</if>
+        <if test ='null != businessLicensePic'>AND business_license_pic = #{businessLicensePic}</if>
+        <if test ='null != creditCodePic'>AND credit_code_pic = #{creditCodePic}</if> 
+        <if test ='null != carryOutBusinessPic'>AND carry_out_business_pic = #{carryOutBusinessPic}</if>
+        <if test ='null != cooperationType'>AND cooperation_type = #{cooperationType}</if>
+        <if test ='null != orgStatus'>AND org_status = #{orgStatus}</if>
+        <if test ='null != pTreeCode'>AND SUBSTR(tree_code,1,4) = SUBSTR(#{pTreeCode},1,4) AND length(tree_code) &lt; (length(#{pTreeCode})+1)</if>
+    	</where>  	
+    </select> 
+    
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from sales_org_info 
+   		<where>
+   		1=1
+   			<if test ='null != salesOrgId'>
+   				AND sales_org_id = #{salesOrgId}
+   			</if>
+   			<if test ='null != salesOrgCode'>
+   				AND sales_org_code = #{salesOrgCode}
+   			</if>
+   		</where> 
+   	</select>  
+    
+    <resultMap id="DetailBaseResultMap" type="com.hzcf.pojo.insurance.SalesOrgDetail" >
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+        <result column="sales_org_id" property="salesOrgId" />
+        <result column="development_history" property="developmentHistory" />
+        <result column="qualifications" property="qualifications" />
+        <result column="operating_indicators" property="operatingIndicators" />
+        <result column="personnel_advantage" property="personnelAdvantage" />
+        <result column="project_advantage" property="projectAdvantage" />
+    </resultMap>    
+    
+    <select id="selectDetailById" parameterType="java.util.Map" resultMap="DetailBaseResultMap">
+   		select * from sales_org_detail 
+   		<where>
+   		1=1
+   			<if test ='null != salesOrgId'>
+   				AND sales_org_id = #{salesOrgId}
+   			</if>
+   		</where> 
+   		limit 1
+   	</select>   
+   	
+   	<!-- 查询父级销售部门 -->
+   	<select id="getParentSaleList" resultType="hashmap">
+	   	SELECT
+	   		SALES_ORG_ID,
+			SALES_ORG_CODE,
+			SALES_ORG_NAME
+		FROM
+			sales_org_info
+		WHERE
+			SALES_ORG_LEVEL = '01'
+   	</select> 
+   	
+   	<select id="queryChildSaleByPcode"  parameterType="String" resultMap="BaseResultMap">
+   	 	 	SELECT
+			SALES_ORG_ID,
+			SALES_ORG_CODE,
+			SALES_ORG_NAME,
+			PARENT_SALES_ORG_CODE
+		FROM
+			sales_org_info
+		WHERE
+			PARENT_SALES_ORG_CODE =#{saleOrgCode}
+   	</select>
+
+    <select id="querySaleOrgByCode"  parameterType="java.lang.String" resultMap="BaseResultMap">
+   	 	SELECT
+			SALES_ORG_ID,
+			SALES_ORG_CODE,
+			SALES_ORG_NAME,
+			PARENT_SALES_ORG_CODE
+		FROM
+		    sales_org_info
+		WHERE
+		    SALES_ORG_CODE = #{saleOrgCode}
+   	</select>
+
+    <select id="selectDeptNamesByOrgId" resultType="java.lang.String">
+    SELECT f_ret_dept_name(a.SALES_ORG_CODE) from (
+    SELECT s.SALES_ORG_CODE FROM sales_org_info s WHERE s.SALES_ORG_ID=#{salesOrgId}
+    )a
+    </select>
+    <select id="findEmployeeAllOrgs" parameterType="String" resultType="java.lang.String">
+        SELECT getChildOrgs(#{myDeptNo})
+    </select>
+    <!--  通过saleOrgIds获取销售机构信息 -->
+    <select id="getSaleOrgInfoListBySaleOrgIds" parameterType="java.lang.String" resultType="hashmap">
+      SELECT SALES_ORG_NAME,SALES_ORG_ID,SALES_ORG_CODE FROM sales_org_info WHERE FIND_IN_SET(SALES_ORG_ID, #{saleOrgIds})
+    </select>
+
+    <select id="getEmpAllOrgNameInfoByDeptId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT f_ret_dept_name((SELECT SALES_ORG_CODE FROM sales_org_info WHERE SALES_ORG_ID =#{deptId}))
+    </select>
+    <select id="getChildOrgsBySaleOrgId" parameterType="String" resultType="java.lang.String">
+        SELECT getChildOrgsBySaleOrgId(#{salesOrgId})
+    </select>
+
+    <select id="getAccessHkSaleOrgInfos" resultMap="BaseResultMap">
+        SELECT
+            soi.SALES_ORG_ID,
+			soi.PARENT_SALES_ORG_CODE,
+			soi.SALES_ORG_CODE,
+			soi.SALES_ORG_LEVEL,
+			soi.SALES_ORG_NAME
+        FROM
+            sales_org_info soi,
+            (SELECT log.sale_org_id FROM sales_noticy_hk_logs log WHERE is_finshed = '0' AND `type` = '1'
+		GROUP BY sale_org_id) a
+        WHERE
+            a.sale_org_id = soi.SALES_ORG_ID
+    </select>
+    <select id="getTopOrgNum" parameterType="hashmap" resultType="java.lang.Integer">
+        SELECT
+            count( 1 )
+        FROM
+            sales_org_info
+        <where>
+            SALES_ORG_LEVEL = '01'
+            <if test ='null != salesOrgId'>
+                AND sales_org_id &lt;&gt; #{salesOrgId}
+            </if>
+        </where>
+    </select>
+    <select id="getTopAndSFOrgsList" resultType="hashmap">
+        SELECT
+            SALES_ORG_ID orgId,
+            SALES_ORG_NAME orgName
+        FROM
+            sales_org_info
+        WHERE
+            SALES_ORG_LEVEL IN ( '01', '02' );
+    </select>
+
+
+    <!--异步获取组织机构信息，以及相关的逻辑判断，用来返回前台信息-->
+    <select id="queryOrgInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+            b.*
+        FROM
+            sales_org_info a,
+            sales_org_info b
+        WHERE a.PARENT_SALES_ORG_CODE = b.SALES_ORG_CODE
+        AND a.SALES_ORG_ID = #{salesOrgId}
+    </select>
+    <select id="getSalesOrgInfoByTreeCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM sales_org_info WHERE TREE_CODE = #{treeCode} limit 1
+    </select>
+    <select id="getCalOrgsSalesOrgId" resultType="java.lang.String">
+        SELECT get_cal_basic_org(#{salesOrgId});
+    </select>
+
+    <!--修改是否默认基本法-->
+    <update id="updateIsDefaultCal" parameterType="com.hzcf.pojo.insurance.SalesOrgInfo">
+        UPDATE sales_org_info
+        <set>
+            <if test ='null != isDefaultCal'>is_default_cal = #{isDefaultCal}</if>
+        </set>
+        WHERE `sales_org_id` = #{salesOrgId}
+    </update>
+</mapper>

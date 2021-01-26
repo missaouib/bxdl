@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.basic.mapper.DistrictMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.basic.District">
+    <id column="districtId" jdbcType="BIGINT" property="districtid" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="sortCode" jdbcType="VARCHAR" property="sortcode" />
+    <result column="parentId" jdbcType="BIGINT" property="parentid" />
+    <result column="pinCode" jdbcType="VARCHAR" property="pincode" />
+    <result column="areaCode" jdbcType="VARCHAR" property="areacode" />
+    <result column="priority" jdbcType="BIGINT" property="priority" />
+    <result column="childSK" jdbcType="VARCHAR" property="childsk" />
+    <result column="areaType" jdbcType="VARCHAR" property="areatype" />
+    <result column="creatorId" jdbcType="BIGINT" property="creatorid" />
+    <result column="createTime" jdbcType="BIGINT" property="createtime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    districtId, district, sortCode, parentId, pinCode, areaCode, priority, childSK, areaType, 
+    creatorId, createTime
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.basic.DistrictExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_district
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_district
+    where districtId = #{districtid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_district
+    where districtId = #{districtid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.basic.DistrictExample">
+    delete from tb_district
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.basic.District">
+    insert into tb_district (districtId, district, sortCode, 
+      parentId, pinCode, areaCode, 
+      priority, childSK, areaType, 
+      creatorId, createTime)
+    values (#{districtid,jdbcType=BIGINT}, #{district,jdbcType=VARCHAR}, #{sortcode,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=BIGINT}, #{pincode,jdbcType=VARCHAR}, #{areacode,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=BIGINT}, #{childsk,jdbcType=VARCHAR}, #{areatype,jdbcType=VARCHAR}, 
+      #{creatorid,jdbcType=BIGINT}, #{createtime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.basic.District">
+    insert into tb_district
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="districtid != null">
+        districtId,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="sortcode != null">
+        sortCode,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="pincode != null">
+        pinCode,
+      </if>
+      <if test="areacode != null">
+        areaCode,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="childsk != null">
+        childSK,
+      </if>
+      <if test="areatype != null">
+        areaType,
+      </if>
+      <if test="creatorid != null">
+        creatorId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="districtid != null">
+        #{districtid,jdbcType=BIGINT},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="sortcode != null">
+        #{sortcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="pincode != null">
+        #{pincode,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null">
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=BIGINT},
+      </if>
+      <if test="childsk != null">
+        #{childsk,jdbcType=VARCHAR},
+      </if>
+      <if test="areatype != null">
+        #{areatype,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null">
+        #{creatorid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.basic.DistrictExample" resultType="java.lang.Long">
+    select count(*) from tb_district
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_district
+    <set>
+      <if test="record.districtid != null">
+        districtId = #{record.districtid,jdbcType=BIGINT},
+      </if>
+      <if test="record.district != null">
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortcode != null">
+        sortCode = #{record.sortcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null">
+        parentId = #{record.parentid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pincode != null">
+        pinCode = #{record.pincode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areacode != null">
+        areaCode = #{record.areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=BIGINT},
+      </if>
+      <if test="record.childsk != null">
+        childSK = #{record.childsk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areatype != null">
+        areaType = #{record.areatype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorid != null">
+        creatorId = #{record.creatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_district
+    set districtId = #{record.districtid,jdbcType=BIGINT},
+      district = #{record.district,jdbcType=VARCHAR},
+      sortCode = #{record.sortcode,jdbcType=VARCHAR},
+      parentId = #{record.parentid,jdbcType=BIGINT},
+      pinCode = #{record.pincode,jdbcType=VARCHAR},
+      areaCode = #{record.areacode,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=BIGINT},
+      childSK = #{record.childsk,jdbcType=VARCHAR},
+      areaType = #{record.areatype,jdbcType=VARCHAR},
+      creatorId = #{record.creatorid,jdbcType=BIGINT},
+      createTime = #{record.createtime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.basic.District">
+    update tb_district
+    <set>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="sortcode != null">
+        sortCode = #{sortcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="pincode != null">
+        pinCode = #{pincode,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null">
+        areaCode = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=BIGINT},
+      </if>
+      <if test="childsk != null">
+        childSK = #{childsk,jdbcType=VARCHAR},
+      </if>
+      <if test="areatype != null">
+        areaType = #{areatype,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null">
+        creatorId = #{creatorid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where districtId = #{districtid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.basic.District">
+    update tb_district
+    set district = #{district,jdbcType=VARCHAR},
+      sortCode = #{sortcode,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=BIGINT},
+      pinCode = #{pincode,jdbcType=VARCHAR},
+      areaCode = #{areacode,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=BIGINT},
+      childSK = #{childsk,jdbcType=VARCHAR},
+      areaType = #{areatype,jdbcType=VARCHAR},
+      creatorId = #{creatorid,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=BIGINT}
+    where districtId = #{districtid,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findAllDistrict" resultMap="BaseResultMap">
+	 SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tb_district
+	order by parentId asc
+  </select>
+  
+  <select id="findDistrictByParentId" parameterType="String" resultMap="BaseResultMap">
+   SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tb_district
+	where parentId = #{parentId}
+	order by parentId asc
+  
+  </select>
+
+  <select id="findDistrictByDistrict" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List"/>
+    FROM
+        tb_district
+    where district = #{district}
+    and parentId = '0'
+  </select>
+
+  <select id="findDistrictByDistrictAndParentId" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List"/>
+    FROM
+        tb_district
+    where district = #{district}
+    and parentId = #{parentId}
+  </select>
+
+
+</mapper>

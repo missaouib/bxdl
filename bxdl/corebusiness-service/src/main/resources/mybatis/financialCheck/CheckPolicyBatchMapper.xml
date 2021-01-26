@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.financialCheck.CheckPolicyBatchMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.financialCheck.CheckPolicyBatch">
+        <result column="id" property="id" />
+        <result column="batch_num" property="batchNum" />
+        <result column="batch_name" property="batchName" />
+        <result column="check_month" property="checkMonth" />
+        <result column="sales_org_name" property="salesOrgName" />
+        <result column="sales_org_id" property="salesOrgId" />
+        <result column="company_org_name" property="companyOrgName" />
+         <result column="company_org_id" property="companyOrgId" />
+        <result column="batch_type" property="batchType" />
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime" />
+        <result column="create_by" property="createBy" />
+        <result column="create_by_name" property="createByName" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.id
+        , t.batch_num
+        , t.batch_name
+        , t.check_month
+        , t.sales_org_name
+        , t.sales_org_id
+        , t.company_org_name
+        , t.company_org_id
+        , t.batch_type
+        , t.status
+        , t.create_time
+        , t.create_by
+        , t.create_by_name
+        , t.update_time
+        , t.update_by
+        , t.remark
+        </sql>
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_batch t
+    </select>
+
+    <!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Long">
+        SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_batch t
+        WHERE id = #{id}
+    </select>
+    <select id="getCheckPolicyBatchList" resultType="java.util.Map">
+         SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_batch t
+        WHERE 1=1
+         <if test="batchName != null and batchName != '' ">AND batch_name = #{batchName}</if>
+         <if test="batchNum != null and batchNum != '' ">AND batch_num = #{batchNum}</if>
+        <if test="checkMonth != null and checkMonth != '' ">AND check_month = #{checkMonth}</if>
+        <if test="salesOrgName != null and salesOrgName != '' ">AND sales_org_name = #{salesOrgName}</if>
+        <if test="companyOrgName != null and companyOrgName != '' ">AND company_org_name = #{companyOrgName}</if>
+         <if test="salesOrgId != null and salesOrgId != '' ">AND sales_org_id = #{salesOrgId}</if>
+        <if test="companyOrgId != null and companyOrgId != '' ">AND company_org_id = #{companyOrgId}</if>
+         <if test="salesOrgNameLike != null and salesOrgNameLike != '' ">AND sales_org_name like  CONCAT('%',#{salesOrgNameLike},'%')</if>
+        <if test="companyOrgNameLike != null and companyOrgNameLike != '' ">AND company_org_name like  CONCAT('%',#{companyOrgNameLike},'%')</if>
+        <if test="batchType != null and batchType != '' ">AND batch_type = #{batchType}</if>
+         <if test="status != null and status != '' ">AND status = #{status}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+        <if test="null != minCreateTime">
+        <![CDATA[
+          AND DATE_FORMAT(create_time ,'%Y-%m-%d') >= #{minCreateTime}
+        ]]>
+        </if>
+        <if test="null != maxCreateTime">
+        <![CDATA[
+          AND DATE_FORMAT(create_time ,'%Y-%m-%d') <= #{maxCreateTime}
+        ]]>
+        </if>
+
+        ORDER BY create_time DESC
+        LIMIT #{startIndex}, #{endIndex}
+    </select>
+    <select id="getCheckPolicyBatchListSize" resultType="java.lang.Long">
+         SELECT
+        count(1)
+        FROM check_policy_batch t
+        WHERE 1=1
+        <if test="batchName != null and batchName != '' ">AND batch_name = #{batchName}</if>
+         <if test="batchNum != null and batchNum != '' ">AND batch_num = #{batchNum}</if>
+        <if test="checkMonth != null and checkMonth != '' ">AND check_month = #{checkMonth}</if>
+        <if test="salesOrgName != null and salesOrgName != '' ">AND sales_org_name = #{salesOrgName}</if>
+        <if test="companyOrgName != null and companyOrgName != '' ">AND company_org_name = #{companyOrgName}</if>
+         <if test="salesOrgId != null and salesOrgId != '' ">AND sales_org_id = #{salesOrgId}</if>
+        <if test="companyOrgId != null and companyOrgId != '' ">AND company_org_id = #{companyOrgId}</if>
+         <if test="salesOrgNameLike != null and salesOrgNameLike != '' ">AND sales_org_name like  CONCAT('%',#{salesOrgNameLike},'%')</if>
+        <if test="companyOrgNameLike != null and companyOrgNameLike != '' ">AND company_org_name like  CONCAT('%',#{companyOrgNameLike},'%')</if>
+        <if test="batchType != null and batchType != '' ">AND batch_type = #{batchType}</if>
+         <if test="status != null and status != '' ">AND status = #{status}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+        <if test="null != minCreateTime">
+        <![CDATA[
+          AND DATE_FORMAT(create_time ,'%Y-%m-%d') >= #{minCreateTime}
+        ]]>
+        </if>
+        <if test="null != maxCreateTime">
+        <![CDATA[
+          AND DATE_FORMAT(create_time ,'%Y-%m-%d') <= #{maxCreateTime}
+        ]]>
+        </if>
+    </select>
+    <select id="getCheckPolicyBatchByCondition" resultMap="BaseResultMap">
+         SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_batch t
+        WHERE 1=1
+        <if test="batchNum != null "> AND batch_num = #{batchNum}</if>
+        <if test="batchName != null "> AND batch_name = #{batchName}</if>
+        <if test="id != null "> AND id = #{id}</if>
+    </select>
+
+    <!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyBatch"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO check_policy_batch
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            batch_num,
+            batch_name,
+            check_month,
+            sales_org_name,
+            sales_org_id,
+            company_org_name,
+            company_org_id,
+            batch_type,
+            status,
+            create_time,
+            create_by,
+            create_by_name,
+            update_time,
+            update_by,
+            remark,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{batchNum},
+            #{batchName},
+            #{checkMonth},
+            #{salesOrgName},
+            #{salesOrgId},
+            #{companyOrgName},
+             #{companyOrgId},
+            #{batchType},
+            #{status},
+            now(),
+            #{createBy},
+            #{createByName},
+            #{updateTime},
+            #{updateBy},
+            #{remark},
+        </trim>
+    </insert>
+
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyBatch"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO check_policy_batch
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="batchNum != null">
+                batch_num,
+            </if>
+            <if test="batchName != null">
+                batch_name,
+            </if>
+            <if test="checkMonth != null">
+                check_month,
+            </if>
+            <if test="salesOrgName != null">
+                sales_org_name,
+            </if>
+            <if test="salesOrgId != null">
+                sales_org_id,
+            </if>
+            <if test="companyOrgName != null">
+                company_org_name,
+            </if>
+             <if test="companyOrgId != null">
+                company_org_id,
+            </if>
+            <if test="batchType != null">
+                batch_type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createByName != null">
+                create_by_name,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="batchNum != null">
+                #{batchNum},
+            </if>
+            <if test="batchName != null">
+                #{batchName},
+            </if>
+            <if test="checkMonth != null">
+                #{checkMonth},
+            </if>
+            <if test="salesOrgName != null">
+                #{salesOrgName},
+            </if>
+            <if test="salesOrgId != null">
+                #{salesOrgId},
+            </if>
+            <if test="companyOrgName != null">
+                #{companyOrgName},
+            </if>
+             <if test="companyOrgId != null">
+                #{companyOrgId},
+            </if>
+            <if test="batchType != null">
+                #{batchType},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createByName != null">
+                #{createByName},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyBatch">
+        UPDATE check_policy_batch
+        <set>
+            batch_num=#{batchNum},
+            batch_name=#{batchName},
+            check_month=#{checkMonth},
+            sales_org_name=#{salesOrgName},
+            sales_org_id=#{salesOrgId},
+            company_org_name=#{companyOrgName},
+            company_org_id=#{companyOrgId},
+            batch_type=#{batchType},
+            status=#{status},
+            create_time=#{createTime},
+            create_by=#{createBy},
+            create_by_name=#{createByName},
+            update_time=#{updateTime},
+            update_by=#{updateBy},
+            remark=#{remark},
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyBatch">
+        UPDATE check_policy_batch
+        <set>
+            <if test="batchNum != null">
+                batch_num=#{batchNum},
+            </if>
+            <if test="batchName != null">
+                batch_name=#{batchName},
+            </if>
+            <if test="checkMonth != null">
+                check_month=#{checkMonth},
+            </if>
+            <if test="salesOrgName != null">
+                sales_org_name=#{salesOrgName},
+            </if>
+            <if test="salesOrgId != null">
+                sales_org_id=#{salesOrgId},
+            </if>
+            <if test="companyOrgName != null">
+                company_org_name=#{companyOrgName},
+            </if>
+             <if test="companyOrgId != null">
+                company_org_id=#{companyOrgId},
+            </if>
+            <if test="batchType != null">
+                batch_type=#{batchType},
+            </if>
+            <if test="status != null">
+                status=#{status},
+            </if>
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="createBy != null">
+                create_by=#{createBy},
+            </if>
+            <if test="createByName != null">
+                create_by_name=#{createByName},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+            <if test="updateBy != null">
+                update_by=#{updateBy},
+            </if>
+            <if test="remark != null">
+                remark=#{remark},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 根据主键删除记录 -->
+    <delete id="delete" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyBatch">
+		UPDATE check_policy_batch
+		SET is_deleted=1
+		WHERE id = #{id}
+	</delete>
+
+
+</mapper>

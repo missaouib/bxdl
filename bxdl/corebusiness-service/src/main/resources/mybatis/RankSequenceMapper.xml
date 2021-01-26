@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.RankSequenceMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.RankSequence" >
+      <result column="created_by" property="createdBy" />
+      <result column="created_time" property="createdTime" />
+      <result column="updated_by" property="updatedBy" />
+      <result column="updated_time" property="updatedTime" />
+      <result column="sequence_id" property="sequenceId" />
+      <result column="sequence_code" property="sequenceCode" />
+      <result column="sequence_name" property="sequenceName" />
+      <result column="remark" property="remark" />
+      <result column="sequence_status" property="sequenceStatus" />    
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+      `created_by`,
+      `created_time`,
+      `updated_by`,
+      `updated_time`,
+      `sequence_id`,
+      `sequence_code`,
+      `sequence_name`,
+      `remark`,
+      `sequence_status`
+  </sql>  
+  
+  <insert id="addRankSequence"  parameterType="com.hzcf.pojo.insurance.RankSequence" useGeneratedKeys="true" keyProperty="sequenceId" keyColumn="sequence_id">
+    	INSERT INTO rank_sequence
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		 	<if test ='null != createdBy'>
+            `created_by`,
+            </if>
+            <if test ='null != createdTime'>
+            `created_time`,
+            </if>
+            <if test ='null != updatedBy'>
+            `updated_by`,
+            </if>
+            <if test ='null != updatedTime'>
+            `updated_time`,
+            </if>
+            <if test ='null != sequenceId'>
+            `sequence_id`,
+            </if>
+            <if test ='null != sequenceCode'>
+            `sequence_code`,
+            </if>
+            <if test ='null != sequenceName'>
+            `sequence_name`,
+            </if>
+            <if test ='null != remark'>
+            `remark`,
+            </if>
+            <if test ='null != sequenceStatus'>
+            `sequence_status`
+            </if>	               	        
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+		 	 <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime},
+             </if>
+             <if test ='null != sequenceId'>
+             #{sequenceId},
+             </if>
+             <if test ='null != sequenceCode'>
+             #{sequenceCode},
+             </if>
+             <if test ='null != sequenceName'>
+             #{sequenceName},
+             </if>
+             <if test ='null != remark'>
+             #{remark},
+             </if>
+             <if test ='null != sequenceStatus'>
+             #{sequenceStatus}
+             </if>                       
+        </trim>   	
+   </insert> 
+    
+   	<update id="updateRankSequence" parameterType="com.hzcf.pojo.insurance.RankSequence">
+        UPDATE rank_sequence
+        <set>
+             <if test ='null != createdBy'>created_by = #{createdBy},</if>
+             <if test ='null != createdTime'>created_time = #{createdTime},</if>
+             <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+             <if test ='null != updatedTime'>updated_time = #{updatedTime},</if>
+             <if test ='null != sequenceId'>sequence_id = #{sequenceId},</if>
+             <if test ='null != sequenceCode'>sequence_code = #{sequenceCode},</if>
+             <if test ='null != sequenceName'>sequence_name = #{sequenceName},</if>
+             <if test ='null != remark'>remark = #{remark},</if>
+             <if test ='null != sequenceStatus'>sequence_status = #{sequenceStatus}</if>         
+        </set>    
+        WHERE `sequence_id` = #{sequenceId}
+    </update>
+   
+    <select id="getRankSequencePage" parameterType="java.util.Map" resultType="java.util.Map">
+    	select * from rank_sequence
+    	<where>
+    	1=1
+         <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+         <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+         <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+         <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+         <if test ='null != sequenceId'>and sequence_id = #{sequenceId}</if>
+         <if test ='null != sequenceCode'>and sequence_code = #{sequenceCode}</if>
+         <if test ='null != sequenceName'>and sequence_name = #{sequenceName}</if>
+         <if test ='null != remark'>and remark = #{remark}</if>
+         <if test ='null != sequenceStatus'>and sequence_status = #{sequenceStatus}</if>        
+    	</where>
+    	limit #{startIndex},#{endIndex}    	
+    </select>
+    
+    <select id="getRankSequenceList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from rank_sequence
+    	<where>
+    	1=1
+         <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+         <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+         <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+         <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+         <if test ='null != sequenceId'>and sequence_id = #{sequenceId}</if>
+         <if test ='null != checkSequenceId'>and sequence_id != #{checkSequenceId}</if>
+         <if test ='null != sequenceCode'>and sequence_code = #{sequenceCode}</if>
+         <if test ='null != sequenceName'>and sequence_name = #{sequenceName}</if>
+         <if test ='null != remark'>and remark = #{remark}</if>
+         <if test ='null != sequenceStatus'>and sequence_status = #{sequenceStatus}</if>        
+    	</where>    	
+    </select>    
+    
+    <select id="getRankSequenceListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from rank_sequence
+    	<where>
+    	1=1
+         <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+         <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+         <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+         <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+         <if test ='null != sequenceId'>and sequence_id = #{sequenceId}</if>
+         <if test ='null != sequenceCode'>and sequence_code = #{sequenceCode}</if>
+         <if test ='null != sequenceName'>and sequence_name = #{sequenceName}</if>
+         <if test ='null != remark'>and remark = #{remark}</if>
+         <if test ='null != sequenceStatus'>and sequence_status = #{sequenceStatus}</if>            	
+    	</where>
+    </select>    
+   	  	
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from rank_sequence 
+   		<where>
+   		1=1
+		<if test ='null != sequenceId'>
+			AND sequence_id = #{sequenceId}
+		</if>
+   		</where>
+   	</select>   	 
+</mapper>

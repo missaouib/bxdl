@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.EmpWorkGroupMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.empWorkGroup.EmpWorkGroupPojo" >
+        <result column="id" property="id" />
+        <result column="sales_org_id" property="salesOrgId" />
+        <result column="insurance_sales_id" property="insuranceSalesId" />
+        <result column="checked_status" property="checkedStatus" />
+        <result column="half_status" property="halfStatus" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `id`,
+                `insurance_sales_id`,
+                `sales_org_id`,
+                `checked_status`,
+                `half_status`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" parameterType="com.hzcf.pojo.empWorkGroup.EmpWorkGroupPojo">
+        INSERT INTO emp_work_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                `id`,
+            </if>
+            <if test ='null != insuranceSalesId'>
+                `insurance_sales_id`,
+            </if>
+            <if test ='null != salesOrgId'>
+                `sales_org_id`,
+            </if>
+            <if test ='null != checkedStatus'>
+                `checked_status`,
+            </if>
+            <if test ='null != halfStatus'>
+                `half_status`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                #{id},
+            </if>
+            <if test ='null != insuranceSalesId'>
+                #{insuranceSalesId},
+            </if>
+            <if test ='null != salesOrgId'>
+                #{salesOrgId},
+            </if>
+            <if test ='null != checkedStatus'>
+                #{checkedStatus},
+            </if>
+            <if test ='null != halfStatus'>
+                #{halfStatus}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM emp_work_group
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.hzcf.pojo.empWorkGroup.EmpWorkGroupPojo">
+        UPDATE emp_work_group
+        <set>
+            <if test ='null != id'>id = #{id},</if>
+            <if test ='null != insuranceSalesId'>insurance_sales_id = #{insuranceSalesId},</if>
+            <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+            <if test ='null != checkedStatus'>checked_status = #{checkedStatus},</if>
+            <if test ='null != halfStatus'>half_status = #{halfStatus}</if>
+        </set>
+        WHERE `id_` = #{id}
+    </update>
+
+
+    <select id="findDepartmentGroup" resultType="java.util.Map">
+      	SELECT
+		d.SALES_ORG_ID,
+		case
+			when d.SALES_ORG_ID in (SELECT wg.SALES_ORG_ID from emp_work_group wg where wg.INSURANCE_SALES_ID = #{employeeId}) then 'true'
+			ELSE  'false'
+		end checked,
+		d.SALES_ORG_CODE  as dept_id,
+		d.SALES_ORG_NAME,
+		d.PARENT_SALES_ORG_CODE as parent_id
+	FROM sales_org_info d
+	order by d.SALES_ORG_ID asc
+    </select>
+
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM emp_work_group
+    </select>
+
+    <select id="findDeptGroupCheckList" resultType="java.util.Map">
+    SELECT wg.SALES_ORG_ID from emp_work_group wg where wg.INSURANCE_SALES_ID = #{employeeId}
+    </select>
+
+    <delete id="deleteWorkGroupInfoByEmpId">
+       DELETE FROM emp_work_group WHERE INSURANCE_SALES_ID = #{employeeId}
+    </delete>
+
+    <insert id="insertSelective" parameterType="java.util.List">
+        insert into emp_work_group
+        (`insurance_sales_id`,
+                `sales_org_id`,
+                `checked_status`,
+                `half_status`)
+        values
+        <foreach collection ="list" item="info" separator="," >
+            (#{info.insuranceSalesId},
+                    #{info.salesOrgId},
+                    #{info.checkedStatus},
+                    #{info.halfStatus})
+        </foreach>
+    </insert>
+</mapper>

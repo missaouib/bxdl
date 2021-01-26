@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.QuartzJobMapper" >
+	 <resultMap id="BaseResultMap" type="com.hzcf.pojo.basic.QuartzJobModel" >
+    <id column="job_id" property="jobId" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_class_name" property="jobClassName" jdbcType="VARCHAR" />
+    <result column="cron" property="cron" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="job_describe" property="jobDescribe" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+	  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    job_id, job_name, job_class_name, cron, status, operator, job_describe,  create_time, update_time
+  </sql>
+
+    <select id="findList" parameterType="java.util.Map" resultType="map" >
+	SELECT
+	job_id, job_name, job_class_name, cron,
+	CASE
+		WHEN status = '0' THEN '启用'
+		WHEN status = '1' THEN '暂停'
+		WHEN status = '2' THEN '删除'
+		 ELSE '' END AS status,
+	operator, job_describe,  create_time, update_time
+	FROM
+		t_quartz_job
+	WHERE
+	status !=  '2'
+	<if test="jobName != null and jobName != '' " >
+		and job_name = #{jobName}
+	</if>
+	order by create_time DESC
+    limit #{startIndex},#{endIndex}
+</select>
+
+<select id="getListSize" parameterType="java.util.Map" resultType="long">
+	SELECT
+		count(1)
+	FROM
+		t_quartz_job
+	WHERE status !=  '2'
+	<if test="jobName != null and jobName != ''">
+		and job_name = #{jobName}
+	</if>
+</select>
+
+  <!--插入单个-->
+  <insert id="insert" parameterType="com.hzcf.pojo.basic.QuartzJobModel" >
+    insert into t_quartz_job (job_id, job_name,job_class_name,cron,status,operator
+    ,job_describe,create_time,update_time)
+    values (#{jobId,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobClassName,jdbcType=VARCHAR},
+      #{cron,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR},
+        #{jobDescribe,jdbcType=VARCHAR},now(),  now())
+  </insert>
+
+  <!--根据id 查找-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_quartz_job
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </select>
+
+  <!--根据id  删除-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_quartz_job
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </delete>
+  <!--根据id 修改状态-->
+  <update id="updateStatus" parameterType="java.util.Map">
+    UPDATE t_quartz_job SET status = #{status}, update_time = now()
+    WHERE  job_id = #{jobId}
+  </update>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.basic.QuartzJobModel" >
+    update t_quartz_job
+    <set >
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobClassName != null" >
+        job_class_name = #{jobClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="cron != null" >
+        cron = #{cron,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDescribe != null" >
+        job_describe = #{jobDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+    </set>
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByPrimary" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * from t_quartz_job
+    <where>
+      status !=  '2'
+     <if test ="null != jobName and jobName != ''"> and job_name = #{jobName}</if>
+      <if test ="null != jobClassName and jobClassName != '' ">and job_class_name = #{jobClassName}</if>
+      <if test ="null != status and status != '' "> and status = #{status}</if>
+    </where>
+  </select>
+
+</mapper>

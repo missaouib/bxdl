@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SettlementPolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.SettlementPolicy" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="policy_id" property="policyId" jdbcType="VARCHAR" />
+    <result column="settlement_month" property="settlementMonth" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="settlement_status" property="settlementStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operater" property="operater" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="saler_id" property="salerId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, policy_id, settlement_month, audit_status, settlement_status, create_time, operater,
+    update_time, saler_id, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from settlement_policy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from settlement_policy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from settlement_policy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicyExample" >
+    delete from settlement_policy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicy" >
+    insert into settlement_policy (id, policy_id, settlement_month,
+      audit_status, settlement_status, create_time,
+      operater, update_time, saler_id,remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{policyId,jdbcType=VARCHAR}, #{settlementMonth,jdbcType=VARCHAR},
+      #{auditStatus,jdbcType=VARCHAR}, #{settlementStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{operater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{salerId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicy" >
+    insert into settlement_policy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="policyId != null" >
+        policy_id,
+      </if>
+      <if test="settlementMonth != null" >
+        settlement_month,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="settlementStatus != null" >
+        settlement_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="operater != null" >
+        operater,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="salerId != null" >
+        saler_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="policyId != null" >
+        #{policyId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMonth != null" >
+        #{settlementMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementStatus != null" >
+        #{settlementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operater != null" >
+        #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salerId != null" >
+        #{salerId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicyExample" resultType="java.lang.Integer" >
+    select count(*) from settlement_policy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update settlement_policy
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.policyId != null" >
+        policy_id = #{record.policyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementMonth != null" >
+        settlement_month = #{record.settlementMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null" >
+        audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementStatus != null" >
+        settlement_status = #{record.settlementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operater != null" >
+        operater = #{record.operater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salerId != null" >
+        saler_id = #{record.salerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update settlement_policy
+    set id = #{record.id,jdbcType=BIGINT},
+    policy_id = #{record.policyId,jdbcType=VARCHAR},
+    settlement_month = #{record.settlementMonth,jdbcType=VARCHAR},
+    audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+    settlement_status = #{record.settlementStatus,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    operater = #{record.operater,jdbcType=VARCHAR},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    saler_id = #{record.salerId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicy" >
+    update settlement_policy
+    <set >
+      <if test="policyId != null" >
+        policy_id = #{policyId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMonth != null" >
+        settlement_month = #{settlementMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementStatus != null" >
+        settlement_status = #{settlementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operater != null" >
+        operater = #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salerId != null" >
+        saler_id = #{salerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurancePolicy.SettlementPolicy" >
+    update settlement_policy
+    set policy_id = #{policyId,jdbcType=VARCHAR},
+      settlement_month = #{settlementMonth,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      settlement_status = #{settlementStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      operater = #{operater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      saler_id = #{salerId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!--批量修改可计算列表状态-->
+  <update id="updateSettlementStatus">
+
+       update settlement_policy
+       <set>
+
+        <if test="settlementStatus != null" >
+          settlement_status = #{settlementStatus,jdbcType=VARCHAR},
+        </if>
+        </set>
+       WHERE id IN
+     <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+         #{item}
+    </foreach>
+
+  </update>
+    <!-- #查询已回访 && 过了犹豫期 && 可结算保单表中不存在 -->
+    <select id="getSettlementPolicyList" resultMap="BaseResultMap" >
+      <![CDATA[
+       SELECT
+          ipip.POLICY_ID,
+          ipip.AGENT_ID AS saler_id,
+          '0' as audit_status,
+          '0' as settlement_status,
+          NOW() as create_time
+
+        FROM
+            ins_policy_insured_person ipip
+        LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID
+        LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = ipip.POLICY_ID
+        WHERE
+            ipip.INS_STATE = '1010'
+        AND ii.principal_deputy_sign = '0'
+        AND  TO_DAYS(DATE_ADD(pie.RETURN_ORG_DATE,INTERVAL(
+						SELECT hesitation_period FROM ins_protocol_product ipp where
+						    ii.PRODUCT_ID = ipp.PRODUCT_ID
+						    AND ii.PROTOCOL_ID = ipp.PROTOCOL_ID
+						    AND ipp.RELATION_STATUS = '0'
+						    limit 1
+		    ) DAY)) < TO_DAYS(NOW())
+        AND  NOT EXISTS(SELECT 1 FROM  settlement_policy sp WHERE  sp.POLICY_ID = ipip.POLICY_ID);
+    ]]>
+    </select>
+    <insert id="batchAddSettlementPolicy" parameterType="java.util.List">
+      INSERT INTO settlement_policy
+      ( policy_id,
+        saler_id,
+        audit_status,
+        settlement_status,
+        create_time
+      )
+      VALUES
+      <foreach collection = "list" item = "item" index= "index" separator="," >
+        ( #{item.policyId},
+          #{item.salerId},
+          #{item.auditStatus},
+          #{item.settlementStatus},
+          #{item.createTime}
+        )
+      </foreach >
+    </insert>
+  <!-- 结算保单列表数据-->
+    <select id="searchSettlementPolicyList" parameterType="java.util.Map" resultType="java.util.Map">
+      SELECT
+        sp.audit_status as auditStatus,
+        sp.audit_status as auditStatusPreFromatter,
+        sp.settlement_month,
+        bd.INSURED_PERSON_ID,
+        bd.POLICY_ID,
+        bd.UNDERWRITING_DATA,
+        bd.TAKE_EFFECT_DATA,
+        bxgs.INSURANCE_COMPANY_NAME,
+        cp.PRODUCTS_CODE AS PRODUCT_CODE,
+        cp.PRODUCTS_NAME AS PRODUCT_NAME,
+        cpcen.PREMIUM,
+        cpcen.PRINCIPAL_DEPUTY_SIGN,
+        bm.SALES_ORG_NAME,
+        team.SALES_TEAM_NAME,
+        tbr.`NAME` AS NAME1,
+        bd.`NAME` AS NAME2,
+        yg.INSURANCE_SALER_NO AS EMPLOYEE_NO,
+        yg.INSURANCE_SALER AS NAME3,
+        bd.INSURE,
+        bd.STATE,
+        bd.INS_STATE,
+        bd.CORRESPONDING,
+        pie.RECE_CUSTOMER_SIGNATURE
+      FROM
+        settlement_policy sp
+        INNER JOIN ins_policy_insured_person bd ON sp.policy_id = bd.policy_id
+        LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+        LEFT JOIN insurance_company_org bxgs ON bd.INSURANCE_COMPANY_ID = bxgs.INSURANCE_COMPANY_ID
+        LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+        LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+        LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = bd.POLICY_ID
+      WHERE
+        cpcen.principal_deputy_sign = '0'
+        and FIND_IN_SET(sp.audit_status, #{auditStatus}) > 0
+        <if test='null != policyId'>and bd.policy_id LIKE CONCAT(CONCAT('%', #{policyId}), '%')</if>
+        <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+        <if test='null != productName'>and cp.PRODUCTS_NAME LIKE CONCAT(CONCAT('%', #{productName}), '%') </if>
+        <if test='null != productCode'>and cp.PRODUCTS_CODE LIKE CONCAT(CONCAT('%', #{productCode}), '%') </if>
+        <if test='null != salesAllOrgs'>
+          AND FIND_IN_SET(yg.sales_org_id, #{salesAllOrgs}) > 0
+        </if>
+        <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+        <if test='null != iphName'>and tbr.`NAME` LIKE CONCAT(CONCAT('%', #{iphName}), '%') </if>
+        <if test='null != pipName'>and bd.`NAME` LIKE CONCAT(CONCAT('%', #{pipName}), '%') </if>
+        <if test='null != empNo'>and yg.INSURANCE_SALER_NO LIKE CONCAT(CONCAT('%', #{empNo}), '%') </if>
+        <if test='null != startInsure'>
+          <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endInsure'>
+          <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != startTakeEffectData'>
+          <![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') >= DATE_FORMAT(#{startTakeEffectData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endTakeEffectData'>
+          <![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') <= DATE_FORMAT(#{endTakeEffectData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != startUnderwritingData'>
+          <![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') >= DATE_FORMAT(#{startUnderwritingData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endUnderwritingData'>
+          <![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') <= DATE_FORMAT(#{endUnderwritingData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+          AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+      ORDER BY
+        sp.create_time DESC
+      LIMIT #{startIndex}, #{pageSizeInt}
+    </select>
+    <select id="searchSettlementPolicyCount" parameterType="java.util.Map" resultType="java.lang.Long">
+      SELECT
+        count(1)
+      FROM
+        settlement_policy sp
+      INNER JOIN ins_policy_insured_person bd ON sp.policy_id = bd.policy_id
+      LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+      LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+      LEFT JOIN insurance_company_org bxgs ON bd.INSURANCE_COMPANY_ID = bxgs.INSURANCE_COMPANY_ID
+      LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+      LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+      LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+      LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+      LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = bd.POLICY_ID
+      WHERE
+        cpcen.principal_deputy_sign = '0'
+        and FIND_IN_SET(sp.audit_status, #{auditStatus}) > 0
+         <if test='null != policyId'>and bd.policy_id LIKE CONCAT(CONCAT('%', #{policyId}), '%')</if>
+        <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+        <if test='null != productName'>and cp.PRODUCTS_NAME LIKE CONCAT(CONCAT('%', #{productName}), '%') </if>
+        <if test='null != productCode'>and cp.PRODUCTS_CODE LIKE CONCAT(CONCAT('%', #{productCode}), '%') </if>
+        <if test='null != salesAllOrgs'>
+          AND FIND_IN_SET(yg.sales_org_id, #{salesAllOrgs}) > 0
+        </if>
+        <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+        <if test='null != iphName'>and tbr.`NAME` LIKE CONCAT(CONCAT('%', #{iphName}), '%') </if>
+        <if test='null != pipName'>and bd.`NAME` LIKE CONCAT(CONCAT('%', #{pipName}), '%') </if>
+        <if test='null != empNo'>and yg.INSURANCE_SALER_NO LIKE CONCAT(CONCAT('%', #{empNo}), '%') </if>
+        <if test='null != startInsure'>
+          <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endInsure'>
+          <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != startTakeEffectData'>
+          <![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') >= DATE_FORMAT(#{startTakeEffectData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endTakeEffectData'>
+          <![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') <= DATE_FORMAT(#{endTakeEffectData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != startUnderwritingData'>
+          <![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') >= DATE_FORMAT(#{startUnderwritingData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='null != endUnderwritingData'>
+          <![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') <= DATE_FORMAT(#{endUnderwritingData},'%Y-%m-%d') ]]>
+        </if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+          AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+    </select>
+    <update id="submitAuditResult" parameterType="hashmap">
+      update settlement_policy
+      set
+        audit_status = #{aduitResult},
+        <if test="settlementMonth != null and settlementMonth != '' ">
+          settlement_month = #{settlementMonth},
+        </if>
+        remark = #{remark},
+        operater = #{operater}
+
+
+      where policy_id = #{policyId} and audit_status = #{oldAduitStatus}
+  </update>
+
+</mapper>

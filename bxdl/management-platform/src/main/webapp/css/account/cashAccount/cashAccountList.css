@@ -1,0 +1,51 @@
+#roleDlg {
+    position: fixed;
+    top: 15%;
+    left: 30%;
+    width: 800px;
+    height: 800px;
+    margin: 100px 100 0 0px;/* margin 閻犳劗鍠庨敓浠嬫？鐠愮喓锟介�涚矙閻濐噣鎯冮崟顏嗩伇闁告鎷� */
+}
+#addDlg,#updateDlg{
+    position: fixed;
+    top: 0%;
+    left: 30%;
+    width: 800px;
+    height: 800px;
+    margin: 100px 100 0 0px;/* margin 閻犳劗鍠庨敓浠嬫？鐠愮喓锟介�涚矙閻濐噣鎯冮崟顏嗩伇闁告鎷� */
+}
+
+ @media (min-width: 768px) {
+  .modal-dialog {
+    margin: -1px auto;
+  }
+  
+
+a:link{
+ font:12px;
+ color: #003366;
+ text-decoration: none;
+}
+a:visited
+{
+ color:#003366;
+ text-decoration: none;
+} 
+a:hover{
+ color: #FF0000;
+ text-decoration: underline;
+}
+a:active{
+ color: #FF0000;
+ text-decoration: underline;
+
+}
+.footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:80px;
+	/* footer鐨勯珮搴� */
+}
+
+} 

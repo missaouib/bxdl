@@ -1,0 +1,64 @@
+/*.modal {
+     position: fixed;  
+    top: 10%;
+    left: 30%;
+    width: 800px;
+    height: 800px;
+     margin: 100px 100 0 0px;
+}*/
+a:hover, a:focus {
+    color: #dee2e6;
+   /*  text-decoration: underline; */
+}
+a {
+    color: #d6dbe0;
+    text-decoration: none;
+}
+.node_name{
+    font-size:  14px;
+    text-decoration:none;
+    color: #c3cdd0;
+    line-height: 22px;
+}
+.level0{
+	list-style-type:none;
+	
+}
+li ul{
+	text-decoration: none;
+	list-style: none;
+}
+ul .list-group-item {
+    background-color: inherit;
+    border: 1px solid #2f4050;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    position: relative;
+}
+.treeview .list-group-item {
+   color: "#a7b1c2";
+}
+/* .footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:60px;
+
+} */
+
+
+/* 左侧菜单样式-字体调小 */
+.navbar-static-side .list-group-item {
+    font-size: 12px;
+    padding-right: 0;
+}
+.navbar-static-side .list-group-item span.indent {
+    width: 20px;
+    height: 12px;
+    margin: 0;
+    float: left;
+}
+.navbar-static-side .list-group-item span.icon {
+    float: left;
+}

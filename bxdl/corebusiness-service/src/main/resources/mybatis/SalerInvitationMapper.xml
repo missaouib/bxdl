@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalerInvitationMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.SalerInvitation" >
+     <result column="invited_id" property="invitedId" />
+     <result column="person_name" property="personName" />
+     <result column="person_mobile" property="personMobile" />
+     <result column="tj_saler_no" property="tjSalerNo" />
+     <result column="db_saler_no" property="dbSalerNo" />
+     <result column="apply_date" property="applyDate" />
+     <result column="confirm_date" property="confirmDate" />
+     <result column="check_date" property="checkDate" />
+     <result column="check_status" property="checkStatus" />
+     <result column="check_mark" property="checkMark" />
+     <result column="com_channel" property="comChannel" />
+     <result column="created_by" property="createdBy" />
+     <result column="created_time" property="createdTime" />
+     <result column="updated_by" property="updatedBy" />
+     <result column="updated_time" property="updatedTime" /> 
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     `invited_id`,
+     `person_name`,
+     `person_mobile`,
+     `tj_saler_no`,
+     `db_saler_no`,
+     `apply_date`,
+     `confirm_date`,
+     `check_date`,
+     `check_status`,
+     `check_mark`,
+     'com_channel',
+     `created_by`,
+     `created_time`,
+     `updated_by`,
+     `updated_time`
+  </sql>  
+  
+  <insert id="addSalerInvitation"  parameterType="com.hzcf.pojo.insurance.SalerInvitation" useGeneratedKeys="true" keyProperty="invitedId" keyColumn="invited_id">
+    	INSERT INTO saler_invitation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test ='null != personName'>
+            `person_name`,
+            </if>
+            <if test ='null != personMobile'>
+            `person_mobile`,
+            </if>
+            <if test ='null != tjSalerNo'>
+            `tj_saler_no`,
+            </if>
+            <if test ='null != dbSalerNo'>
+            `db_saler_no`,
+            </if>
+            <if test ='null != applyDate'>
+            `apply_date`,
+            </if>
+            <if test ='null != confirmDate'>
+            `confirm_date`,
+            </if>
+            <if test ='null != checkDate'>
+            `check_date`,
+            </if>
+            <if test ='null != checkStatus'>
+            `check_status`,
+            </if>
+            <if test ='null != checkMark'>
+            `check_mark`,
+            </if>
+            <if test ='null != comChannel'>
+            `com_channel`,
+            </if>            
+            <if test ='null != createdBy'>
+            `created_by`,
+            </if>
+            <if test ='null != createdTime'>
+            `created_time`,
+            </if>
+            <if test ='null != updatedBy'>
+            `updated_by`,
+            </if>
+            <if test ='null != updatedTime'>
+            `updated_time`
+            </if>   				 	               	        
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test ='null != personName'>
+            #{personName},
+            </if>
+            <if test ='null != personMobile'>
+            #{personMobile},
+            </if>
+            <if test ='null != tjSalerNo'>
+            #{tjSalerNo},
+            </if>
+            <if test ='null != dbSalerNo'>
+            #{dbSalerNo},
+            </if>
+            <if test ='null != applyDate'>
+            #{applyDate},
+            </if>
+            <if test ='null != confirmDate'>
+            #{confirmDate},
+            </if>
+            <if test ='null != checkDate'>
+            #{checkDate},
+            </if>
+            <if test ='null != checkStatus'>
+            #{checkStatus},
+            </if>
+            <if test ='null != checkMark'>
+            #{checkMark},
+            </if>
+            <if test ='null != comChannel'>
+            #{comChannel},
+            </if>            
+            <if test ='null != createdBy'>
+            #{createdBy},
+            </if>
+            <if test ='null != createdTime'>
+            #{createdTime},
+            </if>
+            <if test ='null != updatedBy'>
+            #{updatedBy},
+            </if>
+            <if test ='null != updatedTime'>
+            #{updatedTime}
+            </if>				 	                    
+        </trim>   	
+   </insert> 
+    
+   	<update id="updateSalerInvitation" parameterType="com.hzcf.pojo.insurance.SalerInvitation">
+        UPDATE saler_invitation
+        <set>
+            <if test ='null != personName'>person_name = #{personName},</if>
+            <if test ='null != personMobile'>person_mobile = #{personMobile},</if>
+            <if test ='null != tjSalerNo'>tj_saler_no = #{tjSalerNo},</if>
+            <if test ='null != dbSalerNo'>db_saler_no = #{dbSalerNo},</if>
+            <if test ='null != applyDate'>apply_date = #{applyDate},</if>
+            <if test ='null != confirmDate'>confirm_date = #{confirmDate},</if>
+            <if test ='null != checkDate'>check_date = #{checkDate},</if>
+            <if test ='null != checkStatus'>check_status = #{checkStatus},</if>
+            <if test ='null != checkMark'>check_mark = #{checkMark},</if>
+            <if test ='null != comChannel'>com_channel = #{comChannel},</if>
+            <if test ='null != createdBy'>created_by = #{createdBy},</if>
+            <if test ='null != createdTime'>created_time = #{createdTime},</if>
+            <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+            <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>    
+        </set>    
+        WHERE `invited_id` = #{invitedId}
+    </update>
+   
+    <select id="getSalerInvitationPage" parameterType="java.util.Map" resultType="java.util.Map">
+    	select sit.*,ins.sales_org_id,ins.sales_team_id from saler_invitation sit left join insurance_sales_info ins on sit.tj_saler_no = ins.insurance_saler_no
+    	<where>
+    	1=1
+           <if test ='null != invitedId'>and invited_id = #{invitedId}</if>
+           <if test ='null != personName'>and person_name like CONCAT('%',#{personName},'%')</if>
+           <if test ='null != personMobile'>and person_mobile like CONCAT('%',#{personMobile},'%')</if>
+           <if test ='null != tjSalerNo'>and tj_saler_no = #{tjSalerNo}</if>
+           <if test ='null != likeSalerNo'>and tj_saler_no like CONCAT('%',#{likeSalerNo},'%')</if>
+           <if test ='null != dbSalerNo'>and db_saler_no = #{dbSalerNo}</if>
+           <if test ='null != applyDate'>and apply_date = #{applyDate}</if>
+           <if test ='null != confirmDate'>and confirm_date = #{confirmDate}</if>
+           <if test ='null != checkDate'>and check_date = #{checkDate}</if>
+           <if test ='null != checkStatus'>and check_status = #{checkStatus}</if>
+           <if test ='null != checkMark'>and check_mark = #{checkMark}</if>
+           <if test ='null != comChannel'>and com_channel = #{comChannel}</if>
+           <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+           <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+           <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+           <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(ins.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+    	</where>
+    	limit #{startIndex},#{endIndex}    	
+    </select>   
+    
+    <select id="getSalerInvitationListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from saler_invitation
+    	<where>
+    	1=1
+           <if test ='null != invitedId'>and invited_id = #{invitedId}</if>
+           <if test ='null != personName'>and person_name like CONCAT('%',#{personName},'%')</if>
+           <if test ='null != personMobile'>and person_mobile like CONCAT('%',#{personMobile},'%')</if>
+           <if test ='null != tjSalerNo'>and tj_saler_no = #{tjSalerNo}</if>
+           <if test ='null != likeSalerNo'>and tj_saler_no like CONCAT('%',#{likeSalerNo},'%')</if>
+           <if test ='null != dbSalerNo'>and db_saler_no = #{dbSalerNo}</if>
+           <if test ='null != applyDate'>and apply_date = #{applyDate}</if>
+           <if test ='null != confirmDate'>and confirm_date = #{confirmDate}</if>
+           <if test ='null != checkDate'>and check_date = #{checkDate}</if>
+           <if test ='null != checkStatus'>and check_status = #{checkStatus}</if>
+           <if test ='null != checkMark'>and check_mark = #{checkMark}</if>
+           <if test ='null != comChannel'>and com_channel = #{comChannel}</if>           
+           <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+           <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+           <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+           <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>            	
+    	</where>
+    </select>    
+   	  	
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from saler_invitation 
+   		<where>
+   		1=1
+		<if test ='null != invitedId'>
+			AND invited_id = #{invitedId}
+		</if>
+   		</where>
+   	</select>   	 
+</mapper>

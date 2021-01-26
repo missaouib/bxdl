@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.PartnershipCommissionSetMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.parameter.PartnershipCommissionSet" >
+    <id column="PARTNERSHIP_ID" property="partnershipId" jdbcType="BIGINT" />
+    <result column="ENTERPRIS_EORGANIZATION_NAME" property="enterprisEorganizationName" jdbcType="VARCHAR" />
+    <result column="INSURANCE_COMPANY_ID" property="insuranceCompanyId" jdbcType="BIGINT" />
+    <result column="INS_PRODUCT_ID" property="insProductId" jdbcType="BIGINT" />
+    <result column="COMPUTATIONAL_TERM" property="computationalTerm" jdbcType="CHAR" />
+    <result column="COUNTING_RULES" property="countingRules" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="INSURANCE_COMPANY_NAME" property="insuranceCompanyName" jdbcType="VARCHAR" />
+     <result column="SALES_ORG_ID" property="salesOrgId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PARTNERSHIP_ID, ENTERPRIS_EORGANIZATION_NAME, INSURANCE_COMPANY_ID, INS_PRODUCT_ID, 
+    COMPUTATIONAL_TERM, COUNTING_RULES, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+    PRODUCT_NAME, PRODUCT_CODE, STATUS, INSURANCE_COMPANY_NAME, SALES_ORG_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from partnership_commission_set
+    where PARTNERSHIP_ID = #{partnershipId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from partnership_commission_set
+    where PARTNERSHIP_ID = #{partnershipId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSet" >
+    insert into partnership_commission_set (PARTNERSHIP_ID, ENTERPRIS_EORGANIZATION_NAME, 
+      INSURANCE_COMPANY_ID, INS_PRODUCT_ID, COMPUTATIONAL_TERM, 
+      COUNTING_RULES, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, PRODUCT_NAME, 
+      PRODUCT_CODE, STATUS, INSURANCE_COMPANY_NAME, SALES_ORG_ID
+      )
+    values (#{partnershipId,jdbcType=BIGINT}, #{enterprisEorganizationName,jdbcType=VARCHAR}, 
+      #{insuranceCompanyId,jdbcType=BIGINT}, #{insProductId,jdbcType=BIGINT}, #{computationalTerm,jdbcType=CHAR}, 
+      #{countingRules,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{productName,jdbcType=VARCHAR}, 
+      #{productCode,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{insuranceCompanyName,jdbcType=VARCHAR}, 
+      #{salesOrgId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="partnershipId" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSet" >
+    insert into partnership_commission_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partnershipId != null" >
+        PARTNERSHIP_ID,
+      </if>
+      <if test="enterprisEorganizationName != null" >
+        ENTERPRIS_EORGANIZATION_NAME,
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="insProductId != null" >
+        INS_PRODUCT_ID,
+      </if>
+      <if test="computationalTerm != null" >
+        COMPUTATIONAL_TERM,
+      </if>
+      <if test="countingRules != null" >
+        COUNTING_RULES,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="insuranceCompanyName != null" >
+        INSURANCE_COMPANY_NAME,
+      </if>
+       <if test="salesOrgId != null" >
+        SALES_ORG_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partnershipId != null" >
+        #{partnershipId,jdbcType=BIGINT},
+      </if>
+      <if test="enterprisEorganizationName != null" >
+        #{enterprisEorganizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insProductId != null" >
+        #{insProductId,jdbcType=BIGINT},
+      </if>
+      <if test="computationalTerm != null" >
+        #{computationalTerm,jdbcType=CHAR},
+      </if>
+      <if test="countingRules != null" >
+        #{countingRules,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insuranceCompanyName != null" >
+        #{insuranceCompanyName,jdbcType=VARCHAR},
+      </if>
+       <if test="salesOrgId != null" >
+        #{salesOrgId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSet" >
+    update partnership_commission_set
+    <set >
+      <if test="enterprisEorganizationName != null" >
+        ENTERPRIS_EORGANIZATION_NAME = #{enterprisEorganizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insProductId != null" >
+        INS_PRODUCT_ID = #{insProductId,jdbcType=BIGINT},
+      </if>
+      <if test="computationalTerm != null" >
+        COMPUTATIONAL_TERM = #{computationalTerm,jdbcType=CHAR},
+      </if>
+      <if test="countingRules != null" >
+        COUNTING_RULES = #{countingRules,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insuranceCompanyName != null" >
+        INSURANCE_COMPANY_NAME = #{insuranceCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesOrgId != null" >
+        SALES_ORG_ID = #{salesOrgId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where PARTNERSHIP_ID = #{partnershipId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.parameter.PartnershipCommissionSet" >
+    update partnership_commission_set
+    set ENTERPRIS_EORGANIZATION_NAME = #{enterprisEorganizationName,jdbcType=VARCHAR},
+      INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      INS_PRODUCT_ID = #{insProductId,jdbcType=BIGINT},
+      COMPUTATIONAL_TERM = #{computationalTerm,jdbcType=CHAR},
+      COUNTING_RULES = #{countingRules,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      INSURANCE_COMPANY_NAME = #{insuranceCompanyName,jdbcType=VARCHAR},
+       SALES_ORG_ID = #{salesOrgId,jdbcType=BIGINT}
+    where PARTNERSHIP_ID = #{partnershipId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询条件 -->
+  <sql id="Base_Where_Cloose_partnership">
+   1=1
+   <if test="null != productCode">
+    and  par.PRODUCT_CODE LIKE CONCAT(CONCAT('%', #{productCode}), '%')</if>
+   <if test="null != productNmae">
+    and  par.PRODUCT_NAME LIKE CONCAT(CONCAT('%', #{productNmae}), '%') </if>
+	<if test="null != enterprisEorganizationName">
+	and par.ENTERPRIS_EORGANIZATION_NAME LIKE CONCAT(CONCAT('%', #{enterprisEorganizationName}), '%')</if>
+		<if test="null != computationalTerm">
+	and par.COMPUTATIONAL_TERM = #{computationalTerm}</if>
+	<if test="minCreateTime != null">
+      <![CDATA[
+ 	and DATE_FORMAT(par.CREATED_TIME ,'%Y-%m-%d') >= #{minCreateTime}
+ 		]]>
+    </if>
+    <if test="maxCreateTime != null">
+      <![CDATA[
+ 		and DATE_FORMAT(par.CREATED_TIME ,'%Y-%m-%d') <= #{maxCreateTime}
+ 	]]>
+    </if>
+	<if test="null != insuranceCompanyName">
+	and par.INSURANCE_COMPANY_NAME LIKE CONCAT(CONCAT('%', #{insuranceCompanyName}), '%')</if>
+    <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+      AND FIND_IN_SET(par.sales_org_id, #{myAllOrgIds}) > 0
+    </if>
+   </sql>
+   
+   <!--查询列表分页  -->
+   <select id="getPartnershipCommissionSetList" parameterType="hashmap" resultType="hashmap">
+	  SELECT
+		par.PARTNERSHIP_ID,
+		par.ENTERPRIS_EORGANIZATION_NAME,
+		par.INSURANCE_COMPANY_ID,
+		par.INS_PRODUCT_ID,
+	CASE
+	WHEN 	par.COMPUTATIONAL_TERM = '0' THEN
+	'C保护'
+	WHEN 	par.COMPUTATIONAL_TERM = '1' THEN
+	'P手续费'
+	WHEN 	par.COMPUTATIONAL_TERM = '2' THEN
+	'基础佣金率'
+	ELSE
+	''
+	END AS COMPUTATIONAL_TERM,
+		par.COUNTING_RULES,
+		par.CREATED_BY,
+		par.CREATED_TIME,
+		par.UPDATED_BY,
+		par.UPDATED_TIME,
+		ins.PRODUCT_CODE,
+		ins.PRODUCT_NAME,
+		ico.INSURANCE_COMPANY_NAME,
+		ico.INSURANCE_COMPANY_CODE
+	FROM
+		partnership_commission_set par
+	LEFT JOIN insurance_product_info ins ON ins.PRODUCT_ID = par.INS_PRODUCT_ID
+	LEFT JOIN insurance_company_org ico ON ico.INSURANCE_COMPANY_ID = par.INSURANCE_COMPANY_ID
+	where 
+	<include refid="Base_Where_Cloose_partnership"/>
+    ORDER BY par.PARTNERSHIP_ID DESC
+    limit #{startIndex},#{pageSize}
+  </select>
+  
+  <!--查询列表 -->
+   <select id="findPartnershipCommissionSet" parameterType="hashmap" resultMap="BaseResultMap">
+	  SELECT * FROM partnership_commission_set par
+	  where 1 = 1
+	  <if test="null != salesOrgId">and sales_org_id = #{salesOrgId}</if>
+	  <if test="null != companyId">and insurance_company_id = #{companyId}</if>
+     <if test="null != computationalTerm">and computational_term = #{computationalTerm}</if>
+   </select>
+  
+    <!--查询列表总数  -->
+  <select id="getPartnershipCommissionSetSize"  parameterType="hashmap" resultType="java.lang.Long">
+    select count(1)
+  	FROM
+		partnership_commission_set par
+	LEFT JOIN insurance_product_info ins ON ins.PRODUCT_ID = par.INS_PRODUCT_ID
+	LEFT JOIN insurance_company_org ico ON ico.INSURANCE_COMPANY_ID = par.INSURANCE_COMPANY_ID
+   where 
+   <include refid="Base_Where_Cloose_partnership"/>
+  </select>
+   <!-- 查询详情 -->
+   <select id="selectPartnershipCommissionSetDetail" resultMap="BaseResultMap" parameterType="hashmap" >
+    select 
+    <include refid="Base_Column_List" />
+    from partnership_commission_set
+    where PARTNERSHIP_ID = #{partnershipId}
+  </select>
+  <select id="selectCommissionRate" resultType="java.util.Map">
+    SELECT jcyjl(#{product_code},#{orgid}) as CommissionRate;
+</select>
+  
+</mapper>

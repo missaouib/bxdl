@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyHolderMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsPolicyHolderEntity" >
+        <result column="policy_holder_id" property="policyHolderId" />
+        <result column="type" property="type" />
+        <result column="policy_id" property="policyId" />
+        <result column="card_type" property="cardType" />
+        <result column="card_no" property="cardNo" />
+        <result column="name" property="name" />
+        <result column="mobile" property="mobile" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="annual_income" property="annualIncome" />
+        <result column="home_address" property="homeAddress" />
+        <result column="pay_type" property="payType" />
+        <result column="account_holder" property="accountHolder" />
+        <result column="bank_name" property="bankName" />
+        <result column="bank_account" property="bankAccount" />
+        <result column="edu_background" property="eduBackground" />
+        <result column="marital_status" property="maritalStatus" />
+        <result column="company_address" property="companyAddress" />
+        <result column="telephone" property="telephone" />
+        <result column="email" property="email" />
+        <result column="home_postal_code" property="homePostalCode" />
+        <result column="domicile_address" property="domicileAddress" />
+        <result column="debts" property="debts" />
+        <result column="occupation_code" property="occupationCode" />
+        <result column="occupation" property="occupation" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `policy_holder_id`,
+                `type`,
+                `policy_id`,
+                `card_type`,
+                `card_no`,
+                `name`,
+                `mobile`,
+                `sex`,
+                `birthday`,
+                `annual_income`,
+                `home_address`,
+                `pay_type`,
+                `account_holder`,
+                `bank_name`,
+                `bank_account`,
+                `edu_background`,
+                `marital_status`,
+                `company_address`,
+                `telephone`,
+                `email`,
+                `home_postal_code`,
+                `domicile_address`,
+                `debts`,
+                `occupation_code`,
+                `occupation`
+    </sql>
+
+    <insert id="addInsPolicyHolder" parameterType="java.util.Map">
+        INSERT INTO ins_policy_holder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != policyHolderId and "" != policyHolderId'>
+                `policy_holder_id`,
+            </if>
+            <if test ='null != type and "" != type'>
+                `type`,
+            </if>
+            <if test ='null != policyId and "" != policyId'>
+                `policy_id`,
+            </if>
+            <if test ='null != cardType and "" != cardType'>
+                `card_type`,
+            </if>
+            <if test ='null != cardNo and "" != cardNo'>
+                `card_no`,
+            </if>
+            <if test ='null != name and "" != name'>
+                `name`,
+            </if>
+            <if test ='null != mobile and "" != mobile'>
+                `mobile`,
+            </if>
+            <if test ='null != sex and "" != sex'>
+                `sex`,
+            </if>
+            <if test ='null != birthday and "" != birthday'>
+                `birthday`,
+            </if>
+            <if test ='null != annualIncome and "" != annualIncome'>
+                `annual_income`,
+            </if>
+            <if test ='null != homeAddress and "" != homeAddress'>
+                `home_address`,
+            </if>
+            <if test ='null != payType and "" != payType'>
+                `pay_type`,
+            </if>
+            <if test ='null != accountHolder and "" != accountHolder'>
+                `account_holder`,
+            </if>
+            <if test ='null != bankName and "" != bankName'>
+                `bank_name`,
+            </if>
+            <if test ='null != bankAccount and "" != bankAccount'>
+                `bank_account`,
+            </if>
+            <if test ='null != eduBackground and "" != eduBackground'>
+                `edu_background`,
+            </if>
+            <if test ='null != maritalStatus and "" != maritalStatus'>
+                `marital_status`,
+            </if>
+            <if test ='null != companyAddress and "" != companyAddress'>
+                `company_address`,
+            </if>
+            <if test ='null != telephone and "" != telephone'>
+                `telephone`,
+            </if>
+            <if test ='null != email and "" != email'>
+                `email`,
+            </if>
+            <if test ='null != homePostalCode and "" != homePostalCode'>
+                `home_postal_code`,
+            </if>
+            <if test ='null != domicileAddress and "" != domicileAddress'>
+                `domicile_address`,
+            </if>
+            <if test ='null != debts and "" != debts'>
+                `debts`,
+            </if>
+            <if test ='null != occupationCode and "" != occupationCode'>
+                `occupation_code`,
+            </if>
+            <if test ='null != occupation and "" != occupation'>
+                `occupation`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != policyHolderId and "" != policyHolderId'>
+                #{policyHolderId},
+            </if>
+            <if test ='null != type and "" != type'>
+                #{type},
+            </if>
+            <if test ='null != policyId and "" != policyId'>
+                #{policyId},
+            </if>
+            <if test ='null != cardType and "" != cardType'>
+                #{cardType},
+            </if>
+            <if test ='null != cardNo and "" != cardNo'>
+                #{cardNo},
+            </if>
+            <if test ='null != name and "" != name'>
+                #{name},
+            </if>
+            <if test ='null != mobile and "" != mobile'>
+                #{mobile},
+            </if>
+            <if test ='null != sex and "" != sex'>
+                #{sex},
+            </if>
+            <if test ='null != birthday and "" != birthday'>
+                #{birthday},
+            </if>
+            <if test ='null != annualIncome and "" != annualIncome'>
+                #{annualIncome},
+            </if>
+            <if test ='null != homeAddress and "" != homeAddress'>
+                #{homeAddress},
+            </if>
+            <if test ='null != payType and "" != payType'>
+                #{payType},
+            </if>
+            <if test ='null != accountHolder and "" != accountHolder'>
+                #{accountHolder},
+            </if>
+            <if test ='null != bankName and "" != bankName'>
+                #{bankName},
+            </if>
+            <if test ='null != bankAccount and "" != bankAccount'>
+                #{bankAccount},
+            </if>
+            <if test ='null != eduBackground and "" != eduBackground'>
+                #{eduBackground},
+            </if>
+            <if test ='null != maritalStatus and "" != maritalStatus'>
+                #{maritalStatus},
+            </if>
+            <if test ='null != companyAddress and "" != companyAddress'>
+                #{companyAddress},
+            </if>
+            <if test ='null != telephone and "" != telephone'>
+                #{telephone},
+            </if>
+            <if test ='null != email and "" != email'>
+                #{email},
+            </if>
+            <if test ='null != homePostalCode and "" != homePostalCode'>
+                #{homePostalCode},
+            </if>
+            <if test ='null != domicileAddress and "" != domicileAddress'>
+                #{domicileAddress},
+            </if>
+            <if test ='null != debts and "" != debts'>
+                #{debts},
+            </if>
+            <if test ='null != occupationCode and "" != occupationCode'>
+                #{occupationCode},
+            </if>
+            <if test ='null != occupation and "" != occupation'>
+                #{occupation}
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchAddInsPolicyHolder" parameterType="java.util.List">
+        INSERT INTO ins_policy_holder (
+                `type`,
+                `policy_id`,
+                `card_type`,
+                `card_no`,
+                `name`,
+                `mobile`,
+                `sex`,
+                `birthday`,
+                `annual_income`,
+                `home_address`,
+                `account_holder`,
+                `bank_name`,
+                `bank_account`,
+                `occupation`,
+                `pay_type`,
+                `edu_background`,
+                `marital_status`,
+                `company_address`,
+                `telephone`,
+                `domicile_address`,
+                `debts`,
+                `occupation_code`,
+                `email`,
+                `home_postal_code`
+                )
+            values
+            <foreach collection="list" item="item" separator=",">
+            <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            (       #{item.type},
+                    #{item.policyId},
+                    #{item.cardType},
+                    #{item.cardNo},
+                    #{item.name},
+                    #{item.mobile},
+                    #{item.sex},
+                    #{item.birthday},
+                    #{item.annualIncome},
+                    #{item.homeAddress},
+                    #{item.accountHolder},
+                    #{item.bankName},
+                    #{item.bankAccount},
+                    #{item.occupation},
+                    #{item.payType},
+                    #{item.eduBackground},
+                    #{item.maritalStatus},
+                    #{item.companyAddress},
+                    #{item.telephone},
+                    #{item.domicileAddress},
+                    #{item.debts},
+                    #{item.occupationCode},
+                    #{item.email},
+                    #{item.homePostalCode}
+           <!-- </trim>-->
+           )
+            </foreach>
+    </insert>
+
+
+    <delete id="delete" >
+        DELETE FROM ins_policy_holder
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="updateInsPolicyHolder" parameterType="java.util.Map">
+        UPDATE ins_policy_holder
+        <set>
+            <if test ='null != policyHolderId and ""!= policyHolderId'>policy_holder_id = #{policyHolderId},</if>
+            <if test ='null != type and ""!= type'>type = #{type},</if>
+            <if test ='null != policyId and ""!= policyId'>policy_id = #{policyId},</if>
+            <if test ='null != cardType and ""!= cardType'>card_type = #{cardType},</if>
+            <if test ='null != cardNo and ""!= cardNo'>card_no = #{cardNo},</if>
+            <if test ='null != name and ""!= name'>name = #{name},</if>
+            <if test ='null != mobile and ""!= mobile'>mobile = #{mobile},</if>
+            <if test ='null != sex and ""!= sex'>sex = #{sex},</if>
+            <if test ='null != birthday and ""!= birthday'>birthday = #{birthday},</if>
+            <if test ='null != annualIncome and ""!= annualIncome'>annual_income = #{annualIncome},</if>
+            <if test ='null != homeAddress and ""!= homeAddress'>home_address = #{homeAddress},</if>
+            <if test ='null != payType and ""!= payType'>pay_type = #{payType},</if>
+            <if test ='null != accountHolder and ""!=accountHolder '>account_holder = #{accountHolder},</if>
+            <if test ='null != bankName and ""!= bankName'>bank_name = #{bankName},</if>
+            <if test ='null != bankAccount and ""!= bankAccount'>bank_account = #{bankAccount},</if>
+            <if test ='null != eduBackground and ""!= eduBackground'>edu_background = #{eduBackground},</if>
+            <if test ='null != maritalStatus and ""!= maritalStatus'>marital_status = #{maritalStatus},</if>
+            <if test ='null != companyAddress and ""!= companyAddress'>company_address = #{companyAddress},</if>
+            <if test ='null != telephone and ""!= telephone'>telephone = #{telephone},</if>
+            <if test ='null != email and ""!= email'>email = #{email},</if>
+            <if test ='null != homePostalCode and ""!= homePostalCode'>home_postal_code = #{homePostalCode},</if>
+            <if test ='null != domicileAddress and ""!= domicileAddress'>domicile_address = #{domicileAddress},</if>
+            <if test ='null != debts and ""!= debts'>debts = #{debts},</if>
+            <if test ='null != occupationCode and ""!= occupationCode'>occupation_code = #{occupationCode},</if>
+            <if test ='null != occupation and ""!= occupation'>occupation = #{occupation}</if>
+        </set>
+        WHERE `POLICY_ID` = #{policyId}
+    </update>
+
+
+    <select id="selectInsPolicyHolderEntityByKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_holder
+        WHERE `POLICY_ID` = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_holder
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_policy_holder
+    </select>
+
+</mapper>

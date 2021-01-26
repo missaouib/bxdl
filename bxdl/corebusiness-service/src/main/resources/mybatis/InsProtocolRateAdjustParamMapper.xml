@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsProtocolRateAdjustParamMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParam">
+    <id column="ADJUST_PARAM_ID" jdbcType="BIGINT" property="adjustParamId" />
+    <result column="ADJUST_ID" jdbcType="BIGINT" property="adjustId" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="P_PRODUCT_ID" jdbcType="BIGINT" property="pProductId" />
+    <result column="S_PRODUCT_ID" jdbcType="BIGINT" property="sProductId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamWithBLOBs">
+    <result column="CHANGE_RATE" jdbcType="LONGVARCHAR" property="changeRate" />
+    <result column="CHANGE_SUBJOIN_RATE" jdbcType="LONGVARCHAR" property="changeSubjoinRate" />
+    <result column="ALL_CHANGE_RATE" jdbcType="LONGVARCHAR" property="allChangeRate" />
+    <result column="ALL_CHANGE_SUBJOIN_RATE" jdbcType="LONGVARCHAR" property="allChangeSubjoinRate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ADJUST_PARAM_ID, ADJUST_ID, PROTOCOL_ID, P_PRODUCT_ID, S_PRODUCT_ID, CREATE_TIME, 
+    UPDATE_TIME, UPDATE_BY
+  </sql>
+  <sql id="Blob_Column_List">
+    CHANGE_RATE, CHANGE_SUBJOIN_RATE, ALL_CHANGE_RATE, ALL_CHANGE_SUBJOIN_RATE
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ins_protocol_rate_adjust_param
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_protocol_rate_adjust_param
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ins_protocol_rate_adjust_param
+    where ADJUST_PARAM_ID = #{adjustParamId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_protocol_rate_adjust_param
+    where ADJUST_PARAM_ID = #{adjustParamId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamExample">
+    delete from ins_protocol_rate_adjust_param
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamWithBLOBs">
+    insert into ins_protocol_rate_adjust_param (ADJUST_PARAM_ID, ADJUST_ID, PROTOCOL_ID, 
+      P_PRODUCT_ID, S_PRODUCT_ID, CREATE_TIME, 
+      UPDATE_TIME, UPDATE_BY, CHANGE_RATE, 
+      CHANGE_SUBJOIN_RATE, ALL_CHANGE_RATE, 
+      ALL_CHANGE_SUBJOIN_RATE)
+    values (#{adjustParamId,jdbcType=BIGINT}, #{adjustId,jdbcType=BIGINT}, #{protocolId,jdbcType=BIGINT}, 
+      #{pProductId,jdbcType=BIGINT}, #{sProductId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{changeRate,jdbcType=LONGVARCHAR}, 
+      #{changeSubjoinRate,jdbcType=LONGVARCHAR}, #{allChangeRate,jdbcType=LONGVARCHAR}, 
+      #{allChangeSubjoinRate,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamWithBLOBs">
+    insert into ins_protocol_rate_adjust_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adjustParamId != null">
+        ADJUST_PARAM_ID,
+      </if>
+      <if test="adjustId != null">
+        ADJUST_ID,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="pProductId != null">
+        P_PRODUCT_ID,
+      </if>
+      <if test="sProductId != null">
+        S_PRODUCT_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="changeRate != null">
+        CHANGE_RATE,
+      </if>
+      <if test="changeSubjoinRate != null">
+        CHANGE_SUBJOIN_RATE,
+      </if>
+      <if test="allChangeRate != null">
+        ALL_CHANGE_RATE,
+      </if>
+      <if test="allChangeSubjoinRate != null">
+        ALL_CHANGE_SUBJOIN_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adjustParamId != null">
+        #{adjustParamId,jdbcType=BIGINT},
+      </if>
+      <if test="adjustId != null">
+        #{adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="pProductId != null">
+        #{pProductId,jdbcType=BIGINT},
+      </if>
+      <if test="sProductId != null">
+        #{sProductId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeRate != null">
+        #{changeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="changeSubjoinRate != null">
+        #{changeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allChangeRate != null">
+        #{allChangeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allChangeSubjoinRate != null">
+        #{allChangeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamExample" resultType="java.lang.Long">
+    select count(*) from ins_protocol_rate_adjust_param
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_protocol_rate_adjust_param
+    <set>
+      <if test="record.adjustParamId != null">
+        ADJUST_PARAM_ID = #{record.adjustParamId,jdbcType=BIGINT},
+      </if>
+      <if test="record.adjustId != null">
+        ADJUST_ID = #{record.adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pProductId != null">
+        P_PRODUCT_ID = #{record.pProductId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sProductId != null">
+        S_PRODUCT_ID = #{record.sProductId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeRate != null">
+        CHANGE_RATE = #{record.changeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.changeSubjoinRate != null">
+        CHANGE_SUBJOIN_RATE = #{record.changeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.allChangeRate != null">
+        ALL_CHANGE_RATE = #{record.allChangeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.allChangeSubjoinRate != null">
+        ALL_CHANGE_SUBJOIN_RATE = #{record.allChangeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ins_protocol_rate_adjust_param
+    set ADJUST_PARAM_ID = #{record.adjustParamId,jdbcType=BIGINT},
+      ADJUST_ID = #{record.adjustId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      P_PRODUCT_ID = #{record.pProductId,jdbcType=BIGINT},
+      S_PRODUCT_ID = #{record.sProductId,jdbcType=BIGINT},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      CHANGE_RATE = #{record.changeRate,jdbcType=LONGVARCHAR},
+      CHANGE_SUBJOIN_RATE = #{record.changeSubjoinRate,jdbcType=LONGVARCHAR},
+      ALL_CHANGE_RATE = #{record.allChangeRate,jdbcType=LONGVARCHAR},
+      ALL_CHANGE_SUBJOIN_RATE = #{record.allChangeSubjoinRate,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_protocol_rate_adjust_param
+    set ADJUST_PARAM_ID = #{record.adjustParamId,jdbcType=BIGINT},
+      ADJUST_ID = #{record.adjustId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      P_PRODUCT_ID = #{record.pProductId,jdbcType=BIGINT},
+      S_PRODUCT_ID = #{record.sProductId,jdbcType=BIGINT},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamWithBLOBs">
+    update ins_protocol_rate_adjust_param
+    <set>
+      <if test="adjustId != null">
+        ADJUST_ID = #{adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="pProductId != null">
+        P_PRODUCT_ID = #{pProductId,jdbcType=BIGINT},
+      </if>
+      <if test="sProductId != null">
+        S_PRODUCT_ID = #{sProductId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeRate != null">
+        CHANGE_RATE = #{changeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="changeSubjoinRate != null">
+        CHANGE_SUBJOIN_RATE = #{changeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allChangeRate != null">
+        ALL_CHANGE_RATE = #{allChangeRate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allChangeSubjoinRate != null">
+        ALL_CHANGE_SUBJOIN_RATE = #{allChangeSubjoinRate,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ADJUST_PARAM_ID = #{adjustParamId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParamWithBLOBs">
+    update ins_protocol_rate_adjust_param
+    set ADJUST_ID = #{adjustId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      P_PRODUCT_ID = #{pProductId,jdbcType=BIGINT},
+      S_PRODUCT_ID = #{sProductId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      CHANGE_RATE = #{changeRate,jdbcType=LONGVARCHAR},
+      CHANGE_SUBJOIN_RATE = #{changeSubjoinRate,jdbcType=LONGVARCHAR},
+      ALL_CHANGE_RATE = #{allChangeRate,jdbcType=LONGVARCHAR},
+      ALL_CHANGE_SUBJOIN_RATE = #{allChangeSubjoinRate,jdbcType=LONGVARCHAR}
+    where ADJUST_PARAM_ID = #{adjustParamId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustParam">
+    update ins_protocol_rate_adjust_param
+    set ADJUST_ID = #{adjustId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      P_PRODUCT_ID = #{pProductId,jdbcType=BIGINT},
+      S_PRODUCT_ID = #{sProductId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ADJUST_PARAM_ID = #{adjustParamId,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 批量添加 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+	<foreach collection="list" item="item" separator=";">
+		insert into
+		ins_protocol_rate_adjust_param (
+		<if test="item.adjustId != null">
+			ADJUST_ID,
+		</if>
+		<if test="item.protocolId != null">
+			PROTOCOL_ID,
+		</if>
+		<if test="item.pProductId != null">
+			P_PRODUCT_ID,
+		</if>
+		<if test="item.sProductId != null">
+			S_PRODUCT_ID,
+		</if>
+		<if test="item.createTime != null">
+			CREATE_TIME,
+		</if>
+		<if test="item.updateTime != null">
+			UPDATE_TIME,
+		</if>
+		<if test="item.changeRate != null">
+			CHANGE_RATE,
+		</if>
+		<if test="item.changeSubjoinRate != null">
+			CHANGE_SUBJOIN_RATE,
+		</if>
+		<if test="item.allChangeRate != null">
+			ALL_CHANGE_RATE,
+		</if>
+		<if test="item.allChangeSubjoinRate != null">
+			ALL_CHANGE_SUBJOIN_RATE,
+		</if>
+			UPDATE_BY
+			)
+		values
+			(
+		<if test="item.adjustId != null">
+			#{item.adjustId},
+		</if>
+		<if test="item.protocolId != null">
+			#{item.protocolId},
+		</if>
+		<if test="item.pProductId != null">
+			#{item.pProductId},
+		</if>
+		<if test="item.sProductId != null">
+			#{item.sProductId},
+		</if>
+		<if test="item.createTime != null">
+			#{item.createTime},
+		</if>
+		<if test="item.updateTime != null">
+			#{item.updateTime},
+		</if>
+		<if test="item.changeRate != null">
+			#{item.changeRate},
+		</if>
+		<if test="item.changeSubjoinRate != null">
+			#{item.changeSubjoinRate},
+		</if>
+		<if test="item.allChangeRate != null">
+			#{item.allChangeRate},
+		</if>
+		<if test="item.allChangeSubjoinRate != null">
+			#{item.allChangeSubjoinRate},
+		</if>
+		#{item.updateBy}
+		)
+	</foreach>
+  </insert>
+  
+  
+   
+  <!-- 查询费率调节 例外产品列表 -->
+  <select id="findAllRetMapByPage" parameterType="hashmap" resultType="hashmap">
+ 	 SELECT
+ 	 	 pa.ADJUST_PARAM_ID,
+		 pa.ADJUST_ID,
+		 pa.PROTOCOL_ID,
+		 pa.P_PRODUCT_ID,
+		 pa.S_PRODUCT_ID,
+		 pa.CHANGE_RATE,
+		 info.PRODUCT_NAME,
+		 info.PRODUCT_CODE,
+		 ratio.PRODUCTS_NAME,
+		 ratio.PRODUCTS_CODE,
+		 info.COMPANY_INSURANCE_CODE,
+		 CASE
+				WHEN info.MAIN_OR_ADDITIONAL = '0' THEN
+					'主险'
+				WHEN info.MAIN_OR_ADDITIONAL = '1' THEN
+					'附险'
+				END AS MAIN_OR_ADDITIONAL,
+		ratio.OUT_STANDARD_COMMISSION_COEFFICIENT
+	FROM
+		ins_protocol_rate_adjust_param pa 
+	left join insurance_product_info info  on pa.P_PRODUCT_ID = info.PRODUCT_ID
+	left join ins_products_commission_ratio ratio on pa.S_PRODUCT_ID = ratio.PRODUCTS_RATIO_ID
+	where pa.PROTOCOL_ID =#{protocolId} 
+	and pa.ADJUST_ID = #{adjustId}
+	ORDER by pa.CREATE_TIME DESC
+	limit #{startIndex},#{pageSize}
+  </select>
+  
+   <!-- 查询总条数 -->
+  <select id="findAllByPageCount" parameterType="hashmap" resultType="long">
+ 	 SELECT
+		count(1)
+	FROM
+		ins_protocol_rate_adjust_param pa 
+	left join insurance_product_info info  on pa.P_PRODUCT_ID = info.PRODUCT_ID
+	left join ins_products_commission_ratio ratio on pa.S_PRODUCT_ID = ratio.PRODUCTS_RATIO_ID
+	where pa.PROTOCOL_ID =#{protocolId} 
+	and pa.ADJUST_ID = #{adjustId}
+  </select>
+  
+  <select id="findAdjustByPidAndAid" parameterType="hashmap" resultType="hashmap">
+   select 
+	   <include refid="Base_Column_List" />,
+	   <include refid="Blob_Column_List" />
+   from ins_protocol_rate_adjust_param
+   where PROTOCOL_ID = #{protocolId}
+   AND ADJUST_ID = #{adjustId}
+   limit 1;
+  </select>
+  
+  <delete id="deleteAdjustByPidAndAid" parameterType="hashmap">
+    delete from 
+   		ins_protocol_rate_adjust_param
+   where PROTOCOL_ID = #{protocolId}
+   AND ADJUST_ID = #{adjustId}
+  </delete>
+  
+  <select id="findParamById" parameterType="long" resultType="hashmap">
+	  SELECT
+		pa.ADJUST_PARAM_ID,
+	  	pa.ADJUST_ID,
+	  	pa.PROTOCOL_ID,
+		pa.CHANGE_RATE,
+		pa.CHANGE_RATE,
+		pa.CHANGE_SUBJOIN_RATE,
+		pa.ALL_CHANGE_RATE,
+		pa.ALL_CHANGE_SUBJOIN_RATE,
+	 	ad.SUBJOIN_TYPE
+	FROM
+		ins_protocol_rate_adjust_param pa
+	LEFT JOIN ins_protocol_rate_adjust ad ON pa.ADJUST_ID = ad.ADJUST_ID
+	WHERE
+		pa.ADJUST_PARAM_ID =#{adjustParamId}
+  </select>
+  
+  <!-- 校验是否重复 -->
+  <select id="getAdjustIsRepeat" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		p.S_PRODUCT_ID,
+		ratio.PRODUCTS_RATIO_ID,
+		ratio.PRODUCTS_NAME
+	FROM
+	ins_protocol_rate_adjust_param p
+	left join ins_products_commission_ratio ratio
+	on p.S_PRODUCT_ID = ratio.PRODUCTS_RATIO_ID
+	where p.PROTOCOL_ID = #{protocolId}
+	and p.S_PRODUCT_ID in (#{sProductIds})
+  </select>
+</mapper>

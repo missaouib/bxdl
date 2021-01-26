@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsuranceDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.InsuranceDept" >
+    <result column="created_by" property="createdBy" />
+    <result column="created_time" property="createdTime" />
+    <result column="updated_by" property="updatedBy" />
+    <result column="updated_time" property="updatedTime" />
+    <result column="insurance_company_id" property="insuranceCompanyId" />
+    <result column="insurance_company_name" property="insuranceCompanyName" />
+    <result column="insurance_company_name_less" property="insuranceCompanyNameLess" />
+    <result column="insurance_company_en_name" property="insuranceCompanyEnName" />
+    <result column="insurance_company_en_name_less" property="insuranceCompanyEnNameLess" />
+    <result column="insurance_company_code" property="insuranceCompanyCode" />
+    <result column="insurance_code" property="insuranceCode" />
+    <result column="org_level" property="orgLevel" />
+    <result column="parent_company_code" property="parentCompanyCode" />
+    <result column="business_type" property="businessType" />
+    <result column="date_of_establishment" property="dateOfEstablishment" />
+    <result column="registered_capital" property="registeredCapital" />
+    <result column="fax" property="fax" />
+    <result column="tel" property="tel" />
+    <result column="post_code" property="postCode" />
+    <result column="area_code" property="areaCode" />
+    <result column="address" property="address" />
+    <result column="web_site" property="webSite" />
+    <result column="main_business" property="mainBusiness" />
+    <result column="business_status" property="businessStatus" />
+  </resultMap>
+  <select id="getInsuranceDeptList" parameterType="java.util.Map" resultType="java.util.Map">
+    <!-- select <include refid="Base_Column_List" /> from insurance_company_org  -->
+    select a.INSURANCE_COMPANY_CODE,a.INSURANCE_COMPANY_ID,a.INSURANCE_COMPANY_CODE,
+    a.INSURANCE_COMPANY_NAME,a.INSURANCE_COMPANY_NAME_LESS,a.BUSINESS_TYPE,a.CREATED_TIME,
+    a.ORG_LEVEL,
+    b.INSURANCE_COMPANY_NAME as pinsuranceDept,
+    c.INSURANCE_COMPANY_NAME as insuranceCompany
+    from insurance_company_org a
+    LEFT JOIN insurance_company_org b ON a.PARENT_COMPANY_CODE = b.INSURANCE_COMPANY_CODE
+    LEFT JOIN insurance_company_org c ON a.INSURANCE_CODE = c.INSURANCE_COMPANY_CODE
+    <where>
+      a.IS_SHOW='0'
+      <if test ="null != createdBy">AND a.created_by = #{createdBy}</if>
+      <if test ="null != createdTimeStat">AND a.created_time &gt;= #{createdTimeStat}</if>
+      <if test ="null != createdTimeEnd">AND a.created_time &lt;= #{createdTimeEnd}</if>
+      <if test ="null != updatedBy">AND a.updated_by = #{updatedBy}</if>
+      <if test ="null != updatedTime">AND a.updated_time = #{updatedTime}</if>
+      <if test ="null != insuranceCompanyId">AND a.insurance_company_id = #{insuranceCompanyId}</if>
+      <if test ="null != insuranceCompanyName">AND a.insurance_company_name LIKE CONCAT('%',#{insuranceCompanyName},'%')</if>
+      <if test ="null != insuranceCompanyNameLess">AND a.insurance_company_name_less LIKE CONCAT('%',#{insuranceCompanyNameLess},'%')</if>
+      <if test ="null != insuranceCompanyEnName">AND a.insurance_company_en_name = #{insuranceCompanyEnName}</if>
+      <if test ="null != insuranceCompanyEnNameLess">AND a.insurance_company_en_name_less = #{insuranceCompanyEnNameLess}</if>
+      <if test ="null != insuranceCompanyCode">AND a.insurance_company_code LIKE CONCAT('%',#{insuranceCompanyCode},'%')</if>
+      <if test ="null != orgLevel">AND a.org_level = #{orgLevel}</if>
+      <if test ="null != noOrgLevel">AND a.org_level != #{noOrgLevel}</if>
+      <if test ="null != parentCompanyCode">AND a.parent_company_code = #{parentCompanyCode}</if>
+      <if test ="null != businessType">AND a.business_type = #{businessType}</if>
+      <if test ="null != dateOfEstablishment">AND a.date_of_establishment = #{dateOfEstablishment}</if>
+      <if test ="null != registeredCapital">AND a.registered_capital = #{registeredCapital}</if>
+      <if test ="null != fax">AND a.fax = #{fax}</if>
+      <if test ="null != tel">AND a.tel = #{tel}</if>
+      <if test ="null != postCode">AND a.post_code = #{postCode}</if>
+      <if test ="null != areaCode">AND a.area_code = #{areaCode}</if>
+      <if test ="null != address">AND a.address = #{address}</if>
+      <if test ="null != webSite">AND a.web_site = #{webSite}</if>
+      <if test ="null != mainBusiness">AND a.main_business = #{mainBusiness}</if>
+      <if test ="null != businessStatus">AND a.business_status = #{businessStatus}</if>
+      <if test ="null != c_insuranceCompanyName">AND c.INSURANCE_COMPANY_ID  = #{c_insuranceCompanyName}</if>
+      <if test ="null != b_insuranceCompanyName">AND b.INSURANCE_COMPANY_ID = #{b_insuranceCompanyName}</if>
+    </where>
+    order by a.INSURANCE_COMPANY_ID DESC
+    LIMIT #{startIndex}, #{pageSizeInt}
+  </select>
+  
+  <select id="findInsurCompanys" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from insurance_company_org
+    <where>
+        IS_SHOW = '0'
+      <if test ="null != createdBy">AND created_by = #{createdBy}</if>
+      <if test ="null != createdTime">AND created_time = #{createdTime}</if>
+      <if test ="null != updatedBy">AND updated_by = #{updatedBy}</if>
+      <if test ="null != updatedTime">AND updated_time = #{updatedTime}</if>
+      <if test ="null != insuranceCompanyId">AND insurance_company_id = #{insuranceCompanyId}</if>
+      <if test ="null != insuranceCompanyName">AND insurance_company_name like concat('%',#{insuranceCompanyName},'%')</if>
+      <if test ="null != insuranceCompanyNameLess">AND insurance_company_name_less = #{insuranceCompanyNameLess}</if>
+      <if test ="null != insuranceCompanyEnName">AND insurance_company_en_name = #{insuranceCompanyEnName}</if>
+      <if test ="null != insuranceCompanyEnNameLess">AND insurance_company_en_name_less = #{insuranceCompanyEnNameLess}</if>
+      <if test ="null != insuranceCompanyCode">AND insurance_company_code = #{insuranceCompanyCode}</if>
+      <if test ="null != orgLevel">AND org_level = #{orgLevel}</if>
+      <if test ="null != parentCompanyCode">AND parent_company_code = #{parentCompanyCode}</if>
+      <if test ="null != businessType">AND business_type = #{businessType}</if>
+      <if test ="null != dateOfEstablishment">AND date_of_establishment = #{dateOfEstablishment}</if>
+      <if test ="null != registeredCapital">AND registered_capital = #{registeredCapital}</if>
+      <if test ="null != fax">AND fax = #{fax}</if>
+      <if test ="null != tel">AND tel = #{tel}</if>
+      <if test ="null != postCode">AND post_code = #{postCode}</if>
+      <if test ="null != areaCode">AND area_code = #{areaCode}</if>
+      <if test ="null != address">AND address = #{address}</if>
+      <if test ="null != webSite">AND web_site = #{webSite}</if>
+      <if test ="null != mainBusiness">AND main_business = #{mainBusiness}</if>
+      <if test ="null != businessStatus">AND business_status = #{businessStatus}</if>
+      <if test ="null != indexCode">AND SUBSTR(insurance_company_code,1,length(#{indexCode})) = #{indexCode}</if>
+    </where>
+  </select>  
+  
+  <select id="getInsuranceDeptSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    select count(1)
+    from insurance_company_org a
+    LEFT JOIN insurance_company_org b ON a.PARENT_COMPANY_CODE = b.INSURANCE_COMPANY_CODE
+    LEFT JOIN insurance_company_org c ON a.INSURANCE_CODE = c.INSURANCE_COMPANY_CODE
+    <where>
+      a.IS_SHOW='0'
+      <if test ="null != createdBy">AND a.created_by = #{createdBy}</if>
+      <if test ="null != createdTimeStat">AND a.created_time &gt;= #{createdTimeStat}</if>
+      <if test ="null != createdTimeEnd">AND a.created_time &lt;= #{createdTimeEnd}</if>
+      <if test ="null != updatedBy">AND a.updated_by = #{updatedBy}</if>
+      <if test ="null != updatedTime">AND a.updated_time = #{updatedTime}</if>
+      <if test ="null != insuranceCompanyId">AND a.insurance_company_id = #{insuranceCompanyId}</if>
+      <if test ="null != insuranceCompanyName">AND a.insurance_company_name LIKE CONCAT('%',#{insuranceCompanyName},'%')</if>
+      <if test ="null != insuranceCompanyNameLess">AND a.insurance_company_name_less LIKE CONCAT('%',#{insuranceCompanyNameLess},'%')</if>
+      <if test ="null != insuranceCompanyEnName">AND a.insurance_company_en_name = #{insuranceCompanyEnName}</if>
+      <if test ="null != insuranceCompanyEnNameLess">AND a.insurance_company_en_name_less = #{insuranceCompanyEnNameLess}</if>
+      <if test ="null != insuranceCompanyCode">AND a.insurance_company_code LIKE CONCAT('%',#{insuranceCompanyCode},'%')</if>
+      <if test ="null != orgLevel">AND a.org_level = #{orgLevel}</if>
+      <if test ="null != noOrgLevel">AND a.org_level != #{noOrgLevel}</if>
+      <if test ="null != parentCompanyCode">AND a.parent_company_code = #{parentCompanyCode}</if>
+      <if test ="null != businessType">AND a.business_type = #{businessType}</if>
+      <if test ="null != dateOfEstablishment">AND a.date_of_establishment = #{dateOfEstablishment}</if>
+      <if test ="null != registeredCapital">AND a.registered_capital = #{registeredCapital}</if>
+      <if test ="null != fax">AND a.fax = #{fax}</if>
+      <if test ="null != tel">AND a.tel = #{tel}</if>
+      <if test ="null != postCode">AND a.post_code = #{postCode}</if>
+      <if test ="null != areaCode">AND a.area_code = #{areaCode}</if>
+      <if test ="null != address">AND a.address = #{address}</if>
+      <if test ="null != webSite">AND a.web_site = #{webSite}</if>
+      <if test ="null != mainBusiness">AND a.main_business = #{mainBusiness}</if>
+      <if test ="null != businessStatus">AND a.business_status = #{businessStatus}</if>
+    </where>
+  </select>
+  <sql id="Base_Column_List">
+                `created_by`,
+                 DATE_FORMAT(created_time,'%Y-%m-%d %h:%m:%s') as created_time,
+                `updated_by`,
+                `updated_time`,
+                `insurance_company_id`,
+                `insurance_company_name`,
+                `insurance_company_name_less`,
+                `insurance_company_en_name`,
+                `insurance_company_en_name_less`,
+                `insurance_company_code`,
+                `insurance_code`,
+                `org_level`,
+                `parent_company_code`,
+                `business_type`,
+                `date_of_establishment`,
+                `registered_capital`,
+                `fax`,
+                `tel`,
+                `post_code`,
+                `area_code`,
+                `address`,
+                `web_site`,
+                `main_business`,
+                `business_status`
+    </sql>
+
+    <insert id="addInsuranceDept" parameterType="com.hzcf.pojo.insurance.InsuranceDept">
+        INSERT INTO insurance_company_org
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != createdBy">
+                `created_by`,
+            </if>
+            <if test="null != createdTime">
+                `created_time`,
+            </if>
+            <if test="null != updatedBy">
+                `updated_by`,
+            </if>
+            <if test="null != updatedTime">
+                `updated_time`,
+            </if>
+            <if test="null != insuranceCompanyId">
+                `insurance_company_id`,
+            </if>
+            <if test="null != insuranceCompanyName">
+                `insurance_company_name`,
+            </if>
+            <if test="null != insuranceCompanyNameLess">
+                `insurance_company_name_less`,
+            </if>
+            <if test="null != insuranceCompanyEnName">
+                `insurance_company_en_name`,
+            </if>
+            <if test="null != insuranceCompanyEnNameLess">
+                `insurance_company_en_name_less`,
+            </if>
+            <if test="null != insuranceCompanyCode">
+                `insurance_company_code`,
+            </if>
+            <if test="null != insuranceCode">
+                `insurance_code`,
+            </if>
+            <if test="null != orgLevel">
+                `org_level`,
+            </if>
+            <if test="null != parentCompanyCode">
+                `parent_company_code`,
+            </if>
+            <if test="null != businessType">
+                `business_type`,
+            </if>
+            <if test="null != dateOfEstablishment">
+                `date_of_establishment`,
+            </if>
+            <if test="null != registeredCapital">
+                `registered_capital`,
+            </if>
+            <if test="null != fax">
+                `fax`,
+            </if>
+            <if test="null != tel">
+                `tel`,
+            </if>
+            <if test="null != postCode">
+                `post_code`,
+            </if>
+            <if test="null != areaCode">
+                `area_code`,
+            </if>
+            <if test="null != address">
+                `address`,
+            </if>
+            <if test="null != webSite">
+                `web_site`,
+            </if>
+            <if test="null != mainBusiness">
+                `main_business`,
+            </if>
+            <if test="null != businessStatus">
+                `business_status`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != createdBy">
+                #{createdBy},
+            </if>
+            <if test="null != createdTime">
+                #{createdTime},
+            </if>
+            <if test="null != updatedBy">
+                #{updatedBy},
+            </if>
+            <if test="null != updatedTime">
+                #{updatedTime},
+            </if>
+            <if test="null != insuranceCompanyId">
+                #{insuranceCompanyId},
+            </if>
+            <if test="null != insuranceCompanyName">
+                #{insuranceCompanyName},
+            </if>
+            <if test="null != insuranceCompanyNameLess">
+                #{insuranceCompanyNameLess},
+            </if>
+            <if test="null != insuranceCompanyEnName">
+                #{insuranceCompanyEnName},
+            </if>
+            <if test="null != insuranceCompanyEnNameLess">
+                #{insuranceCompanyEnNameLess},
+            </if>
+            <if test="null != insuranceCompanyCode">
+                #{insuranceCompanyCode},
+            </if>
+            <if test="null != insuranceCode">
+                #{insuranceCode},
+            </if>
+            <if test="null != orgLevel">
+                #{orgLevel},
+            </if>
+            <if test="null != parentCompanyCode">
+                #{parentCompanyCode},
+            </if>
+            <if test="null != businessType">
+                #{businessType},
+            </if>
+            <if test="null != dateOfEstablishment">
+                #{dateOfEstablishment},
+            </if>
+            <if test="null != registeredCapital">
+                #{registeredCapital},
+            </if>
+            <if test="null != fax">
+                #{fax},
+            </if>
+            <if test="null != tel">
+                #{tel},
+            </if>
+            <if test="null != postCode">
+                #{postCode},
+            </if>
+            <if test="null != areaCode">
+                #{areaCode},
+            </if>
+            <if test="null != address">
+                #{address},
+            </if>
+            <if test="null != webSite">
+                #{webSite},
+            </if>
+            <if test="null != mainBusiness">
+                #{mainBusiness},
+            </if>
+            <if test="null != businessStatus">
+                #{businessStatus},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM insurance_company_org
+        WHERE `id_` = #{id}
+    </delete>
+    <update id="deleteInsuranceDept" parameterType="java.lang.String">
+        <foreach collection="array" index="index" item="item">
+        update insurance_company_org set IS_SHOW='1'
+        where INSURANCE_COMPANY_CODE=#{item}
+        and IS_SHOW='0';
+        </foreach>
+    </update>
+
+    <delete id="deleteInsuranceOrg" parameterType="java.lang.String">
+        update insurance_company_org set IS_SHOW='1'
+        where INSURANCE_CODE
+        in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and IS_SHOW='0'
+    </delete>
+
+    <update id="updateInsuranceDept" parameterType="com.hzcf.pojo.insurance.InsuranceDept">
+        UPDATE insurance_company_org
+        <set>
+            <if test="null != createdBy">created_by = #{createdBy},</if>
+            <if test="null != createdTime">created_time = #{createdTime},</if>
+            <if test="null != updatedBy">updated_by = #{updatedBy},</if>
+            <if test="null != updatedTime">updated_time = #{updatedTime},</if>
+            <if test="null != insuranceCompanyId">insurance_company_id = #{insuranceCompanyId},</if>
+            <if test="null != insuranceCompanyName">insurance_company_name = #{insuranceCompanyName},</if>
+            <if test="null != insuranceCompanyNameLess">insurance_company_name_less = #{insuranceCompanyNameLess},</if>
+            <if test="null != insuranceCompanyEnName">insurance_company_en_name = #{insuranceCompanyEnName},</if>
+            <if test="null != insuranceCompanyEnNameLess">insurance_company_en_name_less =
+                #{insuranceCompanyEnNameLess},
+            </if>
+            <if test="null != insuranceCompanyCode">insurance_company_code = #{insuranceCompanyCode},</if>
+            <if test="null != insuranceCode">insurance_code = #{insuranceCode},</if>
+            <if test="null != orgLevel">org_level = #{orgLevel},</if>
+            <if test="null != parentCompanyCode">parent_company_code = #{parentCompanyCode},</if>
+            <if test="null != businessType">business_type = #{businessType},</if>
+            <if test="null != dateOfEstablishment">date_of_establishment = #{dateOfEstablishment},</if>
+            <if test="null != registeredCapital">registered_capital = #{registeredCapital},</if>
+            <if test="null != fax">fax = #{fax},</if>
+            <if test="null != tel">tel = #{tel},</if>
+            <if test="null != postCode">post_code = #{postCode},</if>
+            <if test="null != areaCode">area_code = #{areaCode},</if>
+            <if test="null != address">address = #{address},</if>
+            <if test="null != webSite">web_site = #{webSite},</if>
+            <if test="null != mainBusiness">main_business = #{mainBusiness},</if>
+            <if test="null != businessStatus">business_status = #{businessStatus}</if>
+        </set>
+        WHERE `INSURANCE_COMPANY_ID` = #{insuranceCompanyId}
+    </update>
+
+
+    <select id="selectInsuranceBasicDept" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM insurance_company_org
+        WHERE `insurance_company_id` = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        <!-- SELECT <include refid="Base_Column_List" /> -->
+        SELECT *
+        FROM insurance_company_org
+        LIMIT #{offset}, #{endIndex}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM insurance_company_org
+   </select>
+
+    <select id="getInsCompanyByCode" resultMap="BaseResultMap">
+        SELECT *
+        FROM insurance_company_org where insurance_company_code = #{insuranceCompanyCode} limit 1
+   </select>
+
+    <select id="selectSubsetById" resultMap="BaseResultMap">
+      SELECT
+      INSURANCE_COMPANY_NAME
+      FROM
+      insurance_company_org o
+      WHERE
+      o.IS_SHOW='0' and
+	o.PARENT_COMPANY_CODE = #{id}
+
+	limit 1
+  </select>
+
+    <select id="selectSubsetOrgById" resultMap="BaseResultMap">
+      SELECT
+      INSURANCE_COMPANY_NAME
+      FROM
+      insurance_company_org o
+      WHERE
+      o.IS_SHOW='0' and
+	o.PARENT_COMPANY_CODE = #{id}
+
+	limit 1
+  </select>
+    <insert id="addErrorData">
+    INSERT INTO syn_error_data (type,data,CREATE_TIME,SYSTEM_CODE) VALUES('0',#{insuranceCompanyCode},NOW(),#{sys})
+  </insert>
+
+    <select id="selectSubsetByCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM insurance_company_org
+        where INSURANCE_CODE = #{code} or INSURANCE_COMPANY_CODE =#{code}
+    </select>
+    <select id="selectAllOrg" resultType="java.util.Map">
+    SELECT *
+    FROM insurance_company_org
+
+  </select>
+    <select id="selectOrg" resultType="java.util.Map">
+        SELECT *
+        FROM insurance_company_org
+        <where>
+            <if test="null != insuranceCompanyName">INSURANCE_COMPANY_NAME = #{insuranceCompanyName}</if>
+
+        </where>
+    </select>
+
+    <!-- 查询一级保险公司 -->
+    <select id="findFirstInsuranceCompany" resultType="hashmap">
+  	SELECT
+		INSURANCE_COMPANY_ID,
+		INSURANCE_COMPANY_NAME,
+		INSURANCE_COMPANY_NAME_LESS
+	FROM
+		insurance_company_org
+	WHERE
+		ORG_LEVEL = '01'
+  </select>
+
+
+    <select id="findCompanyOrgByCompanyId" parameterType="int" resultType="hashmap">
+	  SELECT
+			INSURANCE_COMPANY_ID,
+			INSURANCE_COMPANY_CODE,
+			INSURANCE_COMPANY_NAME,
+			INSURANCE_COMPANY_NAME_LESS,
+			PARENT_COMPANY_CODE
+		FROM
+			insurance_company_org
+		WHERE
+			INSURANCE_COMPANY_ID = #{insuranceCompanyId}
+  </select>
+
+    <select id="queryChildByCompanyCode" parameterType="String" resultMap="BaseResultMap">
+   	SELECT
+			INSURANCE_COMPANY_ID,
+			INSURANCE_COMPANY_CODE,
+			INSURANCE_COMPANY_NAME,
+			INSURANCE_COMPANY_NAME_LESS,
+			PARENT_COMPANY_CODE
+		FROM
+			insurance_company_org
+		WHERE
+			PARENT_COMPANY_CODE = #{insuranceCompanyCode}
+  
+  </select>
+
+
+
+    <select id="queryExistOrgByNameOrCode" parameterType="map" resultMap="BaseResultMap">
+        SELECT *
+        FROM insurance_company_org
+        WHERE  (
+            <if test="name != null and name != ''">
+                INSURANCE_COMPANY_NAME = #{name}
+            </if>
+            <if test="code != null and code != ''">
+              OR INSURANCE_COMPANY_CODE = #{code}
+            </if>
+        )
+        <if test="id != null and code !=''">
+            AND insurance_company_id != #{id}
+        </if>
+        AND IS_SHOW = '0'
+    </select>
+
+    <!--批量插入保险公司信息-->
+    <insert id="batchAddInsuranceDept" parameterType="java.util.List">
+        INSERT INTO insurance_company_org
+        (
+                `insurance_company_name`,
+                `insurance_company_name_less`,
+                `insurance_company_en_name`,
+                `insurance_company_en_name_less`,
+                `insurance_company_code`,
+                `business_type`,
+                `date_of_establishment`,
+                `registered_capital`,
+                `fax`,
+                `tel`,
+                `post_code`,
+        `org_level`,
+        `created_time`,
+        `created_by`,
+        `address`,
+        `web_site`,
+        `main_business`,
+        `area_code`
+           )
+        VALUES
+         <foreach collection="list" item="item"  separator=",">
+           (
+                #{item.insuranceCompanyName},
+                #{item.insuranceCompanyNameLess},
+                #{item.insuranceCompanyEnName},
+                #{item.insuranceCompanyEnNameLess},
+                #{item.insuranceCompanyCode},
+                #{item.businessType},
+                #{item.dateOfEstablishment},
+                #{item.registeredCapital},
+                #{item.fax},
+                #{item.tel},
+                #{item.postCode},
+                #{item.orgLevel},
+                #{item.createdTime},
+                #{item.createdBy},
+                #{item.address},
+                #{item.webSite},
+                #{item.mainBusiness},
+                #{item.areaCode}
+            )
+        </foreach>
+
+    </insert>
+    <!-- 获取该保险公司下的所有保险公司机构编号 -->
+    <select id="getAllChildInsCompIds" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT getAllChildInsCompIds(#{insuranceCompanyCode});
+    </select>
+
+</mapper>

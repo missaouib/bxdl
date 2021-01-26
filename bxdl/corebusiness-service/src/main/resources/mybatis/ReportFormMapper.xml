@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.ReportFormMapper">
+
+    <select id="getSettleRequireIndexData" resultType="java.util.Map">
+        SELECT
+            t.check_month SETTLE_MONTH,
+            soi.SALES_ORG_CODE SALES_ORG_CODE,
+            soi.SALES_ORG_NAME SALES_ORG_NAME,
+            ico.INSURANCE_COMPANY_CODE COMPANY_ORG_CODE,
+            ico.INSURANCE_COMPANY_NAME COMPANY_ORG_NAME,
+            SUM( CASE t.check_status WHEN '1' THEN t.total_cost ELSE 0 END )  SETTLE_FEE,
+            SUM( CASE t.settle_status WHEN '1' THEN t.total_cost ELSE 0 END ) SETTLED_FEE
+        FROM
+            check_policy_data_hk t
+            INNER JOIN insurance_company_org ico ON ico.INSURANCE_COMPANY_ID=t.company_org_id
+            INNER JOIN sales_org_info soi ON soi.SALES_ORG_ID = t.sales_org_id
+        <where>
+            <if test ="null != settleMonth and settleMonth != ''">AND t.check_month = #{settleMonth}</if>
+            <!--<if test ="null != salesOrgId and salesOrgId != ''">AND t.sales_org_id = #{salesOrgId}</if>-->
+            <if test ="null != myAllOrgIds and myAllOrgIds != ''">AND FIND_IN_SET(t.sales_org_id,#{myAllOrgIds})</if>
+            <if test ="null != companyOrgId and companyOrgId != ''">AND t.company_org_id = #{companyOrgId}</if>
+        </where>
+        GROUP BY
+            t.check_month,
+            t.sales_org_id,
+            t.company_org_id
+        ORDER BY
+            t.check_month DESC
+        LIMIT #{startIndex}, #{endIndex}
+    </select>
+
+    <select id="getSettleRequireIndexDataSize" resultType="java.lang.Long">
+        SELECT
+            count(1)
+        FROM (
+            SELECT
+                t.check_month SETTLE_MONTH,
+                soi.SALES_ORG_CODE SALES_ORG_CODE,
+                soi.SALES_ORG_NAME SALES_ORG_NAME,
+                ico.INSURANCE_COMPANY_CODE COMPANY_ORG_CODE,
+                ico.INSURANCE_COMPANY_NAME COMPANY_ORG_NAME,
+                SUM( CASE t.check_status WHEN '1' THEN t.total_cost ELSE 0 END )  SETTLE_FEE,
+                SUM( CASE t.settle_status WHEN '1' THEN t.total_cost ELSE 0 END ) SETTLED_FEE
+            FROM
+                check_policy_data_hk t
+                INNER JOIN insurance_company_org ico ON ico.INSURANCE_COMPANY_ID=t.company_org_id
+                INNER JOIN sales_org_info soi ON soi.SALES_ORG_ID = t.sales_org_id
+            <where>
+                <if test ="null != settleMonth and settleMonth != ''">AND t.check_month = #{settleMonth}</if>
+                <!--<if test ="null != salesOrgId and salesOrgId != ''">AND t.sales_org_id = #{salesOrgId}</if>-->
+                <if test ="null != myAllOrgIds and myAllOrgIds != ''">AND FIND_IN_SET(t.sales_org_id,#{myAllOrgIds})</if>
+                <if test ="null != companyOrgId and companyOrgId != ''">AND t.company_org_id = #{companyOrgId}</if>
+            </where>
+            GROUP BY
+                t.check_month,
+                t.sales_org_id,
+                t.company_org_id
+        ) s
+    </select>
+
+</mapper>

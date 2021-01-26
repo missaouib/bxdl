@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyAttMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsPolicyAttEntity" >
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="type" property="type" />
+        <result column="policy_id" property="policyId" />
+        <result column="att_id" property="attId" />
+        <result column="att_name" property="attName" />
+        <result column="att_add" property="attAdd" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `created_by`,
+                `created_time`,
+                `type`,
+                `policy_id`,
+                `att_id`,
+                `att_name`,
+                `att_add`
+    </sql>
+<insert id="test" parameterType="java.util.List">
+    insert into ins_policy_att
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test ='null != item.createdBy'>
+            `created_by`,
+        </if>
+        <if test ='null != item.createdTime'>
+            `created_time`,
+        </if>
+        <if test ='null != item.type'>
+            `type`,
+        </if>
+        <if test ='null != item.policyId'>
+            `policy_id`,
+        </if>
+        <if test ='null != item.attId'>
+            `att_id`,
+        </if>
+        <if test ='null != item.attName'>
+            `att_name`,
+        </if>
+        <if test ='null != item.attAdd'>
+            `att_add`
+        </if>
+    </trim>
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != item.createdBy'>
+                #{item.createdBy},
+            </if>
+            <if test ='null != item.createdTime'>
+                #{item.createdTime},
+            </if>
+            <if test ='null != item.type'>
+                #{item.type},
+            </if>
+            <if test ='null != item.policyId'>
+                #{item.policyId},
+            </if>
+            <if test ='null != item.attId'>
+                #{item.attId},
+            </if>
+            <if test ='null != item.attName'>
+                #{item.attName},
+            </if>
+            <if test ='null != item.attAdd'>
+                #{item.attAdd}
+            </if>
+        </trim>
+    </foreach>
+
+
+</insert>
+    <insert id="addInsPolicyAtt"  parameterType="java.util.Map">
+        INSERT INTO ins_policy_att
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != createBy'>
+                `created_by`,
+            </if>
+            <if test ='null != createTime'>
+                `created_time`,
+            </if>
+            <if test ='null != type'>
+                `type`,
+            </if>
+            <if test ='null != policyId'>
+                `policy_id`,
+            </if>
+            <if test ='null != attId'>
+                `att_id`,
+            </if>
+            <if test ='null != attName'>
+                `att_name`,
+            </if>
+            <if test ='null != attAdd'>
+                `att_add`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != createBy'>
+                #{createBy},
+            </if>
+            <if test ='null != createTime'>
+                #{createTime},
+            </if>
+            <if test ='null != type'>
+                #{type},
+            </if>
+            <if test ='null != policyId'>
+                #{policyId},
+            </if>
+            <if test ='null != attId'>
+                #{attId},
+            </if>
+            <if test ='null != attName'>
+                #{attName},
+            </if>
+            <if test ='null != attAdd'>
+                #{attAdd}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM ins_policy_att
+        WHERE `att_id` = #{ipaId}
+    </delete>
+    <delete id="deleteByPolicyIdAndType">
+        DELETE FROM ins_policy_att
+        WHERE policy_id = #{policyId} and `type` = #{type}
+    </delete>
+
+    <update id="updateInsPolicyAtt" parameterType="com.hzcf.pojo.insurancePolicy.InsPolicyAttEntity">
+        UPDATE ins_policy_att
+        <set>
+            <if test ='null != createdBy'>created_by = #{createdBy},</if>
+            <if test ='null != createdTime'>created_time = #{createdTime},</if>
+            <if test ='null != type'>type = #{type},</if>
+            <if test ='null != policyId'>policy_id = #{policyId},</if>
+            <if test ='null != attId'>att_id = #{attId},</if>
+            <if test ='null != attName'>att_name = #{attName},</if>
+            <if test ='null != attAdd'>att_add = #{attAdd}</if>
+        </set>
+        WHERE `POLICY_ID` = #{policyId} and `att_id` = #{ipaId}
+    </update>
+
+
+    <select id="selectInsPolicyAttEntityByKey" resultMap="BaseResultMap">
+        SELECT
+        ipa.`created_by`,
+        ipa.`created_time`,
+        ipa.`type`,
+        ipa.`policy_id`,
+        ipa.`att_id`,
+        ipa.`att_name`,
+        ipa.`att_add`
+        FROM
+        ins_policy_att ipa
+        WHERE
+        (ipa.POLICY_ID  = #{id} or ipa.POLICY_ID =(select CORRESPONDING FROM ins_policy_insured_person p WHERE p.POLICY_ID=#{id}))
+        <if test ='null != type'>
+           and ipa.type =#{type}
+        </if>
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ins_policy_att
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_policy_att
+    </select>
+
+</mapper>

@@ -1,0 +1,1527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsPolicyInsuredPersonMapper">
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsPolicyInsuredPersonEntity">
+        <result column="insured_person_id" property="insuredPersonId" />
+        <result column="insurance_company_id" property="insuranceCompanyId" />
+        <result column="agent_id" property="agentId" />
+        <result column="team_id" property="teamId" />
+        <result column="org_id" property="orgId" />
+        <result column="total_premium" property="totalPremium" />
+        <result column="insured_person_id" property="insuredPersonId"/>
+        <result column="type" property="type"/>
+        <result column="policy_id" property="policyId"/>
+        <result column="relationship" property="relationship"/>
+        <result column="card_type" property="cardType"/>
+        <result column="card_no" property="cardNo"/>
+        <result column="name" property="name"/>
+        <result column="mobile" property="mobile"/>
+        <result column="sex" property="sex"/>
+        <result column="birthday" property="birthday"/>
+        <result column="annual_income" property="annualIncome"/>
+        <result column="home_address" property="homeAddress"/>
+        <result column="is_multiple_insure" property="isMultipleInsure"/>
+        <result column="is_inform_health" property="isInformHealth"/>
+        <result column="edu_background" property="eduBackground"/>
+        <result column="marital_status" property="maritalStatus"/>
+        <result column="company_address" property="companyAddress"/>
+        <result column="telephone" property="telephone"/>
+        <result column="email" property="email"/>
+        <result column="home_postal_code" property="homePostalCode"/>
+        <result column="domicile_address" property="domicileAddress"/>
+        <result column="debts" property="debts"/>
+        <result column="occupation_code" property="occupationCode"/>
+        <result column="occupation" property="occupation"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="insure" property="insure"/>
+        <result column="state" property="state"/>
+        <result column="ins_state" property="insState"/>
+        <result column="underwriting_data" property="underwritingData"/>
+        <result column="take_effect_data" property="takeEffectData"/>
+        <result column="source" property="source"/>
+        <result column="affirm_no" property="affirmNo"/>
+        <result column="corresponding" property="corresponding"/>
+        <result column="statist_month" property="statistMonth" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `insured_person_id`,
+                 `insurance_company_id`,
+                `agent_id`,
+                `team_id`,
+                `org_id`,
+                `total_premium`,
+                `propose_date`,
+                `type`,
+                `policy_id`,
+                `relationship`,
+                `card_type`,
+                `card_no`,
+                `name`,
+                `mobile`,
+                `sex`,
+                `birthday`,
+                `annual_income`,
+                `home_address`,
+                `is_multiple_insure`,
+                `is_inform_health`,
+                `edu_background`,
+                `marital_status`,
+                `company_address`,
+                `telephone`,
+                `email`,
+                `home_postal_code`,
+                `domicile_address`,
+                `debts`,
+                `occupation_code`,
+                `occupation`,
+                `create_time`,
+                `create_by`,
+                `update_time`,
+                `update_by`,
+                `insure`,
+                state,
+                `ins_state`,
+                DATE_FORMAT(underwriting_data,'%Y-%m-%d') as underwritingData,
+                DATE_FORMAT(take_effect_data,'%Y-%m-%d') as takeEffectData,
+                `source`,
+                `affirm_no`,
+                `corresponding`,
+                 `statist_month`
+
+    </sql>
+    <!--添加单个-->
+    <insert id="addInsPolicyInsuredPerson" parameterType="java.util.Map">
+        INSERT INTO ins_policy_insured_person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test='null != insuredPersonId and ""!= insuredPersonId'>
+                `insured_person_id`,
+            </if>
+            <if test ='null != insuranceCompanyId and ""!= insuranceCompanyId'>
+                `insurance_company_id`,
+            </if>
+            <if test ='null != agentId and ""!= agentId'>
+                `agent_id`,
+            </if>
+            <if test ='null != teamId and ""!= teamId'>
+                `team_id`,
+            </if>
+            <if test ='null != orgId and ""!= orgId'>
+                `org_id`,
+            </if>
+            <if test ='null != totalPremium and ""!= totalPremium'>
+                `total_premium`,
+            </if>
+            <if test ='null != proposeDate and ""!= proposeDate'>
+                `propose_date`,
+            </if>
+            <if test='null != type and ""!= type'>
+                `type`,
+            </if>
+            <if test='null != policyId and ""!= policyId'>
+                `policy_id`,
+            </if>
+            <if test='null != relationship and ""!= relationship'>
+                `relationship`,
+            </if>
+            <if test='null != cardType and ""!= cardType'>
+                `card_type`,
+            </if>
+            <if test='null != cardNo and ""!= cardNo'>
+                `card_no`,
+            </if>
+            <if test='null != name and ""!= name'>
+                `name`,
+            </if>
+            <if test='null != mobile and ""!= mobile'>
+                `mobile`,
+            </if>
+            <if test='null != sex and ""!= sex'>
+                `sex`,
+            </if>
+            <if test='null != birthday and ""!= birthday'>
+                `birthday`,
+            </if>
+            <if test='null != annualIncome and ""!= annualIncome'>
+                `annual_income`,
+            </if>
+            <if test='null != homeAddress and ""!= homeAddress'>
+                `home_address`,
+            </if>
+            <if test='null != isMultipleInsure and ""!= isMultipleInsure'>
+                `is_multiple_insure`,
+            </if>
+            <if test='null != isInformHealth and ""!= isInformHealth'>
+                `is_inform_health`,
+            </if>
+            <if test='null != eduBackground and ""!= eduBackground'>
+                `edu_background`,
+            </if>
+            <if test='null != maritalStatus and ""!= maritalStatus'>
+                `marital_status`,
+            </if>
+            <if test='null != companyAddress and ""!= companyAddress'>
+                `company_address`,
+            </if>
+            <if test='null != telephone and ""!= telephone'>
+                `telephone`,
+            </if>
+            <if test='null != email and ""!= email'>
+                `email`,
+            </if>
+            <if test='null != homePostalCode and ""!= homePostalCode'>
+                `home_postal_code`,
+            </if>
+            <if test='null != domicileAddress and ""!= domicileAddress'>
+                `domicile_address`,
+            </if>
+            <if test='null != debts and ""!= debts'>
+                `debts`,
+            </if>
+            <if test='null != occupationCode and ""!= occupationCode'>
+                `occupation_code`,
+            </if>
+            <if test='null != occupation and ""!= occupation'>
+                `occupation`,
+            </if>
+            <if test='null != createTime and ""!= createTime'>
+                `create_time`,
+            </if>
+            <if test='null != createBy and ""!= createBy'>
+                `create_by`,
+            </if>
+            <if test='null != updateTime and ""!= updateTime'>
+                `update_time`,
+            </if>
+            <if test='null != updateBy and ""!= updateBy'>
+                `update_by`,
+            </if>
+            <if test='null != insure and ""!= insure'>
+                `insure`,
+            </if>
+            <if test='null != state and ""!= state'>
+                `STATE`,
+            </if>
+            <if test='null != insState and ""!= insState'>
+                `ins_state`,
+            </if>
+            <if test='null != underwritingData and ""!= underwritingData'>
+                `underwriting_data`,
+            </if>
+            <if test='null != takeEffectData and ""!= takeEffectData'>
+                `take_effect_data`,
+            </if>
+            <if test='null != corresponding and ""!= corresponding'>
+                `CORRESPONDING`,
+            </if>
+            <if test='null != source and ""!= source'>
+                `source`,
+            </if>
+            <if test='null != affirmNo and ""!= affirmNo'>
+                `affirm_no`,
+            </if>
+            <if test='null != mainInsurance and ""!= mainInsurance'>
+                `MAIN_INSURANCE`,
+            </if>
+            <if test ='null != statistMonth and ""!= statistMonth'>
+                `statist_month`,
+            </if>
+            <if test ='null != salesGradeId and ""!= salesGradeId'>
+            SALES_GRADE_ID
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='null != insuredPersonId and ""!= insuredPersonId'>
+                #{insuredPersonId},
+            </if>
+            <if test ='null != insuranceCompanyId and ""!= insuranceCompanyId'>
+                #{insuranceCompanyId},
+            </if>
+            <if test ='null != agentId and ""!= agentId'>
+                #{agentId},
+            </if>
+            <if test ='null != teamId and ""!= teamId'>
+                #{teamId},
+            </if>
+            <if test ='null != orgId and ""!= orgId'>
+                #{orgId},
+            </if>
+            <if test ='null != totalPremium and ""!= totalPremium'>
+                #{totalPremium},
+            </if>
+            <if test ='null != proposeDate and ""!= proposeDate'>
+                #{proposeDate},
+            </if>
+            <if test='null != type and ""!= type'>
+                #{type},
+            </if>
+            <if test='null != policyId and ""!= policyId'>
+                #{policyId},
+            </if>
+            <if test='null != relationship and ""!= relationship'>
+                #{relationship},
+            </if>
+            <if test='null != cardType and ""!= cardType'>
+                #{cardType},
+            </if>
+            <if test='null != cardNo and ""!= cardNo'>
+                #{cardNo},
+            </if>
+            <if test='null != name and ""!= name'>
+                #{name},
+            </if>
+            <if test='null != mobile and ""!= mobile'>
+                #{mobile},
+            </if>
+            <if test='null != sex and ""!= sex'>
+                #{sex},
+            </if>
+            <if test='null != birthday and ""!= birthday'>
+                #{birthday},
+            </if>
+            <if test='null != annualIncome and ""!= annualIncome'>
+                #{annualIncome},
+            </if>
+            <if test='null != homeAddress and ""!= homeAddress'>
+                #{homeAddress},
+            </if>
+            <if test='null != isMultipleInsure and ""!= isMultipleInsure'>
+                #{isMultipleInsure},
+            </if>
+            <if test='null != isInformHealth and ""!= isInformHealth'>
+                #{isInformHealth},
+            </if>
+            <if test='null != eduBackground and ""!= eduBackground'>
+                #{eduBackground},
+            </if>
+            <if test='null != maritalStatus and ""!= maritalStatus'>
+                #{maritalStatus},
+            </if>
+            <if test='null != companyAddress and ""!= companyAddress'>
+                #{companyAddress},
+            </if>
+            <if test='null != telephone and ""!= telephone'>
+                #{telephone},
+            </if>
+            <if test='null != email and ""!= email'>
+                #{email},
+            </if>
+            <if test='null != homePostalCode and ""!= homePostalCode'>
+                #{homePostalCode},
+            </if>
+            <if test='null != domicileAddress and ""!= domicileAddress'>
+                #{domicileAddress},
+            </if>
+            <if test='null != debts and ""!= debts'>
+                #{debts},
+            </if>
+            <if test='null != occupationCode and ""!= occupationCode'>
+                #{occupationCode},
+            </if>
+            <if test='null != occupation and ""!= occupation'>
+                #{occupation},
+            </if>
+            <if test='null != createTime and ""!= createTime'>
+                #{createTime},
+            </if>
+            <if test='null != createBy and ""!= createBy'>
+                #{createBy},
+            </if>
+            <if test='null != updateTime and ""!= updateTime'>
+                #{updateTime},
+            </if>
+            <if test='null != updateBy and ""!= updateBy'>
+                #{updateBy},
+            </if>
+            <if test='null != insure and ""!= insure'>
+                #{insure},
+            </if>
+            <if test='null != state and ""!= state'>
+                #{state},
+            </if>
+            <if test='null != insState and ""!= insState'>
+                #{insState},
+            </if>
+            <if test='null != underwritingData and ""!= underwritingData'>
+                #{underwritingData},
+            </if>
+            <if test='null != takeEffectData and ""!= takeEffectData'>
+                #{takeEffectData},
+            </if>
+            <if test='null != corresponding and ""!= corresponding'>
+                #{corresponding},
+            </if>
+            <if test='null != source and ""!= source'>
+                #{source},
+            </if>
+            <if test='null != affirmNo and ""!= affirmNo'>
+                #{affirmNo},
+            </if>
+            <if test='null != mainInsurance and ""!= mainInsurance'>
+                #{mainInsurance},
+            </if>
+            <if test ='null != statistMonth and ""!= statistMonth'>
+                #{statistMonth},
+            </if>
+            <if test ='null != salesGradeId and ""!= salesGradeId'>
+                 #{salesGradeId}
+            </if>
+        </trim>
+    </insert>
+    <!--批量添加-->
+    <insert id="batchAddInsPolicyInsuredPerson" parameterType="java.util.List">
+        INSERT INTO ins_policy_insured_person
+        (
+        BIRTHDAY,AGENT_ID,OCCUPATION,ANNUAL_INCOME,INSURE,SOURCE,TYPE,CARD_NO,INS_STATE,ORG_ID
+        ,RELATIONSHIP,AFFIRM_NO,HOME_ADDRESS,UNDERWRITING_DATA,SALES_GRADE_ID,SEX,CARD_TYPE,MOBILE,TOTAL_PREMIUM
+        ,TAKE_EFFECT_DATA,CREATE_BY,POLICY_ID,CREATE_TIME,CORRESPONDING,TEAM_ID,NAME,INSURANCE_COMPANY_ID,IS_INFORM_HEALTH
+        ,STATIST_MONTH,IS_MULTIPLE_INSURE,PROPOSE_DATE,EDU_BACKGROUND,MARITAL_STATUS,COMPANY_ADDRESS
+        ,TELEPHONE,EMAIL,HOME_POSTAL_CODE,DOMICILE_ADDRESS,DEBTS,OCCUPATION_CODE
+        )
+         values
+        <foreach collection="list" item="item"  separator=",">
+           (
+                #{item.birthday},
+                #{item.agentId},
+                #{item.occupation},
+                #{item.annualIncome},
+                #{item.insure},
+                #{item.source},
+                #{item.type},
+                #{item.cardNo},
+                #{item.insState},
+                #{item.orgId},
+                #{item.relationship},
+                #{item.affirmNo},
+                #{item.homeAddress},
+                #{item.underwritingData},
+                #{item.salesGradeId},
+                #{item.sex},
+                #{item.cardType},
+                #{item.mobile},
+                #{item.totalPremium},
+                #{item.takeEffectData},
+                #{item.createBy},
+                #{item.policyId},
+                #{item.createTime},
+                #{item.corresponding},
+                #{item.teamId},
+                #{item.name},
+                #{item.insuranceCompanyId},
+                #{item.isInformHealth},
+                #{item.staticMonth},
+                #{item.isMultipleInsure},
+                #{item.proposeDate},
+                #{item.eduBackground},
+                #{item.maritalStatus},
+                #{item.companyAddress},
+                #{item.telephone},
+                #{item.email},
+                #{item.homePostalCode},
+                #{item.domicileAddress},
+                #{item.debts},
+                #{item.occupationCode}
+
+            )
+        </foreach>
+    </insert>
+
+    <insert id="batchAddPolicyInsuredPerson" parameterType="java.util.List">
+        INSERT INTO ins_policy_insured_person
+        (
+        BIRTHDAY,AGENT_ID,OCCUPATION,ANNUAL_INCOME,INSURE,SOURCE,TYPE,CARD_NO,STATE,ORG_ID
+        ,RELATIONSHIP,AFFIRM_NO,HOME_ADDRESS,SALES_GRADE_ID,SEX,CARD_TYPE,MOBILE,TOTAL_PREMIUM
+        ,CREATE_BY,POLICY_ID,CREATE_TIME,TEAM_ID,NAME,INSURANCE_COMPANY_ID,IS_INFORM_HEALTH
+        ,STATIST_MONTH,IS_MULTIPLE_INSURE,PROPOSE_DATE,EDU_BACKGROUND,MARITAL_STATUS,COMPANY_ADDRESS
+        ,TELEPHONE,EMAIL,HOME_POSTAL_CODE,DOMICILE_ADDRESS,DEBTS,OCCUPATION_CODE
+        )
+        values
+        <foreach collection="list" item="item"  separator=",">
+            (
+                #{item.birthday},
+                #{item.agentId},
+                #{item.occupation},
+                #{item.annualIncome},
+                #{item.insure},
+                #{item.source},
+                #{item.type},
+                #{item.cardNo},
+                #{item.state},
+                #{item.orgId},
+                #{item.relationship},
+                #{item.affirmNo},
+                #{item.homeAddress},
+                #{item.salesGradeId},
+                #{item.sex},
+                #{item.cardType},
+                #{item.mobile},
+                #{item.totalPremium},
+                #{item.createBy},
+                #{item.policyId},
+                #{item.createTime},
+                #{item.teamId},
+                #{item.name},
+                #{item.insuranceCompanyId},
+                #{item.isInformHealth},
+                #{item.staticMonth},
+                #{item.isMultipleInsure},
+                #{item.proposeDate},
+                #{item.eduBackground},
+                #{item.maritalStatus},
+                #{item.companyAddress},
+                #{item.telephone},
+                #{item.email},
+                #{item.homePostalCode},
+                #{item.domicileAddress},
+                #{item.debts},
+                #{item.occupationCode}
+
+
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM ins_policy_insured_person
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="updateInsPolicyInsuredPerson" parameterType="java.util.Map">
+        UPDATE ins_policy_insured_person
+        <set>
+            <if test='null != insuredPersonId and "" != insuredPersonId'>insured_person_id = #{insuredPersonId},</if>
+            <if test ='null != insuranceCompanyId and "" != insuranceCompanyId'>insurance_company_id = #{insuranceCompanyId},</if>
+            <if test ='null != agentId and "" != agentId'>agent_id = #{agentId},</if>
+            <if test ='null != teamId and "" != teamId'>team_id = #{teamId},</if>
+            <if test ='null != orgId and "" != orgId'>org_id = #{orgId},</if>
+            <if test ='null != totalPremium and "" != totalPremium'>total_premium = #{totalPremium},</if>
+            <if test ='null != proposeDate and "" != proposeDate'>propose_date = #{proposeDate},</if>
+            <if test='null != type and "" != type'>type = #{type},</if>
+            <if test='null != policyId and "" != policyId'>policy_id = #{policyId},</if>
+            <if test='null != relationship and "" != relationship'>relationship = #{relationship},</if>
+            <if test='null != cardType and "" != cardType'>card_type = #{cardType},</if>
+            <if test='null != cardNo and "" != cardNo'>card_no = #{cardNo},</if>
+            <if test='null != name and "" != name'>name = #{name},</if>
+            <if test='null != mobile and "" != mobile'>mobile = #{mobile},</if>
+            <if test='null != sex and "" != sex'>sex = #{sex},</if>
+            <if test='null != birthday and "" != birthday'>birthday = #{birthday},</if>
+            <if test='null != annualIncome and "" != annualIncome'>annual_income = #{annualIncome},</if>
+            <if test='null != homeAddress and "" != homeAddress'>home_address = #{homeAddress},</if>
+            <if test='null != isMultipleInsure and "" != isMultipleInsure'>is_multiple_insure = #{isMultipleInsure},</if>
+            <if test='null != isInformHealth and "" != isInformHealth'>is_inform_health = #{isInformHealth},</if>
+            <if test='null != eduBackground and "" != eduBackground'>edu_background = #{eduBackground},</if>
+            <if test='null != maritalStatus and "" != maritalStatus'>marital_status = #{maritalStatus},</if>
+            <if test='null != companyAddress and "" != companyAddress'>company_address = #{companyAddress},</if>
+            <if test='null != telephone and "" != telephone'>telephone = #{telephone},</if>
+            <if test='null != email and "" != email'>email = #{email},</if>
+            <if test='null != homePostalCode and "" != homePostalCode'>home_postal_code = #{homePostalCode},</if>
+            <if test='null != domicileAddress and "" != domicileAddress'>domicile_address = #{domicileAddress},</if>
+            <if test='null != debts and "" != debts'>debts = #{debts},</if>
+            <if test='null != occupationCode and "" != occupationCode'>occupation_code = #{occupationCode},</if>
+            <if test='null != occupation and "" != occupation'>occupation = #{occupation},</if>
+            <if test='null != createTime and "" != createTime'>create_time = #{createTime},</if>
+            <if test='null != createBy and "" != createBy'>create_by = #{createBy},</if>
+            <if test='null != updateTime and "" != updateTime'>update_time = #{updateTime},</if>
+            <if test='null != updateBy and "" != updateBy'>update_by = #{updateBy},</if>
+            <if test='null != insure and "" != insure'>insure = #{insure},</if>
+            <if test='null != state and "" != state'>STATE = #{state},</if>
+            <if test='null != insState and "" != insState'>ins_state = #{insState},</if>
+            <if test='null != underwritingData and "" != underwritingData'>underwriting_data = #{underwritingData},</if>
+            <if test='null != takeEffectData and "" != takeEffectData'>take_effect_data = #{takeEffectData},</if>
+            <if test='null != affirmNo and "" != affirmNo'>affirm_no = #{affirmNo},</if>
+            <if test ='null != statistMonth and "" != statistMonth'>statist_month = #{statistMonth},</if>
+            <if test ='null != salesGradeId and "" != salesGradeId'>SALES_GRADE_ID = #{salesGradeId}</if>
+
+        </set>
+        WHERE `POLICY_ID` = #{policyId}
+    </update>
+
+
+    <select id="selectInsPolicyInsuredPersonEntityByKey" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_policy_insured_person p
+        WHERE p.POLICY_ID = #{id}
+
+    </select>
+
+     <select id="selectInsPolicyInsuredPersonEntityByCorresponding" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ins_policy_insured_person p
+        WHERE p.CORRESPONDING = #{corresponding}
+
+    </select>
+
+<select id="getTotalPremium" resultType="java.util.Map">
+    SELECT
+    sum(bd.TOTAL_PREMIUM/10000) as TOTAL_PREMIUM
+    FROM
+    ins_policy_insured_person bd
+    LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+    LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+    LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+    LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+    WHERE
+    1 = 1
+    <if test='null != principalDeputySign'> and cpcen.PRINCIPAL_DEPUTY_SIGN=#{principalDeputySign}</if>
+    <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+    <if test='null != productName'>and cp.PRODUCTS_NAME = #{productName}</if>
+    <if test='null != productCode'>and cp.PRODUCTS_CODE = #{productCode}</if>
+    <if test='null != salesAllOrgs'>
+        AND FIND_IN_SET(yg.sales_org_id, #{salesAllOrgs}) > 0
+    </if>
+    <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+    <if test='null != iphName'>and tbr.`NAME` = #{iphName}</if>
+    <if test='null != pipName'>and bd.`NAME` = #{pipName}</if>
+    <if test='null != empNo'>and yg.INSURANCE_SALER_NO = #{empNo}</if>
+    <if test='null != insure'>and DATE_FORMAT(bd.insure,'%Y%m%d') = DATE_FORMAT(#{insure},'%Y%m%d')</if>
+    <if test='null != insuredPersonId'>and insured_person_id = #{insuredPersonId}</if>
+    <if test='null != type'>and bd.type = #{type}</if>
+    <if test='null != policyId'>and bd.policy_id = #{policyId}</if>
+    <if test='null != relationship'>and relationship = #{relationship}</if>
+    <if test='null != cardType'>and card_type = #{cardType}</if>
+    <if test='null != cardNo'>and card_no = #{cardNo}</if>
+    <if test='null != name'>and name = #{name}</if>
+    <if test='null != mobile'>and mobile = #{mobile}</if>
+    <if test='null != sex'>and sex = #{sex}</if>
+    <if test='null != birthday'>and birthday = #{birthday}</if>
+    <if test='null != annualIncome'>and annual_income = #{annualIncome}</if>
+    <if test='null != homeAddress'>and home_address = #{homeAddress}</if>
+    <if test='null != isMultipleInsure'>and is_multiple_insure = #{isMultipleInsure}</if>
+    <if test='null != isInformHealth'>and is_inform_health = #{isInformHealth}</if>
+    <if test='null != eduBackground'>and edu_background = #{eduBackground}</if>
+    <if test='null != maritalStatus'>and marital_status = #{maritalStatus}</if>
+    <if test='null != companyAddress'>and company_address = #{companyAddress}</if>
+    <if test='null != telephone'>and telephone = #{telephone}</if>
+    <if test='null != email'>and email = #{email}</if>
+    <if test='null != homePostalCode'>and home_postal_code = #{homePostalCode}</if>
+    <if test='null != domicileAddress'>and domicile_address = #{domicileAddress}</if>
+    <if test='null != debts'>and debts = #{debts}</if>
+    <if test='null != occupationCode'>and occupation_code = #{occupationCode}</if>
+    <if test='null != occupation'>and occupation = #{occupation}</if>
+    <if test='null != createTime'>and create_time = #{createTime}</if>
+    <if test='null != createBy'>and create_by = #{createBy}</if>
+    <if test='null != updateTime'>and update_time = #{updateTime}</if>
+    <if test='null != updateBy'>and update_by = #{updateBy}</if>
+
+    <if test='null != insure'>and insure = #{insure}</if>
+    <if test='null != state'>and bd.state in (${state})</if>
+
+    <if test='null != startInsure'>
+        <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]></if>
+    <if test='null != endInsure'>
+        <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]></if>
+    <if test='null != startTakeEffectData'><![CDATA[  AND take_effect_data >= #{startTakeEffectData} ]]></if>
+    <if test='null != endTakeEffectData'><![CDATA[  AND take_effect_data <= #{endTakeEffectData} ]]></if>
+    <if test='null != startUnderwritingData'><![CDATA[  AND underwriting_data >= #{startUnderwritingData} ]]></if>
+    <if test='null != endUnderwritingData'><![CDATA[  AND underwriting_data <= #{endUnderwritingData} ]]></if>
+    <if test='null != state'>and state in (${state})</if>
+
+    <if test='null != insState'>and ins_state in (${insState})</if>
+    <if test='null != batchName'>and BATCH_NAME = #{batchName}</if>
+    <if test='null != source'>and SOURCE = #{source}</if>
+    <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+        AND FIND_IN_SET(yg.sales_org_id, #{myAllOrgIds}) > 0
+    </if>
+</select>
+    <select id="getInsurancePolicyList" resultType="java.util.Map">
+        SELECT
+        bd.INSURED_PERSON_ID,
+        bd.POLICY_ID,
+        bd.UNDERWRITING_DATA,
+        bd.TAKE_EFFECT_DATA,
+        bxgs.INSURANCE_COMPANY_NAME,
+        cp.PRODUCTS_CODE as PRODUCT_CODE,
+        cp.PRODUCTS_NAME as PRODUCT_NAME,
+        cpcen.PREMIUM,
+        cpcen.PRINCIPAL_DEPUTY_SIGN,
+        bm.SALES_ORG_NAME,
+        team.SALES_TEAM_NAME,
+        tbr.`NAME` AS NAME1,
+        bd.`NAME` AS NAME2,
+        yg.INSURANCE_SALER_NO as EMPLOYEE_NO,
+        yg.INSURANCE_SALER AS NAME3,
+        bd.INSURE,
+        bd.STATE,
+        bd.INS_STATE,
+        bd.CORRESPONDING,
+        pie.RECE_CUSTOMER_SIGNATURE
+        FROM
+        ins_policy_insured_person bd
+        LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+        LEFT JOIN insurance_company_org bxgs ON bd.INSURANCE_COMPANY_ID = bxgs.INSURANCE_COMPANY_ID
+        LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+        LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+        LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = bd.POLICY_ID
+        WHERE
+        1 = 1
+        <if test='null != principalDeputySign'> and cpcen.PRINCIPAL_DEPUTY_SIGN=#{principalDeputySign}</if>
+        <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+        <if test='null != productName'>and cp.PRODUCTS_NAME = #{productName}</if>
+        <if test='null != productCode'>and cp.PRODUCTS_CODE = #{productCode}</if>
+        <if test='null != salesAllOrgs'>
+            AND FIND_IN_SET(yg.sales_org_id, #{salesAllOrgs}) > 0
+        </if>
+        <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+        <if test='null != iphName'>and tbr.`NAME` = #{iphName}</if>
+        <if test='null != pipName'>and bd.`NAME` = #{pipName}</if>
+        <if test='null != empNo'>and yg.INSURANCE_SALER_NO = #{empNo}</if>
+
+        <if test='null != insure'>and DATE_FORMAT(bd.insure,'%Y%m%d') = DATE_FORMAT(#{insure},'%Y%m%d')</if>
+        <if test='null != insuredPersonId'>and insured_person_id = #{insuredPersonId}</if>
+        <if test='null != type'>and bd.type = #{type}</if>
+        <if test='null != policyId'>and bd.policy_id = #{policyId}</if>
+        <if test='null != selectListIds'>and bd.policy_id in (${selectListIds})</if>
+
+        <if test='null != notSelectListIds'>and bd.policy_id not in (${notSelectListIds})</if>
+        <if test='null != relationship'>and relationship = #{relationship}</if>
+        <if test='null != cardType'>and card_type = #{cardType}</if>
+        <if test='null != cardNo'>and card_no = #{cardNo}</if>
+        <if test='null != name'>and name = #{name}</if>
+        <if test='null != mobile'>and mobile = #{mobile}</if>
+        <if test='null != sex'>and sex = #{sex}</if>
+        <if test='null != birthday'>and birthday = #{birthday}</if>
+        <if test='null != annualIncome'>and annual_income = #{annualIncome}</if>
+        <if test='null != homeAddress'>and home_address = #{homeAddress}</if>
+        <if test='null != isMultipleInsure'>and is_multiple_insure = #{isMultipleInsure}</if>
+        <if test='null != isInformHealth'>and is_inform_health = #{isInformHealth}</if>
+        <if test='null != eduBackground'>and edu_background = #{eduBackground}</if>
+        <if test='null != maritalStatus'>and marital_status = #{maritalStatus}</if>
+        <if test='null != companyAddress'>and company_address = #{companyAddress}</if>
+        <if test='null != telephone'>and telephone = #{telephone}</if>
+        <if test='null != email'>and email = #{email}</if>
+        <if test='null != homePostalCode'>and home_postal_code = #{homePostalCode}</if>
+        <if test='null != domicileAddress'>and domicile_address = #{domicileAddress}</if>
+        <if test='null != debts'>and debts = #{debts}</if>
+        <if test='null != occupationCode'>and occupation_code = #{occupationCode}</if>
+        <if test='null != occupation'>and occupation = #{occupation}</if>
+        <if test='null != createTime'>and create_time = #{createTime}</if>
+        <if test='null != createBy'>and create_by = #{createBy}</if>
+        <if test='null != updateTime'>and update_time = #{updateTime}</if>
+        <if test='null != updateBy'>and update_by = #{updateBy}</if>
+        <if test='null != insure'>and insure = #{insure}</if>
+        <if test='null != state'>and bd.state in (${state})</if>
+        <if test='null != startInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != endInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != startTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') >= DATE_FORMAT(#{startTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != endTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') <= DATE_FORMAT(#{endTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != startUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') >= DATE_FORMAT(#{startUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != endUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') <= DATE_FORMAT(#{endUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != state'>and state in (${state})</if>
+        <if test='null != insState'>and ins_state in (${insState})</if>
+        <if test='null != batchName'>and BATCH_NAME = #{batchName}</if>
+        <if test='null != source'>and SOURCE = #{source}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+        ORDER BY create_time DESC,INSURED_PERSON_ID DESC
+        LIMIT #{startIndex}, #{pageSizeInt}
+    </select>
+    <select id="getInsurancePolicyAllList" resultType="java.util.Map">
+       SELECT
+        bxgs.INSURANCE_COMPANY_NAME,
+        bd.POLICY_ID,
+        bd.CORRESPONDING,
+        DATE_FORMAT(bd.INSURE, '%Y-%m-%d') INSURE,
+        DATE_FORMAT(
+            bd.UNDERWRITING_DATA,
+            '%Y-%m-%d'
+        ) UNDERWRITING_DATA,
+        DATE_FORMAT(
+            bd.TAKE_EFFECT_DATA,
+            '%Y-%m-%d'
+        ) TAKE_EFFECT_DATA,
+        cp.PRODUCTS_NAME AS PRODUCT_NAME,
+        cpcen.INSURED_AMOUNT,
+        cpcen.PREMIUM,
+        cpcen.PAYMENT_METHOD,
+        cpcen.PAYMENT,
+        cpcen.PERIOD_OF_INSURANCE,
+        yg.INSURANCE_SALER_NO AS EMPLOYEE_NO,
+        tbr.`NAME` AS NAME1,
+        tbr.SEX AS SEX1,
+        tbr.CARD_TYPE AS CARD_TYPE1,
+        tbr.CARD_NO AS CARD_NO1,
+        tbr.MOBILE AS MOBILE1,
+        tbr.BIRTHDAY AS BIRTHDAY1,
+        tbr.HOME_ADDRESS AS HOME_ADDRESS1,
+        bd.RELATIONSHIP,
+        bd.`NAME` AS NAME2,
+        bd.CARD_TYPE AS CARD_TYPE2,
+        bd.CARD_NO AS CARD_NO2,
+        bd.MOBILE AS MOBILE2,
+        bd.SEX AS SEX2,
+        bd.BIRTHDAY AS BIRTHDAY2,
+        bd.HOME_ADDRESS AS HOME_ADDRESS2,
+
+        bd.INSURED_PERSON_ID,
+        cp.PRODUCTS_CODE AS PRODUCT_CODE,
+        cpcen.PRINCIPAL_DEPUTY_SIGN,
+        bm.SALES_ORG_NAME,
+        team.SALES_TEAM_NAME,
+        yg.INSURANCE_SALER AS NAME3,
+        bd.STATE,
+        bd.INS_STATE,
+        pie.RECE_CUSTOMER_SIGNATURE,
+        pie.RECE_ORG_DATE,
+        pie.RECE_EXPLAIN,
+        pie.RETURN_TYPE,
+        pie.RETURN_ORG_DATE,
+        pie.RETURN_EXPLAIN,
+        inspie.NOTE_TYPE,
+        inspie.NOTE_IS_OR_NOT,
+        inspie.NOTE_EXPLAIN
+    FROM
+        ins_policy_insured_person bd
+    LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+    LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+    LEFT JOIN insurance_company_org bxgs ON bd.INSURANCE_COMPANY_ID = bxgs.INSURANCE_COMPANY_ID
+    LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+    LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+    LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+    LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+    LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = bd.POLICY_ID
+    LEFT JOIN ins_policy_insured_examine inspie ON inspie.POLICY_ID = bd.CORRESPONDING
+        WHERE
+        1 = 1
+        <if test='null != ids'> and  bd.policy_id in  (${ids})</if>
+        <if test='null != principalDeputySign'> and cpcen.PRINCIPAL_DEPUTY_SIGN=#{principalDeputySign}</if>
+        <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+        <if test='null != productName'>and cp.PRODUCTS_NAME = #{productName}</if>
+        <if test='null != productCode'>and cp.PRODUCTS_CODE = #{productCode}</if>
+        <if test='null != salesOrgId'>and yg.SALES_ORG_ID = #{salesOrgId}</if>
+        <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+        <if test='null != iphName'>and tbr.`NAME` = #{iphName}</if>
+        <if test='null != pipName'>and bd.`NAME` = #{pipName}</if>
+        <if test='null != empNo'>and yg.INSURANCE_SALER_NO = #{empNo}</if>
+
+        <if test='null != insure'>and DATE_FORMAT(bd.insure,'%Y%m%d') = DATE_FORMAT(#{insure},'%Y%m%d')</if>
+        <if test='null != insuredPersonId'>and insured_person_id = #{insuredPersonId}</if>
+        <if test='null != type'>and bd.type = #{type}</if>
+        <if test='null != policyId'>and bd.policy_id = #{policyId}</if>
+        <if test='null != selectListIds'>and bd.policy_id in (${selectListIds})</if>
+
+        <if test='null != notSelectListIds'>and bd.policy_id not in (${notSelectListIds})</if>
+        <if test='null != relationship'>and relationship = #{relationship}</if>
+        <if test='null != cardType'>and card_type = #{cardType}</if>
+        <if test='null != cardNo'>and card_no = #{cardNo}</if>
+        <if test='null != name'>and name = #{name}</if>
+        <if test='null != mobile'>and mobile = #{mobile}</if>
+        <if test='null != sex'>and sex = #{sex}</if>
+        <if test='null != birthday'>and birthday = #{birthday}</if>
+        <if test='null != annualIncome'>and annual_income = #{annualIncome}</if>
+        <if test='null != homeAddress'>and home_address = #{homeAddress}</if>
+        <if test='null != isMultipleInsure'>and is_multiple_insure = #{isMultipleInsure}</if>
+        <if test='null != isInformHealth'>and is_inform_health = #{isInformHealth}</if>
+        <if test='null != eduBackground'>and edu_background = #{eduBackground}</if>
+        <if test='null != maritalStatus'>and marital_status = #{maritalStatus}</if>
+        <if test='null != companyAddress'>and company_address = #{companyAddress}</if>
+        <if test='null != telephone'>and telephone = #{telephone}</if>
+        <if test='null != email'>and email = #{email}</if>
+        <if test='null != homePostalCode'>and home_postal_code = #{homePostalCode}</if>
+        <if test='null != domicileAddress'>and domicile_address = #{domicileAddress}</if>
+        <if test='null != debts'>and debts = #{debts}</if>
+        <if test='null != occupationCode'>and occupation_code = #{occupationCode}</if>
+        <if test='null != occupation'>and occupation = #{occupation}</if>
+        <if test='null != createTime'>and create_time = #{createTime}</if>
+        <if test='null != createBy'>and create_by = #{createBy}</if>
+        <if test='null != updateTime'>and update_time = #{updateTime}</if>
+        <if test='null != updateBy'>and update_by = #{updateBy}</if>
+        <if test='null != insure'>and insure = #{insure}</if>
+        <if test='null != state'>and bd.state in (${state})</if>
+        <if test='null != startInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != endInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != startTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') >= DATE_FORMAT(#{startTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != endTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') <= DATE_FORMAT(#{endTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != startUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') >= DATE_FORMAT(#{startUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != endUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') <= DATE_FORMAT(#{endUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != state'>and state in (${state})</if>
+        <if test='null != insState'>and ins_state in (${insState})</if>
+        <if test='null != batchName'>and BATCH_NAME = #{batchName}</if>
+        <if test='null != source'>and SOURCE = #{source}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+        ORDER BY create_time DESC,INSURED_PERSON_ID DESC
+    </select>
+    <select id="getInsurancePolicyListSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM
+        ins_policy_insured_person bd
+        LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+        LEFT JOIN ins_policy_holder tbr ON tbr.POLICY_ID = bd.POLICY_ID
+        LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN ins_policy_insured_examine pie  on pie.POLICY_ID = bd.POLICY_ID
+        WHERE
+        1 = 1
+        <if test='null != principalDeputySign'> and cpcen.PRINCIPAL_DEPUTY_SIGN=#{principalDeputySign}</if>
+        <if test='null != insuranceCompanyId'>and bd.INSURANCE_COMPANY_ID = #{insuranceCompanyId}</if>
+        <if test='null != productName'>and cp.PRODUCTS_NAME = #{productName}</if>
+        <if test='null != productCode'>and cp.PRODUCTS_CODE = #{productCode}</if>
+        <if test='null != salesAllOrgs'>
+            AND FIND_IN_SET(yg.sales_org_id, #{salesAllOrgs}) > 0
+        </if>
+        <if test='null != salesTeamId'>and yg.SALES_TEAM_ID = #{salesTeamId}</if>
+        <if test='null != iphName'>and tbr.`NAME` = #{iphName}</if>
+        <if test='null != pipName'>and bd.`NAME` = #{pipName}</if>
+        <if test='null != empNo'>and yg.INSURANCE_SALER_NO = #{empNo}</if>
+
+        <if test='null != insure'>and DATE_FORMAT(bd.insure,'%Y%m%d') = DATE_FORMAT(#{insure},'%Y%m%d')</if>
+        <if test='null != insuredPersonId'>and insured_person_id = #{insuredPersonId}</if>
+        <if test='null != type'>and bd.type = #{type}</if>
+        <if test='null != policyId'>and bd.policy_id = #{policyId}</if>
+        <if test='null != selectListIds'>and bd.policy_id in (${selectListIds})</if>
+
+        <if test='null != notSelectListIds'>and bd.policy_id not in (${notSelectListIds})</if>
+        <if test='null != relationship'>and relationship = #{relationship}</if>
+        <if test='null != cardType'>and card_type = #{cardType}</if>
+        <if test='null != cardNo'>and card_no = #{cardNo}</if>
+        <if test='null != name'>and name = #{name}</if>
+        <if test='null != mobile'>and mobile = #{mobile}</if>
+        <if test='null != sex'>and sex = #{sex}</if>
+        <if test='null != birthday'>and birthday = #{birthday}</if>
+        <if test='null != annualIncome'>and annual_income = #{annualIncome}</if>
+        <if test='null != homeAddress'>and home_address = #{homeAddress}</if>
+        <if test='null != isMultipleInsure'>and is_multiple_insure = #{isMultipleInsure}</if>
+        <if test='null != isInformHealth'>and is_inform_health = #{isInformHealth}</if>
+        <if test='null != eduBackground'>and edu_background = #{eduBackground}</if>
+        <if test='null != maritalStatus'>and marital_status = #{maritalStatus}</if>
+        <if test='null != companyAddress'>and company_address = #{companyAddress}</if>
+        <if test='null != telephone'>and telephone = #{telephone}</if>
+        <if test='null != email'>and email = #{email}</if>
+        <if test='null != homePostalCode'>and home_postal_code = #{homePostalCode}</if>
+        <if test='null != domicileAddress'>and domicile_address = #{domicileAddress}</if>
+        <if test='null != debts'>and debts = #{debts}</if>
+        <if test='null != occupationCode'>and occupation_code = #{occupationCode}</if>
+        <if test='null != occupation'>and occupation = #{occupation}</if>
+        <if test='null != createTime'>and create_time = #{createTime}</if>
+        <if test='null != createBy'>and create_by = #{createBy}</if>
+        <if test='null != updateTime'>and update_time = #{updateTime}</if>
+        <if test='null != updateBy'>and update_by = #{updateBy}</if>
+
+        <if test='null != insure'>and insure = #{insure}</if>
+        <if test='null != state'>and bd.state in (${state})</if>
+
+        <if test='null != startInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') >= DATE_FORMAT(#{startInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != endInsure'>
+            <![CDATA[  AND DATE_FORMAT(insure,'%Y-%m-%d') <= DATE_FORMAT(#{endInsure},'%Y-%m-%d') ]]></if>
+        <if test='null != startTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') >= DATE_FORMAT(#{startTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != endTakeEffectData'><![CDATA[  AND DATE_FORMAT(take_effect_data,'%Y-%m-%d') <= DATE_FORMAT(#{endTakeEffectData},'%Y-%m-%d') ]]></if>
+        <if test='null != startUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') >= DATE_FORMAT(#{startUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != endUnderwritingData'><![CDATA[  AND DATE_FORMAT(underwriting_data,'%Y-%m-%d') <= DATE_FORMAT(#{endUnderwritingData},'%Y-%m-%d') ]]></if>
+        <if test='null != insState'>and ins_state in (${insState})</if>
+        <if test='null != batchName'>and BATCH_NAME = #{batchName}</if>
+        <if test='null != source'>and SOURCE = #{source}</if>
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+    </select>
+    <select id="selectNote" resultType="java.util.Map">
+        SELECT pip.POLICY_ID,ico.INSURANCE_COMPANY_NAME,ico.INSURANCE_COMPANY_ID,ph.POLICY_HOLDER_ID,ph.`NAME`
+        from ins_policy_insured_person pip
+        LEFT JOIN ins_policy_insured_examine pie on pip.POLICY_ID = pie.POLICY_ID
+        LEFT JOIN ins_policy_holder ph on ph.POLICY_ID = pip.POLICY_ID
+        LEFT JOIN insurance_company_org ico on ico.INSURANCE_COMPANY_ID = pie.BATCH_ORG_ID
+        WHERE pip.POLICY_ID=#{policyId}
+    </select>
+    <select id="selectBecomeInsurancePolicyReceiveList" resultType="java.util.Map">
+    SELECT
+        pip.POLICY_ID,
+        pie.BATCH_NAME,
+        /**
+        emp.INSURANCE_SALER as name,
+
+        emp.INSURANCE_SALES_ID as employee_id,*/
+        ppp.create_by,
+        /**
+        dept.SALES_TEAM_ID as dept_id,
+        dept.SALES_TEAM_NAME as dept_name,
+        */
+        pie.BATCH_TYPE,
+        isi.INSURANCE_SALER,
+        pie.BATCH_DATE,
+				ico.INSURANCE_COMPANY_NAME
+    FROM
+        ins_policy_insured_person pip
+    LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = pip.POLICY_ID
+    LEFT JOIN ins_policy_profits_person ppp ON ppp.POLICY_ID = pip.POLICY_ID
+    /**
+        LEFT JOIN insurance_sales_info emp ON ppp.create_by = emp.INSURANCE_SALES_ID
+
+    LEFT JOIN sales_team_info dept ON dept.SALES_TEAM_ID = emp.SALES_TEAM_ID
+        */
+  /*  LEFT JOIN ins_policy_proposal pp ON pp.PROPOSAL_ID = pip.POLICY_ID*/
+    LEFT JOIN insurance_sales_info isi ON pip.AGENT_ID = isi.INSURANCE_SALES_ID
+    LEFT JOIN insurance_company_org ico on pie.BATCH_ORG_ID = ico.INSURANCE_COMPANY_ID
+    WHERE
+        pip.INS_STATE = #{insState}
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(isi.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+        group  by    pie.BATCH_NAME
+    LIMIT #{startIndex}, #{pageSizeInt}
+
+</select>
+    <select id="selectBecomeInsurancePolicyReceiveListSize" resultType="java.lang.Long">
+        SELECT
+        count(1)
+    FROM
+        ins_policy_insured_person pip
+    LEFT JOIN ins_policy_insured_examine pie ON pie.POLICY_ID = pip.POLICY_ID
+    LEFT JOIN ins_policy_profits_person ppp ON ppp.POLICY_ID = pip.POLICY_ID
+
+  /*  LEFT JOIN ins_policy_proposal pp ON pp.PROPOSAL_ID = pip.POLICY_ID*/
+    LEFT JOIN insurance_sales_info isi ON pip.AGENT_ID = isi.INSURANCE_SALES_ID
+    WHERE
+        pip.INS_STATE = #{insState}
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(isi.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+    </select>
+    <select id="selectNetMap" resultType="java.util.Map">
+SELECT
+	bd.POLICY_ID,
+	pip2.POLICY_ID,
+	cp.PRODUCTS_CODE as PRODUCT_CODE,
+	cp.PRODUCTS_NAME as PRODUCT_NAME,
+    DATE_FORMAT(bd.insure,'%Y-%m-%d') as INSURE,
+    DATE_FORMAT(bd.UNDERWRITING_DATA,'%Y-%m-%d') as UNDERWRITING_DATA,
+	cpcen.PREMIUM,
+	cpcen.PREMIUM as bdPREMIUM,
+	yg.INSURANCE_SALER_NO,
+	yg.INSURANCE_SALER,
+	bd.INS_STATE
+FROM
+	ins_policy_insured_person bd
+LEFT JOIN ins_policy_insured_person pip2 ON pip2.POLICY_ID = bd.CORRESPONDING
+LEFT JOIN ins_information cpcen ON cpcen.POLICY_ID = bd.POLICY_ID
+LEFT JOIN ins_products_commission_ratio cp ON cp.PRODUCTS_RATIO_ID = cpcen.PRODUCT_ID
+/*LEFT JOIN ins_policy_proposal dlr ON dlr.PROPOSAL_ID = bd.POLICY_ID*/
+LEFT JOIN insurance_sales_info yg ON bd.AGENT_ID = yg.INSURANCE_SALES_ID
+
+WHERE bd.POLICY_ID=#{policyId} and cpcen.PRINCIPAL_DEPUTY_SIGN=#{principalDeputySign}
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(yg.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+    </select>
+    <select id="selectStateMap" resultType="java.util.Map">
+
+
+SELECT
+iss.state,
+iss.create_time,
+iss.create_by
+FROM ins_state iss
+WHERE
+	iss.POLICY_ID =#{policyId}
+    </select>
+
+    <update id="deleteInsByIds" parameterType="java.util.List">
+        update ins_policy_insured_person pip
+        <set>
+            pip.state ="0000",pip.INS_STATE="0000",pip.TYPE="3"
+        </set>
+        where pip.POLICY_ID in
+        <foreach collection="list" item="policy_no" index="index" separator=",">
+            (#{policy_no})
+        </foreach>
+
+    </update>
+
+    <delete id="deleteByIds" parameterType="java.util.List">
+       DELETE ipip ,
+         ii ,
+         ipie ,
+         ipa ,
+         iph ,
+         ippp
+        FROM ins_policy_insured_person ipip
+        LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID
+        LEFT JOIN ins_policy_insured_examine ipie ON ipip.POLICY_ID = ipie.POLICY_ID
+        LEFT JOIN ins_policy_att ipa ON ipip.POLICY_ID = ipa.POLICY_ID
+        LEFT JOIN ins_policy_holder iph ON ipip.POLICY_ID = iph.POLICY_ID
+        LEFT JOIN ins_policy_profits_person ippp ON ipip.POLICY_ID = ippp.POLICY_ID
+        WHERE ipip.POLICY_ID in
+                <foreach collection="list" item="policy_id" index="index" separator=",">
+                    (#{policy_id})
+                </foreach>
+    </delete>
+
+    <!--根据条件查询客户列表-->
+    <select id="queryCustomerList" parameterType="map" resultType="map">
+        SELECT a.policyId, a.name, a.cardType, a.cardNo, a.mobile, a.type, yg.INSURANCE_SALER AS newSaleName,
+        yg.INSURANCE_SALER_NO AS newEmployeeNo, bm.SALES_ORG_NAME AS newSalesOrgName, team.SALES_TEAM_NAME AS newSalesTeamName, a.createdTime
+        FROM (
+        SELECT
+        pip.POLICY_ID AS policyId,
+        pip.NAME AS name,
+        pip.CARD_TYPE AS cardType,
+        pip.CARD_NO AS cardNo,
+        pip.MOBILE AS mobile,
+        1 AS type,
+        pip.AGENT_ID AS AGENT_ID,
+        pip.CREATE_TIME AS createdTime
+        FROM ins_policy_insured_person pip
+        UNION ALL
+        SELECT
+        ph.POLICY_ID AS policyId,
+        ph.NAME AS name,
+        ph.CARD_TYPE AS cardType,
+        ph.CARD_NO AS cardNo,
+        ph.MOBILE AS mobile,
+        2 AS type,
+        i.AGENT_ID AS AGENT_ID,
+        i.CREATE_TIME AS createdTime
+        FROM ins_policy_holder ph JOIN ins_policy_insured_person i ON ph.POLICY_ID = i.POLICY_ID
+        ) AS a
+       /* LEFT JOIN insurance_core_business.ins_policy_proposal dlr ON dlr.PROPOSAL_ID = a.policyId*/
+        LEFT JOIN insurance_sales_info yg ON a.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+        LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+        <where>
+            <if test="name != null">
+                AND a.name = #{name}
+            </if>
+            <if test="cardNo != null">
+                AND a.cardNo = #{cardNo}
+            </if>
+            <if test="mobile != null">
+                AND a.mobile = #{mobile}
+            </if>
+            <if test="cardType != null">
+                AND a.cardType = #{cardType}
+            </if>
+            <if test="saleName != null">
+                AND yg.INSURANCE_SALER = #{saleName}
+            </if>
+            <if test="employeeNo != null">
+                AND yg.INSURANCE_SALER_NO = #{employeeNo}
+            </if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{salesAllOrgs}) > 0
+            </if>
+            <if test="salesTeamId != null">
+                AND team.SALES_TEAM_ID = #{salesTeamId}
+            </if>
+            <if test="cardNos != null ">
+                AND a.cardNo IN (${cardNos})
+            </if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        GROUP BY
+        a.cardNo
+        HAVING MAX(a.createdTime)
+        ORDER BY
+        a.createdTime DESC
+    </select>
+
+    <!--根据条件分页查询客户列表-->
+    <select id="queryCustomerPage" parameterType="map" resultType="map">
+        SELECT a.policyId, a.name, a.cardType, a.cardNo, a.mobile, a.type, yg.INSURANCE_SALER AS newSaleName,
+        yg.INSURANCE_SALER_NO AS newEmployeeNo, bm.SALES_ORG_NAME AS newSalesOrgName, team.SALES_TEAM_NAME AS newSalesTeamName, a.createdTime
+        FROM (
+            SELECT
+                pip.POLICY_ID AS policyId,
+                pip.NAME AS name,
+                pip.CARD_TYPE AS cardType,
+                pip.CARD_NO AS cardNo,
+                pip.MOBILE AS mobile,
+                1 AS type,
+                pip.AGENT_ID AS AGENT_ID,
+                pip.CREATE_TIME AS createdTime
+            FROM ins_policy_insured_person pip
+            UNION ALL
+            SELECT
+                ph.POLICY_ID AS policyId,
+                ph.NAME AS name,
+                ph.CARD_TYPE AS cardType,
+                ph.CARD_NO AS cardNo,
+                ph.MOBILE AS mobile,
+                2 AS type,
+                i.AGENT_ID AS AGENT_ID,
+                i.CREATE_TIME AS createdTime
+            FROM ins_policy_holder ph JOIN ins_policy_insured_person i ON ph.POLICY_ID = i.POLICY_ID
+        ) AS a
+      /*  LEFT JOIN insurance_core_business.ins_policy_proposal dlr ON dlr.PROPOSAL_ID = a.policyId*/
+        LEFT JOIN insurance_sales_info yg ON a.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+        LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+        <where>
+            1=1
+            <if test="name != null">
+                AND a.name = #{name}
+            </if>
+            <if test="cardNo != null">
+                AND a.cardNo = #{cardNo}
+            </if>
+            <if test="mobile != null">
+                AND a.mobile = #{mobile}
+            </if>
+            <if test="cardType != null">
+                AND a.cardType = #{cardType}
+            </if>
+            <if test="saleName != null">
+                AND yg.INSURANCE_SALER = #{saleName}
+            </if>
+            <if test="employeeNo != null">
+                AND yg.INSURANCE_SALER_NO = #{employeeNo}
+            </if>
+            <if test="salesAllOrgs != null">
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{salesAllOrgs}) > 0
+            </if>
+            <if test="salesTeamId != null">
+                AND team.SALES_TEAM_ID = #{salesTeamId}
+            </if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        GROUP BY
+        a.cardNo
+        HAVING MAX(a.createdTime)
+        ORDER BY
+        a.createdTime DESC
+        LIMIT #{startRow}, #{rows}
+    </select>
+
+    <!--查询客户数量-->
+    <select id="queryCustomerTotalCount" parameterType="map" resultType="long">
+        SELECT COUNT(1)
+        FROM (
+        SELECT COUNT(1)
+        FROM (
+        SELECT
+        pip.POLICY_ID AS policyId,
+        pip.NAME AS name,
+        pip.CARD_TYPE AS cardType,
+        pip.CARD_NO AS cardNo,
+        pip.MOBILE AS mobile,
+        1 AS type,
+        pip.AGENT_ID AS AGENT_ID,
+        pip.CREATE_TIME AS createdTime
+        FROM ins_policy_insured_person pip
+        UNION ALL
+        SELECT
+        ph.POLICY_ID AS policyId,
+        ph.NAME AS name,
+        ph.CARD_TYPE AS cardType,
+        ph.CARD_NO AS cardNo,
+        ph.MOBILE AS mobile,
+        2 AS type,
+        i.AGENT_ID AS AGENT_ID,
+        i.CREATE_TIME AS createdTime
+        FROM ins_policy_holder ph JOIN ins_policy_insured_person i ON ph.POLICY_ID = i.POLICY_ID
+        ) AS a
+       /* LEFT JOIN insurance_core_business.ins_policy_proposal dlr ON dlr.PROPOSAL_ID = a.policyId*/
+        LEFT JOIN insurance_sales_info yg ON a.AGENT_ID = yg.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+        LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+        <where>
+            1=1
+            <if test="name != null">
+                AND a.name = #{name}
+            </if>
+            <if test="cardNo != null">
+                AND a.cardNo = #{cardNo}
+            </if>
+            <if test="cardType != null">
+                AND a.cardType = #{cardType}
+            </if>
+            <if test="mobile != null">
+                AND a.mobile = #{mobile}
+            </if>
+            <if test="saleName != null">
+                AND yg.INSURANCE_SALER = #{saleName}
+            </if>
+            <if test="employeeNo != null">
+                AND yg.INSURANCE_SALER_NO = #{employeeNo}
+            </if>
+            <if test="salesAllOrgs != null">
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{salesAllOrgs}) > 0
+            </if>
+            <if test="salesTeamId != null">
+                AND team.SALES_TEAM_ID = #{salesTeamId}
+            </if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(bm.SALES_ORG_ID, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        GROUP BY
+        a.cardNo
+        HAVING MAX(a.createdTime)
+        ) AS B
+    </select>
+
+    <!--查询客户销售人员相关信息-->
+    <select id="queryFirstSales" parameterType="map" resultType="map">
+        SELECT
+            a.policyId,
+            a.NAME,
+            a.cardType,
+            a.cardNo,
+            a.molile,
+            a.type,
+            yg.INSURANCE_SALER AS firstSaleName,
+            yg.INSURANCE_SALER_NO AS firstEmployeeNo,
+            bm.SALES_ORG_NAME AS firstSalesOrgName,
+            team.SALES_TEAM_NAME AS firstSalesTeamName,
+            a.createdTime
+        FROM
+            (
+            SELECT
+                pip.POLICY_ID AS policyId,
+                pip.NAME AS NAME,
+                pip.CARD_TYPE AS cardType,
+                pip.CARD_NO AS cardNo,
+                pip.MOBILE AS molile,
+                1 AS type,
+                pip.AGENT_ID AS AGENT_ID,
+                pip.CREATE_TIME AS createdTime
+            FROM
+                ins_policy_insured_person pip UNION ALL
+            SELECT
+                ph.POLICY_ID AS policyId,
+                ph.NAME AS NAME,
+                ph.CARD_TYPE AS cardType,
+                ph.CARD_NO AS cardNo,
+                ph.MOBILE AS molile,
+                2 AS type,
+                i.AGENT_ID AS AGENT_ID,
+                i.CREATE_TIME AS createdTime
+            FROM
+                ins_policy_holder ph
+                JOIN ins_policy_insured_person i ON ph.POLICY_ID = i.POLICY_ID
+            ) AS a
+       /*     LEFT JOIN insurance_core_business.ins_policy_proposal dlr ON dlr.PROPOSAL_ID = a.policyId*/
+            LEFT JOIN insurance_sales_info yg ON a.AGENT_ID = yg.INSURANCE_SALES_ID
+            LEFT JOIN sales_org_info bm ON yg.SALES_ORG_ID = bm.SALES_ORG_ID
+            LEFT JOIN sales_team_info team ON yg.SALES_TEAM_ID = team.SALES_TEAM_ID
+            WHERE a.cardType = #{cardType} AND a.cardNo = #{cardNo}
+            ORDER BY a.createdTime ASC limit 1;
+    </select>
+
+
+    <select id="queryTotalPremiumAndOutCommissionCoefficient" resultType="map" parameterType="map">
+        SELECT ii.PRODUCT_ID, SUM(ii.PREMIUM) AS TOTAL_PREMIUM,ipcr.OUT_STANDARD_COMMISSION_COEFFICIENT
+        from ins_policy_insured_person ipip
+        LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID
+        LEFT JOIN ins_products_commission_ratio ipcr ON ii.PRODUCT_ID = ipcr.INSURANCE_PRODUCT_ID
+        WHERE ipip.`TYPE` = 2 AND ipip.INS_STATE = '1010'
+        AND (((ipip.STATIST_MONTH BETWEEN DATE_FORMAT(#{startTime},'%Y-%m-%d') AND DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        AND (ipip.STATIST_MONTH BETWEEN DATE_FORMAT(#{protocolStartTime},'%Y-%m-%d') AND DATE_FORMAT(#{protocolEndTime},'%Y-%m-%d'))
+        AND ipip.SOURCE = '2')
+        OR (<![CDATA[ ipip.UNDERWRITING_DATA >= #{startTime}]]>
+        <![CDATA[ AND ipip.UNDERWRITING_DATA < #{endTime}]]> AND <![CDATA[ ipip.UNDERWRITING_DATA >= #{protocolStartTime}]]>
+        <![CDATA[ AND ipip.UNDERWRITING_DATA < #{protocolEndTime}]]> AND ipip.SOURCE = '1'))
+        <if test="orgIds != null and orgIds.size > 0">
+            AND ipip.ORG_ID IN
+            <foreach collection="orgIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="productIds != null and productIds.size > 0">
+            AND ii.PRODUCT_ID IN
+            <foreach collection="productIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!--导入按结算月，录入的按承保日期（没有犹豫期）-->
+    <select id="queryPremiumForFYC" parameterType="map" resultType="map">
+        SELECT
+            ipip.POLICY_ID,
+            ii.PREMIUM,
+            ipcr.VALUE_COMMISSION_COEFFICIENT,
+            ipcr.INDEXING_COEFFICIENT
+        FROM
+	        ins_policy_insured_person ipip
+            LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID
+            LEFT JOIN ins_products_commission_ratio ipcr ON ii.PRODUCT_ID = ipcr.INSURANCE_PRODUCT_ID
+        WHERE
+            ipip.AGENT_ID = #{insuranceSalesId}
+            AND ipip.INS_STATE = '1010' AND ipip.`TYPE` = '2'
+            AND
+            ((ipip.SOURCE = '1'
+            <![CDATA[ AND ipip.UNDERWRITING_DATA >= #{startTime}]]>
+            <![CDATA[ AND ipip.UNDERWRITING_DATA < #{endTime}]]>
+            ) OR (
+            ipip.SOURCE = '2'
+            <![CDATA[ AND ipip.STATIST_MONTH >= DATE_FORMAT(#{startTime},'%Y-%m-%d')]]>
+            <![CDATA[ AND ipip.STATIST_MONTH < DATE_FORMAT(#{endTime},'%Y-%m-%d')]]>))
+    </select>
+
+    <select id="selectInsPolicyProposalEntityByKey" resultType="java.util.Map">
+          SELECT
+          ipp.`insurance_company_id`,
+           concat(CAST(ipp.`total_premium`AS DECIMAL(20,2))) AS total_premium,
+           ipp.`propose_date`,
+           ipp.`agent_id`,
+		   isi.INSURANCE_SALER_NO,
+		   isi.INSURANCE_SALER,
+		  isi.INSURANCE_SALES_ID,
+		  soi.SALES_ORG_ID,
+        soi.SALES_ORG_ENAME,
+        sti.SALES_TEAM_ID,
+        sti.SALES_TEAM_NAME
+        FROM ins_policy_insured_person ipp
+        LEFT JOIN insurance_sales_info isi on ipp.AGENT_ID = isi.INSURANCE_SALES_ID
+        LEFT JOIN sales_org_info soi on soi.SALES_ORG_ID = isi.SALES_ORG_ID
+        LEFT JOIN sales_team_info sti on sti.SALES_TEAM_ID = isi.SALES_TEAM_ID
+        WHERE `POLICY_ID` = #{id}
+        <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(isi.SALES_ORG_ID, #{myAllOrgIds}) > 0
+        </if>
+    </select>
+    <select id="selectInsProductAndDept" resultType="java.util.Map">
+        SELECT
+        cpper.MAIN_OR_ADDITIONAL,
+        cpper.INSURANCE_PERIOD_TYPE,
+        cpper.RENEWAL_PERIOD_TYPE,
+        cpson.PRODUCTS_RATIO_ID,
+        cpper.INSURANCE_TYPE,
+        cpper.INSURANCE_COMPANY_ID,
+        cpson.PRODUCTS_CODE
+        FROM insurance_product_info cpper
+        LEFT JOIN ins_products_commission_ratio cpson on  cpper.PRODUCT_ID=cpson.INSURANCE_PRODUCT_ID
+        WHERE cpson.PRODUCTS_NAME=#{productName}
+        <if test="null != productsStatus">
+            and PRODUCTS_STATUS = #{productsStatus}
+        </if>
+         <if test="null != insuranceCompanyId">
+            and cpper.INSURANCE_COMPANY_ID = #{insuranceCompanyId}
+        </if>
+    </select>
+    
+    <select id="getInsurancePolicySizeByStatishMonth" resultType="java.lang.Long">
+        SELECT
+	        count(1)
+	    FROM
+	        ins_policy_insured_person ipip
+	    WHERE ipip.`TYPE` = 2 AND ipip.INS_STATE = '1010' AND ((<![CDATA[ ipip.STATIST_MONTH >= DATE_FORMAT(#{startTime},'%Y%m%d')]]>
+	        <![CDATA[ AND ipip.STATIST_MONTH < DATE_FORMAT(#{endTime},'%Y%m%d')]]> AND ipip.SOURCE = '2')
+	        OR (<![CDATA[ ipip.UNDERWRITING_DATA >= #{startTime}]]>
+	        <![CDATA[ AND ipip.UNDERWRITING_DATA < #{endTime}]]> AND ipip.SOURCE = '1'))
+    </select>
+    
+    <select id="queryInsurancePolicyListByStatishMonth" resultType="java.util.Map">
+        SELECT
+	        ipip.INSURED_PERSON_ID
+	    FROM
+	        ins_policy_insured_person ipip
+	    WHERE ipip.`TYPE` = 2 AND ipip.INS_STATE = '1010' AND ((<![CDATA[ ipip.STATIST_MONTH >= DATE_FORMAT(#{startTime},'%Y%m%d')]]>
+	        <![CDATA[ AND ipip.STATIST_MONTH < DATE_FORMAT(#{endTime},'%Y%m%d')]]> AND ipip.SOURCE = '2')
+	        OR (<![CDATA[ ipip.UNDERWRITING_DATA >= #{startTime}]]>
+	        <![CDATA[ AND ipip.UNDERWRITING_DATA < #{endTime}]]> AND ipip.SOURCE = '1'))
+	    <if test="startRow != null and pageSize != null">
+			limit #{startRow} , #{pageSize}
+		</if>
+    </select>
+    
+    <select id="queryServiceChargeAndOutCommissionCoefficient" resultType="java.util.Map">
+        SELECT ipip.ORG_ID, ii.PRODUCT_ID, ii.PROTOCOL_ID, ii.PREMIUM, 
+			ipcr.OUT_STANDARD_COMMISSION_COEFFICIENT, iscp.RATE_TYPE, 
+			iscp.SETTLEMENT_INTERVAL, iscp.FIRST_YEAR_COST
+		FROM ins_policy_insured_person ipip
+		LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID 
+		LEFT JOIN ins_products_commission_ratio ipcr ON ii.PRODUCT_ID = ipcr.PRODUCTS_RATIO_ID
+		LEFT JOIN ins_service_charge_product iscp ON ii.PROTOCOL_ID = iscp.PROTOCOL_ID
+		WHERE ii.PRODUCT_ID = iscp.PRODUCT_ID AND ipip.INSURED_PERSON_ID = #{insuredPersonId}
+		and ((ipip.SOURCE = '2' 
+			AND (
+			(iscp.SETTLEMENT_INTERVAL = 0 AND ipip.STATIST_MONTH BETWEEN #{firstDayMonth,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+		    <if test="firstDayQuarter != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 1 AND ipip.STATIST_MONTH BETWEEN #{firstDayQuarter,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>    
+		    <if test="firstDayHalfYear != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 2 AND ipip.STATIST_MONTH BETWEEN #{firstDayHalfYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>    
+		    <if test="firstDayYear != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 3 AND ipip.STATIST_MONTH BETWEEN #{firstDayYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR})
+	        </if>    
+			)
+		) or (ipip.SOURCE = '1'  
+			AND (
+			(iscp.SETTLEMENT_INTERVAL = 0 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayMonth,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+		    <if test="firstDayQuarter != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 1 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayQuarter,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>    
+		    <if test="firstDayHalfYear != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 2 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayHalfYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>    
+		    <if test="firstDayYear != null">
+	            OR (iscp.SETTLEMENT_INTERVAL = 3 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR})
+	        </if>    
+			)
+		))
+    </select>
+    
+    <select id="queryRateAdjustAndOutCommissionCoefficient" resultType="java.util.Map">
+        SELECT
+			ipip.ORG_ID, ii.PRODUCT_ID,
+			ii.PROTOCOL_ID, ii.PREMIUM,
+			ipcr.OUT_STANDARD_COMMISSION_COEFFICIENT,
+			ipra.RATE_TYPE, ipra.SETTLEMENT_INTERVAL,
+			ipra.PRODUCT_TYPE, ipra.RATE_ADJUST_TYPE,
+			iprap.CHANGE_RATE, iprap.CHANGE_SUBJOIN_RATE,
+			iprap.ALL_CHANGE_RATE, iprap.ALL_CHANGE_SUBJOIN_RATE
+		FROM
+			ins_policy_insured_person ipip
+		LEFT JOIN ins_information ii ON ipip.POLICY_ID = ii.POLICY_ID
+		LEFT JOIN ins_products_commission_ratio ipcr ON ii.PRODUCT_ID = ipcr.PRODUCTS_RATIO_ID
+		LEFT JOIN ins_protocol_rate_adjust_param iprap ON iprap.PROTOCOL_ID = ii.PROTOCOL_ID
+		LEFT JOIN ins_protocol_rate_adjust ipra ON iprap.ADJUST_ID = ipra.ADJUST_ID
+		WHERE iprap.S_PRODUCT_ID = ii.PRODUCT_ID
+		AND ipip.INSURED_PERSON_ID = #{insuredPersonId} AND ipra.ADJUST_TYPE = '0'
+		and ((ipip.SOURCE = '2' 
+			AND (
+			(ipra.SETTLEMENT_INTERVAL = 0 AND ipip.STATIST_MONTH BETWEEN #{firstDayMonth,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+		    <if test="firstDayQuarter != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 1 AND ipip.STATIST_MONTH BETWEEN #{firstDayQuarter,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>
+		    <if test="firstDayHalfYear != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 2 AND ipip.STATIST_MONTH BETWEEN #{firstDayHalfYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>
+		    <if test="firstDayYear != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 3 AND ipip.STATIST_MONTH BETWEEN #{firstDayYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR})
+	        </if>
+			)
+		) or (ipip.SOURCE = '1'  
+			AND (
+			(ipra.SETTLEMENT_INTERVAL = 0 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayMonth,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+		    <if test="firstDayQuarter != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 1 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayQuarter,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>
+		    <if test="firstDayHalfYear != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 2 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayHalfYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR}) 
+	        </if>
+		    <if test="firstDayYear != null">
+	            OR (ipra.SETTLEMENT_INTERVAL = 3 AND ipip.UNDERWRITING_DATA BETWEEN #{firstDayYear,jdbcType=VARCHAR} AND #{endTime,jdbcType=VARCHAR})
+	        </if>
+			)
+		))
+    </select>
+
+    <select id="queryInsuranceSlipCountByCompanyCode" parameterType="string" resultType="int">
+        SELECT count(1) FROM ins_policy_insured_person p join insurance_company_org o
+        ON p.INSURANCE_COMPANY_ID = o.INSURANCE_COMPANY_ID
+        WHERE o.INSURANCE_COMPANY_CODE = #{companyCode} and (p.INS_STATE is null OR p.INS_STATE != '0000')
+    </select>
+</mapper>

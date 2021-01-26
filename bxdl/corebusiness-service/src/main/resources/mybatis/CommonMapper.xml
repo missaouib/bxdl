@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.CommonMapper">
+	<select id="getSalesNoticyHKLogsSize" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+		(SELECT log.saler_no FROM sales_noticy_hk_logs log WHERE is_finshed = '0' AND `type` = '0'
+		GROUP BY saler_no)a
+	</select>
+
+	<select id="getSaleOrgsNoticyHKLogsSize" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+		(SELECT log.sale_org_id FROM sales_noticy_hk_logs log WHERE is_finshed = '0' AND `type` = '1'
+		GROUP BY sale_org_id)a
+	</select>
+</mapper>

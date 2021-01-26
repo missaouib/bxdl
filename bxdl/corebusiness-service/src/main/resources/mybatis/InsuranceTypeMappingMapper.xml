@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsuranceTypeMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    <id column="INSURANCE_TYPE_ID" property="insuranceTypeId" jdbcType="BIGINT" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="INSURANCE_COMPANY_ID" property="insuranceCompanyId" jdbcType="BIGINT" />
+    <result column="INSURANCE_TYPE_NAME" property="insuranceTypeName" jdbcType="VARCHAR" />
+    <result column="INSURANCE_TYPE_CODE" property="insuranceTypeCode" jdbcType="VARCHAR" />
+    <result column="PARENT_INSURANCE_TYPE_ID" property="parentInsuranceTypeId" jdbcType="BIGINT" />
+    <result column="SYS_PARAMETER" property="sysParameter" jdbcType="CHAR" />
+     <result column="IS_NORMAL" property="isNormal" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INSURANCE_TYPE_ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, INSURANCE_COMPANY_ID, 
+    INSURANCE_TYPE_NAME, INSURANCE_TYPE_CODE, PARENT_INSURANCE_TYPE_ID, SYS_PARAMETER,IS_NORMAL
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from insurance_type_mapping
+    where INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from insurance_type_mapping
+    where INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    insert into insurance_type_mapping (INSURANCE_TYPE_ID, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, INSURANCE_COMPANY_ID, 
+      INSURANCE_TYPE_NAME, INSURANCE_TYPE_CODE, PARENT_INSURANCE_TYPE_ID, 
+      SYS_PARAMETER,IS_NORMAL)
+    values (#{insuranceTypeId,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{insuranceCompanyId,jdbcType=BIGINT}, 
+      #{insuranceTypeName,jdbcType=VARCHAR}, #{insuranceTypeCode,jdbcType=VARCHAR}, #{parentInsuranceTypeId,jdbcType=BIGINT}, 
+      #{sysParameter,jdbcType=CHAR}, #{isNormal,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    insert into insurance_type_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuranceTypeId != null" >
+        INSURANCE_TYPE_ID,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="insuranceTypeName != null" >
+        INSURANCE_TYPE_NAME,
+      </if>
+      <if test="insuranceTypeCode != null" >
+        INSURANCE_TYPE_CODE,
+      </if>
+      <if test="parentInsuranceTypeId != null" >
+        PARENT_INSURANCE_TYPE_ID,
+      </if>
+      <if test="sysParameter != null" >
+        SYS_PARAMETER,
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuranceTypeId != null" >
+        #{insuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceTypeName != null" >
+        #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeCode != null" >
+        #{insuranceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentInsuranceTypeId != null" >
+        #{parentInsuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="sysParameter != null" >
+        #{sysParameter,jdbcType=CHAR},
+      </if>
+      <if test="isNormal != null" >
+        #{isNormal,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    update insurance_type_mapping
+    <set >
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test='insuranceCompanyId != null and sysParameter == "1"' >
+        INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test='sysParameter == "0"' >
+         INSURANCE_COMPANY_ID = null,
+      </if>
+      <if test="insuranceTypeName != null" >
+        INSURANCE_TYPE_NAME = #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeCode != null" >
+        INSURANCE_TYPE_CODE = #{insuranceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test='parentInsuranceTypeId != null and sysParameter == "1"'>
+        PARENT_INSURANCE_TYPE_ID = #{parentInsuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test='sysParameter == "0"' >
+         PARENT_INSURANCE_TYPE_ID = null,
+      </if>      
+      <if test="sysParameter != null" >
+        SYS_PARAMETER = #{sysParameter,jdbcType=CHAR},
+      </if>
+        <if test="isNormal != null" >
+        IS_NORMAL = #{isNormal,jdbcType=CHAR},
+      </if>
+    </set>
+    where INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    update insurance_type_mapping set 
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      <if test='insuranceCompanyId != null and sysParameter == "1"' >
+         INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test='sysParameter =="0"' >
+         INSURANCE_COMPANY_ID = null,
+      </if>
+      <if test="insuranceTypeName != null" >
+       	 INSURANCE_TYPE_NAME = #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeCode != null" >
+      	 INSURANCE_TYPE_CODE = #{insuranceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test='parentInsuranceTypeId != null and sysParameter =="1"' >
+      	 PARENT_INSURANCE_TYPE_ID = #{parentInsuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test='sysParameter == "0"' >
+         PARENT_INSURANCE_TYPE_ID = null,
+      </if>       
+      	 SYS_PARAMETER = #{sysParameter,jdbcType=CHAR},
+      <if test="isNormal != null" >
+      	 IS_NORMAL = #{isNormal,jdbcType=CHAR}
+      </if>
+    where INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=BIGINT}
+  </update>
+  
+  
+   <insert id="insertSelectiveReturnKey" useGeneratedKeys="true" keyProperty="insuranceTypeId"  parameterType="com.hzcf.pojo.product.InsuranceTypeMapping" >
+    insert into insurance_type_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuranceTypeId != null" >
+        INSURANCE_TYPE_ID,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="insuranceTypeName != null" >
+        INSURANCE_TYPE_NAME,
+      </if>
+      <if test="insuranceTypeCode != null" >
+        INSURANCE_TYPE_CODE,
+      </if>
+      <if test="parentInsuranceTypeId != null" >
+        PARENT_INSURANCE_TYPE_ID,
+      </if>
+      <if test="sysParameter != null" >
+        SYS_PARAMETER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuranceTypeId != null" >
+        #{insuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceTypeName != null" >
+        #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeCode != null" >
+        #{insuranceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentInsuranceTypeId != null" >
+        #{parentInsuranceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="sysParameter != null" >
+        #{sysParameter,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <select id="selectByAll" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from insurance_type_mapping
+    where   SYS_PARAMETER ="1"
+  </select>
+  
+   <!-- 查询条件 -->
+  <sql id="Base_Where_insurance_type">
+   1=1
+   <!-- <if test="null != productCode">
+    and  ipi.PRODUCT_CODE = #{productCode}</if>
+	<if test="null != companyInsuranceCode">
+	and ipi.COMPANY_INSURANCE_CODE = #{companyInsuranceCode}</if>
+	<if test="null != productNameLess">
+	and ipi.PRODUCT_NAME_LESS = #{productNameLess}</if>
+	<if test="null != insuranceType">
+	and ipi.INSURANCE_TYPE = #{insuranceType}</if>
+	<if test="null != productStatus">
+	and ipi.PRODUCT_STATUS = #{productStatus}</if>
+	<if test="null != insuranceCompanyName">
+	and ico.INSURANCE_COMPANY_NAME = #{insuranceCompanyName}</if> -->
+   </sql>
+   
+   <!--查询list  -->
+   <select id="selectInsuranceTypeList" resultType="java.util.Map">
+    SELECT 
+   INSURANCE_TYPE_ID, CREATED_BY,  UPDATED_BY,  INSURANCE_COMPANY_ID, 
+   DATE_FORMAT( CREATED_TIME,'%Y-%m-%d %H:%i:%s') as CREATED_TIME,
+    DATE_FORMAT( UPDATED_TIME,'%Y-%m-%d %H:%i:%s') as UPDATED_TIME,
+    INSURANCE_TYPE_NAME, INSURANCE_TYPE_CODE, PARENT_INSURANCE_TYPE_ID, 
+   CASE
+	WHEN SYS_PARAMETER = '0' THEN
+	'是'
+	WHEN SYS_PARAMETER = '1' THEN
+	'否'
+	ELSE
+	''
+	END AS SYS_PARAMETER
+    FROM insurance_type_mapping
+    where 1=1
+    and IS_NORMAL=0
+    order by CREATED_TIME desc
+    limit #{startIndex},#{pageSize}
+  </select>
+  
+  <!-- 查询分页总条数 -->
+    <select id="selectInsuranceTypeListSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM insurance_type_mapping
+        where 1=1
+        and IS_NORMAL=0
+    </select>
+  
+  <!--删除  -->
+   <delete id="delInsuranceType" parameterType="java.lang.String">
+    DELETE FROM insurance_type_mapping
+    where INSURANCE_TYPE_ID
+    in
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  
+    <!-- 插入错误日志 -->
+    <insert id="addErrorData" parameterType="java.lang.String">
+    INSERT INTO syn_error_data (type,data,CREATE_TIME,SYSTEM_CODE) VALUES('0',#{insuranceTypeId},NOW(),#{sys})
+    </insert>
+    
+    <select id="selectInsuranceTypeByid" parameterType="hashmap" resultMap="BaseResultMap" >
+    select 
+    INSURANCE_TYPE_ID, CREATED_BY,  UPDATED_BY,  INSURANCE_COMPANY_ID, 
+    INSURANCE_TYPE_NAME, INSURANCE_TYPE_CODE, PARENT_INSURANCE_TYPE_ID, SYS_PARAMETER
+    from insurance_type_mapping
+    where INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=BIGINT}
+  </select>
+  
+  <!--删除时通过id更新状态  -->
+   <update id="updateInsuranceTypeStatus" parameterType="java.util.Map" >
+    update insurance_type_mapping
+    <set >
+      <if test="isNormal != null" >
+        IS_NORMAL = #{isNormal},
+      </if>
+    </set>
+    where INSURANCE_TYPE_ID = #{typeId}
+  </update>
+  
+   <!-- 不分页 -->
+  <select id="findInsuranceTypeMapping" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from insurance_type_mapping
+    where 1=1
+   <if test="null != insuranceCompanyId">
+    and  INSURANCE_COMPANY_ID = #{insuranceCompanyId}
+    </if>
+    <if test="null != sysParameter">
+    and  sys_parameter = #{sysParameter}
+    </if>
+    <if test="null != insuranceTypeCode">
+    and  insurance_type_code = #{insuranceTypeCode}
+    </if>    
+    <if test="null != parentInsuranceTypeId">
+    and  INSURANCE_TYPE_ID = #{parentInsuranceTypeId}
+    </if>
+    and IS_NORMAL='0'
+  </select>  
+    
+</mapper>

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsProtocolCostMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocolCost">
+    <id column="PROTOCOL_COST_ID" jdbcType="BIGINT" property="protocolCostId" />
+    <result column="ORG_ID" jdbcType="BIGINT" property="orgId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="COST_TYPE" jdbcType="CHAR" property="costType" />
+    <result column="COST_TOTAL" jdbcType="DECIMAL" property="costTotal" />
+    <result column="CALCULATION_END_DATE" jdbcType="DATE" property="calculationEndDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PROTOCOL_COST_ID, ORG_ID, PRODUCT_ID, PROTOCOL_ID, COST_TYPE, COST_TOTAL, CALCULATION_END_DATE, 
+    CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCostExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_protocol_cost
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_protocol_cost
+    where PROTOCOL_COST_ID = #{protocolCostId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_protocol_cost
+    where PROTOCOL_COST_ID = #{protocolCostId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCostExample">
+    delete from ins_protocol_cost
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCost">
+    insert into ins_protocol_cost (PROTOCOL_COST_ID, ORG_ID, PRODUCT_ID, 
+      PROTOCOL_ID, COST_TYPE, COST_TOTAL, 
+      CALCULATION_END_DATE, CREATE_TIME, UPDATE_TIME, 
+      UPDATE_BY)
+    values (#{protocolCostId,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{protocolId,jdbcType=BIGINT}, #{costType,jdbcType=CHAR}, #{costTotal,jdbcType=DECIMAL}, 
+      #{calculationEndDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCost">
+    insert into ins_protocol_cost
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="protocolCostId != null">
+        PROTOCOL_COST_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="costType != null">
+        COST_TYPE,
+      </if>
+      <if test="costTotal != null">
+        COST_TOTAL,
+      </if>
+      <if test="calculationEndDate != null">
+        CALCULATION_END_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="protocolCostId != null">
+        #{protocolCostId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="costType != null">
+        #{costType,jdbcType=CHAR},
+      </if>
+      <if test="costTotal != null">
+        #{costTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="calculationEndDate != null">
+        #{calculationEndDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCostExample" resultType="java.lang.Long">
+    select count(*) from ins_protocol_cost
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_protocol_cost
+    <set>
+      <if test="record.protocolCostId != null">
+        PROTOCOL_COST_ID = #{record.protocolCostId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orgId != null">
+        ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.costType != null">
+        COST_TYPE = #{record.costType,jdbcType=CHAR},
+      </if>
+      <if test="record.costTotal != null">
+        COST_TOTAL = #{record.costTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.calculationEndDate != null">
+        CALCULATION_END_DATE = #{record.calculationEndDate,jdbcType=DATE},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_protocol_cost
+    set PROTOCOL_COST_ID = #{record.protocolCostId,jdbcType=BIGINT},
+      ORG_ID = #{record.orgId,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      COST_TYPE = #{record.costType,jdbcType=CHAR},
+      COST_TOTAL = #{record.costTotal,jdbcType=DECIMAL},
+      CALCULATION_END_DATE = #{record.calculationEndDate,jdbcType=DATE},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCost">
+    update ins_protocol_cost
+    <set>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="costType != null">
+        COST_TYPE = #{costType,jdbcType=CHAR},
+      </if>
+      <if test="costTotal != null">
+        COST_TOTAL = #{costTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="calculationEndDate != null">
+        CALCULATION_END_DATE = #{calculationEndDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROTOCOL_COST_ID = #{protocolCostId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolCost">
+    update ins_protocol_cost
+    set ORG_ID = #{orgId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      COST_TYPE = #{costType,jdbcType=CHAR},
+      COST_TOTAL = #{costTotal,jdbcType=DECIMAL},
+      CALCULATION_END_DATE = #{calculationEndDate,jdbcType=DATE},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where PROTOCOL_COST_ID = #{protocolCostId,jdbcType=BIGINT}
+  </update>
+  
+  <sql id="whereClause">
+	<where>
+	  	<if test="startTime != null and endTime != null">
+	  		AND DATE_FORMAT(DATE_ADD(cost.CALCULATION_END_DATE,INTERVAL 1 MONTH),'%Y-%m') BETWEEN #{startTime} and #{endTime}
+	  	</if>
+	  	<if test="selectType != null and selectType == 1 and selectKeys != null">
+	  		and protocol.PROTOCOL_NAME = #{selectKeys}
+	  	</if>
+	  	<if test="selectType != null and selectType == 2 and selectKeys != null">
+	  		and org.SALES_ORG_NAME = #{selectKeys}
+	  	</if>
+	  	<if test="selectType != null and selectType == 3 and selectKeys != null">
+	  		and ipcr.PRODUCTS_NAME = #{selectKeys}
+	  	</if>
+	</where>
+  </sql>
+  
+  <select id="getProtocolCostListByPage" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		<if test="selectType != null and selectType == 1">
+			cost.PROTOCOL_ID, protocol.PROTOCOL_NAME,
+		</if>
+		<if test="selectType != null and selectType == 2">
+			cost.ORG_ID, org.SALES_ORG_NAME,
+		</if>
+		<if test="selectType != null and selectType == 3">
+			cost.PRODUCT_ID, ipcr.PRODUCTS_NAME,
+		</if>
+		DATE_FORMAT(DATE_ADD(cost.CALCULATION_END_DATE,INTERVAL 1 MONTH),'%Y-%m') AS DATE_YM,
+		TRUNCATE(IFNULL(SUM(
+			CASE 
+			WHEN cost.COST_TYPE=1 THEN
+				cost.COST_TOTAL
+			END
+		), 0)/100,2) AS SERVICE_CHARGE,
+		TRUNCATE(IFNULL(SUM(
+			CASE 
+			WHEN cost.COST_TYPE=2 THEN
+				cost.COST_TOTAL
+			END
+		), 0)/100,2) AS RATE_ADJUST,
+		TRUNCATE(IFNULL(SUM(
+			CASE 
+			WHEN cost.COST_TYPE = 3 THEN
+				cost.COST_TOTAL
+			END
+		), 0)/100,2) AS PROMOTION,
+		TRUNCATE(IFNULL(SUM(
+			CASE 
+			WHEN cost.COST_TYPE = 4 THEN
+				cost.COST_TOTAL
+			END
+		), 0)/100,2) AS SUBSIDY,
+		TRUNCATE(IFNULL(SUM(
+			CASE 
+			WHEN cost.COST_TYPE = 5 THEN
+				cost.COST_TOTAL
+			END
+		), 0)/100,2) AS PERSISTENCY_BONUS
+	FROM
+		`ins_protocol_cost` cost 
+	<if test="selectType != null and selectType == 1">
+		LEFT JOIN ins_protocol protocol on cost.PROTOCOL_ID = protocol.PROTOCOL_ID
+	</if>
+	<if test="selectType != null and selectType == 2">
+		LEFT JOIN sales_org_info org on cost.ORG_ID = org.SALES_ORG_ID
+	</if>
+	<if test="selectType != null and selectType == 3">
+		LEFT JOIN ins_products_commission_ratio ipcr on cost.PRODUCT_ID = ipcr.PRODUCTS_RATIO_ID
+	</if>
+	
+	<include refid="whereClause" />
+	group by 
+	<if test="selectType != null and selectType == 1">
+		cost.PROTOCOL_ID, 
+	</if>
+	<if test="selectType != null and selectType == 2">
+		cost.ORG_ID, 
+	</if>
+	<if test="selectType != null and selectType == 3">
+		cost.PRODUCT_ID, 
+	</if>
+	DATE_YM
+	order by
+	<if test="selectType != null and selectType == 1">
+		cost.PROTOCOL_ID DESC, 
+	</if>
+	<if test="selectType != null and selectType == 2">
+		cost.ORG_ID DESC, 
+	</if>
+	<if test="selectType != null and selectType == 3">
+		cost.PRODUCT_ID DESC, 
+	</if>
+	DATE_YM DESC
+	limit #{startIndex},#{pageSize}
+	
+  </select>
+  
+  <select id="getProtocolCostCount" parameterType="hashmap" resultType="long">
+ 	 SELECT COUNT(1) from (
+	 	SELECT
+			<if test="selectType != null and selectType == 1">
+				cost.PROTOCOL_ID, protocol.PROTOCOL_NAME,
+			</if>
+			<if test="selectType != null and selectType == 2">
+				cost.ORG_ID, org.SALES_ORG_NAME,
+			</if>
+			<if test="selectType != null and selectType == 3">
+				cost.PRODUCT_ID, ipcr.PRODUCTS_NAME,
+			</if>
+			DATE_FORMAT(DATE_ADD(cost.CALCULATION_END_DATE,INTERVAL 1 MONTH),'%Y-%m') AS DATE_YM,
+			TRUNCATE(IFNULL(SUM(
+				CASE 
+				WHEN cost.COST_TYPE=1 THEN
+					cost.COST_TOTAL
+				END
+			), 0)/100,2) AS SERVICE_CHARGE,
+			TRUNCATE(IFNULL(SUM(
+				CASE 
+				WHEN cost.COST_TYPE=2 THEN
+					cost.COST_TOTAL
+				END
+			), 0)/100,2) AS RATE_ADJUST,
+			TRUNCATE(IFNULL(SUM(
+				CASE 
+				WHEN cost.COST_TYPE = 3 THEN
+					cost.COST_TOTAL
+				END
+			), 0)/100,2) AS PROMOTION,
+			TRUNCATE(IFNULL(SUM(
+				CASE 
+				WHEN cost.COST_TYPE = 4 THEN
+					cost.COST_TOTAL
+				END
+			), 0)/100,2) AS SUBSIDY,
+			TRUNCATE(IFNULL(SUM(
+				CASE 
+				WHEN cost.COST_TYPE = 5 THEN
+					cost.COST_TOTAL
+				END
+			), 0)/100,2) AS PERSISTENCY_BONUS
+		FROM
+			`ins_protocol_cost` cost 
+		<if test="selectType != null and selectType == 1">
+			LEFT JOIN ins_protocol protocol on cost.PROTOCOL_ID = protocol.PROTOCOL_ID
+		</if>
+		<if test="selectType != null and selectType == 2">
+			LEFT JOIN sales_org_info org on cost.ORG_ID = org.SALES_ORG_ID
+		</if>
+		<if test="selectType != null and selectType == 3">
+			LEFT JOIN ins_products_commission_ratio ipcr on cost.PRODUCT_ID = ipcr.PRODUCTS_RATIO_ID
+		</if>	
+		<include refid="whereClause" />
+		group by 
+		<if test="selectType != null and selectType == 1">
+			cost.PROTOCOL_ID, 
+		</if>
+		<if test="selectType != null and selectType == 2">
+			cost.ORG_ID, 
+		</if>
+		<if test="selectType != null and selectType == 3">
+			cost.PRODUCT_ID, 
+		</if>
+		DATE_YM
+ 	 ) cost
+  </select>
+</mapper>

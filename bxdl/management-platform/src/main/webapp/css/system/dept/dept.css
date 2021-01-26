@@ -1,0 +1,25 @@
+.modal {
+    position: fixed;
+    top: -12%;
+    left: 30%;
+    width: 800px;
+    height: 800px;
+    margin: 100px 100 0 0px;/* margin 璐熷�间负瀹介珮鐨勪竴鍗� */
+}
+#parentIdtreeview .list-group-item {
+	background-color: inherit;
+	border: 1px solid #f1f3f5;
+	display: block;
+	margin-bottom: -1px;
+	padding: 10px 15px;
+	position: relative;
+}
+
+#update_parentIdtreeview .list-group-item {
+	background-color: inherit;
+	border: 1px solid #f1f3f5;
+	display: block;
+	margin-bottom: -1px;
+	padding: 10px 15px;
+	position: relative;
+}

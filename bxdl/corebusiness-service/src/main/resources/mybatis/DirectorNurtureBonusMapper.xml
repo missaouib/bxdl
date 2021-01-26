@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.DirectorNurtureBonusMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.parameter.DirectorNurtureBonus" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GENERATIVE_ALGEBRA" property="generativeAlgebra" jdbcType="VARCHAR" />
+    <result column="FAST_YEAR" property="fastYear" jdbcType="VARCHAR" />
+    <result column="FOLLOWING_YEAR_AND_BEYOND" property="followingYearAndBeyond" jdbcType="VARCHAR" />
+     <result column="IS_NORMAL" property="isNormal" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GENERATIVE_ALGEBRA, FAST_YEAR, FOLLOWING_YEAR_AND_BEYOND, IS_NORMAL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from director_nurture_bonus
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from director_nurture_bonus
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.parameter.DirectorNurtureBonus" >
+    insert into director_nurture_bonus (ID, GENERATIVE_ALGEBRA, FAST_YEAR, 
+      FOLLOWING_YEAR_AND_BEYOND, IS_NORMAL)
+    values (#{id,jdbcType=BIGINT}, #{generativeAlgebra,jdbcType=VARCHAR}, #{fastYear,jdbcType=VARCHAR}, 
+      #{followingYearAndBeyond,jdbcType=VARCHAR}, #{isNormal,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.parameter.DirectorNurtureBonus" >
+    insert into director_nurture_bonus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="generativeAlgebra != null" >
+        GENERATIVE_ALGEBRA,
+      </if>
+      <if test="fastYear != null" >
+        FAST_YEAR,
+      </if>
+      <if test="followingYearAndBeyond != null" >
+        FOLLOWING_YEAR_AND_BEYOND,
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="generativeAlgebra != null" >
+        #{generativeAlgebra,jdbcType=VARCHAR},
+      </if>
+      <if test="fastYear != null" >
+        #{fastYear,jdbcType=VARCHAR},
+      </if>
+      <if test="followingYearAndBeyond != null" >
+        #{followingYearAndBeyond,jdbcType=VARCHAR},
+      </if>
+      <if test="isNormal != null" >
+        #{isNormal,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.parameter.DirectorNurtureBonus" >
+    update director_nurture_bonus
+    <set >
+      <if test="generativeAlgebra != null" >
+        GENERATIVE_ALGEBRA = #{generativeAlgebra,jdbcType=VARCHAR},
+      </if>
+      <if test="fastYear != null" >
+        FAST_YEAR = #{fastYear,jdbcType=VARCHAR},
+      </if>
+      <if test="followingYearAndBeyond != null" >
+        FOLLOWING_YEAR_AND_BEYOND = #{followingYearAndBeyond,jdbcType=VARCHAR},
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL = #{isNormal,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.parameter.DirectorNurtureBonus" >
+    update director_nurture_bonus
+    set GENERATIVE_ALGEBRA = #{generativeAlgebra,jdbcType=VARCHAR},
+      FAST_YEAR = #{fastYear,jdbcType=VARCHAR},
+      FOLLOWING_YEAR_AND_BEYOND = #{followingYearAndBeyond,jdbcType=VARCHAR},
+       IS_NORMAL = #{isNormal,jdbcType=CHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <!--查询list  -->
+   <select id="selectDirectorNurtureBonusList" resultType="java.util.Map">
+    SELECT <include refid="Base_Column_List" />
+    FROM director_nurture_bonus
+    where 1=1
+     limit #{startIndex},#{pageSize}
+  </select>
+  
+  <!-- 查询分页总条数 -->
+    <select id="selectDirectorNurtureBonusListSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM director_nurture_bonus
+        where 1=1
+    </select>
+  
+  <!--删除  -->
+   <delete id="delDirectorNurtureBonus" parameterType="java.lang.String">
+    DELETE FROM director_nurture_bonus
+    where ID
+    in
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  
+   <!-- 不分页列表 -->
+   <select id="getDirectorNurtureBonusList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from director_nurture_bonus
+    where 1=1
+    and IS_NORMAL=0
+  </select>
+  
+  <!-- 查询状态为0的总条数 -->
+   <select id="checkDirectorSize"  parameterType="java.util.Map" resultType="java.lang.Integer">
+	  SELECT
+		count(1)
+	FROM
+		director_nurture_bonus
+	where 1=1
+	and IS_NORMAL=0
+  </select>
+  
+  
+  
+</mapper>

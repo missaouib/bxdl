@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.cal.CalPromoteMapper">
+	<resultMap id="BaseResultMap" type="com.hzcf.pojo.cal.CalPromote">
+            <result column="id" property="id" />
+	        <result column="org_id" property="orgId" />
+	        <result column="max_sign" property="maxSign" />
+	        <result column="max_value" property="maxValue" />
+	        <result column="min_sign" property="minSign" />
+	        <result column="min_value" property="minValue" />
+	        <result column="allowance" property="allowance" />
+	        <result column="rule_type" property="ruleType" />
+	        <result column="step" property="step" />
+	        <result column="extra_allowance" property="extraAllowance" />
+	        <result column="create_by" property="createBy" />
+	        <result column="create_time" property="createTime" />
+	        <result column="update_by" property="updateBy" />
+	        <result column="update_time" property="updateTime" />
+	        <result column="is_normal" property="isNormal" />
+		</resultMap>  
+    
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.id
+        , t.org_id
+        , t.max_sign
+        , t.max_value
+        , t.min_sign
+        , t.min_value
+        , t.allowance
+        , t.rule_type
+        , t.step
+        , t.extra_allowance
+        , t.create_by
+        , t.create_time
+        , t.update_by
+        , t.update_time
+        , t.is_normal
+        </sql> 
+    
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM cal_promote t
+	</select>
+ 
+ 	<!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Long">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM cal_promote t
+		WHERE id = #{id}
+	</select>
+    <!--根据组织机构获取展业津贴参数-->
+    <select id="getCalPromoteByOrgId" resultMap="BaseResultMap">
+        SELECT
+        	<include refid="baseColumns" />
+		FROM cal_promote t
+		<where>
+            is_normal = '0'
+            <if test='orgId != null and "" != orgId'> AND org_id= #{orgId}</if>
+            order by min_value
+        </where>
+    </select>
+
+    <!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.hzcf.pojo.cal.CalPromote"
+		keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO cal_promote
+    <trim prefix="(" suffix=")" suffixOverrides=",">	 
+        	    	id,
+    	        	    	org_id,
+    	        	    	max_sign,
+    	        	    	max_value,
+    	        	    	min_sign,
+    	        	    	min_value,
+    	        	    	allowance,
+    	        	    	rule_type,
+    	        	    	step,
+    	        	    	extra_allowance,
+    	        	    	create_by,
+    	        	    	create_time,
+    	        	    	update_by,
+    	        	    	update_time,
+    	        	    	is_normal,
+    	        </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+        	        #{id},                   
+    	        	        #{orgId},                   
+    	        	        #{maxSign},                   
+    	        	        #{maxValue},                   
+    	        	        #{minSign},                   
+    	        	        #{minValue},                   
+    	        	        #{allowance},                   
+    	        	        #{ruleType},                   
+    	        	        #{step},                   
+    	        	        #{extraAllowance},                   
+    	        	        #{createBy},                   
+    	        	        #{createTime},                   
+    	        	        #{updateBy},                   
+    	        	        #{updateTime},                   
+    	        	        #{isNormal},                   
+    	        </trim>
+	</insert>
+    
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.hzcf.pojo.cal.CalPromote"
+        keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+        >
+        INSERT INTO cal_promote    
+        <trim prefix="(" suffix=")" suffixOverrides=",">	 
+
+                                                <if test="id != null">
+                   id,
+                    </if>
+                                                                <if test="orgId != null">
+                   org_id,
+                    </if>
+                                                                <if test="maxSign != null">
+                   max_sign,
+                    </if>
+                                                                <if test="maxValue != null">
+                   max_value,
+                    </if>
+                                                                <if test="minSign != null">
+                   min_sign,
+                    </if>
+                                                                <if test="minValue != null">
+                   min_value,
+                    </if>
+                                                                <if test="allowance != null">
+                   allowance,
+                    </if>
+                                                                <if test="ruleType != null">
+                   rule_type,
+                    </if>
+                                                                <if test="step != null">
+                   step,
+                    </if>
+                                                                <if test="extraAllowance != null">
+                   extra_allowance,
+                    </if>
+                                                                <if test="createBy != null">
+                   create_by,
+                    </if>
+                                                                <if test="createTime != null">
+                   create_time,
+                    </if>
+                                                                <if test="updateBy != null">
+                   update_by,
+                    </if>
+                                                                <if test="updateTime != null">
+                   update_time,
+                    </if>
+                                                                <if test="isNormal != null">
+                   is_normal,
+                    </if>
+                                    </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+                                                <if test="id != null" >
+                    #{id},                    
+                    </if>
+                                                                <if test="orgId != null" >
+                    #{orgId},                    
+                    </if>
+                                                                <if test="maxSign != null" >
+                    #{maxSign},                    
+                    </if>
+                                                                <if test="maxValue != null" >
+                    #{maxValue},                    
+                    </if>
+                                                                <if test="minSign != null" >
+                    #{minSign},                    
+                    </if>
+                                                                <if test="minValue != null" >
+                    #{minValue},                    
+                    </if>
+                                                                <if test="allowance != null" >
+                    #{allowance},                    
+                    </if>
+                                                                <if test="ruleType != null" >
+                    #{ruleType},                    
+                    </if>
+                                                                <if test="step != null" >
+                    #{step},                    
+                    </if>
+                                                                <if test="extraAllowance != null" >
+                    #{extraAllowance},                    
+                    </if>
+                                                                <if test="createBy != null" >
+                    #{createBy},                    
+                    </if>
+                                                                <if test="createTime != null" >
+                    #{createTime},                    
+                    </if>
+                                                                <if test="updateBy != null" >
+                    #{updateBy},                    
+                    </if>
+                                                                <if test="updateTime != null" >
+                    #{updateTime},                    
+                    </if>
+                                                                <if test="isNormal != null" >
+                    #{isNormal},                    
+                    </if>
+                                    </trim>
+    </insert>
+
+	<!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.hzcf.pojo.cal.CalPromote">
+    UPDATE cal_promote
+     <set>		
+                                     org_id=#{orgId},        
+                                max_sign=#{maxSign},        
+                                max_value=#{maxValue},        
+                                min_sign=#{minSign},        
+                                min_value=#{minValue},        
+                                allowance=#{allowance},        
+                                rule_type=#{ruleType},        
+                                step=#{step},        
+                                extra_allowance=#{extraAllowance},        
+                                create_by=#{createBy},        
+                                create_time=#{createTime},        
+                                update_by=#{updateBy},        
+                                update_time=#{updateTime},        
+                                is_normal=#{isNormal},        
+                   </set>	
+    WHERE id = #{id}
+    </update>  
+    
+    
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.hzcf.pojo.cal.CalPromote">
+    UPDATE cal_promote
+    <set>
+    	                                                <if test="orgId != null" >
+                org_id=#{orgId},                 
+                </if>
+                                                <if test="maxSign != null" >
+                max_sign=#{maxSign},                 
+                </if>
+                                                <if test="maxValue != null" >
+                max_value=#{maxValue},                 
+                </if>
+                                                <if test="minSign != null" >
+                min_sign=#{minSign},                 
+                </if>
+                                                <if test="minValue != null" >
+                min_value=#{minValue},                 
+                </if>
+                                                <if test="allowance != null" >
+                allowance=#{allowance},                 
+                </if>
+                                                <if test="ruleType != null" >
+                rule_type=#{ruleType},                 
+                </if>
+                                                <if test="step != null" >
+                step=#{step},                 
+                </if>
+                                                <if test="extraAllowance != null" >
+                extra_allowance=#{extraAllowance},                 
+                </if>
+                                                <if test="createBy != null" >
+                create_by=#{createBy},                 
+                </if>
+                                                <if test="createTime != null" >
+                create_time=#{createTime},                 
+                </if>
+                                                <if test="updateBy != null" >
+                update_by=#{updateBy},                 
+                </if>
+                                                <if test="updateTime != null" >
+                update_time=#{updateTime},                 
+                </if>
+                                                <if test="isNormal != null" >
+                is_normal=#{isNormal},                 
+                </if>
+                        </set>
+    WHERE id = #{id}
+    </update>
+
+		
+	<!-- 根据主键删除记录 -->
+	<delete id="delete" parameterType="com.hzcf.pojo.cal.CalPromote">
+		UPDATE cal_promote
+		SET is_deleted=1
+		WHERE id = #{id}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalerMonthlyRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.sales.SalerMonthlyRelation" >
+    <result column="saler_id" property="salerId" jdbcType="BIGINT" />
+    <result column="relation_month" property="relationMonth" jdbcType="VARCHAR" />
+    <result column="db_sales_id" property="dbSalesId" jdbcType="BIGINT" />
+    <result column="tj_sales_id" property="tjSalesId" jdbcType="BIGINT" />
+    <result column="sj_sales_id" property="sjSalesId" jdbcType="BIGINT" />
+    <result column="jc_sales_id" property="jcSalesId" jdbcType="BIGINT" />
+    <result column="fd_sales_id" property="fdSalesId" jdbcType="BIGINT" />
+    <result column="yc_c_first_gener" property="ycCFirstGener" jdbcType="BIGINT" />
+    <result column="yc_c_second_gener" property="ycCSecondGener" jdbcType="BIGINT" />
+    <result column="yc_b_first_gener" property="ycBFirstGener" jdbcType="BIGINT" />
+    <result column="yc_b_second_gener" property="ycBSecondGener" jdbcType="BIGINT" />
+    <result column="direct_group_c" property="directGroupC" jdbcType="BIGINT" />
+    <result column="direct_dept_b" property="directDeptB" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="db_sales_date" property="dbSalesDate" jdbcType="DATE" />
+    <result column="tj_sales_date" property="tjSalesDate" jdbcType="DATE" />
+    <result column="sj_sales_date" property="sjSalesDate" jdbcType="DATE" />
+    <result column="jc_sales_date" property="jcSalesDate" jdbcType="DATE" />
+    <result column="fd_sales_date" property="fdSalesDate" jdbcType="DATE" />
+    <result column="establish_time" property="establishTime" jdbcType="DATE" />
+    <result column="establish_time1" property="establishTime1" jdbcType="DATE" />
+    <result column="establish_time2" property="establishTime2" jdbcType="DATE" />
+    <result column="establish_time3" property="establishTime3" jdbcType="DATE" />
+    <result column="establish_time4" property="establishTime4" jdbcType="DATE" />
+    <result column="establish_time5" property="establishTime5" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    saler_id, relation_month, db_sales_id, tj_sales_id, sj_sales_id, jc_sales_id,
+    fd_sales_id, yc_c_first_gener, yc_c_second_gener, yc_b_first_gener, yc_b_second_gener,
+    direct_group_c, direct_dept_b, create_time, db_sales_date, tj_sales_date, sj_sales_date,
+    jc_sales_date, fd_sales_date, establish_time, establish_time1, establish_time2, establish_time3,
+    establish_time4, establish_time5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hzcf.pojo.insurance.sales.SalerMonthlyRelationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from saler_monthly_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.sales.SalerMonthlyRelation" >
+    insert into saler_monthly_relation (saler_id, relation_month,
+      db_sales_id, tj_sales_id, sj_sales_id,
+      jc_sales_id, fd_sales_id, yc_c_first_gener,
+      yc_c_second_gener, yc_b_first_gener, yc_b_second_gener,
+      direct_group_c, direct_dept_b, create_time,
+      db_sales_date, tj_sales_date, sj_sales_date,
+      jc_sales_date, fd_sales_date, establish_time,
+      establish_time1, establish_time2, establish_time3,
+      establish_time4, establish_time5)
+    values (#{salerId,jdbcType=BIGINT}, #{relationMonth,jdbcType=VARCHAR},
+      #{dbSalesId,jdbcType=BIGINT}, #{tjSalesId,jdbcType=BIGINT}, #{sjSalesId,jdbcType=BIGINT},
+      #{jcSalesId,jdbcType=BIGINT}, #{fdSalesId,jdbcType=BIGINT}, #{ycCFirstGener,jdbcType=BIGINT},
+      #{ycCSecondGener,jdbcType=BIGINT}, #{ycBFirstGener,jdbcType=BIGINT}, #{ycBSecondGener,jdbcType=BIGINT},
+      #{directGroupC,jdbcType=BIGINT}, #{directDeptB,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{dbSalesDate,jdbcType=DATE}, #{tjSalesDate,jdbcType=DATE}, #{sjSalesDate,jdbcType=DATE},
+      #{jcSalesDate,jdbcType=DATE}, #{fdSalesDate,jdbcType=DATE}, #{establishTime,jdbcType=DATE},
+      #{establishTime1,jdbcType=DATE}, #{establishTime2,jdbcType=DATE}, #{establishTime3,jdbcType=DATE},
+      #{establishTime4,jdbcType=DATE}, #{establishTime5,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.sales.SalerMonthlyRelation" >
+    insert into saler_monthly_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salerId != null" >
+        saler_id,
+      </if>
+      <if test="relationMonth != null" >
+        relation_month,
+      </if>
+      <if test="dbSalesId != null" >
+        db_sales_id,
+      </if>
+      <if test="tjSalesId != null" >
+        tj_sales_id,
+      </if>
+      <if test="sjSalesId != null" >
+        sj_sales_id,
+      </if>
+      <if test="jcSalesId != null" >
+        jc_sales_id,
+      </if>
+      <if test="fdSalesId != null" >
+        fd_sales_id,
+      </if>
+      <if test="ycCFirstGener != null" >
+        yc_c_first_gener,
+      </if>
+      <if test="ycCSecondGener != null" >
+        yc_c_second_gener,
+      </if>
+      <if test="ycBFirstGener != null" >
+        yc_b_first_gener,
+      </if>
+      <if test="ycBSecondGener != null" >
+        yc_b_second_gener,
+      </if>
+      <if test="directGroupC != null" >
+        direct_group_c,
+      </if>
+      <if test="directDeptB != null" >
+        direct_dept_b,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="dbSalesDate != null" >
+        db_sales_date,
+      </if>
+      <if test="tjSalesDate != null" >
+        tj_sales_date,
+      </if>
+      <if test="sjSalesDate != null" >
+        sj_sales_date,
+      </if>
+      <if test="jcSalesDate != null" >
+        jc_sales_date,
+      </if>
+      <if test="fdSalesDate != null" >
+        fd_sales_date,
+      </if>
+      <if test="establishTime != null" >
+        establish_time,
+      </if>
+      <if test="establishTime1 != null" >
+        establish_time1,
+      </if>
+      <if test="establishTime2 != null" >
+        establish_time2,
+      </if>
+      <if test="establishTime3 != null" >
+        establish_time3,
+      </if>
+      <if test="establishTime4 != null" >
+        establish_time4,
+      </if>
+      <if test="establishTime5 != null" >
+        establish_time5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salerId != null" >
+        #{salerId,jdbcType=BIGINT},
+      </if>
+      <if test="relationMonth != null" >
+        #{relationMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSalesId != null" >
+        #{dbSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="tjSalesId != null" >
+        #{tjSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="sjSalesId != null" >
+        #{sjSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="jcSalesId != null" >
+        #{jcSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="fdSalesId != null" >
+        #{fdSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="ycCFirstGener != null" >
+        #{ycCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycCSecondGener != null" >
+        #{ycCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBFirstGener != null" >
+        #{ycBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBSecondGener != null" >
+        #{ycBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="directGroupC != null" >
+        #{directGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="directDeptB != null" >
+        #{directDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbSalesDate != null" >
+        #{dbSalesDate,jdbcType=DATE},
+      </if>
+      <if test="tjSalesDate != null" >
+        #{tjSalesDate,jdbcType=DATE},
+      </if>
+      <if test="sjSalesDate != null" >
+        #{sjSalesDate,jdbcType=DATE},
+      </if>
+      <if test="jcSalesDate != null" >
+        #{jcSalesDate,jdbcType=DATE},
+      </if>
+      <if test="fdSalesDate != null" >
+        #{fdSalesDate,jdbcType=DATE},
+      </if>
+      <if test="establishTime != null" >
+        #{establishTime,jdbcType=DATE},
+      </if>
+      <if test="establishTime1 != null" >
+        #{establishTime1,jdbcType=DATE},
+      </if>
+      <if test="establishTime2 != null" >
+        #{establishTime2,jdbcType=DATE},
+      </if>
+      <if test="establishTime3 != null" >
+        #{establishTime3,jdbcType=DATE},
+      </if>
+      <if test="establishTime4 != null" >
+        #{establishTime4,jdbcType=DATE},
+      </if>
+      <if test="establishTime5 != null" >
+        #{establishTime5,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.sales.SalerMonthlyRelationExample" resultType="java.lang.Integer" >
+    select count(*) from saler_monthly_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update saler_monthly_relation
+    <set >
+      <if test="record.salerId != null" >
+        saler_id = #{record.salerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.relationMonth != null" >
+        relation_month = #{record.relationMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbSalesId != null" >
+        db_sales_id = #{record.dbSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tjSalesId != null" >
+        tj_sales_id = #{record.tjSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sjSalesId != null" >
+        sj_sales_id = #{record.sjSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.jcSalesId != null" >
+        jc_sales_id = #{record.jcSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fdSalesId != null" >
+        fd_sales_id = #{record.fdSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ycCFirstGener != null" >
+        yc_c_first_gener = #{record.ycCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="record.ycCSecondGener != null" >
+        yc_c_second_gener = #{record.ycCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="record.ycBFirstGener != null" >
+        yc_b_first_gener = #{record.ycBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="record.ycBSecondGener != null" >
+        yc_b_second_gener = #{record.ycBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="record.directGroupC != null" >
+        direct_group_c = #{record.directGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="record.directDeptB != null" >
+        direct_dept_b = #{record.directDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dbSalesDate != null" >
+        db_sales_date = #{record.dbSalesDate,jdbcType=DATE},
+      </if>
+      <if test="record.tjSalesDate != null" >
+        tj_sales_date = #{record.tjSalesDate,jdbcType=DATE},
+      </if>
+      <if test="record.sjSalesDate != null" >
+        sj_sales_date = #{record.sjSalesDate,jdbcType=DATE},
+      </if>
+      <if test="record.jcSalesDate != null" >
+        jc_sales_date = #{record.jcSalesDate,jdbcType=DATE},
+      </if>
+      <if test="record.fdSalesDate != null" >
+        fd_sales_date = #{record.fdSalesDate,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime != null" >
+        establish_time = #{record.establishTime,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime1 != null" >
+        establish_time1 = #{record.establishTime1,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime2 != null" >
+        establish_time2 = #{record.establishTime2,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime3 != null" >
+        establish_time3 = #{record.establishTime3,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime4 != null" >
+        establish_time4 = #{record.establishTime4,jdbcType=DATE},
+      </if>
+      <if test="record.establishTime5 != null" >
+        establish_time5 = #{record.establishTime5,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update saler_monthly_relation
+    set
+    saler_id = #{record.salerId,jdbcType=BIGINT},
+    relation_month = #{record.relationMonth,jdbcType=VARCHAR},
+    db_sales_id = #{record.dbSalesId,jdbcType=BIGINT},
+    tj_sales_id = #{record.tjSalesId,jdbcType=BIGINT},
+    sj_sales_id = #{record.sjSalesId,jdbcType=BIGINT},
+    jc_sales_id = #{record.jcSalesId,jdbcType=BIGINT},
+    fd_sales_id = #{record.fdSalesId,jdbcType=BIGINT},
+    yc_c_first_gener = #{record.ycCFirstGener,jdbcType=BIGINT},
+    yc_c_second_gener = #{record.ycCSecondGener,jdbcType=BIGINT},
+    yc_b_first_gener = #{record.ycBFirstGener,jdbcType=BIGINT},
+    yc_b_second_gener = #{record.ycBSecondGener,jdbcType=BIGINT},
+    direct_group_c = #{record.directGroupC,jdbcType=BIGINT},
+    direct_dept_b = #{record.directDeptB,jdbcType=BIGINT},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    db_sales_date = #{record.dbSalesDate,jdbcType=DATE},
+    tj_sales_date = #{record.tjSalesDate,jdbcType=DATE},
+    sj_sales_date = #{record.sjSalesDate,jdbcType=DATE},
+    jc_sales_date = #{record.jcSalesDate,jdbcType=DATE},
+    fd_sales_date = #{record.fdSalesDate,jdbcType=DATE},
+    establish_time = #{record.establishTime,jdbcType=DATE},
+    establish_time1 = #{record.establishTime1,jdbcType=DATE},
+    establish_time2 = #{record.establishTime2,jdbcType=DATE},
+    establish_time3 = #{record.establishTime3,jdbcType=DATE},
+    establish_time4 = #{record.establishTime4,jdbcType=DATE},
+    establish_time5 = #{record.establishTime5,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--根据添加查询员工关系 TODO 加上育成确立时间-->
+  <select id="getSalerRelationByMoth" resultType="java.util.Map">
+     select saler_id ,establish_time,establish_time1,establish_time2,establish_time3 from saler_monthly_relation
+    <where>
+       1=1
+      <if test="tjSalesId != null and tjSalesId != '' "> and tj_sales_id = #{tjSalesId}</if>
+      <if test="ycCFirstGener != null and ycCFirstGener != '' "> and yc_c_first_gener = #{ycCFirstGener}</if>
+      <if test="ycCSecondGener != null and ycCSecondGener != '' "> AND yc_c_second_gener = #{ycCSecondGener}</if>
+      <if test="ycBFirstGener != null and ycBFirstGener != '' "> AND yc_b_first_gener = #{ycBFirstGener}</if>
+      <if test="ycBSecondGener != null and ycBSecondGener != '' "> and yc_b_second_gener = #{ycBSecondGener}</if>
+      <if test="directGroupC != null and directGroupC != '' "> and direct_group_c = #{directGroupC}</if>
+      <if test="directDeptB != null and directDeptB != '' ">  AND  direct_dept_b = #{directDeptB}</if>
+      <if test="relationMonth != null and relationMonth != '' ">  AND  relation_month = #{relationMonth}</if>
+    </where>
+  </select>
+
+  <insert id="addSalerMonthlyRelation" parameterType="java.lang.String">
+    INSERT INTO saler_monthly_relation
+    (   saler_id,
+        relation_month,
+        db_sales_id,
+        tj_sales_id,
+        sj_sales_id,
+        jc_sales_id,
+        fd_sales_id,
+        yc_c_first_gener,
+        yc_c_second_gener,
+        yc_b_first_gener,
+        yc_b_second_gener,
+        direct_group_c,
+        direct_dept_b,
+        db_sales_date,
+        tj_sales_date,
+        sj_sales_date,
+        jc_sales_date,
+        fd_sales_date,
+        establish_time,
+        establish_time1,
+        establish_time2,
+        establish_time3,
+        establish_time4,
+        establish_time5,
+        create_time
+    )
+    SELECT
+        INSURANCE_SALES_ID as saler_id,
+        #{month} AS relation_month,
+        db_sales_id,
+        tj_sales_id,
+        sj_sales_id,
+        jc_sales_id,
+        fd_sales_id,
+        yc_c_first_gener,
+        yc_c_second_gener,
+        yc_b_first_gener,
+        yc_b_second_gener,
+        direct_group_c,
+        direct_dept_b,
+        db_sales_date,
+        tj_sales_date,
+        sj_sales_date,
+        jc_sales_date,
+        fd_sales_date,
+        establish_time,
+        establish_time1,
+        establish_time2,
+        establish_time3,
+        establish_time4,
+        establish_time5,
+        CURRENT_TIMESTAMP() as create_time
+    FROM
+        insurance_sales_info isi
+    where  not  exists (select 1 from saler_monthly_relation smr where isi.INSURANCE_SALES_ID = smr.saler_id and smr.relation_month = #{month})
+  </insert>
+</mapper>

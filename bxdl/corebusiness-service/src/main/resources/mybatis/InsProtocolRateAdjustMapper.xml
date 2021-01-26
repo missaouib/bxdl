@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsProtocolRateAdjustMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    <id column="ADJUST_ID" jdbcType="BIGINT" property="adjustId" />
+    <result column="ADJUST_NAME" jdbcType="VARCHAR" property="adjustName" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="RATE_TYPE" jdbcType="CHAR" property="rateType" />
+    <result column="SUBJOIN_TYPE" jdbcType="VARCHAR" property="subjoinType" />
+    <result column="SETTLEMENT_INTERVAL" jdbcType="CHAR" property="settlementInterval" />
+    <result column="PRODUCT_TYPE" jdbcType="CHAR" property="productType" />
+    <result column="RATE_ADJUST_TYPE" jdbcType="CHAR" property="rateAdjustType" />
+    <result column="ADJUST_TYPE" jdbcType="CHAR" property="adjustType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ADJUST_ID, ADJUST_NAME, PROTOCOL_ID, RATE_TYPE, SUBJOIN_TYPE, SETTLEMENT_INTERVAL, 
+    PRODUCT_TYPE, RATE_ADJUST_TYPE, ADJUST_TYPE, CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_protocol_rate_adjust
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_protocol_rate_adjust
+    where ADJUST_ID = #{adjustId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_protocol_rate_adjust
+    where ADJUST_ID = #{adjustId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustExample">
+    delete from ins_protocol_rate_adjust
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    insert into ins_protocol_rate_adjust (ADJUST_ID, ADJUST_NAME, PROTOCOL_ID, 
+      RATE_TYPE, SUBJOIN_TYPE, SETTLEMENT_INTERVAL, 
+      PRODUCT_TYPE, RATE_ADJUST_TYPE, ADJUST_TYPE, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_BY
+      )
+    values (#{adjustId,jdbcType=BIGINT}, #{adjustName,jdbcType=VARCHAR}, #{protocolId,jdbcType=BIGINT}, 
+      #{rateType,jdbcType=CHAR}, #{subjoinType,jdbcType=VARCHAR}, #{settlementInterval,jdbcType=CHAR}, 
+      #{productType,jdbcType=CHAR}, #{rateAdjustType,jdbcType=CHAR}, #{adjustType,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    insert into ins_protocol_rate_adjust
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adjustId != null">
+        ADJUST_ID,
+      </if>
+      <if test="adjustName != null">
+        ADJUST_NAME,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="subjoinType != null">
+        SUBJOIN_TYPE,
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="rateAdjustType != null">
+        RATE_ADJUST_TYPE,
+      </if>
+      <if test="adjustType != null">
+        ADJUST_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adjustId != null">
+        #{adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="adjustName != null">
+        #{adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="subjoinType != null">
+        #{subjoinType,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementInterval != null">
+        #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=CHAR},
+      </if>
+      <if test="rateAdjustType != null">
+        #{rateAdjustType,jdbcType=CHAR},
+      </if>
+      <if test="adjustType != null">
+        #{adjustType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjustExample" resultType="java.lang.Long">
+    select count(*) from ins_protocol_rate_adjust
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_protocol_rate_adjust
+    <set>
+      <if test="record.adjustId != null">
+        ADJUST_ID = #{record.adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="record.adjustName != null">
+        ADJUST_NAME = #{record.adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.rateType != null">
+        RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      </if>
+      <if test="record.subjoinType != null">
+        SUBJOIN_TYPE = #{record.subjoinType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="record.productType != null">
+        PRODUCT_TYPE = #{record.productType,jdbcType=CHAR},
+      </if>
+      <if test="record.rateAdjustType != null">
+        RATE_ADJUST_TYPE = #{record.rateAdjustType,jdbcType=CHAR},
+      </if>
+      <if test="record.adjustType != null">
+        ADJUST_TYPE = #{record.adjustType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_protocol_rate_adjust
+    set ADJUST_ID = #{record.adjustId,jdbcType=BIGINT},
+      ADJUST_NAME = #{record.adjustName,jdbcType=VARCHAR},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      SUBJOIN_TYPE = #{record.subjoinType,jdbcType=VARCHAR},
+      SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      PRODUCT_TYPE = #{record.productType,jdbcType=CHAR},
+      RATE_ADJUST_TYPE = #{record.rateAdjustType,jdbcType=CHAR},
+      ADJUST_TYPE = #{record.adjustType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    update ins_protocol_rate_adjust
+    <set>
+      <if test="adjustName != null">
+        ADJUST_NAME = #{adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE = #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="subjoinType != null">
+        SUBJOIN_TYPE = #{subjoinType,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=CHAR},
+      </if>
+      <if test="rateAdjustType != null">
+        RATE_ADJUST_TYPE = #{rateAdjustType,jdbcType=CHAR},
+      </if>
+      <if test="adjustType != null">
+        ADJUST_TYPE = #{adjustType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADJUST_ID = #{adjustId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    update ins_protocol_rate_adjust
+    set ADJUST_NAME = #{adjustName,jdbcType=VARCHAR},
+      PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      RATE_TYPE = #{rateType,jdbcType=CHAR},
+      SUBJOIN_TYPE = #{subjoinType,jdbcType=VARCHAR},
+      SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=CHAR},
+      RATE_ADJUST_TYPE = #{rateAdjustType,jdbcType=CHAR},
+      ADJUST_TYPE = #{adjustType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ADJUST_ID = #{adjustId,jdbcType=BIGINT}
+  </update>
+  
+   
+  <!-- 查询费率调节列表 -->
+  <select id="findAllRetMapByPage" parameterType="hashmap" resultType="hashmap">
+ 	SELECT
+		ADJUST_ID,
+		ADJUST_NAME,
+		PROTOCOL_ID,
+		case when RATE_TYPE='0' then '规保' when RATE_TYPE='1' then '标保' end  as RATE_TYPE,
+		case when SETTLEMENT_INTERVAl='0' then '月' when SETTLEMENT_INTERVAl='1' then '季'
+			 when SETTLEMENT_INTERVAl='2' then '半年' when SETTLEMENT_INTERVAl='3' then '年'
+        end as SETTLEMENT_INTERVAl,
+  		case when RATE_ADJUST_TYPE='0' then '固定' when RATE_ADJUST_TYPE='1' then '变动' end  as RATE_ADJUST_TYPE,
+  		SUBJOIN_TYPE
+	FROM
+		ins_protocol_rate_adjust 
+		where PROTOCOL_ID =#{protocolId}
+		and  ADJUST_TYPE = '0'
+		order by CREATE_TIME desc 
+		limit #{startIndex},#{pageSize}
+  </select>
+  
+   <!-- 查询总条数 -->
+  <select id="findAllByPageCount" parameterType="hashmap" resultType="long">
+ 	 SELECT
+		count(1)
+	FROM
+		ins_protocol_rate_adjust 
+		where PROTOCOL_ID =#{protocolId}
+	  and  PRODUCT_TYPE = '0'
+  </select>
+  
+  <!-- 新增返回最新主键id -->
+  <insert id="insertSelectiveAndReturnId" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolRateAdjust">
+    insert into ins_protocol_rate_adjust
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adjustId != null">
+        ADJUST_ID,
+      </if>
+      <if test="adjustName != null">
+        ADJUST_NAME,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="subjoinType != null">
+        SUBJOIN_TYPE,
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="rateAdjustType != null">
+        RATE_ADJUST_TYPE,
+      </if>
+      <if test="adjustType != null">
+        ADJUST_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adjustId != null">
+        #{adjustId,jdbcType=BIGINT},
+      </if>
+      <if test="adjustName != null">
+        #{adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="subjoinType != null">
+        #{subjoinType,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementInterval != null">
+        #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=CHAR},
+      </if>
+      <if test="rateAdjustType != null">
+        #{rateAdjustType,jdbcType=CHAR},
+      </if>
+      <if test="adjustType != null">
+        #{adjustType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+     <selectKey resultType="long" order="AFTER" keyProperty="adjustId">
+    	SELECT LAST_INSERT_ID() AS adjustId
+	</selectKey>
+  </insert>
+  
+  <select id="findParamByAdjustId" parameterType="long" resultType="hashmap">
+	select
+	<include refid="Base_Column_List" />
+	from
+	ins_protocol_rate_adjust
+	where ADJUST_ID = #{adjustId}
+  </select>
+</mapper>

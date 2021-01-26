@@ -1,0 +1,31 @@
+#authDlg {
+    position: fixed;
+    top: 0%;
+    left: 30%;
+    width: 610px;
+    height: 500px;
+    margin: 100px 100 0 0px;/*margin 璐熷�间负瀹介珮鐨勪竴鍗� */
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    margin: -1px auto;
+  }
+}
+.node_name{
+    font-size:  14px;
+    text-decoration:none;
+   /*  color: #c3cdd0; */
+    
+}
+.btn-toolbar .title {
+  line-height: 2;
+  margin-left: 10px;
+}
+#treeview-checkable .list-group-item {
+	background-color: inherit;
+	border: 1px solid #f1f3f5;
+	display: block;
+	margin-bottom: -1px;
+	padding: 10px 15px;
+	position: relative;
+}

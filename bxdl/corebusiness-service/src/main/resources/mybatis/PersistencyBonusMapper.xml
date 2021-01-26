@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.PersistencyBonusMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocolPersistencyBonus">
+     <result column="bonus_id" property="bonusId" />
+     <result column="protocol_id" property="protocolId" />
+     <result column="bonus_bases" property="bonusBases" />
+     <result column="settlement_cycle" property="settlementCycle" />
+     <result column="add_subsidy_way" property="addSubsidyWay" />
+     <result column="period_ratio" property="periodRatio" />
+     <result column="created_by" property="createdBy" />
+     <result column="created_time" property="createdTime" />
+     <result column="updated_by" property="updatedBy" />
+     <result column="updated_time" property="updatedTime" />
+  </resultMap>
+  
+  <resultMap id="PbrBaseResultMap" type="com.hzcf.pojo.insurance.protocol.PersistencyBonusRule" >
+     <result column="rule_id" property="ruleId" />
+     <result column="persistency_bonus_id" property="persistencyBonusId" />
+     <result column="basic_flag" property="basicFlag" />
+     <result column="exit_product_id" property="exitProductId" />
+     <result column="compute_type" property="computeType" />
+     <result column="monthly" property="monthly" />
+     <result column="compute_formula" property="computeFormula" />
+     <result column="bonus_ratio" property="bonusRatio" />
+     <result column="created_by" property="createdBy" />
+     <result column="created_time" property="createdTime" />
+     <result column="updated_by" property="updatedBy" />
+     <result column="updated_time" property="updatedTime" />
+  </resultMap>  
+  
+  <sql id="Base_Column_List">
+      `bonus_id`,
+      `protocol_id`,
+      `bonus_bases`,
+      `settlement_cycle`,
+      `add_subsidy_way`,
+      `period_ratio`,
+      `created_by`,
+      `created_time`,
+      `updated_by`,
+      `updated_time`
+  </sql>  
+  
+  <insert id="addPb"  parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolPersistencyBonus" useGeneratedKeys="true" keyProperty="bonusId" keyColumn="bonus_id">
+	   	INSERT INTO ins_protocol_persistency_bonus
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test ='null != protocolId'>
+	           `protocol_id`,
+	           </if>
+	           <if test ='null != bonusBases'>
+	           `bonus_bases`,
+	           </if>
+	           <if test ='null != settlementCycle'>
+	           `settlement_cycle`,
+	           </if>
+	           <if test ='null != addSubsidyWay'>
+	           `add_subsidy_way`,
+	           </if>
+	           <if test ='null != periodRatio'>
+	           `period_ratio`,
+	           </if>
+	           <if test ='null != createdBy'>
+	           `created_by`,
+	           </if>
+	           <if test ='null != createdTime'>
+	           `created_time`,
+	           </if>
+	           <if test ='null != updatedBy'>
+	           `updated_by`,
+	           </if>
+	           <if test ='null != updatedTime'>
+	           `updated_time`
+	           </if>   				 	               	        
+	       </trim>
+	       <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test ='null != protocolId'>
+	           #{protocolId},
+	           </if>
+	           <if test ='null != bonusBases'>
+	           #{bonusBases},
+	           </if>
+	           <if test ='null != settlementCycle'>
+	           #{settlementCycle},
+	           </if>
+	           <if test ='null != addSubsidyWay'>
+	           #{addSubsidyWay},
+	           </if>
+	           <if test ='null != periodRatio'>
+	           #{periodRatio},
+	           </if>
+	           <if test ='null != createdBy'>
+	           #{createdBy},
+	           </if>
+	           <if test ='null != createdTime'>
+	           #{createdTime},
+	           </if>
+	           <if test ='null != updatedBy'>
+	           #{updatedBy},
+	           </if>
+	           <if test ='null != updatedTime'>
+	           #{updatedTime}
+	           </if>					 	                    
+	       </trim>   	
+   </insert>
+   
+   <update id="updatePb" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolPersistencyBonus">
+        UPDATE ins_protocol_persistency_bonus
+        <set>
+               <if test ='null != bonusBases'>bonus_bases = #{bonusBases},</if>
+               <if test ='null != settlementCycle'>settlement_cycle = #{settlementCycle},</if>
+               <if test ='null != addSubsidyWay'>add_subsidy_way = #{addSubsidyWay},</if>
+               <if test ='null != periodRatio'>period_ratio = #{periodRatio},</if>
+               <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+               <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>
+        </set>
+        WHERE `bonus_id` = #{bonusId}	 	
+    </update>        
+   	  	
+   <select id="selectPb" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from ins_protocol_persistency_bonus 
+   		<where>
+   		1=1
+		<if test ='null != protocolId'>
+			AND protocol_id = #{protocolId}
+		</if>
+   		</where>
+   </select> 
+   
+   <select id="getPbrList" parameterType="java.util.Map" resultMap="PbrBaseResultMap">
+   		select * from persistency_bonus_rule
+   		<where>
+   		1=1
+			<if test ='null != persistencyBonusId'>
+				AND persistency_bonus_id = #{persistencyBonusId}
+			</if> 
+			<if test ='null != basicFlag'>
+				AND basic_flag = #{basicFlag}
+			</if>	
+			<if test ='null != exitProductId'>
+				AND exit_product_id = #{exitProductId}
+			</if>
+			<if test ='null != computeType'>
+				AND compute_type = #{computeType}
+			</if>					  			
+   		</where>
+   </select>
+   
+   <insert id="addPbr" parameterType="java.util.List">
+        insert into persistency_bonus_rule
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+             `persistency_bonus_id`,
+             `basic_flag`,
+             `exit_product_id`,
+             `compute_type`,
+             `monthly`,
+             `compute_formula`,
+             `bonus_ratio`,
+             `created_by`,
+             `created_time`,
+             `updated_by`,
+             `updated_time`
+        </trim>        
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (
+         	 #{item.persistencyBonusId},
+             #{item.basicFlag},
+             #{item.exitProductId},
+             #{item.computeType},
+             #{item.monthly},
+             #{item.computeFormula},
+             #{item.bonusRatio},
+             #{item.createdBy},
+             #{item.createdTime},
+             #{item.updatedBy},
+             #{item.updatedTime}
+           )          	
+        </foreach>
+    </insert>
+    
+    <update id="updatePbr"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE persistency_bonus_rule
+	        <trim prefix="set" suffixOverrides=",">
+		        monthly = #{item.monthly},
+		        compute_formula = #{item.computeFormula},
+	            bonus_ratio = #{item.bonusRatio},
+	           	<if test = 'null != item.updatedBy'> updated_by=#{item.updatedBy},</if>
+	            <if test = 'null != item.updatedTime'>updated_time =#{item.updatedTime}</if>
+	        </trim>
+	        <where>
+				rule_id = ${item.ruleId}
+	        </where>
+	    </foreach>      
+	</update>
+ 
+     <delete id="deletePbrs" parameterType="java.util.Map">  
+	    	delete from persistency_bonus_rule 
+	    	<where>
+	    	1=1
+	    		<if test = 'null != persistencyBonusId'>and persistency_bonus_id = ${persistencyBonusId}</if>
+	    		<if test = 'null != basicFlag'>and basic_flag = ${basicFlag}</if>
+	    		<if test = 'null != exitProductId'>and exit_product_id = ${exitProductId}</if>
+				<if test ='"" != updateIds and null != updateIds'>  
+					and rule_id not in (${updateIds})
+				</if>	    		
+	    	</where>
+	</delete>      
+   
+   <select id="getOutProducts" parameterType="java.util.Map" resultType="java.util.Map">
+   		SELECT ipc.* from (
+   		select DISTINCT(exit_product_id) from persistency_bonus_rule br
+   		<where>
+   		1=1
+			<if test ='null != persistencyBonusId'>
+				AND br.persistency_bonus_id = #{persistencyBonusId}
+			</if> 
+			<if test ='null != basicFlag'>
+				AND br.basic_flag = #{basicFlag}
+			</if>	
+			<if test ='null != exitProductId'>
+				AND br.exit_product_id = #{exitProductId}
+			</if>
+			<if test ='null != computeType'>
+				AND br.compute_type = #{computeType}
+			</if>					  			
+   		</where>
+   		) ac LEFT JOIN
+		ins_products_commission_ratio ipc on
+		ac.exit_product_id = ipc.products_ratio_id   
+   </select>    	 
+</mapper>

@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.ProductsCommissionRatioMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.product.ProductsCommissionRatio">
+    <id column="PRODUCTS_RATIO_ID" jdbcType="BIGINT" property="productsRatioId" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="DATE" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="DATE" property="updatedTime" />
+    <result column="INSURANCE_PRODUCT_ID" jdbcType="BIGINT" property="insuranceProductId" />
+    <result column="INSURANCE_PRODUCT_CODE" jdbcType="VARCHAR" property="insuranceProductCode" />
+    <result column="INSURANCE_PERIOD_MIN" jdbcType="VARCHAR" property="insurancePeriodMin" />
+    <result column="INSURANCE_PERIOD_MAX" jdbcType="VARCHAR" property="insurancePeriodMax" />
+    <result column="RENEW_PERIOD_MIN" jdbcType="VARCHAR" property="renewPeriodMin" />
+    <result column="RENEW_PERIOD_MAX" jdbcType="VARCHAR" property="renewPeriodMax" />
+    <result column="VALUE_COMMISSION_COEFFICIENT" jdbcType="DECIMAL" property="valueCommissionCoefficient" />
+    <result column="IN_STANDARD_COMMISSION_COEFFICIENT" jdbcType="DECIMAL" property="inStandardCommissionCoefficient" />
+    <result column="OUT_STANDARD_COMMISSION_COEFFICIENT" jdbcType="DECIMAL" property="outStandardCommissionCoefficient" />
+    <result column="INDEXING_COEFFICIENT" jdbcType="DECIMAL" property="indexingCoefficient" />
+    <result column="PRODUCTS_NAME" jdbcType="VARCHAR" property="productsName" />
+    <result column="PRODUCTS_CODE" jdbcType="VARCHAR" property="productsCode" />
+    <result column="PRODUCTS_STATUS" jdbcType="CHAR" property="productsStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PRODUCTS_RATIO_ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, INSURANCE_PRODUCT_ID, 
+    INSURANCE_PRODUCT_CODE, INSURANCE_PERIOD_MIN, INSURANCE_PERIOD_MAX, RENEW_PERIOD_MIN, 
+    RENEW_PERIOD_MAX, VALUE_COMMISSION_COEFFICIENT, IN_STANDARD_COMMISSION_COEFFICIENT, 
+    OUT_STANDARD_COMMISSION_COEFFICIENT,INDEXING_COEFFICIENT, PRODUCTS_NAME, PRODUCTS_CODE, PRODUCTS_STATUS
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.product.ProductsCommissionRatioExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_products_commission_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_products_commission_ratio
+    where PRODUCTS_RATIO_ID = #{productsRatioId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_products_commission_ratio
+    where PRODUCTS_RATIO_ID = #{productsRatioId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.product.ProductsCommissionRatioExample">
+    delete from ins_products_commission_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.product.ProductsCommissionRatio">
+    insert into ins_products_commission_ratio (CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, INSURANCE_PRODUCT_ID, 
+      INSURANCE_PRODUCT_CODE, INSURANCE_PERIOD_MIN, 
+      INSURANCE_PERIOD_MAX, RENEW_PERIOD_MIN, RENEW_PERIOD_MAX, 
+      VALUE_COMMISSION_COEFFICIENT, IN_STANDARD_COMMISSION_COEFFICIENT, 
+      OUT_STANDARD_COMMISSION_COEFFICIENT,INDEXING_COEFFICIENT, PRODUCTS_NAME, 
+      PRODUCTS_CODE, PRODUCTS_STATUS)
+    values (#{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=DATE}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=DATE}, #{insuranceProductId,jdbcType=BIGINT}, 
+      #{insuranceProductCode,jdbcType=VARCHAR}, #{insurancePeriodMin,jdbcType=VARCHAR}, 
+      #{insurancePeriodMax,jdbcType=VARCHAR}, #{renewPeriodMin,jdbcType=VARCHAR}, #{renewPeriodMax,jdbcType=VARCHAR}, 
+      #{valueCommissionCoefficient,jdbcType=DECIMAL}, #{inStandardCommissionCoefficient,jdbcType=DECIMAL}, 
+      #{outStandardCommissionCoefficient,jdbcType=DECIMAL},#{indexingCoefficient,jdbcType=DECIMAL}, #{productsName,jdbcType=VARCHAR}, 
+      #{productsCode,jdbcType=VARCHAR}, #{productsStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.product.ProductsCommissionRatio">
+    insert into ins_products_commission_ratio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="insuranceProductId != null">
+        INSURANCE_PRODUCT_ID,
+      </if>
+      <if test="insuranceProductCode != null">
+        INSURANCE_PRODUCT_CODE,
+      </if>
+      <if test="insurancePeriodMin != null">
+        INSURANCE_PERIOD_MIN,
+      </if>
+      <if test="insurancePeriodMax != null">
+        INSURANCE_PERIOD_MAX,
+      </if>
+      <if test="renewPeriodMin != null">
+        RENEW_PERIOD_MIN,
+      </if>
+      <if test="renewPeriodMax != null">
+        RENEW_PERIOD_MAX,
+      </if>
+      <if test="valueCommissionCoefficient != null">
+        VALUE_COMMISSION_COEFFICIENT,
+      </if>
+      <if test="inStandardCommissionCoefficient != null">
+        IN_STANDARD_COMMISSION_COEFFICIENT,
+      </if>
+      <if test="outStandardCommissionCoefficient != null">
+        OUT_STANDARD_COMMISSION_COEFFICIENT,
+      </if>
+      <if test="indexingCoefficient != null">
+        INDEXING_COEFFICIENT,
+      </if>      
+      <if test="productsName != null">
+        PRODUCTS_NAME,
+      </if>
+      <if test="productsCode != null">
+        PRODUCTS_CODE,
+      </if>
+      <if test="productsStatus != null">
+        PRODUCTS_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=DATE},
+      </if>
+      <if test="insuranceProductId != null">
+        #{insuranceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceProductCode != null">
+        #{insuranceProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePeriodMin != null">
+        #{insurancePeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePeriodMax != null">
+        #{insurancePeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMin != null">
+        #{renewPeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMax != null">
+        #{renewPeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="valueCommissionCoefficient != null">
+        #{valueCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="inStandardCommissionCoefficient != null">
+        #{inStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="outStandardCommissionCoefficient != null">
+        #{outStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="indexingCoefficient != null">
+        #{indexingCoefficient,jdbcType=DECIMAL},
+      </if>      
+      <if test="productsName != null">
+        #{productsName,jdbcType=VARCHAR},
+      </if>
+      <if test="productsCode != null">
+        #{productsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productsStatus != null">
+        #{productsStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.product.ProductsCommissionRatioExample" resultType="java.lang.Long">
+    select count(*) from ins_products_commission_ratio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_products_commission_ratio
+    <set>
+      <if test="record.productsRatioId != null">
+        PRODUCTS_RATIO_ID = #{record.productsRatioId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=DATE},
+      </if>
+      <if test="record.updatedBy != null">
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null">
+        UPDATED_TIME = #{record.updatedTime,jdbcType=DATE},
+      </if>
+      <if test="record.insuranceProductId != null">
+        INSURANCE_PRODUCT_ID = #{record.insuranceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="record.insuranceProductCode != null">
+        INSURANCE_PRODUCT_CODE = #{record.insuranceProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insurancePeriodMin != null">
+        INSURANCE_PERIOD_MIN = #{record.insurancePeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insurancePeriodMax != null">
+        INSURANCE_PERIOD_MAX = #{record.insurancePeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.renewPeriodMin != null">
+        RENEW_PERIOD_MIN = #{record.renewPeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.renewPeriodMax != null">
+        RENEW_PERIOD_MAX = #{record.renewPeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valueCommissionCoefficient != null">
+        VALUE_COMMISSION_COEFFICIENT = #{record.valueCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inStandardCommissionCoefficient != null">
+        IN_STANDARD_COMMISSION_COEFFICIENT = #{record.inStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="record.outStandardCommissionCoefficient != null">
+        OUT_STANDARD_COMMISSION_COEFFICIENT = #{record.outStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productsName != null">
+        PRODUCTS_NAME = #{record.productsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productsCode != null">
+        PRODUCTS_CODE = #{record.productsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productsStatus != null">
+        PRODUCTS_STATUS = #{record.productsStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_products_commission_ratio
+    set PRODUCTS_RATIO_ID = #{record.productsRatioId,jdbcType=BIGINT},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=DATE},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=DATE},
+      INSURANCE_PRODUCT_ID = #{record.insuranceProductId,jdbcType=BIGINT},
+      INSURANCE_PRODUCT_CODE = #{record.insuranceProductCode,jdbcType=VARCHAR},
+      INSURANCE_PERIOD_MIN = #{record.insurancePeriodMin,jdbcType=VARCHAR},
+      INSURANCE_PERIOD_MAX = #{record.insurancePeriodMax,jdbcType=VARCHAR},
+      RENEW_PERIOD_MIN = #{record.renewPeriodMin,jdbcType=VARCHAR},
+      RENEW_PERIOD_MAX = #{record.renewPeriodMax,jdbcType=VARCHAR},
+      VALUE_COMMISSION_COEFFICIENT = #{record.valueCommissionCoefficient,jdbcType=DECIMAL},
+      IN_STANDARD_COMMISSION_COEFFICIENT = #{record.inStandardCommissionCoefficient,jdbcType=DECIMAL},
+      OUT_STANDARD_COMMISSION_COEFFICIENT = #{record.outStandardCommissionCoefficient,jdbcType=DECIMAL},
+      INDEXING_COEFFICIENT = #{record.indexingCoefficient,jdbcType=DECIMAL},
+      PRODUCTS_NAME = #{record.productsName,jdbcType=VARCHAR},
+      PRODUCTS_CODE = #{record.productsCode,jdbcType=VARCHAR},
+      PRODUCTS_STATUS = #{record.productsStatus,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.product.ProductsCommissionRatio">
+    update ins_products_commission_ratio
+    <set>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=DATE},
+      </if>
+      <if test="insuranceProductId != null">
+        INSURANCE_PRODUCT_ID = #{insuranceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceProductCode != null">
+        INSURANCE_PRODUCT_CODE = #{insuranceProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePeriodMin != null">
+        INSURANCE_PERIOD_MIN = #{insurancePeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePeriodMax != null">
+        INSURANCE_PERIOD_MAX = #{insurancePeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMin != null">
+        RENEW_PERIOD_MIN = #{renewPeriodMin,jdbcType=VARCHAR},
+      </if>
+      <if test="renewPeriodMax != null">
+        RENEW_PERIOD_MAX = #{renewPeriodMax,jdbcType=VARCHAR},
+      </if>
+      <if test="valueCommissionCoefficient != null">
+        VALUE_COMMISSION_COEFFICIENT = #{valueCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="inStandardCommissionCoefficient != null">
+        IN_STANDARD_COMMISSION_COEFFICIENT = #{inStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="outStandardCommissionCoefficient != null">
+        OUT_STANDARD_COMMISSION_COEFFICIENT = #{outStandardCommissionCoefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="indexingCoefficient != null">
+        INDEXING_COEFFICIENT = #{indexingCoefficient,jdbcType=DECIMAL},
+      </if>      
+      <if test="productsName != null">
+        PRODUCTS_NAME = #{productsName,jdbcType=VARCHAR},
+      </if>
+      <if test="productsCode != null">
+        PRODUCTS_CODE = #{productsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productsStatus != null">
+        PRODUCTS_STATUS = #{productsStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where PRODUCTS_RATIO_ID = #{productsRatioId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.product.ProductsCommissionRatio">
+    update ins_products_commission_ratio
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=DATE},
+      INSURANCE_PRODUCT_ID = #{insuranceProductId,jdbcType=BIGINT},
+      INSURANCE_PRODUCT_CODE = #{insuranceProductCode,jdbcType=VARCHAR},
+      INSURANCE_PERIOD_MIN = #{insurancePeriodMin,jdbcType=VARCHAR},
+      INSURANCE_PERIOD_MAX = #{insurancePeriodMax,jdbcType=VARCHAR},
+      RENEW_PERIOD_MIN = #{renewPeriodMin,jdbcType=VARCHAR},
+      RENEW_PERIOD_MAX = #{renewPeriodMax,jdbcType=VARCHAR},
+      VALUE_COMMISSION_COEFFICIENT = #{valueCommissionCoefficient,jdbcType=DECIMAL},
+      IN_STANDARD_COMMISSION_COEFFICIENT = #{inStandardCommissionCoefficient,jdbcType=DECIMAL},
+      OUT_STANDARD_COMMISSION_COEFFICIENT = #{outStandardCommissionCoefficient,jdbcType=DECIMAL},
+      INDEXING_COEFFICIENT = #{indexingCoefficient,jdbcType=DECIMAL},
+      PRODUCTS_NAME = #{productsName,jdbcType=VARCHAR},
+      PRODUCTS_CODE = #{productsCode,jdbcType=VARCHAR},
+      PRODUCTS_STATUS = #{productsStatus,jdbcType=CHAR}
+    where PRODUCTS_RATIO_ID = #{productsRatioId,jdbcType=BIGINT}
+  </update>
+  <!-- 根据产品id查询佣金列表 -->
+   <select id="selectProductsCommissionRatioListByProductId" resultMap="BaseResultMap"  parameterType="hashmap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_products_commission_ratio
+    where INSURANCE_PRODUCT_ID = #{productId}
+    and PRODUCTS_STATUS=0
+  </select>
+  
+   <delete id="deleteByProduct" parameterType="hashmap" >
+    delete from ins_products_commission_ratio
+    where INSURANCE_PRODUCT_ID = #{productId}
+  </delete>
+  
+  <select id="getSonProductList" parameterType="long" resultMap="BaseResultMap">
+	  SELECT
+		PRODUCTS_NAME,
+		PRODUCTS_CODE
+	FROM
+		ins_products_commission_ratio
+	where INSURANCE_PRODUCT_ID = #{productId}
+  </select>
+  
+  <!--通过子产品ID更改产品状态  -->
+   <update id="updateRenewPeriodStatus" parameterType="java.util.Map" >
+    update ins_products_commission_ratio
+    <set >
+        PRODUCTS_STATUS =#{productsStatus},
+    </set>
+    where PRODUCTS_RATIO_ID = #{productsRatioId}
+  </update>
+  
+  <!--查询子产品 -->
+   <select id="checkRenewPeriodSize"  parameterType="java.util.Map" resultType="java.lang.Integer">
+	  SELECT
+		count(1)
+	FROM
+		ins_products_commission_ratio
+	where INSURANCE_PRODUCT_ID = #{productId}
+	and PRODUCTS_STATUS=0
+  </select>
+   <select id="getPartnershipListSub" parameterType="hashmap" resultType="java.util.Map">
+   SELECT
+	   PRODUCTS_RATIO_ID,
+	   PRODUCTS_NAME,
+	   PRODUCTS_CODE,
+	   INSURANCE_PERIOD_MIN,
+	   INSURANCE_PERIOD_MAX,
+	   RENEW_PERIOD_MIN,
+	   RENEW_PERIOD_MAX,
+	   VALUE_COMMISSION_COEFFICIENT,
+	   IN_STANDARD_COMMISSION_COEFFICIENT,
+	   INDEXING_COEFFICIENT
+	FROM
+		ins_products_commission_ratio 
+	where 1=1
+	<if test="null != productId">
+    and  INSURANCE_PRODUCT_ID = #{productId}</if>
+     and PRODUCTS_STATUS = '0'
+     limit #{startIndex},#{pageSize}
+  </select>
+  <!-- 查询分页总条数 -->
+    <select id="getPartnershipListSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM ins_products_commission_ratio
+        where 1=1
+        <if test="null != productId">
+    		and  INSURANCE_PRODUCT_ID = #{productId}
+    	</if>
+      AND PRODUCTS_STATUS = '0'
+    </select>
+  <select id="findAllInsurProductSub"  parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+		  ratio.PRODUCTS_NAME,
+          ratio.PRODUCTS_RATIO_ID
+		FROM
+			ins_products_commission_ratio ratio
+		LEFT JOIN insurance_product_info  info on info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+    <where>
+       info.PRODUCT_STATUS = '0'
+      AND ratio.PRODUCTS_STATUS = '0'
+      <if test="insuranceCompanyId != null" >
+      and  INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="companyId != null" >
+        and  INSURANCE_COMPANY_ID = #{companyId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectRatioByInsuranceCompanyIdAndProductsName" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+        ratio.*
+    FROM
+        ins_products_commission_ratio ratio,insurance_product_info info,insurance_company_org comp
+    WHERE comp.INSURANCE_COMPANY_ID = info.INSURANCE_COMPANY_ID
+    AND info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+    <if test="insuranceCompanyId != null">
+         AND comp.INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT}
+    </if>
+     <if test="productsName != null">
+         AND ratio.PRODUCTS_NAME = #{productsName}
+     </if>
+  </select>
+
+  <select id="selectRatioProductsCode"  resultMap="BaseResultMap">
+    SELECT
+        *
+    FROM ins_products_commission_ratio
+    WHERE PRODUCTS_CODE = #{productsCode}
+  </select>
+
+</mapper>

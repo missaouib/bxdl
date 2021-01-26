@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesTeamLeadersMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.SalesTeamLeaders" >
+     <result column="team_leader_id" property="teamLeaderId" />
+     <result column="sales_team_id" property="salesTeamId" />
+     <result column="saler_no" property="salerNo" />
+     <result column="saler_name" property="salerName" />
+     <result column="card_type" property="cardType" />
+     <result column="card_no" property="cardNo" />
+     <result column="leader_type" property="leaderType" />
+     <result column="effect_date" property="effectDate" />
+     <result column="stop_date" property="stopDate" />
+     <result column="leader_status" property="leaderStatus" />
+     <result column="created_by" property="createdBy" />
+     <result column="created_time" property="createdTime" />
+     <result column="updated_by" property="updatedBy" />
+     <result column="updated_time" property="updatedTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    `team_leader_id`,
+    `sales_team_id`,
+    `saler_no`,
+    `saler_name`,
+    `card_type`,
+    `card_no`,
+    `leader_type`,
+    `effect_date`,
+    `stop_date`,
+    `leader_status`,
+    `created_by`,
+    `created_time`,
+    `updated_by`,
+    `updated_time`
+  </sql>  
+  
+  <insert id="addSalesTeamLeaders"  parameterType="com.hzcf.pojo.insurance.SalesTeamLeaders" useGeneratedKeys="true" keyProperty="teamLeaderId" keyColumn="team_leader_id">
+    	INSERT INTO sales_team_leaders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != salesTeamId'>
+            `sales_team_id`,
+            </if>
+            <if test ='null != salerNo'>
+            `saler_no`,
+            </if>
+            <if test ='null != salerName'>
+            `saler_name`,
+            </if>
+            <if test ='null != cardType'>
+            `card_type`,
+            </if>
+            <if test ='null != cardNo'>
+            `card_no`,
+            </if>
+            <if test ='null != leaderType'>
+            `leader_type`,
+            </if>
+            <if test ='null != effectDate'>
+            `effect_date`,
+            </if>
+            <if test ='null != stopDate'>
+            `stop_date`,
+            </if>
+            <if test ='null != leaderStatus'>
+            `leader_status`,
+            </if>
+            <if test ='null != createdBy'>
+            `created_by`,
+            </if>
+            <if test ='null != createdTime'>
+            `created_time`,
+            </if>
+            <if test ='null != updatedBy'>
+            `updated_by`,
+            </if>
+            <if test ='null != updatedTime'>
+            `updated_time`
+            </if>   					 	               	        
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+             <if test ='null != salesTeamId'>
+             #{salesTeamId},
+             </if>
+             <if test ='null != salerNo'>
+             #{salerNo},
+             </if>
+             <if test ='null != salerName'>
+             #{salerName},
+             </if>
+             <if test ='null != cardType'>
+             #{cardType},
+             </if>
+             <if test ='null != cardNo'>
+             #{cardNo},
+             </if>
+             <if test ='null != leaderType'>
+             #{leaderType},
+             </if>
+             <if test ='null != effectDate'>
+             #{effectDate},
+             </if>
+             <if test ='null != stopDate'>
+             #{stopDate},
+             </if>
+             <if test ='null != leaderStatus'>
+             #{leaderStatus},
+             </if>
+             <if test ='null != createdBy'>
+             #{createdBy},
+             </if>
+             <if test ='null != createdTime'>
+             #{createdTime},
+             </if>
+             <if test ='null != updatedBy'>
+             #{updatedBy},
+             </if>
+             <if test ='null != updatedTime'>
+             #{updatedTime}
+             </if>				 	                    
+        </trim>   	
+   </insert> 
+    
+   	<update id="updateSalesTeamLeaders" parameterType="com.hzcf.pojo.insurance.SalesTeamLeaders">
+        UPDATE sales_team_leaders
+        <set>
+           <if test ='null != salesTeamId'>sales_team_id = #{salesTeamId},</if>
+           <if test ='null != salerNo'>saler_no = #{salerNo},</if>
+           <if test ='null != salerName'>saler_name = #{salerName},</if>
+           <if test ='null != cardType'>card_type = #{cardType},</if>
+           <if test ='null != cardNo'>card_no = #{cardNo},</if>
+           <if test ='null != leaderType'>leader_type = #{leaderType},</if>
+           <if test ='null != effectDate'>effect_date = #{effectDate},</if>
+           <if test ='null != stopDate'>stop_date = #{stopDate},</if>
+           <if test ='null != leaderStatus'>leader_status = #{leaderStatus},</if>
+           <if test ='null != createdBy'>created_by = #{createdBy},</if>
+           <if test ='null != createdTime'>created_time = #{createdTime},</if>
+           <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+           <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>     
+        </set>    
+        WHERE `team_leader_id` = #{teamLeaderId}
+    </update>
+   
+    <select id="getSalesTeamLeadersPage" parameterType="java.util.Map" resultType="java.util.Map">
+    	select * from sales_team_leaders
+    	<where>
+    	1=1
+           <if test ='null != teamLeaderId'>and team_leader_id = #{teamLeaderId}</if>
+           <if test ='null != salesTeamId'>and sales_team_id = #{salesTeamId}</if>
+           <if test ='null != salerNo'>and saler_no = #{salerNo}</if>
+           <if test ='null != salerName'>and saler_name = #{salerName}</if>
+           <if test ='null != cardType'>and card_type = #{cardType}</if>
+           <if test ='null != cardNo'>and card_no = #{cardNo}</if>
+           <if test ='null != leaderType'>and leader_type = #{leaderType}</if>
+           <if test ='null != effectDate'>and effect_date = #{effectDate}</if>
+           <if test ='null != stopDate'>and stop_date = #{stopDate}</if>
+           <if test ='null != leaderStatus'>and leader_status = #{leaderStatus}</if>
+           <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+           <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+           <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+           <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>        
+    	</where>
+    	limit #{startIndex},#{endIndex}    	
+    </select>
+    
+    <select id="getSalesTeamLeadersList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from sales_team_leaders
+    	<where>
+    	1=1
+           <if test ='null != teamLeaderId'>and team_leader_id = #{teamLeaderId}</if>
+           <if test ='null != salesTeamId'>and sales_team_id = #{salesTeamId}</if>
+           <if test ='null != salerNo'>and saler_no = #{salerNo}</if>
+           <if test ='null != salerName'>and saler_name = #{salerName}</if>
+           <if test ='null != cardType'>and card_type = #{cardType}</if>
+           <if test ='null != cardNo'>and card_no = #{cardNo}</if>
+           <if test ='null != leaderType'>and leader_type = #{leaderType}</if>
+           <if test ='null != effectDate'>and effect_date = #{effectDate}</if>
+           <if test ='null != stopDate'>and stop_date = #{stopDate}</if>
+           <if test ='null != leaderStatus'>and leader_status = #{leaderStatus}</if>
+           <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+           <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+           <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+           <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+           <if test ='null != currDateDo'>and stop_date &lt;= (select curdate())</if>      
+    	</where>    	
+    </select>    
+    
+    <select id="getSalesTeamLeadersListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from sales_team_leaders
+    	<where>
+    	1=1
+           <if test ='null != teamLeaderId'>and team_leader_id = #{teamLeaderId}</if>
+           <if test ='null != salesTeamId'>and sales_team_id = #{salesTeamId}</if>
+           <if test ='null != salerNo'>and saler_no = #{salerNo}</if>
+           <if test ='null != salerName'>and saler_name = #{salerName}</if>
+           <if test ='null != cardType'>and card_type = #{cardType}</if>
+           <if test ='null != cardNo'>and card_no = #{cardNo}</if>
+           <if test ='null != leaderType'>and leader_type = #{leaderType}</if>
+           <if test ='null != effectDate'>and effect_date = #{effectDate}</if>
+           <if test ='null != stopDate'>and stop_date = #{stopDate}</if>
+           <if test ='null != leaderStatus'>and leader_status = #{leaderStatus}</if>
+           <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+           <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+           <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+           <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>          	
+    	</where>
+    </select>    
+   	  	
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from sales_team_leaders 
+   		<where>
+   		1=1
+		<if test ='null != salesGradeId'>
+			AND team_leader_id = #{teamLeaderId}
+		</if>
+   		</where>
+   	</select> 
+   	
+    <update id="disableLeaders" parameterType="java.util.Map">
+   		update sales_team_leaders 
+   		<set>
+			<if test ='null != leaderStatus'>
+				leader_status = #{leaderStatus}
+			</if>
+   		</set>
+   		<where>
+   			1=1
+			<if test ='null != leaderIds'>
+				AND team_leader_id in (${leaderIds})
+			</if>
+			<if test ='null != salesTeamId'>
+				AND sales_team_id = #{salesTeamId}
+			</if>			   			
+   		</where>
+   	</update>    	
+   	  	 
+</mapper>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.cal.CalParamVersionMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.cal.CalParamVersion">
+        <result column="id" property="id" />
+        <result column="org_id" property="orgId" />
+        <result column="param_type" property="paramType" />
+        <result column="remark" property="remark" />
+        <result column="major_version" property="majorVersion" />
+        <result column="minor_version" property="minorVersion" />
+        <result column="critical_version" property="criticalVersion" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.id
+        , t.org_id
+        , t.param_type
+        , t.remark
+        , t.major_version
+        , t.minor_version
+        , t.critical_version
+        , t.create_by
+        , t.create_time
+        </sql>
+
+
+    <!-- 获取记录 -->
+    <select id="getCalParamVersionInfo" resultMap="BaseResultMap" >
+        SELECT
+            <include refid="baseColumns" />
+        FROM cal_param_version t
+        <where>
+            <if test='orgId != null and "" != orgId'> AND org_id = #{orgId}</if>
+            <if test='paramType!=null and "" != paramType'>AND param_type = #{paramType}</if>
+        </where>
+        ORDER BY create_time DESC LIMIT 1
+    </select>
+
+
+
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="baseColumns" />
+        FROM cal_param_version t
+    </select>
+
+    <!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Long">
+        SELECT
+        <include refid="baseColumns" />
+        FROM cal_param_version t
+        WHERE id = #{id}
+    </select>
+
+    <!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.hzcf.pojo.cal.CalParamVersion"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO cal_param_version
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            org_id,
+            param_type,
+            remark,
+            major_version,
+            minor_version,
+            critical_version,
+            create_by,
+            create_time,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{orgId},
+            #{paramType},
+            #{remark},
+            #{majorVersion},
+            #{minorVersion},
+            #{criticalVersion},
+            #{createBy},
+            #{createTime},
+        </trim>
+    </insert>
+
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.hzcf.pojo.cal.CalParamVersion"
+            keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+        INSERT INTO cal_param_version
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="paramType != null">
+                param_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="majorVersion != null">
+                major_version,
+            </if>
+            <if test="minorVersion != null">
+                minor_version,
+            </if>
+            <if test="criticalVersion != null">
+                critical_version,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="orgId != null" >
+                #{orgId},
+            </if>
+            <if test="paramType != null" >
+                #{paramType},
+            </if>
+            <if test="remark != null" >
+                #{remark},
+            </if>
+            <if test="majorVersion != null" >
+                #{majorVersion},
+            </if>
+            <if test="minorVersion != null" >
+                #{minorVersion},
+            </if>
+            <if test="criticalVersion != null" >
+                #{criticalVersion},
+            </if>
+            <if test="createBy != null" >
+                #{createBy},
+            </if>
+            <if test="createTime != null" >
+                #{createTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.hzcf.pojo.cal.CalParamVersion">
+        UPDATE cal_param_version
+        <set>
+            org_id=#{orgId},
+            param_type=#{paramType},
+            remark=#{remark},
+            major_version=#{majorVersion},
+            minor_version=#{minorVersion},
+            critical_version=#{criticalVersion},
+            create_by=#{createBy},
+            create_time=#{createTime},
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.hzcf.pojo.cal.CalParamVersion">
+        UPDATE cal_param_version
+        <set>
+            <if test="orgId != null" >
+                org_id=#{orgId},
+            </if>
+            <if test="paramType != null" >
+                param_type=#{paramType},
+            </if>
+            <if test="remark != null" >
+                remark=#{remark},
+            </if>
+            <if test="majorVersion != null" >
+                major_version=#{majorVersion},
+            </if>
+            <if test="minorVersion != null" >
+                minor_version=#{minorVersion},
+            </if>
+            <if test="criticalVersion != null" >
+                critical_version=#{criticalVersion},
+            </if>
+            <if test="createBy != null" >
+                create_by=#{createBy},
+            </if>
+            <if test="createTime != null" >
+                create_time=#{createTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 根据主键删除记录 -->
+    <delete id="delete" parameterType="com.hzcf.pojo.cal.CalParamVersion">
+		UPDATE cal_param_version
+		SET is_deleted=1
+		WHERE id = #{id}
+	</delete>
+
+    <select id="getCalParamVersion" resultMap="BaseResultMap">
+        SELECT
+            <include refid="baseColumns" />
+            FROM cal_param_version t
+            <where>
+                <if test='orgId != null and "" != orgId'> AND org_id = {orgId}</if>
+                <if test='paramType!=null and "" != paramType'>AND param_type = {paramType}</if>
+            </where>
+    </select>
+
+    <select id="getCalParamVersionPage" resultType="hashmap">
+        SELECT
+            id,
+            org_id AS orgId,
+            param_type AS paramType,
+            remark,
+            CONCAT('',major_version,'.',minor_version,'.',critical_version) AS version,
+            DATE_FORMAT(create_time,'%Y-%m-%d %T') as createTime
+        FROM
+            cal_param_version
+        <where>
+            <if test='orgId != null and "" != orgId'> AND org_id = #{orgId}</if>
+            <if test='paramType!=null and "" != paramType'>AND param_type = #{paramType}</if>
+        </where>
+        order by create_time desc
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getCalParamVersionPageCount" parameterType="hashmap" resultType="long">
+        SELECT
+            count(1)
+        FROM
+            cal_param_version
+        <where>
+            <if test='orgId != null and "" != orgId'> AND org_id = #{orgId}</if>
+            <if test='paramType!=null and "" != paramType'>AND param_type = #{paramType}</if>
+        </where>
+    </select>
+
+
+
+
+
+
+
+
+
+    <!--isDefaultCal = '0' 时，新增6个历史记录和其他5个记录-->
+    <!--展业津贴参数-->
+    <insert id="saveOtherPromote" parameterType="hashmap" >
+        INSERT INTO `cal_promote`
+        (`org_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance`, `rule_type`, `step`, `extra_allowance`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},max_sign,max_value,min_sign,min_value,allowance,rule_type,step,extra_allowance,#{employeeId},NOW(),is_normal
+        FROM cal_promote
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisPromote" parameterType="hashmap" >
+        INSERT INTO `cal_his_promote`
+        (`org_id`, `version_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance`, `rule_type`, `step`, `extra_allowance`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},#{id},max_sign,max_value,min_sign,min_value,allowance,rule_type,step,extra_allowance,#{employeeId},NOW(),is_normal
+        FROM cal_promote
+        WHERE org_id = #{orgId}
+    </insert>
+
+    <!--增员津贴参数表-->
+    <insert id="saveOtherIncreaseStaff" parameterType="hashmap" >
+        INSERT INTO `cal_increase_staff`
+        (`org_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},max_sign,max_value,min_sign,min_value,allowance_ratio,rule_type,#{employeeId},NOW(),is_normal
+        FROM cal_increase_staff
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisIncreaseStaff" parameterType="hashmap" >
+        INSERT INTO `cal_his_increase_staff`
+        (`org_id`, `version_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},#{id},max_sign,max_value,min_sign,min_value,allowance_ratio,rule_type,#{employeeId},NOW(),is_normal
+        FROM cal_increase_staff
+        WHERE org_id = #{orgId}
+    </insert>
+
+    <!--直辖组管理津贴参数表-->
+    <insert id="saveOtherDirectlyUnderGroup" parameterType="hashmap" >
+        INSERT INTO `cal_directly_under_group`
+        (`org_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `active_saler_sign`, `active_saler_num`, `relation_type`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},`max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `active_saler_sign`, `active_saler_num`, `relation_type`, `rule_type`,#{employeeId},NOW(),is_normal
+        FROM cal_directly_under_group
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisDirectlyUnderGroup" parameterType="hashmap" >
+        INSERT INTO `cal_his_directly_under_group`
+        (`org_id`, `version_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `active_saler_sign`, `active_saler_num`, `relation_type`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},#{id},`max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `active_saler_sign`, `active_saler_num`, `relation_type`, `rule_type`,#{employeeId},NOW(),is_normal
+        FROM cal_directly_under_group
+        WHERE org_id = #{orgId}
+    </insert>
+
+    <!--直属部管理津贴参数表-->
+    <insert id="saveOtherDirectlyUnderDept" parameterType="hashmap" >
+        INSERT INTO `cal_directly_under_dept`
+        (`org_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `extra_ratio`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId}, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `extra_ratio`, `rule_type`,#{employeeId},NOW(),is_normal
+        FROM cal_directly_under_dept
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisDirectlyUnderDept" parameterType="hashmap" >
+        INSERT INTO `cal_his_directly_under_dept`
+        (`org_id`, `version_id`, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `extra_ratio`, `rule_type`, `create_by`, `create_time`, `is_normal`)
+        SELECT #{salesOrgId},#{id}, `max_sign`, `max_value`, `min_sign`, `min_value`, `allowance_ratio`, `extra_ratio`, `rule_type`,#{employeeId},NOW(),is_normal
+        FROM cal_directly_under_dept
+        WHERE org_id = #{orgId}
+    </insert>
+
+    <!--处长/经理参数表-->
+    <insert id="saveOtherNurtureDirector" parameterType="hashmap" >
+        INSERT INTO `cal_nurture_director`
+            (`org_id`, `generative_algebra`, `fast_year`, `following_year_and_beyond`, `created_by`, `created_time`, `is_normal`)
+        SELECT
+            #{salesOrgId},generative_algebra,fast_year,following_year_and_beyond,#{employeeNo},NOW(),is_normal
+        FROM cal_nurture_director
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisNurtureDirector" parameterType="hashmap" >
+        INSERT INTO `cal_his_nurture_director`
+            (`version_id`, `org_id`, `generative_algebra`, `fast_year`, `following_year_and_beyond`, `created_by`, `created_time`, `is_normal`)
+        SELECT
+            #{id},#{salesOrgId},generative_algebra,fast_year,following_year_and_beyond,#{employeeNo},NOW(),is_normal
+        FROM cal_nurture_director
+        WHERE org_id = #{orgId}
+    </insert>
+
+    <!--部长/总监参数表-->
+    <insert id="saveOtherNurtureMinister" parameterType="hashmap" >
+        INSERT INTO `cal_nurture_minister`
+            (`org_id`, `generative_algebra`, `fast_year`, `following_year_and_beyond`, `created_by`, `created_time`, `is_normal`)
+        SELECT
+            #{salesOrgId},generative_algebra,fast_year,following_year_and_beyond,#{employeeNo},NOW(),is_normal
+        FROM cal_nurture_minister
+        WHERE org_id = #{orgId}
+    </insert>
+    <insert id="saveOtherHisNurtureMinister" parameterType="hashmap" >
+        INSERT INTO `cal_his_nurture_minister`
+            (`version_id`, `org_id`, `generative_algebra`, `fast_year`, `following_year_and_beyond`, `created_by`, `created_time`, `is_normal`)
+        SELECT
+            #{id},#{salesOrgId},generative_algebra,fast_year,following_year_and_beyond,#{employeeNo},NOW(),is_normal
+        FROM cal_nurture_minister
+        WHERE org_id = #{orgId}
+    </insert>
+
+
+
+
+
+</mapper>

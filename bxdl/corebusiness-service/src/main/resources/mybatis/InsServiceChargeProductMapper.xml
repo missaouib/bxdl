@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsServiceChargeProductMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsServiceChargeProduct">
+    <id column="SERVICE_PRODUCT_ID" jdbcType="BIGINT" property="serviceProductId" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="PRODUCT_CODE" jdbcType="VARCHAR" property="productCode" />
+    <result column="RATE_TYPE" jdbcType="CHAR" property="rateType" />
+    <result column="SETTLEMENT_INTERVAL" jdbcType="CHAR" property="settlementInterval" />
+    <result column="FIRST_YEAR_COST" jdbcType="DECIMAL" property="firstYearCost" />
+    <result column="SECOND_YEAR_COST" jdbcType="DECIMAL" property="secondYearCost" />
+    <result column="THIRD_YEAR_COST" jdbcType="DECIMAL" property="thirdYearCost" />
+    <result column="FOUR_YEAR_COST" jdbcType="DECIMAL" property="fourYearCost" />
+    <result column="FIVE_YEAR_COST" jdbcType="DECIMAL" property="fiveYearCost" />
+    <result column="SIX_YEAR_COST" jdbcType="DECIMAL" property="sixYearCost" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SERVICE_PRODUCT_ID, PROTOCOL_ID, PRODUCT_ID, PRODUCT_CODE, RATE_TYPE, SETTLEMENT_INTERVAL, 
+    FIRST_YEAR_COST, SECOND_YEAR_COST, THIRD_YEAR_COST, FOUR_YEAR_COST, FIVE_YEAR_COST, 
+    SIX_YEAR_COST, CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_service_charge_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_service_charge_product
+    where SERVICE_PRODUCT_ID = #{serviceProductId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_service_charge_product
+    where SERVICE_PRODUCT_ID = #{serviceProductId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProductExample">
+    delete from ins_service_charge_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProduct">
+    insert into ins_service_charge_product (SERVICE_PRODUCT_ID, PROTOCOL_ID, PRODUCT_ID, 
+      PRODUCT_CODE, RATE_TYPE, SETTLEMENT_INTERVAL, 
+      FIRST_YEAR_COST, SECOND_YEAR_COST, THIRD_YEAR_COST, 
+      FOUR_YEAR_COST, FIVE_YEAR_COST, SIX_YEAR_COST, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_BY
+      )
+    values (#{serviceProductId,jdbcType=BIGINT}, #{protocolId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{productCode,jdbcType=VARCHAR}, #{rateType,jdbcType=CHAR}, #{settlementInterval,jdbcType=CHAR}, 
+      #{firstYearCost,jdbcType=DECIMAL}, #{secondYearCost,jdbcType=DECIMAL}, #{thirdYearCost,jdbcType=DECIMAL}, 
+      #{fourYearCost,jdbcType=DECIMAL}, #{fiveYearCost,jdbcType=DECIMAL}, #{sixYearCost,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProduct">
+    insert into ins_service_charge_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serviceProductId != null">
+        SERVICE_PRODUCT_ID,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL,
+      </if>
+      <if test="firstYearCost != null">
+        FIRST_YEAR_COST,
+      </if>
+      <if test="secondYearCost != null">
+        SECOND_YEAR_COST,
+      </if>
+      <if test="thirdYearCost != null">
+        THIRD_YEAR_COST,
+      </if>
+      <if test="fourYearCost != null">
+        FOUR_YEAR_COST,
+      </if>
+      <if test="fiveYearCost != null">
+        FIVE_YEAR_COST,
+      </if>
+      <if test="sixYearCost != null">
+        SIX_YEAR_COST,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serviceProductId != null">
+        #{serviceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="settlementInterval != null">
+        #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="firstYearCost != null">
+        #{firstYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="secondYearCost != null">
+        #{secondYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdYearCost != null">
+        #{thirdYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fourYearCost != null">
+        #{fourYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fiveYearCost != null">
+        #{fiveYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sixYearCost != null">
+        #{sixYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProductExample" resultType="java.lang.Long">
+    select count(*) from ins_service_charge_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_service_charge_product
+    <set>
+      <if test="record.serviceProductId != null">
+        SERVICE_PRODUCT_ID = #{record.serviceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productCode != null">
+        PRODUCT_CODE = #{record.productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateType != null">
+        RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      </if>
+      <if test="record.settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="record.firstYearCost != null">
+        FIRST_YEAR_COST = #{record.firstYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.secondYearCost != null">
+        SECOND_YEAR_COST = #{record.secondYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.thirdYearCost != null">
+        THIRD_YEAR_COST = #{record.thirdYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fourYearCost != null">
+        FOUR_YEAR_COST = #{record.fourYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fiveYearCost != null">
+        FIVE_YEAR_COST = #{record.fiveYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sixYearCost != null">
+        SIX_YEAR_COST = #{record.sixYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_service_charge_product
+    set SERVICE_PRODUCT_ID = #{record.serviceProductId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      PRODUCT_CODE = #{record.productCode,jdbcType=VARCHAR},
+      RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      FIRST_YEAR_COST = #{record.firstYearCost,jdbcType=DECIMAL},
+      SECOND_YEAR_COST = #{record.secondYearCost,jdbcType=DECIMAL},
+      THIRD_YEAR_COST = #{record.thirdYearCost,jdbcType=DECIMAL},
+      FOUR_YEAR_COST = #{record.fourYearCost,jdbcType=DECIMAL},
+      FIVE_YEAR_COST = #{record.fiveYearCost,jdbcType=DECIMAL},
+      SIX_YEAR_COST = #{record.sixYearCost,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProduct">
+    update ins_service_charge_product
+    <set>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE = #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="firstYearCost != null">
+        FIRST_YEAR_COST = #{firstYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="secondYearCost != null">
+        SECOND_YEAR_COST = #{secondYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdYearCost != null">
+        THIRD_YEAR_COST = #{thirdYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fourYearCost != null">
+        FOUR_YEAR_COST = #{fourYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="fiveYearCost != null">
+        FIVE_YEAR_COST = #{fiveYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sixYearCost != null">
+        SIX_YEAR_COST = #{sixYearCost,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERVICE_PRODUCT_ID = #{serviceProductId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsServiceChargeProduct">
+    update ins_service_charge_product
+    set PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      RATE_TYPE = #{rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      FIRST_YEAR_COST = #{firstYearCost,jdbcType=DECIMAL},
+      SECOND_YEAR_COST = #{secondYearCost,jdbcType=DECIMAL},
+      THIRD_YEAR_COST = #{thirdYearCost,jdbcType=DECIMAL},
+      FOUR_YEAR_COST = #{fourYearCost,jdbcType=DECIMAL},
+      FIVE_YEAR_COST = #{fiveYearCost,jdbcType=DECIMAL},
+      SIX_YEAR_COST = #{sixYearCost,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where SERVICE_PRODUCT_ID = #{serviceProductId,jdbcType=BIGINT}
+  </update>
+ 
+  <!-- 批量添加 -->
+  <insert id="insertServiceProductBatch"  parameterType="java.util.List">
+	insert into
+	ins_service_charge_product (
+		PROTOCOL_ID,
+		PRODUCT_ID,
+		PRODUCT_CODE,
+		RATE_TYPE,
+		SETTLEMENT_INTERVAL,
+		FIRST_YEAR_COST,
+		SECOND_YEAR_COST,
+		THIRD_YEAR_COST,
+		FOUR_YEAR_COST,
+		FIVE_YEAR_COST,
+		SIX_YEAR_COST,
+		CREATE_TIME,
+		UPDATE_BY
+		)values 
+    <foreach collection="list" item="item" index="index" separator=",">
+  		 (
+	  		  #{item.protocolId},
+	  		  #{item.productId},
+	  		  #{item.productCode},
+	  		  #{item.rateType}, 
+	  		  #{item.settlementInterval},  
+	  		  #{item.firstYearCost},
+	  		  #{item.secondYearCost},
+	  		  #{item.thirdYearCost},
+	  		  #{item.fourYearCost},
+	  		  #{item.fiveYearCost},
+	  		  #{item.sixYearCost},
+	  		  #{item.createTime}, 
+	  		  #{item.updateBy}
+  		)
+    </foreach>
+  </insert>
+  
+  <select id="findChargeByProtocolId" parameterType="long" resultType="hashmap">
+	  	select 
+	  		<include refid="Base_Column_List"/>
+	  	from 
+	  ins_service_charge_product
+	  where PROTOCOL_ID = #{protocolId}
+	  LIMIT 1;
+  </select>
+  
+  
+  <!-- 根据协议id删除 -->
+  <delete id="deleteServiceByProtocolId" parameterType="long">
+  	delete from ins_service_charge_product 	  where PROTOCOL_ID = #{protocolId}
+  </delete>
+  
+   <!-- 查询手续费列表 修改 -->
+  <select id="getUpdateProtocolServiceList" parameterType="hashmap" resultMap="BaseResultMap">
+ 		SELECT
+			<include refid="Base_Column_List"/>
+		FROM
+			ins_service_charge_product 
+		where PROTOCOL_ID = #{protocolId}
+  </select>
+  
+  <select id="getServiceChargeByProductAndProtocol" resultType="java.util.Map">
+ 	SELECT
+		RATE_TYPE, SETTLEMENT_INTERVAL, FIRST_YEAR_COST
+	FROM
+		ins_service_charge_product
+	WHERE PRODUCT_ID = #{productId}
+	AND PROTOCOL_ID = #{protocolId}
+  
+  </select>
+</mapper>

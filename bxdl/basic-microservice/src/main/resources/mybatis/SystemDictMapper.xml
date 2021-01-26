@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.basic.mapper.SystemDictMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.basic.SystemDict">
+        <id column="dict_id" property="dictId" jdbcType="INTEGER"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="dict_type_name" property="dictTypeName" jdbcType="VARCHAR"/>
+        <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    dict_id, dict_type, dict_type_name, dict_name, dict_code, status, remark, parent_id, 
+    order_id, create_time
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hzcf.pojo.basic.SystemDictExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from system_dict
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from system_dict
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_dict
+    where dict_id = #{dictId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.hzcf.pojo.basic.SystemDictExample">
+        delete from system_dict
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hzcf.pojo.basic.SystemDict">
+    insert into system_dict (dict_id, dict_type, dict_type_name, 
+      dict_name, dict_code, status, 
+      remark, parent_id, order_id, 
+      create_time)
+    values (#{dictId,jdbcType=INTEGER}, #{dictType,jdbcType=VARCHAR}, #{dictTypeName,jdbcType=VARCHAR}, 
+      #{dictName,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hzcf.pojo.basic.SystemDict">
+        insert into system_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                dict_id,
+            </if>
+            <if test="dictType != null">
+                dict_type,
+            </if>
+            <if test="dictTypeName != null">
+                dict_type_name,
+            </if>
+            <if test="dictName != null">
+                dict_name,
+            </if>
+            <if test="dictCode != null">
+                dict_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                #{dictId,jdbcType=INTEGER},
+            </if>
+            <if test="dictType != null">
+                #{dictType,jdbcType=VARCHAR},
+            </if>
+            <if test="dictTypeName != null">
+                #{dictTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictName != null">
+                #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictCode != null">
+                #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hzcf.pojo.basic.SystemDictExample" resultType="java.lang.Integer">
+        select count(*) from system_dict
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update system_dict
+        <set>
+            <if test="record.dictId != null">
+                dict_id = #{record.dictId,jdbcType=INTEGER},
+            </if>
+            <if test="record.dictType != null">
+                dict_type = #{record.dictType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictTypeName != null">
+                dict_type_name = #{record.dictTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictName != null">
+                dict_name = #{record.dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictCode != null">
+                dict_code = #{record.dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=CHAR},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.parentId != null">
+                parent_id = #{record.parentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderId != null">
+                order_id = #{record.orderId,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update system_dict
+        set dict_id = #{record.dictId,jdbcType=INTEGER},
+        dict_type = #{record.dictType,jdbcType=VARCHAR},
+        dict_type_name = #{record.dictTypeName,jdbcType=VARCHAR},
+        dict_name = #{record.dictName,jdbcType=VARCHAR},
+        dict_code = #{record.dictCode,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=CHAR},
+        remark = #{record.remark,jdbcType=VARCHAR},
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+        order_id = #{record.orderId,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.basic.SystemDict">
+        update system_dict
+        <set>
+            <if test="dictType != null">
+                dict_type = #{dictType,jdbcType=VARCHAR},
+            </if>
+            <if test="dictTypeName != null">
+                dict_type_name = #{dictTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictName != null">
+                dict_name = #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictCode != null">
+                dict_code = #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.basic.SystemDict">
+        update system_dict
+        set dict_type = #{dictType,jdbcType=VARCHAR},
+          dict_type_name = #{dictTypeName,jdbcType=VARCHAR},
+          dict_name = #{dictName,jdbcType=VARCHAR},
+          dict_code = #{dictCode,jdbcType=VARCHAR},
+          status = #{status,jdbcType=CHAR},
+          remark = #{remark,jdbcType=VARCHAR},
+          parent_id = #{parentId,jdbcType=INTEGER},
+          order_id = #{orderId,jdbcType=INTEGER},
+          create_time = #{createTime,jdbcType=TIMESTAMP}
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </update>
+
+    <!--根据id禁用数据字典-->
+    <update id="updateSystemDictToDisabledById" parameterType="int">
+        UPDATE system_dict SET status = 0 WHERE dict_id = #{dictId}
+    </update>
+
+    <!--根据id启用数据字典-->
+    <update id="updateSystemDictToEnabledById" parameterType="int">
+        UPDATE system_dict SET status = 1 WHERE dict_id = #{dictId}
+    </update>
+
+    <!-- 分页查询字典表中数据 -->
+    <select id="querySystemDictPage"  resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+            dict_id,
+            dict_type,
+            dict_type_name,
+            dict_name,
+            dict_code,
+            CASE
+			WHEN status = '0' THEN '禁用'
+			WHEN status = '1' THEN '启用'
+		    end as status,
+            remark,
+            create_time
+        FROM system_dict
+        WHERE 1=1
+        <if test="dictTypeName != null and dictTypeName != ''">
+           AND dict_type_name LIKE CONCAT('%',#{dictTypeName},'%')
+        </if>
+        <if test="dictName != null and dictName != ''">
+            AND dict_name LIKE CONCAT('%',#{dictName},'%')
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{startIndex},#{rows}
+    </select>
+
+    <!-- 查询数据字典总数 -->
+    <select id="querySystemDictTotalCount"  resultType="java.lang.Long" parameterType="java.util.Map">
+        SELECT COUNT(1)
+        FROM system_dict
+        WHERE 1=1
+        <if test="dictTypeName != null and dictTypeName != ''">
+            AND dict_type_name LIKE CONCAT('%',#{dictTypeName},'%')
+        </if>
+        <if test="dictName != null and dictName != ''">
+            AND dict_name LIKE CONCAT('%',#{dictName},'%')
+        </if>
+    </select>
+
+    <!-- 查询父类数据字典 -->
+    <select id="queryParentDictList"  resultType="java.util.Map">
+        SELECT dict_id,dict_name,parent_id,order_id
+        FROM system_dict WHERE parent_id IS NULL
+    </select>
+
+    <!-- 查询子类类数据字典 -->
+    <select id="queryChildDictList"  resultType="java.util.Map" parameterType="int">
+        SELECT dict_id,dict_name,parent_id,order_id
+        FROM system_dict WHERE parent_id = #{pid} ORDER BY order_id ASC;
+    </select>
+
+    <!-- 查询字典表中所有数据 -->
+    <select id="findAllSystemDict" resultType="hashmap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        system_dict
+    </select>
+
+    <!-- 根据id查询数据字典 -->
+    <select id="findSystemDictById" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM system_dict WHERE dict_id = #{dictId}
+    </select>
+
+    <!--如果redis中没有就从数据库中查询  -->
+    <select id="findDictNameByDictType" resultType="hashmap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        system_dict
+        where dict_type=#{dictType}
+    </select>
+
+    <!--如果redis中没有就从数据库中查询  -->
+    <select id="findDictNameByTypeAndCode" resultMap="BaseResultMap" parameterType="hashmap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        system_dict
+        where
+        1=1
+         <if test="dictType != null">and dict_type=#{dictType}</if>
+         <if test="dictCode != null">and dict_code = #{dictCode}</if>
+        <if test="dictName != null">and dict_name = #{dictName}</if>
+         <if test="dictId != null">and dict_id = #{dictId}</if>
+    </select>
+
+    <select id="findCardTypeByDictType" resultType="java.util.Map">
+    SELECT
+    *
+    FROM
+    system_dict
+    where dict_type=#{dictType}
+  </select>
+    <select id="findDictByDictTypeRetEntity" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        system_dict
+        where
+        1=1
+        <if test="dictType != null">and dict_type=#{dictType}</if>
+    </select>
+
+
+</mapper>

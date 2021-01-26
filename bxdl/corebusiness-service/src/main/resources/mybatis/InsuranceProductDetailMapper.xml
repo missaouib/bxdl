@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsuranceProductDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.product.InsuranceProductDetail" >
+    <id column="INFO_ID" property="infoId" jdbcType="BIGINT" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+     <result column="CREATED_TIME" property="createdTime" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="DATE" />
+    <result column="INSURANCE_PRODUCT_ID" property="insuranceProductId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzcf.pojo.product.InsuranceProductDetailWithBLOBs" extends="BaseResultMap" >
+    <result column="INSURAN_COVER_EXPLAIN" property="insuranCoverExplain" jdbcType="LONGVARCHAR" />
+    <result column="BASIC_RESPONSIBILITIES_EXPLAIN" property="basicResponsibilitiesExplain" jdbcType="LONGVARCHAR" />
+    <result column="POLOCY_HOLDER_RESTRICTIONS" property="polocyHolderRestrictions" jdbcType="LONGVARCHAR" />
+    <result column="EXEMPTION_INSTRUCTION" property="exemptionInstruction" jdbcType="LONGVARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INFO_ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, INSURANCE_PRODUCT_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    INSURAN_COVER_EXPLAIN, BASIC_RESPONSIBILITIES_EXPLAIN, POLOCY_HOLDER_RESTRICTIONS, 
+    EXEMPTION_INSTRUCTION, REMARK
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from insurance_product_detail
+    where INFO_ID = #{infoId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from insurance_product_detail
+    where INFO_ID = #{infoId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.product.InsuranceProductDetailWithBLOBs" >
+    insert into insurance_product_detail (INFO_ID, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, INSURANCE_PRODUCT_ID, 
+      INSURAN_COVER_EXPLAIN, BASIC_RESPONSIBILITIES_EXPLAIN, 
+      POLOCY_HOLDER_RESTRICTIONS, EXEMPTION_INSTRUCTION, 
+      REMARK)
+    values (#{infoId,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=DATE}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=DATE}, #{insuranceProductId,jdbcType=BIGINT}, 
+      #{insuranCoverExplain,jdbcType=LONGVARCHAR}, #{basicResponsibilitiesExplain,jdbcType=LONGVARCHAR}, 
+      #{polocyHolderRestrictions,jdbcType=LONGVARCHAR}, #{exemptionInstruction,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.product.InsuranceProductDetailWithBLOBs" >
+    insert into insurance_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        INFO_ID,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="insuranceProductId != null" >
+        INSURANCE_PRODUCT_ID,
+      </if>
+      <if test="insuranCoverExplain != null" >
+        INSURAN_COVER_EXPLAIN,
+      </if>
+      <if test="basicResponsibilitiesExplain != null" >
+        BASIC_RESPONSIBILITIES_EXPLAIN,
+      </if>
+      <if test="polocyHolderRestrictions != null" >
+        POLOCY_HOLDER_RESTRICTIONS,
+      </if>
+      <if test="exemptionInstruction != null" >
+        EXEMPTION_INSTRUCTION,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        #{infoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=DATE},
+      </if>
+      <if test="insuranceProductId != null" >
+        #{insuranceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranCoverExplain != null" >
+        #{insuranCoverExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="basicResponsibilitiesExplain != null" >
+        #{basicResponsibilitiesExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="polocyHolderRestrictions != null" >
+        #{polocyHolderRestrictions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="exemptionInstruction != null" >
+        #{exemptionInstruction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.product.InsuranceProductDetailWithBLOBs" >
+    update insurance_product_detail
+    <set >
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=DATE},
+      </if>
+      <if test="insuranceProductId != null" >
+        INSURANCE_PRODUCT_ID = #{insuranceProductId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranCoverExplain != null" >
+        INSURAN_COVER_EXPLAIN = #{insuranCoverExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="basicResponsibilitiesExplain != null" >
+        BASIC_RESPONSIBILITIES_EXPLAIN = #{basicResponsibilitiesExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="polocyHolderRestrictions != null" >
+        POLOCY_HOLDER_RESTRICTIONS = #{polocyHolderRestrictions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="exemptionInstruction != null" >
+        EXEMPTION_INSTRUCTION = #{exemptionInstruction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where INFO_ID = #{infoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzcf.pojo.product.InsuranceProductDetailWithBLOBs" >
+    update insurance_product_detail
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=DATE},
+      INSURANCE_PRODUCT_ID = #{insuranceProductId,jdbcType=BIGINT},
+      INSURAN_COVER_EXPLAIN = #{insuranCoverExplain,jdbcType=LONGVARCHAR},
+      BASIC_RESPONSIBILITIES_EXPLAIN = #{basicResponsibilitiesExplain,jdbcType=LONGVARCHAR},
+      POLOCY_HOLDER_RESTRICTIONS = #{polocyHolderRestrictions,jdbcType=LONGVARCHAR},
+      EXEMPTION_INSTRUCTION = #{exemptionInstruction,jdbcType=LONGVARCHAR},
+      REMARK = #{remark,jdbcType=LONGVARCHAR}
+    where INFO_ID = #{infoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.product.InsuranceProductDetail" >
+    update insurance_product_detail
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=DATE},
+      INSURANCE_PRODUCT_ID = #{insuranceProductId,jdbcType=BIGINT}
+    where INFO_ID = #{infoId,jdbcType=BIGINT}
+  </update>
+  
+ <!-- 通过产品id查询产品的详情 -->
+  <select id="selectProductDetailByProductId" resultMap="ResultMapWithBLOBs"  parameterType="hashmap" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from insurance_product_detail
+    where INSURANCE_PRODUCT_ID = #{productId}
+  </select>
+ 
+  
+</mapper>

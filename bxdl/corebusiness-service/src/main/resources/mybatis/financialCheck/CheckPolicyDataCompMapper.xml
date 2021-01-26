@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.financialCheck.CheckPolicyDataCompMapper">
+	<resultMap id="BaseResultMap" type="com.hzcf.pojo.financialCheck.CheckPolicyDataComp">
+            <result column="id" property="id" />
+	        <result column="check_month" property="checkMonth"  />
+	        <result column="sales_org_name" property="salesOrgName" />
+	        <result column="sales_org_id" property="salesOrgId" />
+	        <result column="company_org_name" property="companyOrgName" />
+	        <result column="company_org_id" property="companyOrgId"/>
+	        <result column="policy_id" property="policyId" />
+	        <result column="product_name" property="productName" />
+	        <result column="product_id" property="productId" />
+	        <result column="insurance_type" property="insuranceType" />
+	        <result column="propost_date" property="propostDate" />
+	        <result column="underwriting_date" property="underwritingDate"/>
+	        <result column="take_effect_date" property="takeEffectDate"  />
+	        <result column="premium" property="premium" />
+	        <result column="insurance_period" property="insurancePeriod" />
+	        <result column="payment_method" property="paymentMethod"  />
+	        <result column="payment_period" property="paymentPeriod"  />
+	        <result column="payment_num" property="paymentNum"  />
+	        <result column="process_cost" property="processCost" />
+	        <result column="pust_cost" property="pustCost"  />
+	        <result column="total_cost" property="totalCost"  />
+	        <result column="remark" property="remark"  />
+	        <result column="check_status" property="checkStatus" />
+	        <result column="check_remark" property="checkRemark"  />
+	        <result column="settle_status" property="settleStatus"  />
+	        <result column="settle_remark" property="settleRemark"  />
+	        <result column="create_time" property="createTime" />
+	        <result column="create_by" property="createBy"  />
+	        <result column="update_time" property="updateTime"  />
+	        <result column="update_by" property="updateBy"  />
+	        <result column="batch_num" property="batchNum"  />
+		</resultMap>  
+    
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.id
+        , t.check_month
+        , t.sales_org_name
+        , t.sales_org_id
+        , t.company_org_name
+        , t.company_org_id
+        , t.policy_id
+        , t.product_name
+        , t.product_id
+        , t.insurance_type
+        , t.propost_date
+        , t.underwriting_date
+        , t.take_effect_date
+        , t.premium
+        , t.insurance_period
+        , t.payment_method
+        , t.payment_period
+        , t.payment_num
+        , t.process_cost
+        , t.pust_cost
+        , t.total_cost
+        , t.remark
+        , t.check_status
+        , t.check_remark
+        , t.settle_status
+        , t.settle_remark
+        , t.create_time
+        , t.create_by
+        , t.update_time
+        , t.update_by
+        , t.batch_num
+        </sql> 
+    
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM check_policy_data_comp t
+	</select>
+ 
+ 	<!-- 根据主键获取单条记录 -->
+    <select id="getById" resultMap="BaseResultMap" parameterType="Long">
+		SELECT         
+        	<include refid="baseColumns" />
+		FROM check_policy_data_comp t
+		WHERE id = #{id}
+	</select>
+    <select id="getCheckPolicyDataCompList" resultType="java.util.Map">
+         SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_data_comp t
+        WHERE 1=1
+        <if test="batchNum != null and batchNum != '' ">AND batch_num = #{batchNum}</if>
+        <if test="checkStatus != null and checkStatus != '' ">AND check_status = #{checkStatus}</if>
+        ORDER BY create_time DESC
+        LIMIT #{startIndex}, #{endIndex}
+
+    </select>
+    <select id="getCheckPolicyDataCompListSize" resultType="java.lang.Long">
+          SELECT
+       count(1)
+        FROM check_policy_data_comp t
+        WHERE 1=1
+        <if test="batchNum != null and batchNum != '' ">AND batch_num = #{batchNum}</if>
+        <if test="checkStatus != null and checkStatus != '' ">AND check_status = #{checkStatus}</if>
+    </select>
+
+    <!--根据条件查询导出数据 不分页-->
+    <select id="getCheckPolicyDataCompAllList" resultType="java.util.Map">
+          SELECT
+        <include refid="baseColumns"/>
+        FROM check_policy_data_comp t
+        WHERE 1=1
+        <if test="batchNum != null and batchNum != '' ">AND batch_num = #{batchNum}</if>
+        <if test="checkStatus != null and checkStatus != '' ">AND check_status = #{checkStatus}</if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 插入全部字段 -->
+    <insert id="insert" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyDataComp"
+		keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO check_policy_data_comp
+    <trim prefix="(" suffix=")" suffixOverrides=",">	 
+        	        	    	check_month,
+    	        	    	sales_org_name,
+    	        	    	sales_org_id,
+    	        	    	company_org_name,
+    	        	    	company_org_id,
+    	        	    	policy_id,
+    	        	    	product_name,
+    	        	    	product_id,
+    	        	    	insurance_type,
+    	        	    	propost_date,
+    	        	    	underwriting_date,
+    	        	    	take_effect_date,
+    	        	    	premium,
+    	        	    	insurance_period,
+    	        	    	payment_method,
+    	        	    	payment_period,
+    	        	    	payment_num,
+    	        	    	process_cost,
+    	        	    	pust_cost,
+    	        	    	total_cost,
+    	        	    	remark,
+    	        	    	check_status,
+    	        	    	check_remark,
+    	        	    	settle_status,
+    	        	    	settle_remark,
+    	        	    	create_time,
+    	        	    	create_by,
+    	        	    	update_time,
+    	        	    	update_by,
+    	        	    	batch_num,
+    	        </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+        	        	        #{checkMonth},                   
+    	        	        #{salesOrgName},                   
+    	        	        #{salesOrgId},                   
+    	        	        #{companyOrgName},                   
+    	        	        #{companyOrgId},                   
+    	        	        #{policyId},                   
+    	        	        #{productName},                   
+    	        	        #{productId},                   
+    	        	        #{insuranceType},                   
+    	        	        #{propostDate},                   
+    	        	        #{underwritingDate},                   
+    	        	        #{takeEffectDate},                   
+    	        	        #{premium},                   
+    	        	        #{insurancePeriod},                   
+    	        	        #{paymentMethod},                   
+    	        	        #{paymentPeriod},                   
+    	        	        #{paymentNum},                   
+    	        	        #{processCost},                   
+    	        	        #{pustCost},                   
+    	        	        #{totalCost},                   
+    	        	        #{remark},                   
+    	        	        #{checkStatus},                   
+    	        	        #{checkRemark},                   
+    	        	        #{settleStatus},                   
+    	        	        #{settleRemark},                   
+    	        	        #{createTime},                   
+    	        	        #{createBy},                   
+    	        	        #{updateTime},                   
+    	        	        #{updateBy},                   
+    	        	        #{batchNum},                   
+    	        </trim>
+	</insert>
+    
+    <!-- 插入不为NULL的字段 -->
+    <insert id="insertIgnoreNull" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyDataComp"
+        keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+        >
+        INSERT INTO check_policy_data_comp    
+        <trim prefix="(" suffix=")" suffixOverrides=",">	 
+
+                                                                            <if test="checkMonth != null">
+                   check_month,
+                    </if>
+                                                                <if test="salesOrgName != null">
+                   sales_org_name,
+                    </if>
+                                                                <if test="salesOrgId != null">
+                   sales_org_id,
+                    </if>
+                                                                <if test="companyOrgName != null">
+                   company_org_name,
+                    </if>
+                                                                <if test="companyOrgId != null">
+                   company_org_id,
+                    </if>
+                                                                <if test="policyId != null">
+                   policy_id,
+                    </if>
+                                                                <if test="productName != null">
+                   product_name,
+                    </if>
+                                                                <if test="productId != null">
+                   product_id,
+                    </if>
+                                                                <if test="insuranceType != null">
+                   insurance_type,
+                    </if>
+                                                                <if test="propostDate != null">
+                   propost_date,
+                    </if>
+                                                                <if test="underwritingDate != null">
+                   underwriting_date,
+                    </if>
+                                                                <if test="takeEffectDate != null">
+                   take_effect_date,
+                    </if>
+                                                                <if test="premium != null">
+                   premium,
+                    </if>
+                                                                <if test="insurancePeriod != null">
+                   insurance_period,
+                    </if>
+                                                                <if test="paymentMethod != null">
+                   payment_method,
+                    </if>
+                                                                <if test="paymentPeriod != null">
+                   payment_period,
+                    </if>
+                                                                <if test="paymentNum != null">
+                   payment_num,
+                    </if>
+                                                                <if test="processCost != null">
+                   process_cost,
+                    </if>
+                                                                <if test="pustCost != null">
+                   pust_cost,
+                    </if>
+                                                                <if test="totalCost != null">
+                   total_cost,
+                    </if>
+                                                                <if test="remark != null">
+                   remark,
+                    </if>
+                                                                <if test="checkStatus != null">
+                   check_status,
+                    </if>
+                                                                <if test="checkRemark != null">
+                   check_remark,
+                    </if>
+                                                                <if test="settleStatus != null">
+                   settle_status,
+                    </if>
+                                                                <if test="settleRemark != null">
+                   settle_remark,
+                    </if>
+                                                                <if test="createTime != null">
+                   create_time,
+                    </if>
+                                                                <if test="createBy != null">
+                   create_by,
+                    </if>
+                                                                <if test="updateTime != null">
+                   update_time,
+                    </if>
+                                                                <if test="updateBy != null">
+                   update_by,
+                    </if>
+                                                                <if test="batchNum != null">
+                   batch_num,
+                    </if>
+                                    </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">            
+                                                                            <if test="checkMonth != null" >
+                    #{checkMonth},                    
+                    </if>
+                                                                <if test="salesOrgName != null" >
+                    #{salesOrgName},                    
+                    </if>
+                                                                <if test="salesOrgId != null" >
+                    #{salesOrgId},                    
+                    </if>
+                                                                <if test="companyOrgName != null" >
+                    #{companyOrgName},                    
+                    </if>
+                                                                <if test="companyOrgId != null" >
+                    #{companyOrgId},                    
+                    </if>
+                                                                <if test="policyId != null" >
+                    #{policyId},                    
+                    </if>
+                                                                <if test="productName != null" >
+                    #{productName},                    
+                    </if>
+                                                                <if test="productId != null" >
+                    #{productId},                    
+                    </if>
+                                                                <if test="insuranceType != null" >
+                    #{insuranceType},                    
+                    </if>
+                                                                <if test="propostDate != null" >
+                    #{propostDate},                    
+                    </if>
+                                                                <if test="underwritingDate != null" >
+                    #{underwritingDate},                    
+                    </if>
+                                                                <if test="takeEffectDate != null" >
+                    #{takeEffectDate},                    
+                    </if>
+                                                                <if test="premium != null" >
+                    #{premium},                    
+                    </if>
+                                                                <if test="insurancePeriod != null" >
+                    #{insurancePeriod},                    
+                    </if>
+                                                                <if test="paymentMethod != null" >
+                    #{paymentMethod},                    
+                    </if>
+                                                                <if test="paymentPeriod != null" >
+                    #{paymentPeriod},                    
+                    </if>
+                                                                <if test="paymentNum != null" >
+                    #{paymentNum},                    
+                    </if>
+                                                                <if test="processCost != null" >
+                    #{processCost},                    
+                    </if>
+                                                                <if test="pustCost != null" >
+                    #{pustCost},                    
+                    </if>
+                                                                <if test="totalCost != null" >
+                    #{totalCost},                    
+                    </if>
+                                                                <if test="remark != null" >
+                    #{remark},                    
+                    </if>
+                                                                <if test="checkStatus != null" >
+                    #{checkStatus},                    
+                    </if>
+                                                                <if test="checkRemark != null" >
+                    #{checkRemark},                    
+                    </if>
+                                                                <if test="settleStatus != null" >
+                    #{settleStatus},                    
+                    </if>
+                                                                <if test="settleRemark != null" >
+                    #{settleRemark},                    
+                    </if>
+                                                                <if test="createTime != null" >
+                    #{createTime},                    
+                    </if>
+                                                                <if test="createBy != null" >
+                    #{createBy},                    
+                    </if>
+                                                                <if test="updateTime != null" >
+                    #{updateTime},                    
+                    </if>
+                                                                <if test="updateBy != null" >
+                    #{updateBy},                    
+                    </if>
+                                                                <if test="batchNum != null" >
+                    #{batchNum},                    
+                    </if>
+                                    </trim>
+    </insert>
+    <insert id="batchCheckPolicyComp">
+         INSERT INTO check_policy_data_comp
+         (
+            check_month,
+            sales_org_name,
+            sales_org_id,
+            company_org_name,
+            company_org_id,
+            policy_id,
+            product_name,
+            product_id,
+            insurance_type,
+            propost_date,
+            underwriting_date,
+            premium,
+            insurance_period,
+            payment_method,
+            payment_period,
+            payment_num,
+            process_cost,
+            pust_cost,
+            total_cost,
+            remark,
+            create_time,
+            create_by,
+            batch_num
+         )
+         VALUES
+          <foreach collection="list" item="item" separator=",">
+            (
+             #{item.checkMonth},
+            #{item.salesOrgName},
+            #{item.salesOrgId},
+            #{item.companyOrgName},
+            #{item.companyOrgId},
+            #{item.policyId},
+            #{item.productName},
+            #{item.productId},
+            #{item.insuranceType},
+            #{item.propostDate},
+            #{item.underwritingDate},
+            #{item.premium},
+            #{item.insurancePeriod},
+            #{item.paymentMethod},
+            #{item.paymentPeriod},
+            #{item.paymentNum},
+            #{item.processCost},
+            #{item.pustCost},
+            #{item.totalCost},
+            #{item.remark},
+            #{item.createTime},
+            #{item.createBy},
+            #{item.batchNum}
+            )
+        </foreach>
+
+    </insert>
+    <!--保存每次比对的结果-->
+    <update id="updateCheckResultHkBatchNum">
+        UPDATE check_data_hk_batch b,check_policy_data_hk h set b.check_status = h.check_status,b.check_remark = h.check_remark where b.check_data_hk_id = h.id  and b.batch_num = #{batchNum}
+    </update>
+
+    <!-- 更新,更新全部字段 -->
+    <update id="update" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyDataComp">
+    UPDATE check_policy_data_comp
+     <set>		
+                                     check_month=#{checkMonth},        
+                                sales_org_name=#{salesOrgName},        
+                                sales_org_id=#{salesOrgId},        
+                                company_org_name=#{companyOrgName},        
+                                company_org_id=#{companyOrgId},        
+                                policy_id=#{policyId},        
+                                product_name=#{productName},        
+                                product_id=#{productId},        
+                                insurance_type=#{insuranceType},        
+                                propost_date=#{propostDate},        
+                                underwriting_date=#{underwritingDate},        
+                                take_effect_date=#{takeEffectDate},        
+                                premium=#{premium},        
+                                insurance_period=#{insurancePeriod},        
+                                payment_method=#{paymentMethod},        
+                                payment_period=#{paymentPeriod},        
+                                payment_num=#{paymentNum},        
+                                process_cost=#{processCost},        
+                                pust_cost=#{pustCost},        
+                                total_cost=#{totalCost},        
+                                remark=#{remark},        
+                                check_status=#{checkStatus},        
+                                check_remark=#{checkRemark},        
+                                settle_status=#{settleStatus},        
+                                settle_remark=#{settleRemark},        
+                                create_time=#{createTime},        
+                                create_by=#{createBy},        
+                                update_time=#{updateTime},        
+                                update_by=#{updateBy},        
+                                batch_num=#{batchNum},        
+                   </set>	
+    WHERE id = #{id}
+    </update>  
+    
+    
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateIgnoreNull" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyDataComp">
+    UPDATE check_policy_data_comp
+    <set>
+    	                                                <if test="checkMonth != null" >
+                check_month=#{checkMonth},                 
+                </if>
+                                                <if test="salesOrgName != null" >
+                sales_org_name=#{salesOrgName},                 
+                </if>
+                                                <if test="salesOrgId != null" >
+                sales_org_id=#{salesOrgId},                 
+                </if>
+                                                <if test="companyOrgName != null" >
+                company_org_name=#{companyOrgName},                 
+                </if>
+                                                <if test="companyOrgId != null" >
+                company_org_id=#{companyOrgId},                 
+                </if>
+                                                <if test="policyId != null" >
+                policy_id=#{policyId},                 
+                </if>
+                                                <if test="productName != null" >
+                product_name=#{productName},                 
+                </if>
+                                                <if test="productId != null" >
+                product_id=#{productId},                 
+                </if>
+                                                <if test="insuranceType != null" >
+                insurance_type=#{insuranceType},                 
+                </if>
+                                                <if test="propostDate != null" >
+                propost_date=#{propostDate},                 
+                </if>
+                                                <if test="underwritingDate != null" >
+                underwriting_date=#{underwritingDate},                 
+                </if>
+                                                <if test="takeEffectDate != null" >
+                take_effect_date=#{takeEffectDate},                 
+                </if>
+                                                <if test="premium != null" >
+                premium=#{premium},                 
+                </if>
+                                                <if test="insurancePeriod != null" >
+                insurance_period=#{insurancePeriod},                 
+                </if>
+                                                <if test="paymentMethod != null" >
+                payment_method=#{paymentMethod},                 
+                </if>
+                                                <if test="paymentPeriod != null" >
+                payment_period=#{paymentPeriod},                 
+                </if>
+                                                <if test="paymentNum != null" >
+                payment_num=#{paymentNum},                 
+                </if>
+                                                <if test="processCost != null" >
+                process_cost=#{processCost},                 
+                </if>
+                                                <if test="pustCost != null" >
+                pust_cost=#{pustCost},                 
+                </if>
+                                                <if test="totalCost != null" >
+                total_cost=#{totalCost},                 
+                </if>
+                                                <if test="remark != null" >
+                remark=#{remark},                 
+                </if>
+                                                <if test="checkStatus != null" >
+                check_status=#{checkStatus},                 
+                </if>
+                                                <if test="checkRemark != null" >
+                check_remark=#{checkRemark},                 
+                </if>
+                                                <if test="settleStatus != null" >
+                settle_status=#{settleStatus},                 
+                </if>
+                                                <if test="settleRemark != null" >
+                settle_remark=#{settleRemark},                 
+                </if>
+                                                <if test="createTime != null" >
+                create_time=#{createTime},                 
+                </if>
+                                                <if test="createBy != null" >
+                create_by=#{createBy},                 
+                </if>
+                                                <if test="updateTime != null" >
+                update_time=#{updateTime},                 
+                </if>
+                                                <if test="updateBy != null" >
+                update_by=#{updateBy},                 
+                </if>
+                                                <if test="batchNum != null" >
+                batch_num=#{batchNum},                 
+                </if>
+                        </set>
+    WHERE id = #{id}
+    </update>
+    <!--核对无误状态修改-->
+    <update id="updateCheckStatusSame">
+        UPDATE check_policy_data_comp c,check_policy_data_hk h set c.check_status = '1',h.check_status = '1' ,h.process_cost = c.process_cost,h.pust_cost = c.pust_cost,h.total_cost = c.total_cost where c.company_org_id = h.company_org_id
+        and c.sales_org_id = h.sales_org_id and c.policy_id = h.policy_id and c.product_id = h.product_id and c.premium = h.premium and c.check_month = h.check_month  and c.batch_num = #{batchNum} and h.check_status != '2' and h.settle_status = '0';
+    </update>
+    <!--核对结果之 保司存在我司不存在 比对维度保单号,产品-->
+    <update id="updateCheckStatusComp">
+        UPDATE check_policy_data_comp c set c.check_status = '3' where c.batch_num = #{batchNum} and (SELECT COUNT(1) from check_policy_data_hk h where h.company_org_id = #{companyOrgId} and  h.sales_org_id = #{salesOrgId} AND  h.check_month = #{checkMonth}  AND CONCAT(h.policy_id,h.product_id) = CONCAT(c.policy_id,c.product_id))=0;
+    </update>
+    <!--核对结果之 保司不存在我司存在 比对维度保单号，产品-->
+    <update id="updateCheckStatusHK">
+       UPDATE check_policy_data_hk h set h.check_status = '3' where h.company_org_id = #{companyOrgId} AND h.sales_org_id = #{salesOrgId} and h.check_month = #{checkMonth} and (SELECT COUNT(1) from check_policy_data_comp c where c.batch_num = #{batchNum}  AND  CONCAT(c.policy_id, c.product_id) = CONCAT(h.policy_id, h.product_id))=0 and h.check_status != '2' and h.settle_status = '0';
+    </update>
+    <!--核对结果之 保单号一直 产品或者保费不一致-->
+    <update id="updateCheckStatusDiff">
+         UPDATE check_policy_data_comp c,check_policy_data_hk h set c.check_status = '4',h.check_status = '4' where c.company_org_id = h.company_org_id
+        and c.sales_org_id = h.sales_org_id and c.policy_id = h.policy_id and c.product_id = h.product_id AND c.premium != h.premium and c.check_month = h.check_month  and  c.batch_num = #{batchNum} and h.check_status != '2'and h.settle_status = '0';
+    </update>
+
+
+    <!-- 根据主键删除记录 -->
+	<delete id="delete" parameterType="com.hzcf.pojo.financialCheck.CheckPolicyDataComp">
+		UPDATE check_policy_data_comp
+		SET is_deleted=1
+		WHERE id = #{id}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsProtocolMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    <id column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="PROTOCOL_CODE" jdbcType="VARCHAR" property="protocolCode" />
+    <result column="PROTOCOL_NAME" jdbcType="VARCHAR" property="protocolName" />
+    <result column="INSURANCE_COMPANY_ID" jdbcType="BIGINT" property="insuranceCompanyId" />
+    <result column="INSURANCE_ORG_ID" jdbcType="BIGINT" property="insuranceOrgId" />
+    <result column="SALES_ORG_ID" jdbcType="BIGINT" property="salesOrgId" />
+    <result column="SIGNING_DATE" jdbcType="DATE" property="signingDate" />
+    <result column="EFFECTIVE_DATE" jdbcType="DATE" property="effectiveDate" />
+    <result column="TERMINATION_DATE" jdbcType="DATE" property="terminationDate" />
+    <result column="PROTOCOL_STATUS" jdbcType="CHAR" property="protocolStatus" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PROTOCOL_ID, PROTOCOL_CODE, PROTOCOL_NAME, INSURANCE_COMPANY_ID, INSURANCE_ORG_ID, 
+    SALES_ORG_ID, SIGNING_DATE, EFFECTIVE_DATE, TERMINATION_DATE, PROTOCOL_STATUS, CREATE_TIME, 
+    UPDATE_TIME, UPDATED_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_protocol
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ins_protocol
+    where PROTOCOL_ID = #{protocolId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_protocol
+    where PROTOCOL_ID = #{protocolId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolExample">
+    delete from ins_protocol
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    insert into ins_protocol (PROTOCOL_ID, PROTOCOL_CODE, PROTOCOL_NAME, 
+      INSURANCE_COMPANY_ID, INSURANCE_ORG_ID, SALES_ORG_ID, 
+      SIGNING_DATE, EFFECTIVE_DATE, TERMINATION_DATE, 
+      PROTOCOL_STATUS, CREATE_TIME, UPDATE_TIME, 
+      UPDATED_BY)
+    values (#{protocolId,jdbcType=BIGINT}, #{protocolCode,jdbcType=VARCHAR}, #{protocolName,jdbcType=VARCHAR}, 
+      #{insuranceCompanyId,jdbcType=BIGINT}, #{insuranceOrgId,jdbcType=BIGINT}, #{salesOrgId,jdbcType=BIGINT}, 
+      #{signingDate,jdbcType=DATE}, #{effectiveDate,jdbcType=DATE}, #{terminationDate,jdbcType=DATE}, 
+      #{protocolStatus,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    insert into ins_protocol
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="protocolCode != null">
+        PROTOCOL_CODE,
+      </if>
+      <if test="protocolName != null">
+        PROTOCOL_NAME,
+      </if>
+      <if test="insuranceCompanyId != null">
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="insuranceOrgId != null">
+        INSURANCE_ORG_ID,
+      </if>
+      <if test="salesOrgId != null">
+        SALES_ORG_ID,
+      </if>
+      <if test="signingDate != null">
+        SIGNING_DATE,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="terminationDate != null">
+        TERMINATION_DATE,
+      </if>
+      <if test="protocolStatus != null">
+        PROTOCOL_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolCode != null">
+        #{protocolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolName != null">
+        #{protocolName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null">
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceOrgId != null">
+        #{insuranceOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="salesOrgId != null">
+        #{salesOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="signingDate != null">
+        #{signingDate,jdbcType=DATE},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="terminationDate != null">
+        #{terminationDate,jdbcType=DATE},
+      </if>
+      <if test="protocolStatus != null">
+        #{protocolStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolExample" resultType="java.lang.Long">
+    select count(*) from ins_protocol
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_protocol
+    <set>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolCode != null">
+        PROTOCOL_CODE = #{record.protocolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocolName != null">
+        PROTOCOL_NAME = #{record.protocolName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insuranceCompanyId != null">
+        INSURANCE_COMPANY_ID = #{record.insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.insuranceOrgId != null">
+        INSURANCE_ORG_ID = #{record.insuranceOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.salesOrgId != null">
+        SALES_ORG_ID = #{record.salesOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.signingDate != null">
+        SIGNING_DATE = #{record.signingDate,jdbcType=DATE},
+      </if>
+      <if test="record.effectiveDate != null">
+        EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="record.terminationDate != null">
+        TERMINATION_DATE = #{record.terminationDate,jdbcType=DATE},
+      </if>
+      <if test="record.protocolStatus != null">
+        PROTOCOL_STATUS = #{record.protocolStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_protocol
+    set PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      PROTOCOL_CODE = #{record.protocolCode,jdbcType=VARCHAR},
+      PROTOCOL_NAME = #{record.protocolName,jdbcType=VARCHAR},
+      INSURANCE_COMPANY_ID = #{record.insuranceCompanyId,jdbcType=BIGINT},
+      INSURANCE_ORG_ID = #{record.insuranceOrgId,jdbcType=BIGINT},
+      SALES_ORG_ID = #{record.salesOrgId,jdbcType=BIGINT},
+      SIGNING_DATE = #{record.signingDate,jdbcType=DATE},
+      EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=DATE},
+      TERMINATION_DATE = #{record.terminationDate,jdbcType=DATE},
+      PROTOCOL_STATUS = #{record.protocolStatus,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    update ins_protocol
+    <set>
+      <if test="protocolCode != null">
+        PROTOCOL_CODE = #{protocolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolName != null">
+        PROTOCOL_NAME = #{protocolName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null">
+        INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceOrgId != null">
+        INSURANCE_ORG_ID = #{insuranceOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="salesOrgId != null">
+        SALES_ORG_ID = #{salesOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="signingDate != null">
+        SIGNING_DATE = #{signingDate,jdbcType=DATE},
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE = #{effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="terminationDate != null">
+        TERMINATION_DATE = #{terminationDate,jdbcType=DATE},
+      </if>
+      <if test="protocolStatus != null">
+        PROTOCOL_STATUS = #{protocolStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROTOCOL_ID = #{protocolId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    update ins_protocol
+    set PROTOCOL_CODE = #{protocolCode,jdbcType=VARCHAR},
+      PROTOCOL_NAME = #{protocolName,jdbcType=VARCHAR},
+      INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      INSURANCE_ORG_ID = #{insuranceOrgId,jdbcType=BIGINT},
+      SALES_ORG_ID = #{salesOrgId,jdbcType=BIGINT},
+      SIGNING_DATE = #{signingDate,jdbcType=DATE},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=DATE},
+      TERMINATION_DATE = #{terminationDate,jdbcType=DATE},
+      PROTOCOL_STATUS = #{protocolStatus,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR}
+    where PROTOCOL_ID = #{protocolId,jdbcType=BIGINT}
+  </update>
+  
+    <!-- 页面列表查询条件 -->
+  <sql id="whereClause">
+	  <where>
+		  	<if test="INSURANCE_COMPANY_NAME != null">
+		  		AND corg.INSURANCE_COMPANY_NAME  LIKE CONCAT(CONCAT('%', #{INSURANCE_COMPANY_NAME}), '%')
+		  	</if>
+		  	<if test="INSURANCE_ORG_NAME != null">
+		    	AND org.INSURANCE_COMPANY_NAME  LIKE CONCAT(CONCAT('%', #{INSURANCE_ORG_NAME}), '%')
+		  	</if>
+		  	<if test="PROTOCOL_NAME != null">
+		    	AND pro.PROTOCOL_NAME  LIKE CONCAT(CONCAT('%', #{PROTOCOL_NAME}), '%')
+		  	</if>
+		  	<if test="PROTOCOL_CODE != null">
+		    	AND pro.PROTOCOL_CODE LIKE CONCAT(CONCAT('%', #{PROTOCOL_CODE}), '%')
+		  	</if>
+		  	<if test="EFFECTIVE_DATE != null">
+			    <![CDATA[
+	 				AND DATE_FORMAT(pro.EFFECTIVE_DATE ,'%Y-%m-%d') = #{EFFECTIVE_DATE}
+	 			]]>
+		  	</if>
+		  	<if test="TERMINATION_DATE != null">
+			    <![CDATA[
+	 				AND DATE_FORMAT(pro.TERMINATION_DATE ,'%Y-%m-%d') = #{TERMINATION_DATE}
+	 			]]>
+		  	</if>
+		  	<if test="PROTOCOL_STATUS != null">
+		    	AND pro.PROTOCOL_STATUS  = #{PROTOCOL_STATUS}
+		  	</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+              AND FIND_IN_SET(pro.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+
+      </where>
+  </sql>
+  
+  <!-- 查询协议列表 -->
+  <select id="findAllRetMapByPage" parameterType="hashmap" resultType="hashmap">
+ 	SELECT
+ 		pro.PROTOCOL_ID,
+	 	corg.INSURANCE_COMPANY_NAME INSURANCE_COMPANY_NAME ,
+		org.INSURANCE_COMPANY_NAME INSURANCE_ORG_NAME,
+		pro.PROTOCOL_CODE,
+	 	pro.PROTOCOL_NAME,
+	    pro.EFFECTIVE_DATE,
+	    pro.TERMINATION_DATE,
+		DATE_FORMAT(pro.CREATE_TIME,'%Y-%m-%d %H:%i:%s') CREATE_TIME,
+		PROTOCOL_STATUS,
+		CASE
+     		WHEN PROTOCOL_STATUS = 0 THEN '录入中'
+			WHEN PROTOCOL_STATUS = 1 THEN '生效'
+			WHEN PROTOCOL_STATUS = 2 THEN '失效'
+			WHEN PROTOCOL_STATUS = 3 THEN '其他'
+ 			end as PROTOCOL_STATUS_ZH
+ 	FROM
+		ins_protocol pro
+	LEFT JOIN insurance_company_org corg ON pro.INSURANCE_COMPANY_ID = corg.INSURANCE_COMPANY_ID
+	LEFT JOIN insurance_company_org org ON pro.INSURANCE_ORG_ID = org.INSURANCE_COMPANY_ID
+	<include refid="whereClause" />
+	order by pro.CREATE_TIME desc 
+	limit #{startIndex},#{pageSize}
+  </select>
+
+  <select id="queryValidProtocolId" parameterType="date" resultType="long">
+    SELECT PROTOCOL_ID FROM ins_protocol
+    WHERE PROTOCOL_STATUS = 1 OR
+        (PROTOCOL_STATUS = 2 AND <![CDATA[ DATE_FORMAT(TERMINATION_DATE ,'%Y-%m') = DATE_FORMAT(#{terminationDate} ,'%Y-%m')]]>)
+  </select>
+  
+   <!-- 查询总条数 -->
+  <select id="findAllByPageCount" parameterType="hashmap" resultType="long">
+ 	 SELECT
+ 		count(1)
+  	FROM
+		ins_protocol pro
+	LEFT JOIN insurance_company_org corg ON pro.INSURANCE_COMPANY_ID = corg.INSURANCE_COMPANY_ID
+	LEFT JOIN insurance_company_org org ON pro.INSURANCE_ORG_ID = org.INSURANCE_COMPANY_ID
+  	<include refid="whereClause" />
+  </select>
+  
+  <!--添加 查询协议是否重复 -->
+  <select id="checkForDuplicates" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol" resultType="hashmap">
+	  SELECT
+		PROTOCOL_ID,
+		PROTOCOL_CODE
+	FROM
+		ins_protocol
+	WHERE
+		PROTOCOL_STATUS != 2
+	AND PROTOCOL_CODE = #{protocolCode}
+  </select>
+  
+  <!--修改 查询协议是否重复 -->
+  <select id="checkUpdateForDuplicates" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol" resultType="hashmap">
+	  SELECT
+		PROTOCOL_ID,
+		PROTOCOL_CODE
+	FROM
+		ins_protocol
+	WHERE
+		PROTOCOL_STATUS != 2
+	AND PROTOCOL_CODE = #{protocolCode}
+	and PROTOCOL_ID != #{protocolId} 
+  </select>
+  
+  
+  <insert id="insertSelectiveAndReturnId" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocol">
+    insert into ins_protocol
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="protocolCode != null">
+        PROTOCOL_CODE,
+      </if>
+      <if test="protocolName != null">
+        PROTOCOL_NAME,
+      </if>
+      <if test="insuranceCompanyId != null">
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="insuranceOrgId != null">
+        INSURANCE_ORG_ID,
+      </if>
+      <if test="salesOrgId != null">
+        SALES_ORG_ID,
+      </if>
+      <if test="signingDate != null">
+        SIGNING_DATE,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="terminationDate != null">
+        TERMINATION_DATE,
+      </if>
+      <if test="protocolStatus != null">
+        PROTOCOL_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolCode != null">
+        #{protocolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolName != null">
+        #{protocolName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null">
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceOrgId != null">
+        #{insuranceOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="salesOrgId != null">
+        #{salesOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="signingDate != null">
+        #{signingDate,jdbcType=DATE},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=DATE},
+      </if>
+      <if test="terminationDate != null">
+        #{terminationDate,jdbcType=DATE},
+      </if>
+      <if test="protocolStatus != null">
+        #{protocolStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey resultType="long" order="AFTER" keyProperty="protocolId">
+    	SELECT LAST_INSERT_ID() AS protocolId
+	</selectKey>
+  </insert>
+  
+  <!-- 协议修改回显 -->
+  <select id="findProtocolInfoById" parameterType="long" resultType="hashmap">
+	  SELECT
+			pro.PROTOCOL_ID,
+			pro.INSURANCE_COMPANY_ID,
+			pro.INSURANCE_ORG_ID,
+			pro.SALES_ORG_ID,
+			corg.INSURANCE_COMPANY_NAME INSURANCE_COMPANY_NAME,
+			org.INSURANCE_COMPANY_NAME INSURANCE_ORG_NAME,
+			orgInfo.SALES_ORG_NAME,
+			pro.PROTOCOL_CODE,
+			pro.PROTOCOL_NAME,
+			DATE_FORMAT(pro.SIGNING_DATE,'%Y-%m-%d')SIGNING_DATE,
+			DATE_FORMAT(pro.EFFECTIVE_DATE, '%Y-%m-%d')EFFECTIVE_DATE,
+			DATE_FORMAT(pro.TERMINATION_DATE,'%Y-%m-%d')TERMINATION_DATE
+	FROM
+		ins_protocol pro
+	LEFT JOIN insurance_company_org corg ON pro.INSURANCE_COMPANY_ID = corg.INSURANCE_COMPANY_ID
+	LEFT JOIN insurance_company_org org ON pro.INSURANCE_ORG_ID = org.INSURANCE_COMPANY_ID
+	LEFT JOIN sales_org_info orgInfo ON pro.SALES_ORG_ID = orgInfo.SALES_ORG_ID
+	WHERE
+		pro.PROTOCOL_ID = #{protocolId}
+  </select>
+ 	<!--校验同一部门的协议 产品是否重复  --> 
+  <select id="checkSalesProductIsRepeat" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		p.SALES_ORG_ID,
+		info.SALES_ORG_NAME ,
+		ratio.PRODUCTS_NAME
+	from ins_protocol p
+	left join ins_protocol_product product on p.PROTOCOL_ID =
+	product.PROTOCOL_ID
+	left join sales_org_info info on p.SALES_ORG_ID = info.SALES_ORG_id
+	left join ins_products_commission_ratio ratio on product.PRODUCT_ID =
+	ratio.PRODUCTS_RATIO_ID
+	where p.SALES_ORG_ID =#{salesOrgId}
+	and
+	product.PRODUCT_ID in (#{productIds})
+	AND product.RELATION_STATUS = '0'
+  
+  </select>
+  
+  <select id="getEffectOrTerminationProtocol" resultType="java.util.Map">
+  	SELECT
+		PROTOCOL_ID
+	FROM
+		ins_protocol
+	<if test="flag != null and flag == 1">
+		<![CDATA[ WHERE EFFECTIVE_DATE <= #{nowDate} AND TERMINATION_DATE >= #{nowDate} AND PROTOCOL_STATUS = 0 ]]>
+	</if>
+	<if test="flag != null and flag == 2">
+		<![CDATA[ WHERE TERMINATION_DATE < #{nowDate} AND PROTOCOL_STATUS = 1 ]]>
+	</if>
+  </select>
+  
+	<update id="updateBatchEffectOrTerminationProtocol" parameterType="java.util.List">
+       <foreach collection="list" item="bean" index="index" open="" close="" separator=";">
+	       UPDATE ins_protocol
+	       <if test="flag != null and flag == 1">
+				<set>
+	                PROTOCOL_STATUS = 1
+	            </set>
+			</if>
+			<if test="flag != null and flag == 2">
+				<set>
+	                PROTOCOL_STATUS = 2
+	            </set>
+			</if>
+	        <where>
+	           PROTOCOL_ID = #{bean.PROTOCOL_ID}
+	   		</where>
+      	</foreach>
+	</update>
+</mapper>

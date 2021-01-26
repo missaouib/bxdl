@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesTeamInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.SalesTeamInfo" >
+      <result column="created_by" property="createdBy" />
+      <result column="created_time" property="createdTime" />
+      <result column="updated_by" property="updatedBy" />
+      <result column="updated_time" property="updatedTime" />
+      <result column="sales_team_id" property="salesTeamId" />
+      <result column="sales_team_name" property="salesTeamName" />
+      <result column="sales_team_name_less" property="salesTeamNameLess" />
+      <result column="sales_org_id" property="salesOrgId" />
+      <result column="sales_team_code" property="salesTeamCode" />
+      <result column="parent_sales_team_code" property="parentSalesTeamCode" />
+      <result column="sales_team_type" property="salesTeamType" />
+      <result column="date_of_establishment" property="dateOfEstablishment" />
+      <result column="tel" property="tel" />
+      <result column="fax" property="fax" />
+      <result column="address" property="address" />
+      <result column="post_code" property="postCode" />
+      <result column="tree_code" property="treeCode" />
+      <result column="team_status" property="teamStatus" />
+      <result column="team_level" property="teamLevel" />      
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+      `created_by`,
+      `created_time`,
+      `updated_by`,
+      `updated_time`,
+      `sales_team_id`,
+      `sales_team_name`,
+      `sales_team_name_less`,
+      `sales_org_id`,
+      `sales_team_code`,
+      `parent_sales_team_code`,
+      `sales_team_type`,
+      `date_of_establishment`,
+      `tel`,
+      `fax`,
+      `address`,
+      `post_code`,
+      `tree_code`,
+      `team_status`,
+      `team_level`
+  </sql>  
+  
+  <insert id="addSalesTeamInfo"  parameterType="com.hzcf.pojo.insurance.SalesTeamInfo" useGeneratedKeys="true" keyProperty="salesTeamId" keyColumn="sales_team_id">
+    	INSERT INTO sales_team_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	        <if test ='null != createdBy'>
+	        `created_by`,
+	        </if>
+	        <if test ='null != createdTime'>
+	        `created_time`,
+	        </if>
+	        <if test ='null != updatedBy'>
+	        `updated_by`,
+	        </if>
+	        <if test ='null != updatedTime'>
+	        `updated_time`,
+	        </if>
+	        <if test ='null != salesTeamId'>
+	        `sales_team_id`,
+	        </if>
+	        <if test ='null != salesTeamName'>
+	        `sales_team_name`,
+	        </if>
+	        <if test ='null != salesTeamNameLess'>
+	        `sales_team_name_less`,
+	        </if>
+	        <if test ='null != salesOrgId'>
+	        `sales_org_id`,
+	        </if>
+	        <if test ='null != salesTeamCode'>
+	        `sales_team_code`,
+	        </if>
+	        <if test ='null != parentSalesTeamCode'>
+	        `parent_sales_team_code`,
+	        </if>
+	        <if test ='null != salesTeamType'>
+	        `sales_team_type`,
+	        </if>
+	        <if test ="null != dateOfEstablishment and '' != dateOfEstablishment">
+	        `date_of_establishment`,
+	        </if>
+	        <if test ='null != tel'>
+	        `tel`,
+	        </if>
+	        <if test ='null != fax'>
+	        `fax`,
+	        </if>
+	        <if test ='null != address'>
+	        `address`,
+	        </if>
+	        <if test ='null != postCode'>
+	        `post_code`,
+	        </if>
+	        <if test ='null != treeCode'>
+	        `tree_code`,
+	        </if>
+	        <if test ='null != treeCode'>
+	        `team_status`,
+	        </if>
+	        <if test ='null != treeCode'>
+	        `team_level`
+	        </if>	        	        
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != createdBy'>
+            #{createdBy},
+            </if>
+            <if test ='null != createdTime'>
+            #{createdTime},
+            </if>
+            <if test ='null != updatedBy'>
+            #{updatedBy},
+            </if>
+            <if test ='null != updatedTime'>
+            #{updatedTime},
+            </if>
+            <if test ='null != salesTeamId'>
+            #{salesTeamId},
+            </if>
+            <if test ='null != salesTeamName'>
+            #{salesTeamName},
+            </if>
+            <if test ='null != salesTeamNameLess'>
+            #{salesTeamNameLess},
+            </if>
+            <if test ='null != salesOrgId'>
+            #{salesOrgId},
+            </if>
+            <if test ='null != salesTeamCode'>
+            #{salesTeamCode},
+            </if>
+            <if test ='null != parentSalesTeamCode'>
+            #{parentSalesTeamCode},
+            </if>
+            <if test ='null != salesTeamType'>
+            #{salesTeamType},
+            </if>
+            <if test ="null != dateOfEstablishment and '' != dateOfEstablishment">
+            #{dateOfEstablishment},
+            </if>
+            <if test ='null != tel'>
+            #{tel},
+            </if>
+            <if test ='null != fax'>
+            #{fax},
+            </if>
+            <if test ='null != address'>
+            #{address},
+            </if>
+            <if test ='null != postCode'>
+            #{postCode},
+            </if>
+            <if test ='null != treeCode'>
+            #{treeCode},
+            </if>
+            <if test ='null != teamStatus'>
+            #{teamStatus},
+            </if>
+            <if test ='null != teamLevel'>
+            #{teamLevel}
+            </if>            
+        </trim>   	
+   </insert> 
+    
+   	<update id="updateSalesTeamInfo" parameterType="com.hzcf.pojo.insurance.SalesTeamInfo">
+        UPDATE sales_team_info
+        <set>
+          <if test ='null != createdBy'>created_by = #{createdBy},</if>
+          <if test ='null != createdTime'>created_time = #{createdTime},</if>
+          <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+          <if test ='null != updatedTime'>updated_time = #{updatedTime},</if>
+          <if test ='null != salesTeamId'>sales_team_id = #{salesTeamId},</if>
+          <if test ='null != salesTeamName'>sales_team_name = #{salesTeamName},</if>
+          <if test ='null != salesTeamNameLess'>sales_team_name_less = #{salesTeamNameLess},</if>
+          <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+          <if test ='null != salesTeamCode'>sales_team_code = #{salesTeamCode},</if>
+          <if test ='null != parentSalesTeamCode'>parent_sales_team_code = #{parentSalesTeamCode},</if>
+          <if test ='null != salesTeamType'>sales_team_type = #{salesTeamType},</if>
+          <choose>
+              <when test ="null != dateOfEstablishment and '' != dateOfEstablishment">date_of_establishment = #{dateOfEstablishment},</when>
+              <otherwise>date_of_establishment = null,</otherwise>
+          </choose> 
+          <if test ='null != tel'>tel = #{tel},</if>
+          <if test ='null != fax'>fax = #{fax},</if>
+          <if test ='null != address'>address = #{address},</if>
+          <if test ='null != postCode'>post_code = #{postCode},</if>
+          <if test ='null != treeCode'>tree_code = #{treeCode},</if>
+          <if test ='null != teamStatus'>team_status = #{teamStatus},</if>
+          <if test ='null != teamLevel'>team_level = #{teamLevel}</if>          
+        </set>    
+        WHERE `sales_team_id` = #{salesTeamId}
+    </update>
+   
+    <select id="getSalesTeamInfoList" parameterType="java.util.Map" resultType="java.util.Map">
+    	select * from sales_team_info
+    	<where>
+    	1=1
+          <if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+          <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+          <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+          <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+          <if test ='null != salesTeamId'>AND sales_team_id = #{salesTeamId}</if>
+          <if test ='null != salesTeamName'>AND sales_team_name like CONCAT('%',#{salesTeamName},'%')</if>
+          <if test ='null != salesTeamNameLess'>AND sales_team_name_less = #{salesTeamNameLess}</if>
+          <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+          <if test ='null != salesTeamCode'>AND sales_team_code like CONCAT('%',#{salesTeamCode},'%')</if>
+          <if test ='null != parentSalesTeamCode'>AND parent_sales_team_code = #{parentSalesTeamCode}</if>
+          <if test ='null != salesTeamType'>AND sales_team_type = #{salesTeamType}</if>
+          <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+          <if test ='null != tel'>AND tel = #{tel}</if>
+          <if test ='null != fax'>AND fax = #{fax}</if>
+          <if test ='null != address'>AND address = #{address}</if>
+          <if test ='null != postCode'>AND post_code = #{postCode}</if>
+          <if test ='null != treeCode'>AND tree_code = #{treeCode}</if>
+          <if test ='null != teamStatus'>AND team_status = #{teamStatus}</if>
+          <if test ='null != teamLevel'>AND team_level = #{teamLevel}</if>
+          <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+            AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+          </if>
+          <if test='null != salesAllOrgs'>
+            AND FIND_IN_SET(sales_org_id, #{salesAllOrgs}) > 0
+          </if>
+    	</where>
+        order by CREATED_TIME DESC
+    	limit #{startIndex},#{endIndex}    	
+    </select>
+    
+    <select id="getSalesTeamInfoListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select  count(1) from sales_team_info
+    	<where>
+    	1=1
+          <if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+          <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+          <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+          <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+          <if test ='null != salesTeamId'>AND sales_team_id = #{salesTeamId}</if>
+          <if test ='null != salesTeamName'>AND sales_team_name like CONCAT('%',#{salesTeamName},'%')</if>
+          <if test ='null != salesTeamNameLess'>AND sales_team_name_less = #{salesTeamNameLess}</if>
+          <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+          <if test ='null != salesTeamCode'>AND sales_team_code like CONCAT('%',#{salesTeamCode},'%')</if>
+          <if test ='null != parentSalesTeamCode'>AND parent_sales_team_code = #{parentSalesTeamCode}</if>
+          <if test ='null != salesTeamType'>AND sales_team_type = #{salesTeamType}</if>
+          <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+          <if test ='null != tel'>AND tel = #{tel}</if>
+          <if test ='null != fax'>AND fax = #{fax}</if>
+          <if test ='null != address'>AND address = #{address}</if>
+          <if test ='null != postCode'>AND post_code = #{postCode}</if>
+          <if test ='null != treeCode'>AND tree_code = #{treeCode}</if>  
+          <if test ='null != teamStatus'>AND team_status = #{teamStatus}</if>
+          <if test ='null != teamLevel'>AND team_level = #{teamLevel}</if>
+          <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+              AND FIND_IN_SET(sales_org_id, #{myAllOrgIds}) > 0
+          </if>
+           <if test='null != salesAllOrgs'>
+            AND FIND_IN_SET(sales_org_id, #{salesAllOrgs}) > 0
+          </if>
+    	</where>
+    </select>    
+    
+    <select id="findPreCode" parameterType="java.util.Map" resultType="java.lang.Integer">
+    	select case when max(tree_code*1) is null then 0 
+    	else MAX(RIGHT(tree_code,4)*1) 
+    	end
+		from sales_team_info 
+		<where> 
+		length(tree_code) = ${treeCodeLen}
+		<if test ="'' != PTcode and null != PTcode">
+			and left(tree_code,#{treeCodeLen}-4) = ${PTcode}
+		</if>
+		</where>
+    </select>    
+        
+    <select id="getParents" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from sales_team_info
+    	<where>
+    	1=1
+          <if test ='null != createdBy'>AND created_by = #{createdBy}</if>
+          <if test ='null != createdTime'>AND created_time = #{createdTime}</if>
+          <if test ='null != updatedBy'>AND updated_by = #{updatedBy}</if>
+          <if test ='null != updatedTime'>AND updated_time = #{updatedTime}</if>
+          <if test ='null != salesTeamId'>AND sales_team_id = #{salesTeamId}</if>
+          <if test ='null != salesTeamName'>AND sales_team_name like concat('%',#{salesTeamName},'%')</if>
+          <if test ='null != salesTeamNameLess'>AND sales_team_name_less = #{salesTeamNameLess}</if>
+          <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+          <if test ='null != salesTeamCode'>AND sales_team_code = #{salesTeamCode}</if>
+          <if test ='null != parentSalesTeamCode'>AND parent_sales_team_code = #{parentSalesTeamCode}</if>
+          <if test ='null != salesTeamType'>AND sales_team_type = #{salesTeamType}</if>
+          <if test ='null != dateOfEstablishment'>AND date_of_establishment = #{dateOfEstablishment}</if>
+          <if test ='null != tel'>AND tel = #{tel}</if>
+          <if test ='null != fax'>AND fax = #{fax}</if>
+          <if test ='null != address'>AND address = #{address}</if>
+          <if test ='null != postCode'>AND post_code = #{postCode}</if>
+          <if test ='null != treeCode'>AND tree_code = #{treeCode}</if> 
+          <if test ='null != teamLevel'>AND team_level = #{teamLevel}</if>
+            <if test='null != teamTreeFlag'>AND  (parent_sales_team_code is null or trim(parent_sales_team_code)="")</if>
+            AND team_status = '0'
+    	</where>  	
+    </select>
+
+     <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from sales_team_info
+    	<where>
+    	1=1
+          <if test ='null != salesTeamId'>AND sales_team_id = #{salesTeamId}</if>
+          <if test ='null != salesTeamName'>AND sales_team_name = #{salesTeamName}</if>
+          <if test ='null != salesOrgId'>AND sales_org_id = #{salesOrgId}</if>
+          <if test ='null != salesTeamNameLess'>AND sales_team_name_less = #{salesTeamNameLess}</if>
+          <if test ='null != salesTeamCode'>AND sales_team_code = #{salesTeamCode}</if>
+          <if test ='null != parentSalesTeamCode'>AND parent_sales_team_code = #{parentSalesTeamCode}</if>
+          <if test ='null != teamLevel'>AND team_level = #{teamLevel}</if>
+          <if test='null != teamTreeFlag'>AND  (parent_sales_team_code is null or trim(parent_sales_team_code)="")</if>
+            AND team_status = '0'
+    	</where>
+    </select>
+    
+    <select id="selectById" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		select * from sales_team_info 
+   		<where>
+   		1=1
+   			<if test ='null != salesTeamId'>
+   				AND sales_team_id = #{salesTeamId}
+   			</if>
+   		</where> 
+   	</select>
+
+
+     <!--批量插入销售团队信息-->
+    <insert id="batchAddSalesTeam" parameterType="java.util.List">
+        INSERT INTO sales_team_info
+        (
+                `sales_org_id`,
+                `parent_sales_team_code`,
+                `sales_team_name`,
+                `sales_team_code`,
+                `sales_team_name_less`,
+                `team_status`,
+                `team_level`,
+                `date_of_establishment`,
+        `created_time`,
+        `created_by`,
+        `tree_code`,
+        `tel`,
+        `fax`,
+        `address`,
+        `post_code`
+           )
+        VALUES
+         <foreach collection="list" item="item"  separator=",">
+           (
+             #{item.salesOrgId},
+             #{item.parentSalesTeamCode},
+              #{item.salesTeamName},
+              #{item.salesTeamCode},
+              #{item.salesTeamNameLess},
+              #{item.teamStatus},
+              #{item.teamLevel},
+              #{item.dateOfEstablishment},
+             #{item.createdTime},
+             #{item.createdBy},
+             #{item.treeCode},
+             #{item.tel},
+             #{item.fax},
+             #{item.address},
+             #{item.postCode}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="getChildSalesTeamByParentCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from sales_team_info where PARENT_SALES_TEAM_CODE = #{salesTeamCode}
+    </select>
+    <update id="updateSalesTeamTreeCode" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE sales_team_info
+            <trim prefix="set" suffixOverrides=",">
+                tree_code=#{item.treeCode}
+            </trim>
+            <where>
+                sales_team_id = #{item.salesTeamId}
+            </where>
+        </foreach>
+    </update>
+
+    <update id="updateparentSaleTeamCode" >
+        UPDATE sales_team_info s set s.PARENT_SALES_TEAM_CODE = #{parentSaleTeamCode} where s.PARENT_SALES_TEAM_CODE = #{oldParentSaleTeamCode};
+    </update>
+
+</mapper>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.BenchmarkingDiscountCoefficientMapper" >
+ <resultMap id="BaseResultMap" type="com.hzcf.pojo.parameter.BenchmarkingDiscountCoefficient" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="INSURANCE_TYPE_ID" property="insuranceTypeId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MAXIMUM" property="maximum" jdbcType="VARCHAR" />
+    <result column="MINIMUM" property="minimum" jdbcType="VARCHAR" />
+    <result column="MIN_SIGN" property="minSign" jdbcType="CHAR" />
+    <result column="MAX_SIGN" property="maxSign" jdbcType="CHAR" />
+    <result column="INDEXING_COEFFICIENT" property="indexingCoefficient" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="IS_NORMAL" property="isNormal" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, INSURANCE_TYPE_ID, STATUS, MAXIMUM, MINIMUM, MIN_SIGN, MAX_SIGN, INDEXING_COEFFICIENT, 
+    CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, IS_NORMAL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from benchmarking_discount_coefficient
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from benchmarking_discount_coefficient
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.parameter.BenchmarkingDiscountCoefficient" >
+    insert into benchmarking_discount_coefficient (ID, INSURANCE_TYPE_ID, STATUS, 
+      MAXIMUM, MINIMUM, MIN_SIGN, 
+      MAX_SIGN, INDEXING_COEFFICIENT, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+      IS_NORMAL)
+    values (#{id,jdbcType=BIGINT}, #{insuranceTypeId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{maximum,jdbcType=VARCHAR}, #{minimum,jdbcType=VARCHAR}, #{minSign,jdbcType=CHAR}, 
+      #{maxSign,jdbcType=CHAR}, #{indexingCoefficient,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{isNormal,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.parameter.BenchmarkingDiscountCoefficient" >
+    insert into benchmarking_discount_coefficient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="insuranceTypeId != null" >
+        INSURANCE_TYPE_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="maximum != null" >
+        MAXIMUM,
+      </if>
+      <if test="minimum != null" >
+        MINIMUM,
+      </if>
+      <if test="minSign != null" >
+        MIN_SIGN,
+      </if>
+      <if test="maxSign != null" >
+        MAX_SIGN,
+      </if>
+      <if test="indexingCoefficient != null" >
+        INDEXING_COEFFICIENT,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="insuranceTypeId != null" >
+        #{insuranceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="maximum != null" >
+        #{maximum,jdbcType=VARCHAR},
+      </if>
+      <if test="minimum != null" >
+        #{minimum,jdbcType=VARCHAR},
+      </if>
+      <if test="minSign != null" >
+        #{minSign,jdbcType=CHAR},
+      </if>
+      <if test="maxSign != null" >
+        #{maxSign,jdbcType=CHAR},
+      </if>
+      <if test="indexingCoefficient != null" >
+        #{indexingCoefficient,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNormal != null" >
+        #{isNormal,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.parameter.BenchmarkingDiscountCoefficient" >
+    update benchmarking_discount_coefficient
+    <set >
+      <if test="insuranceTypeId != null" >
+        INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="maximum != null" >
+        MAXIMUM = #{maximum,jdbcType=VARCHAR},
+      </if>
+      <if test="minimum != null" >
+        MINIMUM = #{minimum,jdbcType=VARCHAR},
+      </if>
+      <if test="minSign != null" >
+        MIN_SIGN = #{minSign,jdbcType=CHAR},
+      </if>
+      <if test="maxSign != null" >
+        MAX_SIGN = #{maxSign,jdbcType=CHAR},
+      </if>
+      <if test="indexingCoefficient != null" >
+        INDEXING_COEFFICIENT = #{indexingCoefficient,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNormal != null" >
+        IS_NORMAL = #{isNormal,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.parameter.BenchmarkingDiscountCoefficient" >
+    update benchmarking_discount_coefficient
+    set INSURANCE_TYPE_ID = #{insuranceTypeId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      MAXIMUM = #{maximum,jdbcType=VARCHAR},
+      MINIMUM = #{minimum,jdbcType=VARCHAR},
+      MIN_SIGN = #{minSign,jdbcType=CHAR},
+      MAX_SIGN = #{maxSign,jdbcType=CHAR},
+      INDEXING_COEFFICIENT = #{indexingCoefficient,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      IS_NORMAL = #{isNormal,jdbcType=CHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 不分页列表 -->
+   <select id="getBenchmarkingDiscountCoefficientList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from benchmarking_discount_coefficient
+    where 1=1
+     and IS_NORMAL=0
+  </select>
+  
+   <!-- 查询状态为0的总条数 -->
+   <select id="checkListSize"  parameterType="java.util.Map" resultType="java.lang.Integer">
+	  SELECT
+		count(1)
+	FROM
+		benchmarking_discount_coefficient
+	where 1=1
+	and IS_NORMAL=0
+  </select>
+
+  <select id="queryCoefficientByProductId" parameterType="long" resultType="string">
+    SELECT
+	    bdc.INDEXING_COEFFICIENT
+    FROM
+        benchmarking_discount_coefficient bdc
+	    JOIN benchmarking_discount_coefficient ipi  ON ipi.INSURANCE_TYPE = bdc.INSURANCE_TYPE_ID
+    WHERE
+	    ipi.PRODUCT_ID = #{productId};
+  </select>
+  
+  
+</mapper>

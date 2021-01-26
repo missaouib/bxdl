@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.EmployeeCodeRuleMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.basic.EmployeeCodeRule">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="mapId" jdbcType="VARCHAR" property="mapId"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+     `id`,
+     `code`,
+     `mapId`,
+     `type`,
+     `createdTime`,
+     `updateTime`
+  </sql>
+
+    <insert id="insertEmployeeCodeRule" parameterType="com.hzcf.pojo.basic.EmployeeCodeRule" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    	INSERT INTO employee_code_rule (`code`, `mapId`, `type`, `createdTime`, `updateTime`)
+        VALUES (#{code}, #{mapId}, #{type}, now(), now())
+   </insert>
+
+    <update id="updateEmployeeCodeRule" parameterType="com.hzcf.pojo.basic.EmployeeCodeRule">
+        UPDATE employee_code_rule
+        <set>
+            <if test='null != code'>
+                code = #{code},
+            </if>
+            <if test='null != mapId'>
+                mapId = #{mapId},
+            </if>
+            <if test='null != type'>
+                `type` = #{type},
+            </if>
+            updateTime = now()
+        </set>
+        WHERE `id` = #{id}
+    </update>
+
+    <select id="queryEmployeeCodeRulePage" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM employee_code_rule
+        <where>
+            1=1
+            <if test='null != mapId'>
+                AND mapId = #{mapId}
+            </if>
+            <if test='null != type'>
+                AND `type` = #{type}
+            </if>
+        </where>
+        ORDER BY updateTime DESC
+        LIMIT #{startIndex},#{rows}
+    </select>
+
+    <select id="queryEmployeeCodeRuleTotal" resultType="long" parameterType="java.util.Map">
+        SELECT COUNT(id)
+        FROM employee_code_rule
+        <where>
+            1=1
+            <if test='null != mapId'>
+                AND mapId = #{mapId}
+            </if>
+            <if test='null != type'>
+                AND `type` = #{type}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryEmployeeCodeRuleList" resultMap="BaseResultMap" resultType="java.util.Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM employee_code_rule
+        <where>
+            1=1
+            <if test='null != mapId'>
+                AND mapId = #{mapId}
+            </if>
+            <if test='null != code'>
+                AND code = #{code}
+            </if>
+            <if test='null != type'>
+                AND `type` = #{type}
+            </if>
+            <if test='null != excludeId'>
+                AND `id` != #{excludeId}
+            </if>
+        </where>
+        ORDER BY updateTime DESC
+    </select>
+
+    <select id="queryExistEmployeeCodeRuleList" resultMap="BaseResultMap" resultType="java.util.Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM employee_code_rule
+        <where>
+            `id` != #{excludeId} AND `type` = #{type} AND (mapId = #{mapId} OR code = #{code})
+        </where>
+        ORDER BY updateTime DESC
+    </select>
+
+    <select id="queryEmployeeCodeRule" resultMap="BaseResultMap" parameterType="int" >
+        SELECT <include refid="Base_Column_List"/>
+        FROM employee_code_rule WHERE id = #{id}
+    </select>
+
+    <select id="queryEmployeeCodeRuleByTypeAndMapId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM employee_code_rule WHERE `type` = #{type} AND mapId = #{mapId} ORDER BY updateTime DESC LIMIT 1
+    </select>
+</mapper>

@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.InsuranceProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.product.InsuranceProductInfo" >
+    <id column="PRODUCT_ID" property="productId" jdbcType="BIGINT" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="DATE" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME_LESS" property="productNameLess" jdbcType="VARCHAR" />
+    <result column="PRODUCT_EN_NAME" property="productEnName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+    <result column="INSURANCE_COMPANY_ID" property="insuranceCompanyId" jdbcType="BIGINT" />
+    <result column="COMPANY_INSURANCE_CODE" property="companyInsuranceCode" jdbcType="VARCHAR" />
+    <result column="INSURANCE_TYPE" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="CIRC_INSURANCE_TYPE" property="circInsuranceType" jdbcType="VARCHAR" />
+    <result column="MAIN_OR_ADDITIONAL" property="mainOrAdditional" jdbcType="CHAR" />
+    <result column="INSURANCE_PERIOD_TYPE" property="insurancePeriodType" jdbcType="VARCHAR" />
+    <result column="RENEWAL_PERIOD_TYPE" property="renewalPeriodType" jdbcType="VARCHAR" />
+    <result column="CARD_PRO_TYPE" property="cardProType" jdbcType="VARCHAR" />
+    <result column="LONG_SHORT_RISK_TYPE" property="longShortRiskType" jdbcType="CHAR" />
+    <result column="AUTO_PAY_SIGN" property="autoPaySign" jdbcType="CHAR" />
+    <result column="MAX_RENEWAL_YEARS" property="maxRenewalYears" jdbcType="INTEGER" />
+    <result column="SPECIAL_AUTHORIZATION" property="specialAuthorization" jdbcType="VARCHAR" />
+    <result column="NEED_RECEIPT" property="needReceipt" jdbcType="VARCHAR" />
+    <result column="TAKE_EFFECT_DATE" property="takeEffectDate" jdbcType="DATE" />
+    <result column="INVALID_DATE" property="invalidDate" jdbcType="DATE" />
+    <result column="GROUP_OR_PERSONAL" property="groupOrPersonal" jdbcType="CHAR" />
+    <result column="CIRC_RECORD_CODE" property="circRecordCode" jdbcType="VARCHAR" />
+    <result column="PAY_MODE" property="payMode" jdbcType="VARCHAR" />
+    <result column="PRODUCT_STATUS" property="productStatus" jdbcType="CHAR" />
+    <result column="SALE_TYPE" property="saleType" jdbcType="CHAR" />
+    <result column="COMPANY_INSURANCE_TYPE" property="companyInsuranceType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRODUCT_ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, PRODUCT_NAME, PRODUCT_NAME_LESS, 
+    PRODUCT_EN_NAME, PRODUCT_CODE, INSURANCE_COMPANY_ID, COMPANY_INSURANCE_CODE, INSURANCE_TYPE, 
+    CIRC_INSURANCE_TYPE, MAIN_OR_ADDITIONAL, INSURANCE_PERIOD_TYPE, RENEWAL_PERIOD_TYPE, 
+    CARD_PRO_TYPE, LONG_SHORT_RISK_TYPE, AUTO_PAY_SIGN, MAX_RENEWAL_YEARS, SPECIAL_AUTHORIZATION, 
+    NEED_RECEIPT, TAKE_EFFECT_DATE, INVALID_DATE, GROUP_OR_PERSONAL, CIRC_RECORD_CODE, 
+    PAY_MODE, PRODUCT_STATUS, SALE_TYPE, COMPANY_INSURANCE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    PRODUCT_ID, CREATED_BY,  UPDATED_BY,  PRODUCT_NAME, PRODUCT_NAME_LESS, 
+    PRODUCT_EN_NAME, PRODUCT_CODE, INSURANCE_COMPANY_ID, COMPANY_INSURANCE_CODE, INSURANCE_TYPE, 
+    CIRC_INSURANCE_TYPE, MAIN_OR_ADDITIONAL, INSURANCE_PERIOD_TYPE, RENEWAL_PERIOD_TYPE, 
+    CARD_PRO_TYPE, LONG_SHORT_RISK_TYPE, SPECIAL_AUTHORIZATION, NEED_RECEIPT, 
+     GROUP_OR_PERSONAL, CIRC_RECORD_CODE, PAY_MODE, PRODUCT_STATUS,
+     DATE_FORMAT(TAKE_EFFECT_DATE,'%Y-%m-%d ') as TAKE_EFFECT_DATE, 
+    DATE_FORMAT( INVALID_DATE,'%Y-%m-%d') as INVALID_DATE,
+    DATE_FORMAT( CREATED_TIME,'%Y-%m-%d') as CREATED_TIME,
+    DATE_FORMAT( UPDATED_TIME,'%Y-%m-%d') as UPDATED_TIME,
+  SALE_TYPE, AUTO_PAY_SIGN, MAX_RENEWAL_YEARS,COMPANY_INSURANCE_TYPE
+    from insurance_product_info
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from insurance_product_info
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.product.InsuranceProductInfo" >
+    insert into insurance_product_info (PRODUCT_ID, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, PRODUCT_NAME, 
+      PRODUCT_NAME_LESS, PRODUCT_EN_NAME, PRODUCT_CODE, 
+      INSURANCE_COMPANY_ID, COMPANY_INSURANCE_CODE, 
+      INSURANCE_TYPE, CIRC_INSURANCE_TYPE, MAIN_OR_ADDITIONAL, 
+      INSURANCE_PERIOD_TYPE, RENEWAL_PERIOD_TYPE, 
+      CARD_PRO_TYPE, LONG_SHORT_RISK_TYPE, AUTO_PAY_SIGN, 
+      MAX_RENEWAL_YEARS, SPECIAL_AUTHORIZATION, 
+      NEED_RECEIPT, TAKE_EFFECT_DATE, INVALID_DATE, 
+      GROUP_OR_PERSONAL, CIRC_RECORD_CODE, PAY_MODE, 
+      PRODUCT_STATUS, SALE_TYPE, COMPANY_INSURANCE_TYPE
+      )
+    values (#{productId,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=DATE}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=DATE}, #{productName,jdbcType=VARCHAR}, 
+      #{productNameLess,jdbcType=VARCHAR}, #{productEnName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{insuranceCompanyId,jdbcType=BIGINT}, #{companyInsuranceCode,jdbcType=VARCHAR}, 
+      #{insuranceType,jdbcType=VARCHAR}, #{circInsuranceType,jdbcType=VARCHAR}, #{mainOrAdditional,jdbcType=CHAR}, 
+      #{insurancePeriodType,jdbcType=VARCHAR}, #{renewalPeriodType,jdbcType=VARCHAR}, 
+      #{cardProType,jdbcType=VARCHAR}, #{longShortRiskType,jdbcType=CHAR}, #{autoPaySign,jdbcType=CHAR}, 
+      #{maxRenewalYears,jdbcType=INTEGER}, #{specialAuthorization,jdbcType=VARCHAR}, 
+      #{needReceipt,jdbcType=VARCHAR}, #{takeEffectDate,jdbcType=DATE}, #{invalidDate,jdbcType=DATE}, 
+      #{groupOrPersonal,jdbcType=CHAR}, #{circRecordCode,jdbcType=VARCHAR}, #{payMode,jdbcType=VARCHAR}, 
+      #{productStatus,jdbcType=CHAR}, #{saleType,jdbcType=CHAR}, #{companyInsuranceType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="productId"  parameterType="com.hzcf.pojo.product.InsuranceProductInfo" >
+    insert into insurance_product_info
+   <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        PRODUCT_ID,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productNameLess != null" >
+        PRODUCT_NAME_LESS,
+      </if>
+      <if test="productEnName != null" >
+        PRODUCT_EN_NAME,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="companyInsuranceCode != null" >
+        COMPANY_INSURANCE_CODE,
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE,
+      </if>
+      <if test="circInsuranceType != null" >
+        CIRC_INSURANCE_TYPE,
+      </if>
+      <if test="mainOrAdditional != null" >
+        MAIN_OR_ADDITIONAL,
+      </if>
+      <if test="insurancePeriodType != null" >
+        INSURANCE_PERIOD_TYPE,
+      </if>
+      <if test="renewalPeriodType != null" >
+        RENEWAL_PERIOD_TYPE,
+      </if>
+      <if test="cardProType != null" >
+        CARD_PRO_TYPE,
+      </if>
+      <if test="longShortRiskType != null" >
+        LONG_SHORT_RISK_TYPE,
+      </if>
+      <if test="autoPaySign != null" >
+        AUTO_PAY_SIGN,
+      </if>
+      <if test="maxRenewalYears != null" >
+        MAX_RENEWAL_YEARS,
+      </if>
+      <if test="specialAuthorization != null" >
+        SPECIAL_AUTHORIZATION,
+      </if>
+      <if test="needReceipt != null" >
+        NEED_RECEIPT,
+      </if>
+      <if test="takeEffectDate != null" >
+        TAKE_EFFECT_DATE,
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE,
+      </if>
+      <if test="groupOrPersonal != null" >
+        GROUP_OR_PERSONAL,
+      </if>
+      <if test="circRecordCode != null" >
+        CIRC_RECORD_CODE,
+      </if>
+      <if test="payMode != null" >
+        PAY_MODE,
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS,
+      </if>
+      <if test="saleType != null" >
+        SALE_TYPE,
+      </if>
+      <if test="companyInsuranceType != null" >
+        COMPANY_INSURANCE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNameLess != null" >
+        #{productNameLess,jdbcType=VARCHAR},
+      </if>
+      <if test="productEnName != null" >
+        #{productEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyInsuranceCode != null" >
+        #{companyInsuranceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="circInsuranceType != null" >
+        #{circInsuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainOrAdditional != null" >
+        #{mainOrAdditional,jdbcType=CHAR},
+      </if>
+      <if test="insurancePeriodType != null" >
+        #{insurancePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalPeriodType != null" >
+        #{renewalPeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardProType != null" >
+        #{cardProType,jdbcType=VARCHAR},
+      </if>
+      <if test="longShortRiskType != null" >
+        #{longShortRiskType,jdbcType=CHAR},
+      </if>
+      <if test="autoPaySign != null" >
+        #{autoPaySign,jdbcType=CHAR},
+      </if>
+      <if test="maxRenewalYears != null" >
+        #{maxRenewalYears,jdbcType=INTEGER},
+      </if>
+      <if test="specialAuthorization != null" >
+        #{specialAuthorization,jdbcType=VARCHAR},
+      </if>
+      <if test="needReceipt != null" >
+        #{needReceipt,jdbcType=VARCHAR},
+      </if>
+      <if test="takeEffectDate != null" >
+        #{takeEffectDate,jdbcType=DATE},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=DATE},
+      </if>
+      <if test="groupOrPersonal != null" >
+        #{groupOrPersonal,jdbcType=CHAR},
+      </if>
+      <if test="circRecordCode != null" >
+        #{circRecordCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null" >
+        #{payMode,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=CHAR},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=CHAR},
+      </if>
+      <if test="companyInsuranceType != null" >
+        #{companyInsuranceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.product.InsuranceProductInfo" >
+    update insurance_product_info
+     <set >
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime},
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNameLess != null" >
+        PRODUCT_NAME_LESS = #{productNameLess,jdbcType=VARCHAR},
+      </if>
+      <if test="productEnName != null" >
+        PRODUCT_EN_NAME = #{productEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyInsuranceCode != null" >
+        COMPANY_INSURANCE_CODE = #{companyInsuranceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="circInsuranceType != null" >
+        CIRC_INSURANCE_TYPE = #{circInsuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainOrAdditional != null" >
+        MAIN_OR_ADDITIONAL = #{mainOrAdditional,jdbcType=CHAR},
+      </if>
+      <if test="insurancePeriodType != null" >
+        INSURANCE_PERIOD_TYPE = #{insurancePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalPeriodType != null" >
+        RENEWAL_PERIOD_TYPE = #{renewalPeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardProType != null" >
+        CARD_PRO_TYPE = #{cardProType,jdbcType=VARCHAR},
+      </if>
+      <if test="longShortRiskType != null" >
+        LONG_SHORT_RISK_TYPE = #{longShortRiskType,jdbcType=CHAR},
+      </if>
+      <if test="autoPaySign != null" >
+        AUTO_PAY_SIGN = #{autoPaySign,jdbcType=CHAR},
+      </if>
+      <if test="maxRenewalYears != null" >
+        MAX_RENEWAL_YEARS = #{maxRenewalYears,jdbcType=INTEGER},
+      </if>
+      <if test="specialAuthorization != null" >
+        SPECIAL_AUTHORIZATION = #{specialAuthorization,jdbcType=VARCHAR},
+      </if>
+      <if test="needReceipt != null" >
+        NEED_RECEIPT = #{needReceipt,jdbcType=VARCHAR},
+      </if>
+      <if test="takeEffectDate != null" >
+        TAKE_EFFECT_DATE = #{takeEffectDate,jdbcType=DATE},
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE = #{invalidDate,jdbcType=DATE},
+      </if>
+      <if test="groupOrPersonal != null" >
+        GROUP_OR_PERSONAL = #{groupOrPersonal,jdbcType=CHAR},
+      </if>
+      <if test="circRecordCode != null" >
+        CIRC_RECORD_CODE = #{circRecordCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null" >
+        PAY_MODE = #{payMode,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS = #{productStatus,jdbcType=CHAR},
+      </if>
+      <if test="saleType != null" >
+        SALE_TYPE = #{saleType,jdbcType=CHAR},
+      </if>
+      <if test="companyInsuranceType != null" >
+        COMPANY_INSURANCE_TYPE = #{companyInsuranceType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.product.InsuranceProductInfo" >
+    update insurance_product_info
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_NAME_LESS = #{productNameLess,jdbcType=VARCHAR},
+      PRODUCT_EN_NAME = #{productEnName,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT},
+      COMPANY_INSURANCE_CODE = #{companyInsuranceCode,jdbcType=VARCHAR},
+      INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      CIRC_INSURANCE_TYPE = #{circInsuranceType,jdbcType=VARCHAR},
+      MAIN_OR_ADDITIONAL = #{mainOrAdditional,jdbcType=CHAR},
+      INSURANCE_PERIOD_TYPE = #{insurancePeriodType,jdbcType=VARCHAR},
+      RENEWAL_PERIOD_TYPE = #{renewalPeriodType,jdbcType=VARCHAR},
+      CARD_PRO_TYPE = #{cardProType,jdbcType=VARCHAR},
+      LONG_SHORT_RISK_TYPE = #{longShortRiskType,jdbcType=CHAR},
+      AUTO_PAY_SIGN = #{autoPaySign,jdbcType=CHAR},
+      MAX_RENEWAL_YEARS = #{maxRenewalYears,jdbcType=INTEGER},
+      SPECIAL_AUTHORIZATION = #{specialAuthorization,jdbcType=VARCHAR},
+      NEED_RECEIPT = #{needReceipt,jdbcType=VARCHAR},
+      TAKE_EFFECT_DATE = #{takeEffectDate,jdbcType=DATE},
+      INVALID_DATE = #{invalidDate,jdbcType=DATE},
+      GROUP_OR_PERSONAL = #{groupOrPersonal,jdbcType=CHAR},
+      CIRC_RECORD_CODE = #{circRecordCode,jdbcType=VARCHAR},
+      PAY_MODE = #{payMode,jdbcType=VARCHAR},
+      PRODUCT_STATUS = #{productStatus,jdbcType=CHAR},
+      SALE_TYPE = #{saleType,jdbcType=CHAR},
+      COMPANY_INSURANCE_TYPE = #{companyInsuranceType,jdbcType=VARCHAR}
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </update>
+  
+   <insert id="insertSelectiveReturnKey" useGeneratedKeys="true" keyProperty="productId"  parameterType="com.hzcf.pojo.product.InsuranceProductInfo" >
+    insert into insurance_product_info
+   <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        PRODUCT_ID,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productNameLess != null" >
+        PRODUCT_NAME_LESS,
+      </if>
+      <if test="productEnName != null" >
+        PRODUCT_EN_NAME,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="insuranceCompanyId != null" >
+        INSURANCE_COMPANY_ID,
+      </if>
+      <if test="companyInsuranceCode != null" >
+        COMPANY_INSURANCE_CODE,
+      </if>
+      <if test="insuranceType != null" >
+        INSURANCE_TYPE,
+      </if>
+      <if test="circInsuranceType != null" >
+        CIRC_INSURANCE_TYPE,
+      </if>
+      <if test="mainOrAdditional != null" >
+        MAIN_OR_ADDITIONAL,
+      </if>
+      <if test="insurancePeriodType != null" >
+        INSURANCE_PERIOD_TYPE,
+      </if>
+      <if test="renewalPeriodType != null" >
+        RENEWAL_PERIOD_TYPE,
+      </if>
+      <if test="cardProType != null" >
+        CARD_PRO_TYPE,
+      </if>
+      <if test="longShortRiskType != null" >
+        LONG_SHORT_RISK_TYPE,
+      </if>
+      <if test="autoPaySign != null" >
+        AUTO_PAY_SIGN,
+      </if>
+      <if test="maxRenewalYears != null" >
+        MAX_RENEWAL_YEARS,
+      </if>
+      <if test="specialAuthorization != null" >
+        SPECIAL_AUTHORIZATION,
+      </if>
+      <if test="needReceipt != null" >
+        NEED_RECEIPT,
+      </if>
+      <if test="takeEffectDate != null" >
+        TAKE_EFFECT_DATE,
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE,
+      </if>
+      <if test="groupOrPersonal != null" >
+        GROUP_OR_PERSONAL,
+      </if>
+      <if test="circRecordCode != null" >
+        CIRC_RECORD_CODE,
+      </if>
+      <if test="payMode != null" >
+        PAY_MODE,
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS,
+      </if>
+      <if test="saleType != null" >
+        SALE_TYPE,
+      </if>
+      <if test="companyInsuranceType != null" >
+        COMPANY_INSURANCE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNameLess != null" >
+        #{productNameLess,jdbcType=VARCHAR},
+      </if>
+      <if test="productEnName != null" >
+        #{productEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyId != null" >
+        #{insuranceCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyInsuranceCode != null" >
+        #{companyInsuranceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="circInsuranceType != null" >
+        #{circInsuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainOrAdditional != null" >
+        #{mainOrAdditional,jdbcType=CHAR},
+      </if>
+      <if test="insurancePeriodType != null" >
+        #{insurancePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalPeriodType != null" >
+        #{renewalPeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardProType != null" >
+        #{cardProType,jdbcType=VARCHAR},
+      </if>
+      <if test="longShortRiskType != null" >
+        #{longShortRiskType,jdbcType=CHAR},
+      </if>
+      <if test="autoPaySign != null" >
+        #{autoPaySign,jdbcType=CHAR},
+      </if>
+      <if test="maxRenewalYears != null" >
+        #{maxRenewalYears,jdbcType=INTEGER},
+      </if>
+      <if test="specialAuthorization != null" >
+        #{specialAuthorization,jdbcType=VARCHAR},
+      </if>
+      <if test="needReceipt != null" >
+        #{needReceipt,jdbcType=VARCHAR},
+      </if>
+      <if test="takeEffectDate != null" >
+        #{takeEffectDate,jdbcType=DATE},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=DATE},
+      </if>
+      <if test="groupOrPersonal != null" >
+        #{groupOrPersonal,jdbcType=CHAR},
+      </if>
+      <if test="circRecordCode != null" >
+        #{circRecordCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null" >
+        #{payMode,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=CHAR},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=CHAR},
+      </if>
+      <if test="companyInsuranceType != null" >
+        #{companyInsuranceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询条件 -->
+  <sql id="Base_Where_Cloose_Product">
+   1=1
+   <if test="null != productNmae">
+    and  ipi.PRODUCT_NAME LIKE CONCAT('%',#{productNmae},'%')</if>
+	<if test="null != companyInsuranceCode">
+	and ico.INSURANCE_COMPANY_CODE1 LIKE CONCAT('%',#{companyInsuranceCode},'%')</if>
+	<if test="null != topCompanyName">
+	and ico.TOP_COMPANY_NAME LIKE CONCAT('%',#{topCompanyName},'%')</if>
+	<if test="null != topCompanyCode">
+	and ico.TOP_COMPANY_CODE LIKE CONCAT('%',#{topCompanyCode},'%')</if>
+	<if test="minCreateTime != null">
+      <![CDATA[
+ 		AND DATE_FORMAT(ipi.CREATED_TIME ,'%Y-%m-%d') >= #{minCreateTime}
+ 		]]>
+    </if>
+    <if test="maxCreateTime != null">
+      <![CDATA[
+ 		AND DATE_FORMAT(ipi.CREATED_TIME ,'%Y-%m-%d') <= #{maxCreateTime}
+ 	]]>
+    </if>
+	<if test="null != insuranceType">
+	and itm.PARENT_INSURANCE_TYPE_ID = #{insuranceType}</if>
+	<if test="null != productStatus">
+	and ipi.PRODUCT_STATUS = #{productStatus}</if>
+	<if test="null != saleType and saleType != ''">
+	and ipi.SALE_TYPE = #{saleType}</if>
+	<if test="null != insuranceCompanyName">
+	and ico.org_name1 LIKE CONCAT('%',#{insuranceCompanyName},'%')</if>
+   </sql>
+                                    
+  <!--查询产品列表分页  -->
+   <select id="getInsuranceProductList" parameterType="hashmap" resultType="hashmap">
+   SELECT
+		ipi.PRODUCT_ID,
+		ico.org_name1 AS INSURANCE_COMPANY_NAME,
+		ipi.COMPANY_INSURANCE_CODE,
+		ipi.PRODUCT_CODE,
+		ipi.PRODUCT_NAME,
+    	ipi.TAKE_EFFECT_DATE as TAKE_EFFECT_DATE, 
+    	ipi.INVALID_DATE as INVALID_DATE,
+    	DATE_FORMAT( ipi.CREATED_TIME,'%Y-%m-%d %H:%i:%s') as CREATED_TIME,
+    	DATE_FORMAT( ipi.UPDATED_TIME,'%Y-%m-%d %H:%i:%s') as UPDATED_TIME,
+		itm.PARENT_INSURANCE_TYPE_ID as INSURANCE_TYPE,
+		CASE
+		WHEN ipi.SALE_TYPE = '0' THEN
+		'线下'
+		WHEN ipi.SALE_TYPE = '1' THEN
+		'线上'
+		WHEN ipi.SALE_TYPE = '2' THEN
+		'二者皆可'
+		ELSE
+		''
+		END AS SALE_TYPE,
+		CASE
+		WHEN ipi.PRODUCT_STATUS = '0' THEN
+		'启用中'
+		WHEN ipi.PRODUCT_STATUS = '1' THEN
+		'待启用'
+		WHEN ipi.PRODUCT_STATUS = '2' THEN
+		'已废除'
+		WHEN ipi.PRODUCT_STATUS = '3' THEN
+		'已失效'
+		ELSE
+		''
+		END AS PRODUCT_STATUS
+	FROM
+		insurance_product_info ipi
+	LEFT JOIN company_tree ico ON ico.INSURANCE_COMPANY_ID1 = ipi.INSURANCE_COMPANY_ID
+	LEFT JOIN insurance_type_mapping itm ON ipi.COMPANY_INSURANCE_TYPE = itm.INSURANCE_TYPE_CODE and ipi.INSURANCE_COMPANY_ID = itm.INSURANCE_COMPANY_ID
+	where 
+	<include refid="Base_Where_Cloose_Product"/>
+	order by ipi.CREATED_TIME desc
+    limit #{startIndex},#{pageSize}
+  </select>
+  
+    <!--查询产品列表总数  -->
+  <select id="getInsuranceProductSize"  parameterType="hashmap" resultType="java.lang.Long">
+    select count(1)
+     from insurance_product_info ipi
+	LEFT JOIN company_tree ico ON ico.INSURANCE_COMPANY_ID1 = ipi.INSURANCE_COMPANY_ID
+	LEFT JOIN insurance_type_mapping itm ON ipi.COMPANY_INSURANCE_TYPE = itm.INSURANCE_TYPE_CODE and ipi.INSURANCE_COMPANY_ID = itm.INSURANCE_COMPANY_ID
+   where 
+   <include refid="Base_Where_Cloose_Product"/>
+  </select>
+    
+     <!--通过产品id查询产品详情  -->
+   <select id="selectInsuranceProductDetail"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM insurance_product_info
+    WHERE PRODUCT_ID = #{productId}
+  </select>
+  
+    <!--通过产品ID更改产品状态  -->
+   <update id="updateInsuranceProductStatus" parameterType="java.util.Map" >
+    update insurance_product_info
+    <set >
+      <if test="productStatus != null" >
+        PRODUCT_STATUS = #{productStatus},
+      </if>
+    </set>
+    where PRODUCT_ID = #{productId}
+  </update>
+  
+    <!--通过产品id查询产品详情  -->
+   <select id="selectInsuranceProductInfoDetail"  parameterType="hashmap" resultMap="BaseResultMap">
+    SELECT
+    PRODUCT_ID, CREATED_BY,  UPDATED_BY,  PRODUCT_NAME, PRODUCT_NAME_LESS, 
+    PRODUCT_EN_NAME, PRODUCT_CODE, INSURANCE_COMPANY_ID, COMPANY_INSURANCE_CODE, INSURANCE_TYPE, 
+    CIRC_INSURANCE_TYPE, MAIN_OR_ADDITIONAL, INSURANCE_PERIOD_TYPE, RENEWAL_PERIOD_TYPE, 
+    CARD_PRO_TYPE, LONG_SHORT_RISK_TYPE, SPECIAL_AUTHORIZATION, NEED_RECEIPT, 
+     GROUP_OR_PERSONAL, CIRC_RECORD_CODE, PAY_MODE, PRODUCT_STATUS,
+     DATE_FORMAT(TAKE_EFFECT_DATE,'%Y-%m-%d ') as TAKE_EFFECT_DATE, 
+    DATE_FORMAT( INVALID_DATE,'%Y-%m-%d') as INVALID_DATE,
+    DATE_FORMAT( CREATED_TIME,'%Y-%m-%d') as CREATED_TIME,
+    DATE_FORMAT( UPDATED_TIME,'%Y-%m-%d') as UPDATED_TIME,
+   SALE_TYPE, AUTO_PAY_SIGN, MAX_RENEWAL_YEARS,COMPANY_INSURANCE_TYPE
+    FROM insurance_product_info
+    WHERE PRODUCT_ID = #{productId}
+  </select>
+  
+     <!-- 插入错误日志 -->
+    <insert id="addErrorData" parameterType="java.lang.String">
+    INSERT INTO syn_error_data (type,data,CREATE_TIME,SYSTEM_CODE) VALUES('0',#{productId},NOW(),#{sys})
+    </insert>
+  
+    <select id="selectByPrimaryKeyFormat" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    PRODUCT_ID, CREATED_BY,  UPDATED_BY,  PRODUCT_NAME, PRODUCT_NAME_LESS, 
+    PRODUCT_EN_NAME, PRODUCT_CODE, INSURANCE_COMPANY_ID, COMPANY_INSURANCE_CODE, INSURANCE_TYPE, 
+    CIRC_INSURANCE_TYPE, MAIN_OR_ADDITIONAL, INSURANCE_PERIOD_TYPE, RENEWAL_PERIOD_TYPE, 
+    CARD_PRO_TYPE, LONG_SHORT_RISK_TYPE, SPECIAL_AUTHORIZATION, NEED_RECEIPT, 
+     GROUP_OR_PERSONAL, CIRC_RECORD_CODE, PAY_MODE, PRODUCT_STATUS,
+     DATE_FORMAT(TAKE_EFFECT_DATE,'%Y-%m-%d %H:%i:%s') as TAKE_EFFECT_DATE, 
+    DATE_FORMAT( INVALID_DATE,'%Y-%m-%d %H:%i:%s') as INVALID_DATE,
+    DATE_FORMAT( CREATED_TIME,'%Y-%m-%d %H:%i:%s') as CREATED_TIME,
+    DATE_FORMAT( UPDATED_TIME,'%Y-%m-%d %H:%i:%s') as UPDATED_TIME,
+  SALE_TYPE, AUTO_PAY_SIGN, MAX_RENEWAL_YEARS,COMPANY_INSURANCE_TYPE
+    from insurance_product_info
+    where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="findAllRetMapByPage" resultType="hashmap">
+	  SELECT
+			info.PRODUCT_NAME P_PRODUCT_NAME,
+			info.PRODUCT_ID P_PRODUCT_ID,
+			ratio.PRODUCTS_NAME S_PRODUCT_NAME,
+			ratio.PRODUCTS_CODE S_PRODUCTS_CODE,
+			ratio.PRODUCTS_RATIO_ID,
+			info.COMPANY_INSURANCE_CODE,
+			CASE
+				WHEN info.MAIN_OR_ADDITIONAL = '0' THEN
+					'主险'
+				WHEN info.MAIN_OR_ADDITIONAL = '1' THEN
+					'附险'
+				END AS MAIN_OR_ADDITIONAL
+		FROM
+			ins_products_commission_ratio ratio
+		LEFT JOIN insurance_product_info  info on info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+		WHERE info.PRODUCT_STATUS = '0'
+		AND ratio.PRODUCTS_STATUS = '0'
+		order by ratio.CREATED_TIME desc
+		limit #{startIndex},#{pageSize}	
+  </select>
+
+ <select id="findCompanyRatioByPage" resultType="hashmap">
+    SELECT
+            info.PRODUCT_NAME P_PRODUCT_NAME,
+			info.PRODUCT_ID P_PRODUCT_ID,
+			ratio.PRODUCTS_NAME S_PRODUCT_NAME,
+			ratio.PRODUCTS_CODE S_PRODUCTS_CODE,
+			ratio.PRODUCTS_RATIO_ID,
+			info.COMPANY_INSURANCE_CODE,
+			CASE
+				WHEN info.MAIN_OR_ADDITIONAL = '0' THEN
+					'主险'
+				WHEN info.MAIN_OR_ADDITIONAL = '1' THEN
+					'附险'
+				END AS MAIN_OR_ADDITIONAL
+	FROM
+			ins_products_commission_ratio ratio,insurance_product_info info,insurance_company_org comp
+    WHERE comp.INSURANCE_COMPANY_ID = info.INSURANCE_COMPANY_ID
+    AND info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+    AND info.INSURANCE_COMPANY_ID in
+    <foreach item="item" collection="insuranceCompanyIdList" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+        AND info.PRODUCT_STATUS = '0'
+		AND ratio.PRODUCTS_STATUS = '0'
+		order by ratio.CREATED_TIME desc
+		limit #{startIndex},#{pageSize}
+ </select>
+
+
+  <select id="findCompanyRatioPageCount" parameterType="hashmap" resultType="long">
+      SELECT
+ 		count(1)
+	FROM
+			ins_products_commission_ratio ratio,insurance_product_info info,insurance_company_org comp
+    WHERE comp.INSURANCE_COMPANY_ID = info.INSURANCE_COMPANY_ID
+    AND info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+    AND info.INSURANCE_COMPANY_ID in
+    <foreach item="item" collection="insuranceCompanyIdList" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+    AND info.PRODUCT_STATUS = '0'
+	AND ratio.PRODUCTS_STATUS = '0'
+  </select>
+
+  <!-- 查询总条数 -->
+  <select id="findAllByPageCount" parameterType="hashmap" resultType="long">
+ 	 SELECT
+ 		count(1)
+	FROM
+			ins_products_commission_ratio ratio
+	LEFT JOIN insurance_product_info  info on info.PRODUCT_ID = ratio.INSURANCE_PRODUCT_ID
+	WHERE info.PRODUCT_STATUS = '0'
+	AND ratio.PRODUCTS_STATUS = '0'
+  </select>
+  
+  <!-- 不分页，通过保险公司查产品 -->
+  <select id="findInsurProducts" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from insurance_product_info
+      <where> 1=1
+          <if test="insuranceCompanyId != null" >
+              and INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT}
+          </if>
+          <if test="companyId != null" >
+              and INSURANCE_COMPANY_ID = #{companyId,jdbcType=BIGINT}
+          </if>
+          <if test="outProIds != null" >
+              and PRODUCT_ID not in (${outProIds})
+          </if>
+           <if test="productName != null">
+            AND PRODUCT_NAME = #{productName}
+        </if>
+           <if test="productNameLike != null">
+            AND PRODUCT_NAME like concat('%',#{productNameLike},'%')
+        </if>
+          and PRODUCT_STATUS = '0'
+      </where>
+  </select>
+
+    <select id="selectInsuranceBasicProductSon" resultMap="BaseResultMap">
+        SELECT
+        INSURANCE_TYPE,
+         MAIN_OR_ADDITIONAL,
+        INSURANCE_PERIOD_TYPE,
+        RENEWAL_PERIOD_TYPE,
+        PAY_MODE,
+s.PRODUCTS_CODE as PRODUCT_CODE
+        FROM
+            ins_products_commission_ratio s
+        LEFT JOIN insurance_product_info p ON s.INSURANCE_PRODUCT_ID = p.PRODUCT_ID
+        WHERE
+            s.PRODUCTS_RATIO_ID = #{productId}
+    </select>
+
+    <select id="selectByInsuranceCompanyIdAndProductName" resultMap="BaseResultMap">
+        SELECT * FROM
+        insurance_product_info
+        WHERE 1=1
+        <if test="insuranceCompanyId != null" >
+            AND INSURANCE_COMPANY_ID = #{insuranceCompanyId,jdbcType=BIGINT}
+        </if>
+        <if test="productName != null">
+            AND PRODUCT_NAME = #{productName}
+        </if>
+         and PRODUCT_STATUS = '0'
+    </select>
+    <select id="selectByProductCode" resultMap="BaseResultMap">
+        SELECT * FROM
+        insurance_product_info
+        WHERE
+        <if test="productCode !=null">
+           PRODUCT_CODE = #{productCode}
+        </if>
+    </select>
+</mapper>

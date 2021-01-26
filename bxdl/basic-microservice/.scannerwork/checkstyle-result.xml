@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.26">
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\BasicApplication.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\RedisDistributedLock\RedisDistributedLock.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\config\RedisCacheConfig.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\CacheController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\DeptController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\EmployeeController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\LogController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\LoginController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\MenuController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\RedisDistributedLockController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\RoleController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\controller\SystemDictController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\DepartmentMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\DistrictMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\EmployeeMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\EmployeeRoleRelationMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\MenuMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\RoleMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\RoleMenuRelationMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mapper\SystemDictMapper.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\mongo\pojo\Logs.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\rabbitmq\RabbitConfig.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\rabbitmq\TestMQController.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\rabbitmq\consumer\Comsumer.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\rabbitmq\producter\Producter.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\DeptService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\EmployeeService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\LogService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\LoginService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\MenuService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\RoleService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\SystemDictService.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\DeptServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\EmployeeServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\LogServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\LoginServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\MenuServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\RoleServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\service\impl\SystemDictServiceImpl.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\DataMsg.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\PageModel.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\RedisUtil.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\ReturnMsgData.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\TreeView.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\Trees.java">
+</file>
+<file name="D:\JAVA\workspace_baoxian\bxdlhx\bxdl\basic-microservice\src\main\java\com\hzcf\basic\util\ViewTree.java">
+</file>
+</checkstyle>

@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.SalerRelationLogMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.sales.SalerRelationLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="saler_id" jdbcType="BIGINT" property="salerId" />
+    <result column="db_before_sales_id" jdbcType="BIGINT" property="dbBeforeSalesId" />
+    <result column="db_after_sales_id" jdbcType="BIGINT" property="dbAfterSalesId" />
+    <result column="tj_before_sales_id" jdbcType="BIGINT" property="tjBeforeSalesId" />
+    <result column="tj_after_sales_id" jdbcType="BIGINT" property="tjAfterSalesId" />
+    <result column="sj_before_sales_id" jdbcType="BIGINT" property="sjBeforeSalesId" />
+    <result column="sj_after_sales_id" jdbcType="BIGINT" property="sjAfterSalesId" />
+    <result column="jc_before_sales_id" jdbcType="BIGINT" property="jcBeforeSalesId" />
+    <result column="jc_after_sales_id" jdbcType="BIGINT" property="jcAfterSalesId" />
+    <result column="fd_before_sales_id" jdbcType="BIGINT" property="fdBeforeSalesId" />
+    <result column="fd_after_sales_id" jdbcType="BIGINT" property="fdAfterSalesId" />
+    <result column="yc_before_c_first_gener" jdbcType="BIGINT" property="ycBeforeCFirstGener" />
+    <result column="yc_after_c_first_gener" jdbcType="BIGINT" property="ycAfterCFirstGener" />
+    <result column="yc_before_c_second_gener" jdbcType="BIGINT" property="ycBeforeCSecondGener" />
+    <result column="yc_after_c_second_gener" jdbcType="BIGINT" property="ycAfterCSecondGener" />
+    <result column="yc_before_b_first_gener" jdbcType="BIGINT" property="ycBeforeBFirstGener" />
+    <result column="yc_after_b_first_gener" jdbcType="BIGINT" property="ycAfterBFirstGener" />
+    <result column="yc_before_b_second_gener" jdbcType="BIGINT" property="ycBeforeBSecondGener" />
+    <result column="yc_after_b_second_gener" jdbcType="BIGINT" property="ycAfterBSecondGener" />
+    <result column="direct_before_group_c" jdbcType="BIGINT" property="directBeforeGroupC" />
+    <result column="direct_after_group_c" jdbcType="BIGINT" property="directAfterGroupC" />
+    <result column="direct_before_dept_b" jdbcType="BIGINT" property="directBeforeDeptB" />
+    <result column="direct_after_dept_b" jdbcType="BIGINT" property="directAfterDeptB" />
+    <result column="db_before_sales_date" jdbcType="DATE" property="dbBeforeSalesDate" />
+    <result column="tj_before_sales_date" jdbcType="DATE" property="tjBeforeSalesDate" />
+    <result column="sj_before_sales_date" jdbcType="DATE" property="sjBeforeSalesDate" />
+    <result column="jc_before_sales_date" jdbcType="DATE" property="jcBeforeSalesDate" />
+    <result column="fd_before_sales_date" jdbcType="DATE" property="fdBeforeSalesDate" />
+    <result column="establish_before_time" jdbcType="DATE" property="establishBeforeTime" />
+    <result column="establish_before_time1" jdbcType="DATE" property="establishBeforeTime1" />
+    <result column="establish_before_time2" jdbcType="DATE" property="establishBeforeTime2" />
+    <result column="establish_before_time3" jdbcType="DATE" property="establishBeforeTime3" />
+    <result column="establish_before_time4" jdbcType="DATE" property="establishBeforeTime4" />
+    <result column="establish_before_time5" jdbcType="DATE" property="establishBeforeTime5" />
+    <result column="db_after_sales_date" jdbcType="DATE" property="dbAfterSalesDate" />
+    <result column="tj_after_sales_date" jdbcType="DATE" property="tjAfterSalesDate" />
+    <result column="sj_after_sales_date" jdbcType="DATE" property="sjAfterSalesDate" />
+    <result column="jc_after_sales_date" jdbcType="DATE" property="jcAfterSalesDate" />
+    <result column="fd_after_sales_date" jdbcType="DATE" property="fdAfterSalesDate" />
+    <result column="establish_after_time" jdbcType="DATE" property="establishAfterTime" />
+    <result column="establish_after_time1" jdbcType="DATE" property="establishAfterTime1" />
+    <result column="establish_after_time2" jdbcType="DATE" property="establishAfterTime2" />
+    <result column="establish_after_time3" jdbcType="DATE" property="establishAfterTime3" />
+    <result column="establish_after_time4" jdbcType="DATE" property="establishAfterTime4" />
+    <result column="establish_after_time5" jdbcType="DATE" property="establishAfterTime5" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="effect_tab" jdbcType="VARCHAR" property="effectTab" />
+    <result column="operation_tab" jdbcType="VARCHAR" property="operationTab" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, saler_id, db_before_sales_id, db_after_sales_id, tj_before_sales_id, tj_after_sales_id, 
+    sj_before_sales_id, sj_after_sales_id, jc_before_sales_id, jc_after_sales_id, fd_before_sales_id, 
+    fd_after_sales_id, yc_before_c_first_gener, yc_after_c_first_gener, yc_before_c_second_gener, 
+    yc_after_c_second_gener, yc_before_b_first_gener, yc_after_b_first_gener, yc_before_b_second_gener, 
+    yc_after_b_second_gener, direct_before_group_c, direct_after_group_c, direct_before_dept_b, 
+    direct_after_dept_b, db_before_sales_date, tj_before_sales_date, sj_before_sales_date, 
+    jc_before_sales_date, fd_before_sales_date, establish_before_time, establish_before_time1, 
+    establish_before_time2, establish_before_time3, establish_before_time4, establish_before_time5, 
+    db_after_sales_date, tj_after_sales_date, sj_after_sales_date, jc_after_sales_date, 
+    fd_after_sales_date, establish_after_time, establish_after_time1, establish_after_time2, 
+    establish_after_time3, establish_after_time4, establish_after_time5, create_time, 
+    create_by, effect_tab, operation_tab
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from saler_relation_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from saler_relation_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.sales.SalerRelationLog">
+    insert into saler_relation_log (saler_id, db_before_sales_id, db_after_sales_id,
+      tj_before_sales_id, tj_after_sales_id, sj_before_sales_id, 
+      sj_after_sales_id, jc_before_sales_id, jc_after_sales_id, 
+      fd_before_sales_id, fd_after_sales_id, yc_before_c_first_gener, 
+      yc_after_c_first_gener, yc_before_c_second_gener, 
+      yc_after_c_second_gener, yc_before_b_first_gener, 
+      yc_after_b_first_gener, yc_before_b_second_gener, 
+      yc_after_b_second_gener, direct_before_group_c, 
+      direct_after_group_c, direct_before_dept_b, direct_after_dept_b, 
+      db_before_sales_date, tj_before_sales_date, sj_before_sales_date, 
+      jc_before_sales_date, fd_before_sales_date, establish_before_time, 
+      establish_before_time1, establish_before_time2, establish_before_time3, 
+      establish_before_time4, establish_before_time5, db_after_sales_date, 
+      tj_after_sales_date, sj_after_sales_date, jc_after_sales_date, 
+      fd_after_sales_date, establish_after_time, establish_after_time1, 
+      establish_after_time2, establish_after_time3, establish_after_time4, 
+      establish_after_time5, create_time, create_by, 
+      effect_tab, operation_tab)
+    values (#{salerId,jdbcType=BIGINT}, #{dbBeforeSalesId,jdbcType=BIGINT}, #{dbAfterSalesId,jdbcType=BIGINT}, 
+      #{tjBeforeSalesId,jdbcType=BIGINT}, #{tjAfterSalesId,jdbcType=BIGINT}, #{sjBeforeSalesId,jdbcType=BIGINT}, 
+      #{sjAfterSalesId,jdbcType=BIGINT}, #{jcBeforeSalesId,jdbcType=BIGINT}, #{jcAfterSalesId,jdbcType=BIGINT}, 
+      #{fdBeforeSalesId,jdbcType=BIGINT}, #{fdAfterSalesId,jdbcType=BIGINT}, #{ycBeforeCFirstGener,jdbcType=BIGINT}, 
+      #{ycAfterCFirstGener,jdbcType=BIGINT}, #{ycBeforeCSecondGener,jdbcType=BIGINT}, 
+      #{ycAfterCSecondGener,jdbcType=BIGINT}, #{ycBeforeBFirstGener,jdbcType=BIGINT}, 
+      #{ycAfterBFirstGener,jdbcType=BIGINT}, #{ycBeforeBSecondGener,jdbcType=BIGINT}, 
+      #{ycAfterBSecondGener,jdbcType=BIGINT}, #{directBeforeGroupC,jdbcType=BIGINT}, 
+      #{directAfterGroupC,jdbcType=BIGINT}, #{directBeforeDeptB,jdbcType=BIGINT}, #{directAfterDeptB,jdbcType=BIGINT}, 
+      #{dbBeforeSalesDate,jdbcType=DATE}, #{tjBeforeSalesDate,jdbcType=DATE}, #{sjBeforeSalesDate,jdbcType=DATE}, 
+      #{jcBeforeSalesDate,jdbcType=DATE}, #{fdBeforeSalesDate,jdbcType=DATE}, #{establishBeforeTime,jdbcType=DATE}, 
+      #{establishBeforeTime1,jdbcType=DATE}, #{establishBeforeTime2,jdbcType=DATE}, #{establishBeforeTime3,jdbcType=DATE}, 
+      #{establishBeforeTime4,jdbcType=DATE}, #{establishBeforeTime5,jdbcType=DATE}, #{dbAfterSalesDate,jdbcType=DATE}, 
+      #{tjAfterSalesDate,jdbcType=DATE}, #{sjAfterSalesDate,jdbcType=DATE}, #{jcAfterSalesDate,jdbcType=DATE}, 
+      #{fdAfterSalesDate,jdbcType=DATE}, #{establishAfterTime,jdbcType=DATE}, #{establishAfterTime1,jdbcType=DATE}, 
+      #{establishAfterTime2,jdbcType=DATE}, #{establishAfterTime3,jdbcType=DATE}, #{establishAfterTime4,jdbcType=DATE}, 
+      #{establishAfterTime5,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{effectTab,jdbcType=VARCHAR}, #{operationTab,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.sales.SalerRelationLog">
+    insert into saler_relation_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="salerId != null">
+        saler_id,
+      </if>
+      <if test="dbBeforeSalesId != null">
+        db_before_sales_id,
+      </if>
+      <if test="dbAfterSalesId != null">
+        db_after_sales_id,
+      </if>
+      <if test="tjBeforeSalesId != null">
+        tj_before_sales_id,
+      </if>
+      <if test="tjAfterSalesId != null">
+        tj_after_sales_id,
+      </if>
+      <if test="sjBeforeSalesId != null">
+        sj_before_sales_id,
+      </if>
+      <if test="sjAfterSalesId != null">
+        sj_after_sales_id,
+      </if>
+      <if test="jcBeforeSalesId != null">
+        jc_before_sales_id,
+      </if>
+      <if test="jcAfterSalesId != null">
+        jc_after_sales_id,
+      </if>
+      <if test="fdBeforeSalesId != null">
+        fd_before_sales_id,
+      </if>
+      <if test="fdAfterSalesId != null">
+        fd_after_sales_id,
+      </if>
+      <if test="ycBeforeCFirstGener != null">
+        yc_before_c_first_gener,
+      </if>
+      <if test="ycAfterCFirstGener != null">
+        yc_after_c_first_gener,
+      </if>
+      <if test="ycBeforeCSecondGener != null">
+        yc_before_c_second_gener,
+      </if>
+      <if test="ycAfterCSecondGener != null">
+        yc_after_c_second_gener,
+      </if>
+      <if test="ycBeforeBFirstGener != null">
+        yc_before_b_first_gener,
+      </if>
+      <if test="ycAfterBFirstGener != null">
+        yc_after_b_first_gener,
+      </if>
+      <if test="ycBeforeBSecondGener != null">
+        yc_before_b_second_gener,
+      </if>
+      <if test="ycAfterBSecondGener != null">
+        yc_after_b_second_gener,
+      </if>
+      <if test="directBeforeGroupC != null">
+        direct_before_group_c,
+      </if>
+      <if test="directAfterGroupC != null">
+        direct_after_group_c,
+      </if>
+      <if test="directBeforeDeptB != null">
+        direct_before_dept_b,
+      </if>
+      <if test="directAfterDeptB != null">
+        direct_after_dept_b,
+      </if>
+      <if test="dbBeforeSalesDate != null">
+        db_before_sales_date,
+      </if>
+      <if test="tjBeforeSalesDate != null">
+        tj_before_sales_date,
+      </if>
+      <if test="sjBeforeSalesDate != null">
+        sj_before_sales_date,
+      </if>
+      <if test="jcBeforeSalesDate != null">
+        jc_before_sales_date,
+      </if>
+      <if test="fdBeforeSalesDate != null">
+        fd_before_sales_date,
+      </if>
+      <if test="establishBeforeTime != null">
+        establish_before_time,
+      </if>
+      <if test="establishBeforeTime1 != null">
+        establish_before_time1,
+      </if>
+      <if test="establishBeforeTime2 != null">
+        establish_before_time2,
+      </if>
+      <if test="establishBeforeTime3 != null">
+        establish_before_time3,
+      </if>
+      <if test="establishBeforeTime4 != null">
+        establish_before_time4,
+      </if>
+      <if test="establishBeforeTime5 != null">
+        establish_before_time5,
+      </if>
+      <if test="dbAfterSalesDate != null">
+        db_after_sales_date,
+      </if>
+      <if test="tjAfterSalesDate != null">
+        tj_after_sales_date,
+      </if>
+      <if test="sjAfterSalesDate != null">
+        sj_after_sales_date,
+      </if>
+      <if test="jcAfterSalesDate != null">
+        jc_after_sales_date,
+      </if>
+      <if test="fdAfterSalesDate != null">
+        fd_after_sales_date,
+      </if>
+      <if test="establishAfterTime != null">
+        establish_after_time,
+      </if>
+      <if test="establishAfterTime1 != null">
+        establish_after_time1,
+      </if>
+      <if test="establishAfterTime2 != null">
+        establish_after_time2,
+      </if>
+      <if test="establishAfterTime3 != null">
+        establish_after_time3,
+      </if>
+      <if test="establishAfterTime4 != null">
+        establish_after_time4,
+      </if>
+      <if test="establishAfterTime5 != null">
+        establish_after_time5,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="effectTab != null">
+        effect_tab,
+      </if>
+      <if test="operationTab != null">
+        operation_tab,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="salerId != null">
+        #{salerId,jdbcType=BIGINT},
+      </if>
+      <if test="dbBeforeSalesId != null">
+        #{dbBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="dbAfterSalesId != null">
+        #{dbAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="tjBeforeSalesId != null">
+        #{tjBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="tjAfterSalesId != null">
+        #{tjAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="sjBeforeSalesId != null">
+        #{sjBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="sjAfterSalesId != null">
+        #{sjAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="jcBeforeSalesId != null">
+        #{jcBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="jcAfterSalesId != null">
+        #{jcAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="fdBeforeSalesId != null">
+        #{fdBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="fdAfterSalesId != null">
+        #{fdAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeCFirstGener != null">
+        #{ycBeforeCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterCFirstGener != null">
+        #{ycAfterCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeCSecondGener != null">
+        #{ycBeforeCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterCSecondGener != null">
+        #{ycAfterCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeBFirstGener != null">
+        #{ycBeforeBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterBFirstGener != null">
+        #{ycAfterBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeBSecondGener != null">
+        #{ycBeforeBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterBSecondGener != null">
+        #{ycAfterBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="directBeforeGroupC != null">
+        #{directBeforeGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="directAfterGroupC != null">
+        #{directAfterGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="directBeforeDeptB != null">
+        #{directBeforeDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="directAfterDeptB != null">
+        #{directAfterDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="dbBeforeSalesDate != null">
+        #{dbBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="tjBeforeSalesDate != null">
+        #{tjBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="sjBeforeSalesDate != null">
+        #{sjBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="jcBeforeSalesDate != null">
+        #{jcBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="fdBeforeSalesDate != null">
+        #{fdBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime != null">
+        #{establishBeforeTime,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime1 != null">
+        #{establishBeforeTime1,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime2 != null">
+        #{establishBeforeTime2,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime3 != null">
+        #{establishBeforeTime3,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime4 != null">
+        #{establishBeforeTime4,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime5 != null">
+        #{establishBeforeTime5,jdbcType=DATE},
+      </if>
+      <if test="dbAfterSalesDate != null">
+        #{dbAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="tjAfterSalesDate != null">
+        #{tjAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="sjAfterSalesDate != null">
+        #{sjAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="jcAfterSalesDate != null">
+        #{jcAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="fdAfterSalesDate != null">
+        #{fdAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime != null">
+        #{establishAfterTime,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime1 != null">
+        #{establishAfterTime1,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime2 != null">
+        #{establishAfterTime2,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime3 != null">
+        #{establishAfterTime3,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime4 != null">
+        #{establishAfterTime4,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime5 != null">
+        #{establishAfterTime5,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="effectTab != null">
+        #{effectTab,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTab != null">
+        #{operationTab,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.sales.SalerRelationLog">
+    update saler_relation_log
+    <set>
+      <if test="salerId != null">
+        saler_id = #{salerId,jdbcType=BIGINT},
+      </if>
+      <if test="dbBeforeSalesId != null">
+        db_before_sales_id = #{dbBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="dbAfterSalesId != null">
+        db_after_sales_id = #{dbAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="tjBeforeSalesId != null">
+        tj_before_sales_id = #{tjBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="tjAfterSalesId != null">
+        tj_after_sales_id = #{tjAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="sjBeforeSalesId != null">
+        sj_before_sales_id = #{sjBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="sjAfterSalesId != null">
+        sj_after_sales_id = #{sjAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="jcBeforeSalesId != null">
+        jc_before_sales_id = #{jcBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="jcAfterSalesId != null">
+        jc_after_sales_id = #{jcAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="fdBeforeSalesId != null">
+        fd_before_sales_id = #{fdBeforeSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="fdAfterSalesId != null">
+        fd_after_sales_id = #{fdAfterSalesId,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeCFirstGener != null">
+        yc_before_c_first_gener = #{ycBeforeCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterCFirstGener != null">
+        yc_after_c_first_gener = #{ycAfterCFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeCSecondGener != null">
+        yc_before_c_second_gener = #{ycBeforeCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterCSecondGener != null">
+        yc_after_c_second_gener = #{ycAfterCSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeBFirstGener != null">
+        yc_before_b_first_gener = #{ycBeforeBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterBFirstGener != null">
+        yc_after_b_first_gener = #{ycAfterBFirstGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycBeforeBSecondGener != null">
+        yc_before_b_second_gener = #{ycBeforeBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="ycAfterBSecondGener != null">
+        yc_after_b_second_gener = #{ycAfterBSecondGener,jdbcType=BIGINT},
+      </if>
+      <if test="directBeforeGroupC != null">
+        direct_before_group_c = #{directBeforeGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="directAfterGroupC != null">
+        direct_after_group_c = #{directAfterGroupC,jdbcType=BIGINT},
+      </if>
+      <if test="directBeforeDeptB != null">
+        direct_before_dept_b = #{directBeforeDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="directAfterDeptB != null">
+        direct_after_dept_b = #{directAfterDeptB,jdbcType=BIGINT},
+      </if>
+      <if test="dbBeforeSalesDate != null">
+        db_before_sales_date = #{dbBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="tjBeforeSalesDate != null">
+        tj_before_sales_date = #{tjBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="sjBeforeSalesDate != null">
+        sj_before_sales_date = #{sjBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="jcBeforeSalesDate != null">
+        jc_before_sales_date = #{jcBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="fdBeforeSalesDate != null">
+        fd_before_sales_date = #{fdBeforeSalesDate,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime != null">
+        establish_before_time = #{establishBeforeTime,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime1 != null">
+        establish_before_time1 = #{establishBeforeTime1,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime2 != null">
+        establish_before_time2 = #{establishBeforeTime2,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime3 != null">
+        establish_before_time3 = #{establishBeforeTime3,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime4 != null">
+        establish_before_time4 = #{establishBeforeTime4,jdbcType=DATE},
+      </if>
+      <if test="establishBeforeTime5 != null">
+        establish_before_time5 = #{establishBeforeTime5,jdbcType=DATE},
+      </if>
+      <if test="dbAfterSalesDate != null">
+        db_after_sales_date = #{dbAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="tjAfterSalesDate != null">
+        tj_after_sales_date = #{tjAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="sjAfterSalesDate != null">
+        sj_after_sales_date = #{sjAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="jcAfterSalesDate != null">
+        jc_after_sales_date = #{jcAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="fdAfterSalesDate != null">
+        fd_after_sales_date = #{fdAfterSalesDate,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime != null">
+        establish_after_time = #{establishAfterTime,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime1 != null">
+        establish_after_time1 = #{establishAfterTime1,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime2 != null">
+        establish_after_time2 = #{establishAfterTime2,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime3 != null">
+        establish_after_time3 = #{establishAfterTime3,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime4 != null">
+        establish_after_time4 = #{establishAfterTime4,jdbcType=DATE},
+      </if>
+      <if test="establishAfterTime5 != null">
+        establish_after_time5 = #{establishAfterTime5,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="effectTab != null">
+        effect_tab = #{effectTab,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTab != null">
+        operation_tab = #{operationTab,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.sales.SalerRelationLog">
+    update saler_relation_log
+    set saler_id = #{salerId,jdbcType=BIGINT},
+      db_before_sales_id = #{dbBeforeSalesId,jdbcType=BIGINT},
+      db_after_sales_id = #{dbAfterSalesId,jdbcType=BIGINT},
+      tj_before_sales_id = #{tjBeforeSalesId,jdbcType=BIGINT},
+      tj_after_sales_id = #{tjAfterSalesId,jdbcType=BIGINT},
+      sj_before_sales_id = #{sjBeforeSalesId,jdbcType=BIGINT},
+      sj_after_sales_id = #{sjAfterSalesId,jdbcType=BIGINT},
+      jc_before_sales_id = #{jcBeforeSalesId,jdbcType=BIGINT},
+      jc_after_sales_id = #{jcAfterSalesId,jdbcType=BIGINT},
+      fd_before_sales_id = #{fdBeforeSalesId,jdbcType=BIGINT},
+      fd_after_sales_id = #{fdAfterSalesId,jdbcType=BIGINT},
+      yc_before_c_first_gener = #{ycBeforeCFirstGener,jdbcType=BIGINT},
+      yc_after_c_first_gener = #{ycAfterCFirstGener,jdbcType=BIGINT},
+      yc_before_c_second_gener = #{ycBeforeCSecondGener,jdbcType=BIGINT},
+      yc_after_c_second_gener = #{ycAfterCSecondGener,jdbcType=BIGINT},
+      yc_before_b_first_gener = #{ycBeforeBFirstGener,jdbcType=BIGINT},
+      yc_after_b_first_gener = #{ycAfterBFirstGener,jdbcType=BIGINT},
+      yc_before_b_second_gener = #{ycBeforeBSecondGener,jdbcType=BIGINT},
+      yc_after_b_second_gener = #{ycAfterBSecondGener,jdbcType=BIGINT},
+      direct_before_group_c = #{directBeforeGroupC,jdbcType=BIGINT},
+      direct_after_group_c = #{directAfterGroupC,jdbcType=BIGINT},
+      direct_before_dept_b = #{directBeforeDeptB,jdbcType=BIGINT},
+      direct_after_dept_b = #{directAfterDeptB,jdbcType=BIGINT},
+      db_before_sales_date = #{dbBeforeSalesDate,jdbcType=DATE},
+      tj_before_sales_date = #{tjBeforeSalesDate,jdbcType=DATE},
+      sj_before_sales_date = #{sjBeforeSalesDate,jdbcType=DATE},
+      jc_before_sales_date = #{jcBeforeSalesDate,jdbcType=DATE},
+      fd_before_sales_date = #{fdBeforeSalesDate,jdbcType=DATE},
+      establish_before_time = #{establishBeforeTime,jdbcType=DATE},
+      establish_before_time1 = #{establishBeforeTime1,jdbcType=DATE},
+      establish_before_time2 = #{establishBeforeTime2,jdbcType=DATE},
+      establish_before_time3 = #{establishBeforeTime3,jdbcType=DATE},
+      establish_before_time4 = #{establishBeforeTime4,jdbcType=DATE},
+      establish_before_time5 = #{establishBeforeTime5,jdbcType=DATE},
+      db_after_sales_date = #{dbAfterSalesDate,jdbcType=DATE},
+      tj_after_sales_date = #{tjAfterSalesDate,jdbcType=DATE},
+      sj_after_sales_date = #{sjAfterSalesDate,jdbcType=DATE},
+      jc_after_sales_date = #{jcAfterSalesDate,jdbcType=DATE},
+      fd_after_sales_date = #{fdAfterSalesDate,jdbcType=DATE},
+      establish_after_time = #{establishAfterTime,jdbcType=DATE},
+      establish_after_time1 = #{establishAfterTime1,jdbcType=DATE},
+      establish_after_time2 = #{establishAfterTime2,jdbcType=DATE},
+      establish_after_time3 = #{establishAfterTime3,jdbcType=DATE},
+      establish_after_time4 = #{establishAfterTime4,jdbcType=DATE},
+      establish_after_time5 = #{establishAfterTime5,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      effect_tab = #{effectTab,jdbcType=VARCHAR},
+      operation_tab = #{operationTab,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchSalerRelationLog" parameterType="java.util.List">
+    insert into saler_relation_log (saler_id, db_before_sales_id, db_after_sales_id,
+      tj_before_sales_id, tj_after_sales_id, sj_before_sales_id,
+      sj_after_sales_id, jc_before_sales_id, jc_after_sales_id,
+      fd_before_sales_id, fd_after_sales_id, yc_before_c_first_gener,
+      yc_after_c_first_gener, yc_before_c_second_gener,
+      yc_after_c_second_gener, yc_before_b_first_gener,
+      yc_after_b_first_gener, yc_before_b_second_gener,
+      yc_after_b_second_gener, direct_before_group_c,
+      direct_after_group_c, direct_before_dept_b, direct_after_dept_b,
+      db_before_sales_date, tj_before_sales_date, sj_before_sales_date,
+      jc_before_sales_date, fd_before_sales_date, establish_before_time,
+      establish_before_time1, establish_before_time2, establish_before_time3,
+      establish_before_time4, establish_before_time5, db_after_sales_date,
+      tj_after_sales_date, sj_after_sales_date, jc_after_sales_date,
+      fd_after_sales_date, establish_after_time, establish_after_time1,
+      establish_after_time2, establish_after_time3, establish_after_time4,
+      establish_after_time5, create_time, create_by,
+      effect_tab, operation_tab)
+    values
+      <foreach collection="list" item="item"  separator=",">
+      (#{item.salerId}, #{item.dbBeforeSalesId}, #{item.dbAfterSalesId},
+      #{item.tjBeforeSalesId}, #{item.tjAfterSalesId}, #{item.sjBeforeSalesId},
+      #{item.sjAfterSalesId}, #{item.jcBeforeSalesId}, #{item.jcAfterSalesId},
+      #{item.fdBeforeSalesId}, #{item.fdAfterSalesId}, #{item.ycBeforeCFirstGener},
+      #{item.ycAfterCFirstGener}, #{item.ycBeforeCSecondGener},
+      #{item.ycAfterCSecondGener}, #{item.ycBeforeBFirstGener},
+      #{item.ycAfterBFirstGener}, #{item.ycBeforeBSecondGener},
+      #{item.ycAfterBSecondGener}, #{item.directBeforeGroupC},
+      #{item.directAfterGroupC}, #{item.directBeforeDeptB}, #{item.directAfterDeptB},
+      #{item.dbBeforeSalesDate}, #{item.tjBeforeSalesDate}, #{item.sjBeforeSalesDate},
+      #{item.jcBeforeSalesDate}, #{item.fdBeforeSalesDate}, #{item.establishBeforeTime},
+      #{item.establishBeforeTime1}, #{item.establishBeforeTime2}, #{item.establishBeforeTime3},
+      #{item.establishBeforeTime4}, #{item.establishBeforeTime5}, #{item.dbAfterSalesDate},
+      #{item.tjAfterSalesDate}, #{item.sjAfterSalesDate}, #{item.jcAfterSalesDate},
+      #{item.fdAfterSalesDate}, #{item.establishAfterTime}, #{item.establishAfterTime1},
+      #{item.establishAfterTime2}, #{item.establishAfterTime3}, #{item.establishAfterTime4},
+      #{item.establishAfterTime5}, now(), #{item.createBy},
+      #{item.effectTab}, #{item.operationTab})
+     </foreach>
+  </insert>
+
+</mapper>

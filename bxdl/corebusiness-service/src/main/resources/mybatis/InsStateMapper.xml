@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsStateMapper">
+
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurancePolicy.InsStateEntity" >
+    <result column="id" property="id" />
+    <result column="create_by" property="createBy" />
+    <result column="create_time" property="createTime" />
+    <result column="state" property="state" />
+    <result column="policy_id" property="policyId" />
+    <result column="type" property="type" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+                `id`,
+                `create_by`,
+                `create_time`,
+                `state`,
+                `policy_id`,
+                `type`
+    </sql>
+
+  <insert id="addInsState"  parameterType="java.util.Map">
+    INSERT INTO ins_state
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test ='null != id'>
+        `id`,
+      </if>
+      <if test ='null != createBy'>
+        `create_by`,
+      </if>
+      <if test ='null != createTime'>
+        `create_time`,
+      </if>
+      <if test ='null != state'>
+        `state`,
+      </if>
+      <if test ='null != policyId'>
+        `policy_id`,
+      </if>
+      <if test ='null != type'>
+        `type`
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test ='null != id'>
+        #{id},
+      </if>
+      <if test ='null != createBy'>
+        #{createBy},
+      </if>
+      <if test ='null != createTime'>
+        #{createTime},
+      </if>
+      <if test ='null != state'>
+        #{state},
+      </if>
+      <if test ='null != policyId'>
+        #{policyId},
+      </if>
+      <if test ='null != type'>
+        #{type}
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="delete" >
+        DELETE FROM ins_state
+        WHERE `id_` = #{id}
+    </delete>
+
+  <update id="updateTypeByPolicyId" >
+    UPDATE ins_state
+    SET type =#{type}
+    WHERE
+    ID in (
+    select a.id from (
+    SELECT
+    MAX(id) as id
+    FROM
+    ins_state
+    WHERE
+    `policy_id` = #{id}
+    )a
+    )
+  </update>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM ins_state
+    WHERE `id_` = #{id}
+  </select>
+
+  <select id="pageList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM ins_state
+    LIMIT #{offset}, #{pageSize}
+  </select>
+
+  <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ins_state
+    </select>
+
+</mapper>

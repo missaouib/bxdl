@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesAssessMapper" >
+
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesAssess" >
+     <result column="ID" property="id" />
+     <result column="INSURANCE_SALES_ID" property="insuranceSalesId" />
+     <result column="SALES_GRADE_ID" property="salesGradeId" />
+     <result column="SALES_GRADE_NAME" property="salesGradeName" />
+     <result column="CONDITION_1" property="condition1" />
+     <result column="CONDITION_2" property="condition2" />
+     <result column="CONDITION_3" property="condition3" />
+     <result column="CONDITION_4" property="condition4" />
+     <result column="CONDITION_5" property="condition5" />
+     <result column="CONDITION_6" property="condition6" />
+     <result column="CONDITION_7" property="condition7" />
+     <result column="CONDITION_8" property="condition8" />
+     <result column="CREATED_BY" property="createdBy" />
+     <result column="CREATED_TIME" property="createdTime" />
+     <result column="UPDATED_BY" property="updatedBy" />
+     <result column="UPDATED_TIME" property="updatedTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+     `ID`,
+     `INSURANCE_SALES_ID`,
+     `SALES_GRADE_ID`,
+     `SALES_GRADE_NAME`,
+     `CONDITION_1`,
+     `CONDITION_2`,
+     `CONDITION_3`,
+     `CONDITION_4`,
+     `CONDITION_5`,
+     `CONDITION_6`,
+     `CONDITION_7`,
+     `CONDITION_8`,
+     `CREATED_BY`,
+     `CREATED_TIME`,
+     `UPDATED_BY`,
+     `UPDATED_TIME`
+    </sql>
+
+    <!--新增一条员工考核条件记录-->
+    <insert id="insertSalesAssess" parameterType="com.hzcf.pojo.insurance.sales.SalesAssess" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO sales_assess
+        (<include refid="Base_Column_List"/>)
+        VALUES (
+            #{id}, #{insuranceSalesId}, #{salesGradeId}, #{salesGradeName}, #{condition1}, #{condition2}, #{condition3},
+            #{condition4}, #{condition5}, #{condition6}, #{condition7}, #{condition8}, #{createdBy}, now(), #{updatedBy}, now()
+        )
+    </insert>
+
+    <!--根据id更新员工考核条件记录-->
+    <update id="updateSalesAssess" parameterType="com.hzcf.pojo.insurance.sales.SalesAssess">
+        UPDATE sales_assess
+        <set>
+           <if test ='null != insuranceSalesId'>INSURANCE_SALES_ID = #{insuranceSalesId},</if>
+           <if test ='null != salesGradeId'>SALES_GRADE_ID = #{salesGradeId},</if>
+           <if test ='null != salesGradeName'>SALES_GRADE_NAME = #{salesGradeName},</if>
+           <if test ='null != condition1 and condition1 != ""'>CONDITION_1 = #{condition1},</if>
+           <if test ='null != condition2 and condition2 != ""'>CONDITION_2 = #{condition2},</if>
+           <if test ='null != condition3 and condition3 != ""'>CONDITION_3 = #{condition3},</if>
+           <if test ='null != condition4 and condition4 != ""'>CONDITION_4 = #{condition4},</if>
+           <if test ='null != condition5 and condition5 != ""'>CONDITION_5 = #{condition5},</if>
+           <if test ='null != condition6 and condition6 != ""'>CONDITION_6 = #{condition6},</if>
+           <if test ='null != condition7 and condition7 != ""'>CONDITION_7 = #{condition7},</if>
+           <if test ='null != condition8 and condition8 != ""'>CONDITION_8 = #{condition8},</if>
+           <if test ='null != updatedBy'>UPDATED_BY = #{updatedBy},</if>
+            UPDATED_TIME = now()
+        </set>
+        WHERE Id = #{id}
+    </update>
+
+    <!--根据id查询考核记录-->
+    <select id="querySalesAssessById" parameterType="long" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sales_assess
+        WHERE ID = #{id}
+    </select>
+
+    <!--根据条件分页查询员工考核记录-->
+    <select id="querySalesAssessList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sales_assess
+        WHERE INSURANCE_SALES_ID = #{insuranceSalesId}
+        ORDER BY UPDATED_TIME DESC
+        limit #{startRow}, #{rows}
+    </select>
+
+    <!--根据条件查询员工考核记录总数-->
+    <select id="querySalesAssessCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT COUNT(1)
+        FROM sales_assess
+        WHERE INSURANCE_SALES_ID = #{insuranceSalesId}
+    </select>
+
+    <!--根据员工id查询最新考核结果-->
+    <select id="queryNewSalesAssess" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM sales_assess
+        WHERE INSURANCE_SALES_ID = #{insuranceSalesId} AND SALES_GRADE_ID = #{salesGradeId}
+        ORDER BY UPDATED_BY DESC LIMIT 1
+    </select>
+</mapper>

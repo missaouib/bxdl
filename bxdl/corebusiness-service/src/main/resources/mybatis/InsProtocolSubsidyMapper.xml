@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.InsProtocolSubsidyMapper">
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    <id column="SUBSIDY_ID" jdbcType="BIGINT" property="subsidyId" />
+    <result column="PROTOCOL_ID" jdbcType="BIGINT" property="protocolId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="RATE_TYPE" jdbcType="CHAR" property="rateType" />
+    <result column="SETTLEMENT_INTERVAL" jdbcType="CHAR" property="settlementInterval" />
+    <result column="IS_EXCEPTION" jdbcType="CHAR" property="isException" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    <result column="SUBSIDY_JSON" jdbcType="LONGVARCHAR" property="subsidyJson" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SUBSIDY_ID, PROTOCOL_ID, PRODUCT_ID, RATE_TYPE, SETTLEMENT_INTERVAL, IS_EXCEPTION, 
+    CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <sql id="Blob_Column_List">
+    SUBSIDY_JSON
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ins_protocol_subsidy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ins_protocol_subsidy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ins_protocol_subsidy
+    where SUBSIDY_ID = #{subsidyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ins_protocol_subsidy
+    where SUBSIDY_ID = #{subsidyId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidyExample">
+    delete from ins_protocol_subsidy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    insert into ins_protocol_subsidy (SUBSIDY_ID, PROTOCOL_ID, PRODUCT_ID, 
+      RATE_TYPE, SETTLEMENT_INTERVAL, IS_EXCEPTION, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_BY, 
+      SUBSIDY_JSON)
+    values (#{subsidyId,jdbcType=BIGINT}, #{protocolId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{rateType,jdbcType=CHAR}, #{settlementInterval,jdbcType=CHAR}, #{isException,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{subsidyJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    insert into ins_protocol_subsidy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subsidyId != null">
+        SUBSIDY_ID,
+      </if>
+      <if test="protocolId != null">
+        PROTOCOL_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL,
+      </if>
+      <if test="isException != null">
+        IS_EXCEPTION,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="subsidyJson != null">
+        SUBSIDY_JSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subsidyId != null">
+        #{subsidyId,jdbcType=BIGINT},
+      </if>
+      <if test="protocolId != null">
+        #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="settlementInterval != null">
+        #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="isException != null">
+        #{isException,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidyJson != null">
+        #{subsidyJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidyExample" resultType="java.lang.Long">
+    select count(*) from ins_protocol_subsidy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ins_protocol_subsidy
+    <set>
+      <if test="record.subsidyId != null">
+        SUBSIDY_ID = #{record.subsidyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.protocolId != null">
+        PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.rateType != null">
+        RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      </if>
+      <if test="record.settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="record.isException != null">
+        IS_EXCEPTION = #{record.isException,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subsidyJson != null">
+        SUBSIDY_JSON = #{record.subsidyJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ins_protocol_subsidy
+    set SUBSIDY_ID = #{record.subsidyId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      IS_EXCEPTION = #{record.isException,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      SUBSIDY_JSON = #{record.subsidyJson,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ins_protocol_subsidy
+    set SUBSIDY_ID = #{record.subsidyId,jdbcType=BIGINT},
+      PROTOCOL_ID = #{record.protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=BIGINT},
+      RATE_TYPE = #{record.rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{record.settlementInterval,jdbcType=CHAR},
+      IS_EXCEPTION = #{record.isException,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    update ins_protocol_subsidy
+    <set>
+      <if test="protocolId != null">
+        PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE = #{rateType,jdbcType=CHAR},
+      </if>
+      <if test="settlementInterval != null">
+        SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      </if>
+      <if test="isException != null">
+        IS_EXCEPTION = #{isException,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidyJson != null">
+        SUBSIDY_JSON = #{subsidyJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where SUBSIDY_ID = #{subsidyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    update ins_protocol_subsidy
+    set PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      RATE_TYPE = #{rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      IS_EXCEPTION = #{isException,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      SUBSIDY_JSON = #{subsidyJson,jdbcType=LONGVARCHAR}
+    where SUBSIDY_ID = #{subsidyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.pojo.insurance.protocol.InsProtocolSubsidy">
+    update ins_protocol_subsidy
+    set PROTOCOL_ID = #{protocolId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      RATE_TYPE = #{rateType,jdbcType=CHAR},
+      SETTLEMENT_INTERVAL = #{settlementInterval,jdbcType=CHAR},
+      IS_EXCEPTION = #{isException,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where SUBSIDY_ID = #{subsidyId,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <!-- 修改页面回显 -->
+  <select id="findProtocolSubsidyByProtocolId" parameterType="String" resultMap="ResultMapWithBLOBs">
+  	select 
+      <include refid="Base_Column_List" />
+      ,
+    <include refid="Blob_Column_List" />
+  from ins_protocol_subsidy where PROTOCOL_ID = #{protocolId}
+  AND IS_EXCEPTION = 1 
+  LIMIT 1;
+  </select>
+  
+  
+  <!-- 查询例外产品列表 -->
+  <select id="findAllRetMapByPage" parameterType="hashmap" resultType="hashmap">
+	 	SELECT
+				sub.SUBSIDY_ID,
+				sub.PROTOCOL_ID,
+	  			info.PRODUCT_NAME P_PRODUCT_NAME,
+				ratio.PRODUCTS_NAME,
+	 		    ratio.PRODUCTS_CODE,
+				CASE
+					WHEN info.MAIN_OR_ADDITIONAL = '0' THEN
+						'主险'
+					WHEN info.MAIN_OR_ADDITIONAL = '1' THEN
+						'附险'
+					END AS MAIN_OR_ADDITIONAL,
+	
+				ratio.OUT_STANDARD_COMMISSION_COEFFICIENT,
+				info.COMPANY_INSURANCE_CODE
+		FROM
+			ins_protocol_subsidy sub
+		LEFT JOIN ins_products_commission_ratio ratio ON sub.PRODUCT_ID = ratio.PRODUCTS_RATIO_ID
+		LEFT JOIN insurance_product_info info ON ratio.INSURANCE_PRODUCT_ID = info.PRODUCT_ID
+		WHERE sub.PROTOCOL_ID=#{protocolId}
+		and sub.IS_EXCEPTION = '0'
+		order by sub.CREATE_TIME desc
+		limit #{startIndex},#{pageSize}
+  </select>
+  
+   <!-- 查询总条数 -->
+  <select id="findAllByPageCount" parameterType="hashmap" resultType="long">
+ 		SELECT
+				count(1)
+		FROM
+			ins_protocol_subsidy sub
+		LEFT JOIN ins_products_commission_ratio ratio ON sub.PRODUCT_ID = ratio.PRODUCTS_RATIO_ID
+		LEFT JOIN insurance_product_info info ON ratio.INSURANCE_PRODUCT_ID = info.PRODUCT_ID
+		WHERE sub.PROTOCOL_ID=#{protocolId}
+		and sub.IS_EXCEPTION = '0'
+  </select>
+  
+    <!-- 批量添加 例外产品-->
+  <insert id="insertEpProtocolSubsidy" parameterType="java.util.List">
+	insert into ins_protocol_subsidy (
+		PROTOCOL_ID,
+		PRODUCT_ID,
+		RATE_TYPE,
+		SETTLEMENT_INTERVAL,
+		IS_EXCEPTION,
+		CREATE_TIME,
+		UPDATE_BY
+	)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+  		 (
+	  		  #{item.protocolId}, 
+	  		  #{item.productId},
+	  		  #{item.rateType}, 
+	  		  #{item.settlementInterval}, 
+	  		  #{item.isException}, 
+	  			 now(), 
+	  		  #{item.updateBy}
+  		)
+    </foreach>	
+  </insert>
+  
+  <!-- 根据协议id查询产品-->
+  <select id="findSubsidyByProtocolId" parameterType="long" resultMap="BaseResultMap">
+ 	 select 
+	  		<include refid="Base_Column_List"/>
+	  	from 
+	  ins_protocol_subsidy
+	  where PROTOCOL_ID = #{protocolId}
+	  and IS_EXCEPTION = '1';
+  </select>
+  
+  <!-- 根据协议id 和IS_EXCEPTION 删除 -->
+  <delete id="deleteSubsidyByProtocolId" parameterType="long">
+  	delete from ins_protocol_subsidy  where PROTOCOL_ID = #{protocolId} and IS_EXCEPTION = '1'
+  </delete>
+  
+  
+  <!-- 修改此协议下产品的费率 -->
+  <update id="updateRateTypeByProtocolId" parameterType="hashmap">
+   update ins_protocol_subsidy
+    set 
+      RATE_TYPE = #{rateType},
+      SETTLEMENT_INTERVAL = #{settlementInterval},
+      UPDATE_TIME = now()
+      where PROTOCOL_ID = #{protocolId}
+  </update>
+</mapper>

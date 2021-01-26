@@ -1,0 +1,25 @@
+#authDlg {
+	position: fixed;
+	top: 0%;
+	left: 30%;
+	width: 610px;
+	height: 500px;
+	margin: 100px 100 0 0px; /*margin 负值为宽高的一半 */
+}
+
+@media ( min-width : 768px) {
+	.modal-dialog {
+		margin: -1px auto;
+	}
+}
+
+.node_name {
+	font-size: 14px;
+	text-decoration: none;
+	/*  color: #c3cdd0; */
+}
+
+span {
+	
+}
+

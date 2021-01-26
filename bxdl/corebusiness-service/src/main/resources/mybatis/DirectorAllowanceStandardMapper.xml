@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzcf.core.mapper.DirectorAllowanceStandardMapper">
+
+  <resultMap id="BaseResultMap" type="com.hzcf.pojo.allowance.DirectorAllowanceStandardPojo" >
+      <result column="allowance_id" property="allowanceId" />
+      <result column="sales_org_id" property="salesOrgId" />
+      <result column="ins_sales_id" property="insSalesId" />
+      <result column="allowance_formula" property="allowanceFormula" />
+      <result column="allowance_ratio" property="allowanceRatio" />
+      <result column="created_by" property="createdBy" />
+      <result column="created_time" property="createdTime" />
+      <result column="updated_by" property="updatedBy" />
+      <result column="updated_time" property="updatedTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+      `allowance_id`,
+      `sales_org_id`,
+      `ins_sales_id`,
+      `allowance_formula`,
+      `allowance_ratio`,
+      `created_by`,
+      `created_time`,
+      `updated_by`,
+      `updated_time`
+    </sql>
+
+  <insert id="addDirectorAllowance" parameterType="com.hzcf.pojo.allowance.DirectorAllowanceStandardPojo">
+    INSERT INTO director_allowance_standard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+       <if test ='null != allowanceId'>
+       `allowance_id`,
+       </if>
+       <if test ='null != salesOrgId'>
+       `sales_org_id`,
+       </if>
+       <if test ='null != insSalesId'>
+       `ins_sales_id`,
+       </if>
+       <if test ='null != allowanceFormula'>
+       `allowance_formula`,
+       </if>
+       <if test ='null != allowanceRatio'>
+       `allowance_ratio`,
+       </if>
+       <if test ='null != createdBy'>
+       `created_by`,
+       </if>
+       <if test ='null != createdTime'>
+       `created_time`,
+       </if>
+       <if test ='null != updatedBy'>
+       `updated_by`,
+       </if>
+       <if test ='null != updatedTime'>
+       `updated_time`
+       </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+       <if test ='null != allowanceId'>
+       #{allowanceId},
+       </if>
+       <if test ='null != salesOrgId'>
+       #{salesOrgId},
+       </if>
+       <if test ='null != insSalesId'>
+       #{insSalesId},
+       </if>
+       <if test ='null != allowanceFormula'>
+       #{allowanceFormula},
+       </if>
+       <if test ='null != allowanceRatio'>
+       #{allowanceRatio},
+       </if>       
+       <if test ='null != createdBy'>
+       #{createdBy},
+       </if>
+       <if test ='null != createdTime'>
+       #{createdTime},
+       </if>
+       <if test ='null != updatedBy'>
+       #{updatedBy},
+       </if>
+       <if test ='null != updatedTime'>
+       #{updatedTime}
+       </if>     
+    </trim>
+  </insert>
+
+  <delete id="delete" >
+        DELETE FROM director_allowance_standard
+        WHERE `id_` = #{id}
+  </delete>
+
+  <update id="updateDirectorAllowance" parameterType="com.hzcf.pojo.allowance.DirectorAllowanceStandardPojo">
+    UPDATE director_allowance_standard
+    <set>
+        <if test ='null != allowanceId'>allowance_id = #{allowanceId},</if>
+        <if test ='null != salesOrgId'>sales_org_id = #{salesOrgId},</if>
+        <if test ='null != insSalesId'>ins_sales_id = #{insSalesId},</if>
+        <if test ='null != allowanceFormula'>allowance_formula = #{allowanceFormula},</if>
+        <if test ='null != allowanceRatio'>allowance_ratio = #{allowanceRatio},</if>        
+        <if test ='null != createdBy'>created_by = #{createdBy},</if>
+        <if test ='null != createdTime'>created_time = #{createdTime},</if>
+        <if test ='null != updatedBy'>updated_by = #{updatedBy},</if>
+        <if test ='null != updatedTime'>updated_time = #{updatedTime}</if>
+    </set>
+    WHERE `ALLOWANCE_ID` = #{allowanceId}
+  </update>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM director_allowance_standard
+    WHERE `id_` = #{id}
+  </select>
+
+  <select id="getAllowanceList" resultType="java.util.Map">
+    SELECT <include refid="Base_Column_List" />
+    FROM director_allowance_standard
+    where 1=1
+        <if test ='null != allowanceId'>and allowance_id = #{allowanceId}</if>
+        <if test ='null != salesOrgId'>and sales_org_id = #{salesOrgId}</if>
+        <if test ='null != insSalesId'>and ins_sales_id = #{insSalesId}</if>
+        <if test ='null != allowanceFormula'>and allowance_formula = #{allowanceFormula}</if>
+        <if test ='null != allowanceRatio'>and allowance_ratio = #{allowanceRatio}</if>
+        <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+    LIMIT #{pageNoInt},#{pageSizeInt}
+  </select>
+
+  <select id="getAllowanceListSize" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM director_allowance_standard
+        where 1=1
+        <if test ='null != allowanceId'>and allowance_id = #{allowanceId}</if>
+        <if test ='null != salesOrgId'>and sales_org_id = #{salesOrgId}</if>
+        <if test ='null != insSalesId'>and ins_sales_id = #{insSalesId}</if>
+        <if test ='null != allowanceFormula'>and allowance_formula = #{allowanceFormula}</if>
+        <if test ='null != allowanceRatio'>and allowance_ratio = #{allowanceRatio}</if>
+        <if test ='null != createdBy'>and created_by = #{createdBy}</if>
+        <if test ='null != createdTime'>and created_time = #{createdTime}</if>
+        <if test ='null != updatedBy'>and updated_by = #{updatedBy}</if>
+        <if test ='null != updatedTime'>and updated_time = #{updatedTime}</if>
+    </select>
+    
+  	<delete id="delDirectorAllowance" parameterType="java.lang.String">
+	    DELETE FROM director_allowance_standard
+	    where allowance_id
+	    in
+	    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+	      #{item}
+	    </foreach>
+  	</delete>
+</mapper>

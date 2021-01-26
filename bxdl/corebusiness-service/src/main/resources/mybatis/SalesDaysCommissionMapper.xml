@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.core.mapper.SalesDaysCommissionMapper">
+    <resultMap id="BaseResultMap" type="com.hzcf.pojo.insurance.sales.SalesDaysCommission">
+       <result column="commission_id" property="commissionId" />
+       <result column="saler_id" property="salerId" />
+       <result column="sales_org_id" property="salesOrgId" />
+       <result column="sales_team_id" property="salesTeamId" />
+       <result column="saler_grade" property="salerGrade" />
+       <result column="saler_fyc" property="salerFyc" />
+       <result column="initial_annual_commission" property="initialAnnualCommission" />
+       <result column="exhibition_allowance" property="exhibitionAllowance" />
+       <result column="increase_allowance" property="increaseAllowance" />
+       <result column="continuous_allowance" property="continuousAllowance" />
+       <result column="continuation_rate_bonus" property="continuationRateBonus" />
+       <result column="annual_bonus" property="annualBonus" />
+       <result column="service_award" property="serviceAward" />
+       <result column="group_run_allowance" property="groupRunAllowance" />
+       <result column="director_culture_award" property="directorCultureAward" />
+       <result column="dep_run_allowance" property="depRunAllowance" />
+       <result column="minister_culture_award" property="ministerCultureAward" />
+       <result column="chief_inspector_allowance" property="chiefInspectorAllowance" />
+       <result column="total_commission" property="totalCommission" />       
+       <result column="created_by" property="createdBy" />
+       <result column="created_time" property="createdTime" />
+       <result column="updated_by" property="updatedBy" />
+       <result column="updated_time" property="updatedTime" />
+        <result column="cut_commission" property="cutCommission" jdbcType="DECIMAL" />
+        <result column="freezing_taxes" property="freezingTaxes" jdbcType="DECIMAL" />
+        <result column="issued_amount" property="issuedAmount" jdbcType="DECIMAL" />
+        <result column="settlement_status" property="settlementStatus" jdbcType="VARCHAR" />
+        <result column="settlement_month" property="settlementMonth" jdbcType="VARCHAR" />
+    </resultMap>
+    
+  <resultMap id="SalesPreBaseResultMap" type="com.hzcf.pojo.insurance.sales.InsSalesPreGrade" >
+  		<result column="insurance_sales_id" property="insuranceSalesId" />
+        <result column="insurance_saler" property="insuranceSaler" />
+        <result column="sex" property="sex" />
+        <result column="insurance_saler_no" property="insuranceSalerNo" />
+        <result column="cooperation_type" property="cooperationType" />
+        <result column="sales_org_id" property="salesOrgId" />
+        <result column="sales_team_id" property="salesTeamId" />
+        <result column="sales_org_name" property="salesOrgName" />
+        <result column="sales_team_name" property="salesTeamName" />        
+        <result column="rank_sequence_id" property="rankSequenceId" />
+        <result column="sales_grade_id" property="salesGradeId" />
+        <result column="card_type" property="cardType" />
+        <result column="card_no" property="cardNo" />
+        <result column="mobile" property="mobile" />
+        <result column="join_date" property="joinDate" />
+        <result column="bank_channel" property="bankChannel" />
+        <result column="bank_card_no" property="bankCardNo" />
+        <result column="birthday" property="birthday" />
+        <result column="country" property="country" />
+        <result column="nation" property="nation" />
+        <result column="political_appearance" property="politicalAppearance" />
+        <result column="party" property="party" />
+        <result column="area_code" property="areaCode" />
+        <result column="address" property="address" />
+        <result column="native_place" property="nativePlace" />
+        <result column="household_reg_place" property="householdRegPlace" />
+        <result column="archives_preservation_place" property="archivesPreservationPlace" />
+        <result column="post_code" property="postCode" />
+        <result column="cell_phone" property="cellPhone" />
+        <result column="duty_type" property="dutyType" />
+        <result column="email" property="email" />
+        <result column="qq_number" property="qqNumber" />
+        <result column="wechat_number" property="wechatNumber" />
+        <result column="academic_degree" property="academicDegree" />
+        <result column="educational_bg" property="educationalBg" />
+        <result column="foreign_language_ability" property="foreignLanguageAbility" />
+        <result column="marital_status" property="maritalStatus" />
+        <result column="marriage_date" property="marriageDate" />
+        <result column="pre_company" property="preCompany" />
+        <result column="pre_occupation" property="preOccupation" />
+        <result column="leaving_certificate" property="leavingCertificate" />
+        <result column="certificate_number" property="certificateNumber" />
+        <result column="certificate_status" property="certificateStatus" />
+        <result column="certificate_start_date" property="certificateStartDate" />
+        <result column="certificate_end_date" property="certificateEndDate" />
+        <result column="having_work_group" property="havingWorkGroup" />
+        <result column="work_group_phone" property="workGroupPhone" />
+        <result column="internal_referral" property="internalReferral" />
+        <result column="interest" property="interest" />
+        <result column="remark" property="remark" />
+        <result column="db_sales_id" property="dbSalesId" />
+        <result column="tj_sales_id" property="tjSalesId" />
+        <result column="yc_sales_id" property="ycSalesId" />
+        <result column="sj_sales_id" property="sjSalesId" />
+        <result column="jc_sales_id" property="jcSalesId" />
+        <result column="fd_sales_id" property="fdSalesId" />
+        <result column="db_sales_date" property="dbSalesDate" />
+        <result column="tj_sales_date" property="tjSalesDate" />
+        <result column="yc_sales_date" property="ycSalesDate" />
+        <result column="sj_sales_date" property="sjSalesDate" />
+        <result column="jc_sales_date" property="jcSalesDate" />
+        <result column="fd_sales_date" property="fdSalesDate" />        
+        <result column="now_tree_code" property="nowTreeCode" />
+        <result column="next_tree_code" property="nextTreeCode" />
+        <result column="next_tree_code_idate" property="nextTreeCodeIdate" />
+        <result column="sales_status" property="salesStatus" />  
+        <result column="pre_month_org" property="preMonthOrg" />
+        <result column="pre_month_team" property="preMonthTeam" />
+        <result column="pre_month_grade" property="preMonthGrade" />
+        <result column="pre_month_tjr" property="preMonthTjr" />
+        <result column="pre_month_ycr" property="preMonthYcr" />       
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />	   	
+  </resultMap>
+  
+  <resultMap id="zjjtBaseResultMap" type="com.hzcf.pojo.allowance.DirectorAllowanceStandardPojo" >
+      <result column="allowance_id" property="allowanceId" />
+      <result column="sales_org_id" property="salesOrgId" />
+      <result column="ins_sales_id" property="insSalesId" />
+      <result column="allowance_formula" property="allowanceFormula" />
+      <result column="allowance_ratio" property="allowanceRatio" />
+      <result column="delete_flag" property="deleteFlag" />
+      <result column="created_by" property="createdBy" />
+      <result column="created_time" property="createdTime" />
+      <result column="updated_by" property="updatedBy" />
+      <result column="updated_time" property="updatedTime" />
+  </resultMap>    
+
+    <sql id="Base_Column_List">
+       `commission_id`,
+       `saler_id`,
+       `sales_org_id`,
+       `sales_team_id`,
+       `saler_grade`,
+       `saler_fyc`,
+       `initial_annual_commission`,
+       `exhibition_allowance`,
+       `increase_allowance`,
+       `continuous_allowance`,
+       `continuation_rate_bonus`,
+       `annual_bonus`,
+       `service_award`,
+       `group_run_allowance`,
+       `director_culture_award`,
+       `dep_run_allowance`,
+       `minister_culture_award`,
+       `chief_inspector_allowance`,
+       `total_commission`,
+       `created_by`,
+       `created_time`,
+       `updated_by`,
+       `updated_time`,
+       `cut_commission`,
+       `freezing_taxes`,
+       `issued_amount`,
+       `settlement_status`,
+       `settlement_month`
+  </sql>
+
+  <insert id="addSalesDaysCommission" parameterType="java.util.List">
+       INSERT INTO sales_days_commission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            `saler_id`,
+            `sales_org_id`,
+            `sales_team_id`,
+            `saler_grade`,
+            `saler_fyc`,
+            `initial_annual_commission`,
+            `exhibition_allowance`,
+            `increase_allowance`,
+            `continuous_allowance`,
+            `continuation_rate_bonus`,
+            `annual_bonus`,
+            `service_award`,
+            `group_run_allowance`,
+            `director_culture_award`,
+            `dep_run_allowance`,
+            `minister_culture_award`,
+            `chief_inspector_allowance`,
+            `total_commission`,
+            `created_by`,
+            `created_time`,
+            `updated_by`,
+            `updated_time`,
+            `settlement_month`,
+            `settlement_status`
+        </trim>
+         values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.salerId},
+            #{item.salesOrgId},
+            #{item.salesTeamId},
+            #{item.salerGrade},
+            #{item.salerFyc},
+            #{item.initialAnnualCommission},
+            #{item.exhibitionAllowance},
+            #{item.increaseAllowance},
+            #{item.continuousAllowance},
+            #{item.continuationRateBonus},
+            #{item.annualBonus},
+            #{item.serviceAward},
+            #{item.groupRunAllowance},
+            #{item.directorCultureAward},
+            #{item.depRunAllowance},
+            #{item.ministerCultureAward},
+            #{item.chiefInspectorAllowance},
+            #{item.totalCommission},
+            #{item.createdBy},
+            now(),
+            #{item.updatedBy},
+            now(),
+            #{item.settlementMonth},
+            #{item.settlementStatus}
+        )
+        </foreach>
+    </insert>
+    
+    <update id="updateSalesDaysCommission"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_days_commission
+	        <trim prefix="set" suffixOverrides=",">
+                <if test="null != item.initialAnnualCommission">INITIAL_ANNUAL_COMMISSION=#{item.initialAnnualCommission},</if>
+                <if test="null != item.salerFyc">saler_fyc=#{item.salerFyc},</if>
+                <if test="null != item.exhibitionAllowance">exhibition_allowance=#{item.exhibitionAllowance},</if>
+	            <if test = 'null != item.increaseAllowance'>increase_allowance=#{item.increaseAllowance},</if>
+	            <if test = 'null != item.groupRunAllowance'>group_run_allowance=#{item.groupRunAllowance},</if>
+	           	<if test = 'null != item.directorCultureAward'> director_culture_award=#{item.directorCultureAward},</if>
+	            <if test = 'null != item.depRunAllowance'>dep_run_allowance =#{item.depRunAllowance},</if>
+	            <if test = 'null != item.ministerCultureAward'>minister_culture_award=#{item.ministerCultureAward},</if>
+	            <if test = 'null != item.chiefInspectorAllowance'>chief_inspector_allowance=#{item.chiefInspectorAllowance},</if>
+	            <if test = 'null != item.totalCommission'>total_commission=#{item.totalCommission},</if>
+                updated_time=now()
+	        </trim>
+	        <where>
+                1=1
+                <if test="item.commissionId != null"> AND commission_id = #{item.commissionId} </if>
+                 <if test="item.salerId != null"> AND saler_id = #{item.salerId} </if>
+                 <if test="item.settlementMonth != null"> AND  settlement_month = #{item.settlementMonth} </if>
+	        </where>
+	    </foreach>      
+	</update> 
+	
+	
+	<update id="updateMonthlyCommissions"  parameterType="java.util.List">  
+	    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+	        UPDATE sales_monthly_commission
+	        <trim prefix="set" suffixOverrides=",">				          
+	            <if test = 'null != item.cutCommission'>cut_commission=#{item.cutCommission},</if>
+	            <if test = 'null != item.cutReason'>cut_reason=#{item.cutReason},</if>
+	           	<if test = 'null != item.freezingTaxes'> freezing_taxes=#{item.freezingTaxes},</if>
+                <if test = 'null != item.remark'> remark=#{item.remark},</if>
+	            <if test = 'null != item.afterTaxCommission'>after_tax_commission = #{item.afterTaxCommission}</if>
+	        </trim>
+	        <where> 
+	        commission_id = ${item.commissionId} and commission_status between -1 and 0
+	        </where>
+	    </foreach>      
+	</update>
+	
+	<insert id="addSalesMonthlyCommission" parameterType="java.util.List">
+       INSERT INTO sales_monthly_commission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            `saler_id`,
+            `sales_org_id`,
+            `sales_team_id`,
+            `saler_grade`,
+            `commission_month`,
+            `total_commission`,
+            `cut_commission`,
+            `cut_reason`,
+            `freezing_taxes`,
+            `after_tax_commission`,
+            `commission_status`,
+            `check_mark`,
+            `check_time`,
+            `push_time`,
+            `initial_annual_commission`,
+            `exhibition_allowance`,
+            `increase_allowance`,
+            `continuous_allowance`,
+            `continuation_rate_bonus`,
+            `annual_bonus`,
+            `service_award`,
+            `group_run_allowance`,
+            `director_culture_award`,
+            `dep_run_allowance`,
+            `minister_culture_award`,
+            `chief_inspector_allowance`,
+            `created_by`,
+            `created_time`,
+            `updated_by`,
+            `updated_time`
+        </trim>
+         values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.salerId},
+            #{item.salesOrgId},
+            #{item.salesTeamId},
+            #{item.salerGrade},
+            #{item.commissionMonth},
+            #{item.totalCommission},
+            #{item.cutCommission},
+            #{item.cutReason},
+            #{item.freezingTaxes},
+            #{item.afterTaxCommission},
+            #{item.commissionStatus},
+            #{item.checkMark},
+            #{item.checkTime},
+            #{item.pushTime},
+            #{item.initialAnnualCommission},
+            #{item.exhibitionAllowance},
+            #{item.increaseAllowance},
+            #{item.continuousAllowance},
+            #{item.continuationRateBonus},
+            #{item.annualBonus},
+            #{item.serviceAward},
+            #{item.groupRunAllowance},
+            #{item.directorCultureAward},
+            #{item.depRunAllowance},
+            #{item.ministerCultureAward},
+            #{item.chiefInspectorAllowance},
+            #{item.createdBy},
+            #{item.createdTime},
+            #{item.updatedBy},
+            #{item.updatedTime}          
+        )
+        </foreach>
+    </insert>
+    
+   	<select id="findDetail" parameterType="java.util.Map" resultType="java.util.Map">
+        select sdc.*,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name from sales_days_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>		
+        </where>
+    </select>   
+    
+   	<select id="findMDetail" parameterType="java.util.Map" resultType="java.util.Map">
+        select sdc.*,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name from sales_monthly_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>		
+        </where>
+    </select>     
+
+ <!--   <select id="getCommissionPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select sdc.*,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name from sales_days_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>
+            <if test ='null != salerId'>and sdc.saler_id = #{salerId}</if>
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+            <if test ='null != insuranceSaler'>and isi.insurance_saler = #{insuranceSaler}</if>
+            <if test ='null != salesOrgId'>and sdc.sales_org_id = #{salesOrgId}</if>
+            <if test ='null != salesTeamId'>and sdc.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and sdc.saler_grade = #{salerGrade}</if>
+            <if test ='null != startTime'>and sdc.created_time &gt;= #{startTime}</if>
+            <if test ='null != endTime'>and sdc.created_time &lt;= #{endTime}</if>
+            <if test='"admin" != isAdmin '>
+                AND FIND_IN_SET(sdc.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        GROUP BY sdc.COMMISSION_ID
+        order by sdc.created_time desc
+        limit #{startIndex},#{endIndex}
+    </select>-->
+
+    <select id="getCommissionPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select isi.INSURANCE_SALES_ID ,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name,sdc.updatedTime,IFNULL((sdca.settledAmount),0.00) AS settledAmount
+
+        from insurance_sales_info isi
+         LEFT join (SELECT saler_id,MAX(UPDATED_TIME) updatedTime from sales_days_commission c GROUP BY SALER_ID) sdc ON sdc.saler_id = isi.insurance_sales_id
+        LEFT JOIN ( SELECT IFNULL(sum(TOTAL_COMMISSION),0.00) AS settledAmount ,SALER_ID from sales_days_commission where settlement_status != '2' GROUP BY SALER_ID) sdca ON sdca.SALER_ID = isi.INSURANCE_SALES_ID
+        left join sales_org_info soi on isi.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on isi.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on isi.SALES_GRADE_ID = sg.sales_grade_id
+        <where>
+            1=1
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT(CONCAT('%', #{insuranceSalerNo}), '%') </if>
+            <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT(CONCAT('%', #{insuranceSaler}), '%') </if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(isi.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+            <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and isi.SALES_GRADE_ID = #{salerGrade}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        limit #{startIndex},#{endIndex}
+    </select>
+
+    <select id="getSalesDaysCommissionListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1)
+
+        from insurance_sales_info isi
+        left join sales_org_info soi on isi.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on isi.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on isi.SALES_GRADE_ID = sg.sales_grade_id
+        <where>
+            1=1
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT(CONCAT('%', #{insuranceSalerNo}), '%')</if>
+            <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT(CONCAT('%', #{insuranceSaler}), '%') </if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(isi.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+            <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and isi.SALES_GRADE_ID = #{salerGrade}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(isi.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+    </select>
+
+
+   <!-- <select id="getSalesDaysCommissionListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1) from sales_days_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>
+            <if test ='null != salerId'>and sdc.saler_id = #{salerId}</if>
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+            <if test ='null != salesOrgId'>and sdc.sales_org_id = #{salesOrgId}</if>
+            <if test ='null != salesTeamId'>and sdc.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and sdc.saler_grade = #{salerGrade}</if>
+            <if test ='null != startTime'>and sdc.created_time &gt;= #{startTime}</if>
+            <if test ='null != endTime'>and sdc.created_time &lt;= #{endTime}</if>
+            <if test='"admin" != isAdmin '>
+                AND FIND_IN_SET(sdc.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+    </select>-->
+    
+    <select id="getMonthlyCommissionPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select sdc.*,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name from sales_monthly_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>
+            <if test ='null != salerId'>and sdc.saler_id = #{salerId}</if>
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT(CONCAT('%', #{insuranceSalerNo}), '%') </if>
+            <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT(CONCAT('%', #{insuranceSaler}), '%') </if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(sdc.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+            <if test ='null != salesTeamId'>and sdc.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and sdc.saler_grade = #{salerGrade}</if>
+            <if test ='null != commissionStatus'>and sdc.commission_status = #{commissionStatus}</if>
+            <if test ='null != commissionMonth_s'>and sdc.commission_month &gt;= #{commissionMonth_s}</if>
+            <if test ='null != commissionMonth_e'>and sdc.commission_month &lt;= #{commissionMonth_e}</if>
+            <if test ='null != pushTime_s'>and sdc.push_time &gt;= #{pushTime_s}</if>
+            <if test ='null != pushTime_e'>and sdc.push_time &lt;= #{pushTime_e}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(sdc.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+        GROUP BY sdc.COMMISSION_ID
+        order by sdc.created_time desc
+        limit #{startIndex},#{endIndex}
+    </select>
+    
+    <select id="findMonthlyCommissions" parameterType="java.util.Map" resultType="java.util.Map">
+        select sdc.*,isi.insurance_saler,isi.insurance_saler_no,soi.sales_org_name,sti.sales_team_name,sg.sales_grade_name from sales_monthly_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>
+			<if test ='null != ids'>and sdc.commission_id in (${ids})</if>
+            <if test ='null != salerId'>and sdc.saler_id = #{salerId}</if>
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+            <if test ='null != salesOrgId'>and sdc.sales_org_id = #{salesOrgId}</if>
+            <if test ='null != salesTeamId'>and sdc.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and sdc.saler_grade = #{salerGrade}</if>
+            <if test ='null != commissionStatus'>and sdc.commission_status = #{commissionStatus}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(sdc.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+    </select>    
+
+    <select id="getSalesMonthlyCommissionListSize" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1) from sales_monthly_commission sdc
+        left join insurance_sales_info isi on sdc.saler_id = isi.insurance_sales_id
+        left join sales_org_info soi on sdc.sales_org_id = soi.sales_org_id
+        left join sales_team_info sti on sdc.sales_team_id = sti.sales_team_id
+        left join sales_grade sg on sdc.saler_grade = sg.sales_grade_id
+        <where>
+            1=1
+			<if test ='null != commissionId'>and sdc.commission_id = #{commissionId}</if>
+            <if test ='null != salerId'>and sdc.saler_id = #{salerId}</if>
+            <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no LIKE CONCAT(CONCAT('%', #{insuranceSalerNo}), '%') </if>
+            <if test ='null != insuranceSaler'>and isi.insurance_saler LIKE CONCAT(CONCAT('%', #{insuranceSaler}), '%') </if>
+            <if test='null != salesAllOrgs'>
+                AND FIND_IN_SET(sdc.sales_org_id, #{salesAllOrgs}) > 0
+            </if>
+            <if test ='null != salesTeamId'>and sdc.sales_team_id = #{salesTeamId}</if>
+            <if test ='null != salerGrade'>and sdc.saler_grade = #{salerGrade}</if>
+            <if test ='null != commissionStatus'>and sdc.commission_status = #{commissionStatus}</if>
+            <if test ='null != commissionMonth_s'>and sdc.commission_month &gt;= #{commissionMonth_s}</if>
+            <if test ='null != commissionMonth_e'>and sdc.commission_month &lt;= #{commissionMonth_e}</if>
+            <if test ='null != pushTime_s'>and sdc.push_time &gt;= #{pushTime_s}</if>
+            <if test ='null != pushTime_e'>and sdc.push_time &lt;= #{pushTime_e}</if>
+            <if test='"admin" != isAdmin and "superAdmin" != isAdmin '>
+                AND FIND_IN_SET(sdc.sales_org_id, #{myAllOrgIds}) > 0
+            </if>
+        </where>
+    </select>
+
+    <select id="findMapList" parameterType="java.util.Map" resultType="java.util.Map">
+        select 
+			ipip.*, isi.INSURANCE_SALES_ID,
+			isi.INSURANCE_SALER,
+			isi.INSURANCE_SALER_NO,
+			iip.*, ipcr.INSURANCE_PRODUCT_ID,
+			ipcr.PRODUCTS_NAME,
+			ipcr.PRODUCTS_CODE,
+			ipcr.VALUE_COMMISSION_COEFFICIENT,
+			ipcr.IN_STANDARD_COMMISSION_COEFFICIENT,
+			ipcr.OUT_STANDARD_COMMISSION_COEFFICIENT,
+			ipcr.INDEXING_COEFFICIENT
+		from ins_information iip 
+		left join ins_policy_insured_person ipip on iip.policy_id = ipip.policy_id
+		left join insurance_sales_info isi on ipip.agent_id = isi.insurance_sales_id
+		left join ins_products_commission_ratio ipcr on iip.product_id = ipcr.products_ratio_id
+		where iip.policy_id in (
+			SELECT ipip.policy_id from ins_policy_insured_person ipip
+	        <where>
+	            1=1
+	            <if test ='null != agentId'>and ipip.agent_id = #{agentId}</if>
+	            <if test ='null != type'>and ipip.type = #{type}</if>
+	            <if test ='null != insState'>and ipip.ins_state = #{insState}</if>
+	            <if test ='null != uwStart'>and ipip.underwriting_data &gt;= #{uwStart}</if>
+	            <if test ='null != uwEnd'>and ipip.underwriting_data &lt;= #{uwEnd}</if>
+	        </where>
+        )
+    </select>
+    
+    <select id="quitInsuranceSalesList" parameterType="java.util.Map" resultMap="SalesPreBaseResultMap">
+		select ispg.* from ins_sales_pre_grade ispg left join insurance_sales_info isi on ispg.insurance_sales_id = isi.insurance_sales_id
+		LEFT JOIN saler_quit_info sqi ON ispg.INSURANCE_SALES_ID = sqi.SALER_ID
+		where isi.SALES_STATUS BETWEEN 2 and 3
+		<if test ='null != qdStart'>
+			AND sqi.QUIT_DATE &gt;= #{qdStart}
+		</if> 
+		<if test ='null != qdEnd'>
+			AND sqi.QUIT_DATE &lt; #{qdEnd}
+		</if> 
+    </select>
+    
+    <select id="insuranceSalesList" parameterType="java.util.Map" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade isi
+    	<where>
+	    1=1
+		   <if test ='null != insuranceSalesId'>and isi.insurance_sales_id = #{insuranceSalesId}</if>
+		   <if test ='null != insuranceSalesIds'>and isi.insurance_sales_id in (${insuranceSalesIds})</if>
+	       <if test ='null != insuranceSaler'>and isi.insurance_saler = #{insuranceSaler}</if>
+	       <if test ='null != sex'>and isi.sex = #{sex}</if>
+	       <if test ='null != likeSalerNo'>and isi.insurance_saler_no like CONCAT('%',#{likeSalerNo},'%')</if>
+	       <if test ='null != insuranceSalerNo'>and isi.insurance_saler_no = #{insuranceSalerNo}</if>
+           <if test ='null != cooperationType'>and isi.cooperation_type = #{cooperationType}</if>	       
+	       <if test ='null != salesOrgId'>and isi.sales_org_id = #{salesOrgId}</if>
+	       <if test ='null != salesTeamId'>and isi.sales_team_id = #{salesTeamId}</if>
+	       <if test ='null != rankSequenceId'>and isi.rank_sequence_id = #{rankSequenceId}</if>
+	       <if test ='null != salesGradeId'>and isi.sales_grade_id = #{salesGradeId}</if>
+	       <if test ='null != preMonthGrade'>and isi.pre_month_grade = #{preMonthGrade}</if>
+	       <if test ='null != cardType'>and isi.card_type = #{cardType}</if>
+	       <if test ='null != cardNo'>and isi.card_no = #{cardNo}</if>
+	       <if test ='null != mobile'>and isi.mobile = #{mobile}</if>
+	       <if test ='null != joinDate'>and isi.join_date = #{joinDate}</if>
+	       <if test ='null != bankChannel'>and isi.bank_channel = #{bankChannel}</if>
+	       <if test ='null != bankCardNo'>and isi.bank_card_no = #{bankCardNo}</if>
+	       <if test ='null != birthday'>and isi.birthday = #{birthday}</if>
+	       <if test ='null != country'>and isi.country = #{country}</if>
+	       <if test ='null != nation'>and isi.nation = #{nation}</if>
+	       <if test ='null != politicalAppearance'>and isi.political_appearance = #{politicalAppearance}</if>
+	       <if test ='null != party'>and isi.party = #{party}</if>
+	       <if test ='null != areaCode'>and isi.area_code = #{areaCode}</if>
+	       <if test ='null != address'>and isi.address = #{address}</if>
+	       <if test ='null != nativePlace'>and isi.native_place = #{nativePlace}</if>
+	       <if test ='null != householdRegPlace'>and isi.household_reg_place = #{householdRegPlace}</if>
+	       <if test ='null != archivesPreservationPlace'>and isi.archives_preservation_place = #{archivesPreservationPlace}</if>
+	       <if test ='null != postCode'>and isi.post_code = #{postCode}</if>
+	       <if test ='null != cellPhone'>and isi.cell_phone = #{cellPhone}</if>
+	       <if test ='null != dutyType'>and isi.duty_type = #{dutyType}</if>
+	       <if test ='null != email'>and isi.email = #{email}</if>
+	       <if test ='null != qqNumber'>and isi.qq_number = #{qqNumber}</if>
+	       <if test ='null != wechatNumber'>and isi.wechat_number = #{wechatNumber}</if>
+	       <if test ='null != academicDegree'>and isi.academic_degree = #{academicDegree}</if>
+	       <if test ='null != educationalBg'>and isi.educational_bg = #{educationalBg}</if>
+	       <if test ='null != foreignLanguageAbility'>and isi.foreign_language_ability = #{foreignLanguageAbility}</if>
+	       <if test ='null != maritalStatus'>and isi.marital_status = #{maritalStatus}</if>
+	       <if test ='null != marriageDate'>and isi.marriage_date = #{marriageDate}</if>
+	       <if test ='null != preCompany'>and isi.pre_company = #{preCompany}</if>
+	       <if test ='null != preOccupation'>and isi.pre_occupation = #{preOccupation},</if>
+	       <if test ='null != leavingCertificate'>and isi.leaving_certificate = #{leavingCertificate}</if>
+	       <if test ='null != certificateNumber'>and isi.certificate_number = #{certificateNumber}</if>
+	       <if test ='null != certificateStatus'>and isi.certificate_status = #{certificateStatus}</if>
+	       <if test ='null != certificateStartDate'>and isi.certificate_start_date = #{certificateStartDate}</if>
+	       <if test ='null != certificateEndDate'>and isi.certificate_end_date = #{certificateEndDate}</if>
+	       <if test ='null != havingWorkGroup'>and isi.having_work_group = #{havingWorkGroup}</if>
+	       <if test ='null != workGroupPhone'>and isi.work_group_phone = #{workGroupPhone}</if>
+	       <if test ='null != internalReferral'>and isi.internal_referral = #{internalReferral}</if>
+	       <if test ='null != interest'>and isi.interest = #{interest}</if>
+	       <if test ='null != remark'>and isi.remark = #{remark}</if>
+	       <if test ='null != dbSalesId'>and isi.db_sales_id = #{dbSalesId}</if>
+	       <if test ='null != tjSalesId'>and isi.tj_sales_id = #{tjSalesId}</if>
+	       <if test ='null != ycSalesId'>and isi.yc_sales_id = #{ycSalesId}</if>
+	       <if test ='null != sjSalesId'>and isi.sj_sales_id = #{sjSalesId}</if>
+	       <if test ='null != jcSalesId'>and isi.jc_sales_id = #{jcSalesId}</if>
+	       <if test ='null != fdSalesId'>and isi.fd_sales_id = #{fdSalesId}</if>
+	       <if test ='null != nowTreeCode'>and isi.now_tree_code = #{nowTreeCode}</if>
+	       <if test ='null != nextTreeCode'>and isi.next_tree_code = #{nextTreeCode}</if>
+	       <if test ='null != nextTreeCodeIdate'>and isi.next_tree_code_idate = #{nextTreeCodeIdate}</if>
+	       <if test ='null != salesStatus'>and isi.sales_status = #{salesStatus}</if>
+	       <if test ='null != effective'>and isi.sales_status BETWEEN 0 AND 1</if>	       
+	       <if test ='null != createdBy'>and isi.created_by = #{createdBy}</if>
+	       <if test ='null != createdTime'>and isi.created_time = #{createdTime}</if>
+	       <if test ='null != updatedBy'>and isi.updated_by = #{updatedBy}</if>
+	       <if test ='null != updatedTime'>and isi.updated_time = #{updatedTime}</if>
+    	</where>  	
+    </select> 
+    
+    <select id="findByTjr" parameterType="java.lang.Long" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade where pre_month_tjr = #{salerId}
+    </select>
+    
+    <select id="findByTjrs" parameterType="java.util.Map" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade where pre_month_tjr in (${salerIds})
+    </select> 
+    
+    <select id="sumSalesFYC" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+    	select IFNULL(sum(saler_fyc),0.00) AS sum from sales_days_commission where commission_id in 
+    	(SELECT MAX(commission_id) from sales_days_commission where SALER_ID in (${salerIds}) and CREATED_TIME &gt;= (SELECT curdate()) GROUP BY SALER_ID)
+    </select>
+    
+    <select id="sumSalesZYJT" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+    	select IFNULL(sum(exhibition_allowance),0.00) AS sum from sales_days_commission where commission_id in 
+    	(SELECT MAX(commission_id) from sales_days_commission where SALER_ID in (${salerIds}) GROUP BY SALER_ID)
+    </select>
+    
+    <select id="findYcgx" parameterType="java.util.Map" resultMap="SalesPreBaseResultMap">
+        select * from ins_sales_pre_grade where pre_month_ycr = #{ycSalesId} and pre_month_grade = #{salesGradeId}
+    </select>
+    
+    <!-- 直辖组 -->
+    <select id="findBySj" parameterType="java.lang.Long" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade where pre_month_tjr = #{salerId} and pre_month_grade BETWEEN 4 AND 5
+    </select>	
+	<!-- 直辖组 -->
+    <select id="getNumBySj" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    	select count(1) from ins_sales_pre_grade where pre_month_tjr = #{salerId} and pre_month_grade BETWEEN 4 AND 5
+    </select> 
+    
+    <!-- 部长直辖部 -->
+    <select id="findBZZXB" parameterType="java.lang.Long" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade where pre_month_sj = #{salerId} and pre_month_grade not in (1,2,7)
+    </select>	
+	<!-- 部长直辖部 -->
+    <select id="getBZZXBNum" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    	select count(1) from ins_sales_pre_grade where pre_month_sj = #{salerId} and pre_month_grade not in (1,2,7)
+    </select>
+    
+    <!-- 总监直辖部 -->
+    <select id="findZJZXB" parameterType="java.lang.Long" resultMap="SalesPreBaseResultMap">
+    	select * from ins_sales_pre_grade where pre_month_sj = #{salerId} and pre_month_grade > 1
+    </select>	
+	<!-- 总监直辖部 -->
+    <select id="getZJZXBNum" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    	select count(1) from ins_sales_pre_grade where pre_month_sj = #{salerId} and pre_month_grade > 1
+    </select> 
+    
+    <select id="findZJJTXS" parameterType="java.util.Map" resultMap="zjjtBaseResultMap">
+    	select * from director_allowance_standard 
+    	<where>
+    		delete_flag = 0 
+    		<if test ='null != salesOrgId'>and sales_org_id = #{salesOrgId}</if>
+    		<if test ='null != insSalesId'>and ins_sales_id = #{insSalesId}</if>
+    	</where>
+    </select>
+    
+    <update id="checkStatus"  parameterType="java.util.Map">  
+	    UPDATE sales_monthly_commission
+	    <set>
+	    	<if test ='null != commissionStatus'>commission_status = #{commissionStatus},</if>
+	    	<if test ='null != commissionStatus and commissionStatus != "2"'>check_time = sysdate(),</if>
+	    	<if test ='null != commissionStatus and commissionStatus == "2"'>push_time = sysdate(),</if>
+    		<if test ='null != cutCommission'>cut_commission = #{cutCommission},</if>
+            <if test ='null != freezingTaxes'>freezing_taxes = #{freezingTaxes},</if>
+            <if test ='null != remark'>remark = #{remark},</if>
+            <if test ='null != cutReason'>cut_reason = #{cutReason},</if>
+            <if test ='null != afterTaxCommission'>after_tax_commission = #{afterTaxCommission}</if>
+	    </set>
+	    where commission_id = #{commissionId}
+	</update>
+    <!--根据员工id  和结算月 查找佣金明细-->
+     <select id="findSaleCommission" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT  * from sales_days_commission
+        <where>
+    		1 = 1
+    		<if test ='null != salerId'>and saler_Id = #{salerId}</if>
+    		<if test ='null != settlementMonth'>and settlement_month = #{settlementMonth}</if>
+    	</where>
+
+    </select>
+
+    <!--根据员工id 和结算月 获取所选员工的初年度FYC-->
+    <select id="sumSalesFYCByMonth" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        SELECT IFNULL(sum(saler_fyc),0.00) AS sum FROM sales_days_commission where SALER_ID in (${salerIds}) and settlement_month = #{month};
+
+    </select>
+
+      <!--根据员工id 和结算月 获取所选员工的初年度FYC-->
+    <select id="sumSalesFYCByMonthForEveryOne" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        SELECT IFNULL(saler_fyc,0.00) AS saler_fyc FROM sales_days_commission where SALER_ID in (${salerIds}) and settlement_month = #{month} AND saler_fyc > 0;
+
+    </select>
+
+    <!--TODO: 这个sql   需要等结算列表确定后更改  员工佣金计算 所需的 销售人员的销售保单的明细（产品维度）-->
+    <select id="findSettleableMapList" parameterType="java.util.Map" resultType="java.util.Map">
+        select iip.*,sp.id,ipcr.PRODUCTS_CODE
+		from ins_information iip
+		left join settlement_policy sp on iip.policy_id = sp.policy_id
+		left join insurance_sales_info isi on sp.saler_id = isi.insurance_sales_id
+        left join ins_products_commission_ratio ipcr on iip.product_id = ipcr.products_ratio_id
+		<where>
+            1=1
+            <if test="salerId != null"> and sp.saler_id = #{salerId}</if>
+             <if test="auditStatus != null"> and sp.audit_status = #{auditStatus}</if>
+             <if test="settlementStatus != null"> and sp.settlement_status = #{settlementStatus}</if>
+             <if test="settlementMonth != null"> and sp.settlement_month = #{settlementMonth}</if>
+        </where>
+    </select>
+
+    <select id="findDaysCommission" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> from sales_days_commission
+        <where>
+            1=1
+            <if test="settlementMonth != null">AND settlement_Month = #{settlementMonth}</if>
+            <if test="settlementStatus != null"> AND settlement_status = #{settlementStatus}</if>
+        </where>
+    </select>
+
+
+     <select id="findMonthCommission"  parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT s.* from sales_monthly_commission s
+        <where>
+            1=1
+            <if test="commissionMonth != null">AND s.commission_month = #{commissionMonth}</if>
+            <if test="commissionId != null">AND s.commission_id = #{commissionId}</if>
+        </where>
+    </select>
+
+    <!--根据销售人员 获取该人员的所有佣金明细-->
+    <select id="getSalesCommissionDetail" parameterType="java.util.Map" resultType="java.util.Map">
+
+       SELECT c.* from sales_days_commission c
+       where c.SALER_ID = #{salesId}
+       ORDER BY settlement_month DESC
+       limit #{startIndex},#{endIndex}
+
+    </select>
+
+
+    <select id="getSalesCommissionDetailSize" parameterType="java.util.Map" resultType="java.lang.Long">
+
+       SELECT count(1) from sales_days_commission c
+       where c.SALER_ID = #{salesId}
+       ORDER BY settlement_month DESC
+
+    </select>
+
+    <!--佣金发放后 同步加扣款，冻结金额，应发佣金和发放状态到明细-->
+    <update id="batchRelease" parameterType="java.util.Map">
+        UPDATE sales_days_commission sdc,
+         sales_monthly_commission smc
+        SET sdc.cut_commission = smc.CUT_COMMISSION,
+         sdc.freezing_taxes = smc.FREEZING_TAXES,
+         sdc.issued_amount=smc.AFTER_TAX_COMMISSION,
+         sdc.settlement_status = '2',
+         smc.COMMISSION_STATUS = '2',
+        smc.PUSH_TIME = now()
+        WHERE sdc.SALER_ID = smc.SALER_ID
+        and sdc.settlement_month = smc.COMMISSION_MONTH
+        and smc.COMMISSION_ID IN
+        <foreach collection="commissionIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </update>
+
+    <update id="updateSalesDaysSettlementStatus">
+        UPDATE sales_days_commission SET settlement_status = #{settlementStatus}
+        WHERE COMMISSION_ID IN
+        <foreach collection="salesDaysCommissions" index="index" item="item" open="(" separator="," close=")">
+            #{item.commissionId}
+        </foreach>
+    </update>
+
+    <select id="getSalerRelation" parameterType="hashmap" resultType="hashmap">
+
+         select INSURANCE_SALES_ID saler_id ,establish_time,establish_time1,establish_time2,establish_time3 from insurance_sales_info
+    <where>
+       1=1
+      <if test="tjSalesId != null and tjSalesId != '' "> and TJ_SALES_ID = #{tjSalesId}</if>
+      <if test="ycCFirstGener != null and ycCFirstGener != '' "> and yc_c_first_gener = #{ycCFirstGener}</if>
+      <if test="ycCSecondGener != null and ycCSecondGener != '' "> AND yc_c_second_gener = #{ycCSecondGener}</if>
+      <if test="ycBFirstGener != null and ycBFirstGener != '' "> AND yc_b_first_gener = #{ycBFirstGener}</if>
+      <if test="ycBSecondGener != null and ycBSecondGener != '' "> and yc_b_second_gener = #{ycBSecondGener}</if>
+      <if test="directGroupC != null and directGroupC != '' "> and direct_group_c = #{directGroupC}</if>
+      <if test="directDeptB != null and directDeptB != '' ">  AND  direct_dept_b = #{directDeptB}</if>
+    </where>
+
+    </select>
+    <!--查询组活动人力数-->
+    <select id="getGroupManpowerByMonth" resultType="java.lang.String">
+        SELECT
+        DISTINCT ipip.AGENT_ID
+        FROM
+            ins_policy_insured_person ipip
+        LEFT JOIN ins_information ii ON ii.POLICY_ID = ipip.POLICY_ID
+        LEFT JOIN ins_products_commission_ratio ipcr ON ipcr.PRODUCTS_RATIO_ID = ii.PRODUCT_ID
+        LEFT JOIN insurance_product_info ipi ON ipi.PRODUCT_ID = ipcr.INSURANCE_PRODUCT_ID
+        LEFT JOIN settlement_policy sp ON sp.policy_id = ipip.POLICY_ID
+        where ipi.LONG_SHORT_RISK_TYPE = '1' and ipi.MAIN_OR_ADDITIONAL = '0'
+        and sp.audit_status = #{auditStatus} and sp.settlement_month = #{settlementMonth} AND ipip.AGENT_ID in (${salerIds});
+
+    </select>
+
+
+</mapper>
